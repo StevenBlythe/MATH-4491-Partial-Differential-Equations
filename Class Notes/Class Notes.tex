@@ -10,7 +10,12 @@
 \newcommand{\R}{\mathbb R}
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\N}{\mathbb N}
-\newcommand{\Ex}{\underline{Exercise}\ }
+\newcommand{\p}{\partial }
+\newcommand{\grad}{\nabla}
+\newcommand{\Ex}{\underline{Example:} }
+\newcommand{\ex}{\underline{Ex:} }
+\newcommand{\dfn}{\underline{Definition:} }
+\newcommand{\thm}{\underline{Theorem:} }
 \graphicspath{ {./images/} }
 \title{Partial Differential Equations - Class Notes}
 \date{\today}
@@ -22,4 +27,70 @@
 \section{Chapter 1}
 \subsection*{Sidenotes}
 \subsection{January 19, 2022}
+\topic{What is a PDE?}\\
+A PDE is an equation which contains partial derivatives of an unknown function and we want to find that unknown function.\\
+\Ex $F(t, x, y, z, u, \frac{\partial u}{\partial t}, \frac{\partial u}{\partial x}, \frac{\partial u}{\partial y}, \frac{\partial u}{\partial z}, \frac{\partial^2 u}{\partial t^2}, \frac{\partial^2 u}{\partial x \partial y}, \ldots) = 0$.\\
+Note, the first partial derivatives are considered \underline{$1^{st}$ ordered partials}
+whereas the second ordered partials are considered \underline{$2^{nd}$ ordered partials}.\\
+The variables that are not $u$ are considered independent variables and $u$ is considered a dependent variable.\\
+What PDEs do we study?\\
+Generally, we restrict our attention to equations that model some phenomenom from physics, engineering, economics, geology, \ldots\ etc. We can use physical intuition to help guide the math.\\
+\topic{Classification of PDEs}
+\begin{enumerate}
+  \item Order of PDE: Highest derivative.\\
+  \Ex $\frac{\partial^3 u}{\partial x^3} - \sin(y) u^7 = 3$ is a third order PDE.\\
+  \Ex $(\frac{\partial y}{\partial t})^5 - \frac{\partial^2y}{\partial x \partial t} = e^x$ is a second order PDE.
+  \item Number of independent variables.\\
+  \Ex $\frac{du}{dt} = \frac{\partial^2 u}{\partial x^2}$ has two independent variables: $t, x$.\\
+  This is the $1-D$ heat equation.\\
+  \Ex $\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} = \Delta u$ has 4 independent variables.\\
+  This is the $3-D$ heat equation. $\Delta u$ is Laplacian of $u$.\\
+  \underline{Notation}\\
+  $
+  \Delta u =
+  \grad^2 u =
+  \grad \cdot \grad u =
+  (\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}) \cdot (\frac{\partial u}{\partial x}, \frac{\partial u}{\partial y}, \frac{\partial u}{\partial z}) =
+  \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}
+  $\\
+  $\Delta u = 0$ is considered Laplace's equation.
+  \item Linear vs non-linear\\
+  A linear PDE is any equation of the form $L[u(x)] = f(x)$ where $f(x)$ is a known function is a linear partial differential operator.
+\end{enumerate}
+\dfn A differential operator is any rule that takes a function as its input and returns an expression that involves the derivatives of that function.\\
+\Ex
+\begin{align}
+  u(x, t) & \qquad v(x, t)\\
+  O[u] & = \frac{\partial^2 u}{\partial x^2} + \sin x + \pi - 7e^{tu}\\
+  O[u + 3v] & = \frac{\partial^2}{\partial x^2}(u + 3v) + \sin x + \pi - 7e^{tu + 3tv}\\
+  & = \frac{\partial^2 u}{\partial x^2} + 3 \frac{\partial^2 v}{\partial x^2}+ \sin x + \pi - 7e^{tu + 3tv}
+\end{align}
+\dfn A linear operator, L, is an operator that has the property:
+\begin{align}
+  L[au + bv] & = aL[u] + bL[v]
+\end{align}
+Where $a$ and $b$ are constants.\\
+\thm If $u$ and $v$ are vectors and $L$ is linear, then $L$ can be represented by a matrix.\\
+\thm If $L$ is linear ordinary operator, it must take the form:
+\begin{align}
+  L[u] = f_0(x)u + f_1(x)u^\prime + f_2(x)u^{\prime\prime} + \ldots + f_n(x)u^{(n)}
+\end{align}
+Where the $f_i$'s are known functions.\\
+\dfn A linear ODE is any ODE of the form where $f(x)$ is known is the following:
+\begin{align}
+  L[u] = f(x)
+\end{align}
+If $f(x) = 0$, then the equation is homogeneous. Otherwise, the equation is non-homogeneous.\\
+\ex $(u^\prime)^2 = 0 \Rightarrow u^\prime = 0 \rightarrow$ linear, homogeneous.\\
+\thm If $L$ is a linear partial differential operator, it must take the form ($x$ is a vector with $n$ unknowns)
+\begin{align}
+  L[u(x)] = f_0(x)u + \sum^n_{i = 1} f_i(x) \frac{\partial u}{\partial x_i} +
+  \sum^n_{i = 1} \sum^n_{j = 1} f_{ij}(x) \frac{\p^2 u}{\p x_i \p x_j} + \ldots
+\end{align}
+\dfn A linear PDE is any PDE of the form
+\begin{align}
+  L[u(x)] = f(x)
+\end{align}
+If $f(x) = 0$, the equation is homogeneous, else it is non-homogeneous.\\
+\ex $u_t = 4u_x$ - Linear, homogeneous.
 \end{document}
