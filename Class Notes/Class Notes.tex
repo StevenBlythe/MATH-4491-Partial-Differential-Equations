@@ -288,4 +288,35 @@ Now, let us divide both sides by $\Delta x$ and take the limit as $\Delta x \rig
   \rho \lim_{\Delta x \rightarrow 0} \frac{\int^{x + \Delta x}_x u_{tt} \dx}{\Delta x}
 \end{align}
 On the left side, we have $u_xx$ and the right side we have $u_{tt}(x + \Delta x, t)$.
+\begin{align}
+  Tu_{xx}(x, t) & = \rho u_{tt}(x, t)\\
+  u_{tt} = \frac{T}{\rho} u_{xx} & = c^2 u_{xx}\\
+  c & = \sqrt{\frac{T}{\rho}} = \text{ wave speed }
+\end{align}
+On the left, we have the $1-D$ wave equation which is used for light, sound, rope, etc.\\
+In 2-D, it corresponds to a vibrating membrane (drum)
+\begin{align}
+  u_{tt} & = c^2\Delta u
+\end{align}
+\underline{Remark}:
+\begin{align}
+  u_t = u_{xx} \quad & \text{Heat Equation}\\
+  u_{xx} + u_{yy} = 0 \quad & \text{ Laplace Equation}\\
+  u_{tt} = u_{xx} \quad & \text{ wave}
+\end{align}
+Here, we can replace:\\
+$u_t$ with $t$\\
+$u_x$ with $x$\\
+$u_{xx}$ with $x^2$
+\begin{enumerate}
+  \item $t = x^2$ parabola
+  \item $x^2 + y^2 = 0$ ellipse
+  \item $t^2 = x^2$ hyperbolas
+\end{enumerate}
+So, the equations behave like the following:
+\begin{enumerate}
+  \item The Heat Equation is called parabolic
+  \item The Laplace Equation is called elliptic
+  \item The Wave Equation is called hyperbolic
+\end{enumerate}
 \end{document}
