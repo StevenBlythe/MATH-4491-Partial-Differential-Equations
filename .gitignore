@@ -119,3 +119,8 @@ dmypy.json
 *.fls
 *.log
 *.synctex.gz
+*.dvi
+*.svg
+*.tex
+*.mp4
+*.txt
