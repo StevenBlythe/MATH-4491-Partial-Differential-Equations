@@ -46,3 +46,39 @@ class InitialCondition(Scene):
         t2 = Tex("$x + \Delta x$").scale(0.75).move_to(l3, DOWN).shift(DOWN * 0.4)
         self.add(t1, t2)
         self.wait()
+
+class Fourier(Scene):
+    def construct(self):
+        axes = Axes(
+            x_range=[-10, 10, 2],
+            y_range=[-0.5, 1.5, 1],
+            axis_config={"color": WHITE},
+            tips=False
+        )
+        e0 = lambda x : 0
+        e1 = lambda x : 1
+        pt1 = Dot(point=axes.coords_to_point(-4, 0.5))
+        pt2 = Dot(point=axes.coords_to_point(6, 0.5))
+        
+        l1 = axes.plot(e1, x_range = [-4, 6, 1] ,color = PURPLE)
+        l2 = axes.plot(e0, x_range = [-10, -4, 1], color = BLUE_D)
+        l3 = axes.plot(e0, x_range = [6, 10, 1], color = BLUE_D)
+        self.add(axes, l1, l2, l3, pt1, pt2)
+        self.wait()
+
+class Fourier2(Scene):
+    def construct(self):
+        axes = Axes(
+            x_range=[-1.5, 1.5, 1],
+            y_range=[-1.5, 1.5, 1],
+            axis_config={"color": WHITE},
+            tips=False
+        )
+        e1 = lambda x : 1
+        e2 = lambda x : math.cos(1 * math.pi * x)
+        e3 = lambda x : math.cos(2 * math.pi * x)
+        l1 = axes.plot(e1, color = PURPLE)
+        l2 = axes.plot(e2, color = BLUE_D)
+        l3 = axes.plot(e3, color = BLUE)
+        self.add(axes, l1, l2, l3)
+        self.wait()
