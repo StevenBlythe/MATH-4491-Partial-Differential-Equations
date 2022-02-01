@@ -4,17 +4,23 @@ import math
 class InitialConditions(Scene):
     def construct(self):
         axes = Axes(
-            x_range=[-1, 6, 1],
-            y_range=[-1, 6, 1],
+            x_range=[-1, 4, 1],
+            y_range=[-1, 4, 1],
             axis_config={"color": WHITE},
             tips=False
         )
-        labels = axes.get_axis_labels(y_label='t')
-        region_top_boundary = lambda y : 6
+        labels = axes.get_axis_labels(y_label='u')
+        
+        region_top_boundary = lambda y : 4
         top = axes.plot(region_top_boundary)
-        line1 = axes.get_vertical_line(axes.input_to_graph_point(2, top), color = BLUE)
-        line2 = axes.get_vertical_line(axes.input_to_graph_point(3, top), color = RED)
-        area = axes.get_area(top, [2, 3], color = BLUE_B, opacity=0.2)
+        line1 = axes.get_vertical_line(axes.input_to_graph_point(0, top), color = BLUE)
+        line2 = axes.get_vertical_line(axes.input_to_graph_point(1, top), color = RED)
+        area = axes.get_area(top, [0, 1], color = BLUE_B, opacity=0.2)
+        
+        axes.set_color(WHITE)
+        labels.set_color(WHITE)
+        self.camera_background_color = BLACK
+        
         self.add(axes, line1, line2, area, labels)
         self.wait()
 

@@ -1,0 +1,48 @@
+\ProvidesPackage{stocktonmacros}[Stockton 2022 Spring]
+
+\usepackage{amsmath,amssymb,amsthm}
+
+%%% General class %%%
+\newcommand{\topic}[1]{\textbf{\underline{#1}}}
+\newcommand{\Ex}{\underline{Example:} }
+\newcommand{\ex}{\underline{Ex:} }
+\newcommand{\dfn}{\underline{Definition:} }
+\newcommand{\thm}{\underline{Theorem:} }
+\newcommand{\Note}{\underline{Note:} } % Set to depreciate \Note
+\newcommand{\note}{\underline{Note:} } % Set to
+
+%%% Math Notations %%%
+% Domains %
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Q}{\mathbb Q}
+
+% Greek Symbols %
+\newcommand{\p}{\partial }
+\newcommand{\grad}{\nabla}
+\newcommand{\eps}{\epsilon}
+
+% Common text for integrals %
+\newcommand{\dx}{\text{ dx }}
+\newcommand{\dt}{\text{ dt }}
+
+% Fourier Series %
+\newcommand{\FS}{\sin \Big( \frac{n \pi x}{L} \Big)}
+\newcommand{\FC}{\cos \Big( \frac{n \pi x}{L} \Big)}
+
+% Vector Arrow %
+\newcommand{\ve}[1]{\overrightarrow{#1}}
+
+% Integrals %
+\newcommand{\into}{\oint}
+
+% Set Theory %
+\newcommand{\union}{\bigcup}
+\newcommand{\inter}{\bigcap}
+\newcommand{\intersect}{\bigcap} % Refrain from using \intersect
+
+% Real Analysis $
+\newcommand{\hinto}{\emph{Hint:} }
+\newcommand{\extra}{\emph{Extra Credit:} }
+\newcommand{\dfnLimit}{\displaystyle \lim_{x \to p} f(x) = L}

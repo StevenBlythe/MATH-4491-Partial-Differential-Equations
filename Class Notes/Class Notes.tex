@@ -3,25 +3,13 @@
 \usepackage{amsmath,amssymb,amsthm}		% If AMS-LaTeX is used, this comes first
 \usepackage{color}
 
+\usepackage{stocktonmacros}
+
+\usepackage[parfill]{parskip}
 \usepackage{enumitem}
 \usepackage{graphicx}
 \setlist[itemize]{noitemsep, topsep=0pt}
-\newcommand{\topic}[1]{\textbf{\underline{#1}}}
-\newcommand{\R}{\mathbb R}
-\newcommand{\Z}{\mathbb Z}
-\newcommand{\N}{\mathbb N}
-\newcommand{\p}{\partial }
-\newcommand{\grad}{\nabla}
-\newcommand{\Ex}{\underline{Example:} }
-\newcommand{\ex}{\underline{Ex:} }
-\newcommand{\dx}{\text{ dx }}
-\newcommand{\dt}{\text{ dt }}
-\newcommand{\dfn}{\underline{Definition:} }
-\newcommand{\thm}{\underline{Theorem:} }
-\newcommand{\Note}{\underline{Note:} }
-\newcommand{\note}{\underline{Note:} }
-\newcommand{\FS}{\sin \Big( \frac{n \pi x}{L} \Big)}
-\newcommand{\FC}{\cos \Big( \frac{n \pi x}{L} \Big)}
+
 \graphicspath{ {./images/} }
 \title{Partial Differential Equations - Class Notes}
 \date{\today}
@@ -507,4 +495,81 @@ So, the equations behave like the following:
     \Big( +\frac{9}{n \pi} \cos(-n \pi) + \frac{9}{n^2 \pi^2} \sin(-n \pi) \Big)\Bigg]\\
     & = -\frac{6}{n \pi} \cos(n \pi)
   \end{align}
+
+\newpage
+\subsection*{January 31, 2022}
+The Fourier Series is not valid at $x = \pm 3$ since it is not continuous at $\pm 3$.
+
+Let's say $f(x)$ is odd, then $\displaystyle f(x) = \sum^\infty_{n = 1} a_n \FS$
+
+Let's say $f(x)$ is even, then $\displaystyle f(x) = \sum^\infty_{n = 1} b_n \FC$
+
+If we are only interested in the behavior of $f(x)$ on $[0, L$, then we can either use a Fourier Sine Series $\displaystyle f(x) = \sum^\infty_{n = 1} a_n \FS$ or a Fourier series $f(x) = \sum^\infty_{n = 0} b_n \FC$.
+
+\topic{Solving the Heat Equation}
+
+\begin{align}
+  u_t & = \alpha^2 u_{xx}
+\end{align}
+\begin{center}
+  0 o============o L
+  $u(x, t) : $ temp
+\end{center}
+
+Initial condition:
+\begin{align}
+  u(x, 0) = f(x)
+\end{align}
+Boundary conditions
+\begin{align}
+  u(0, t) = u(L, t) = 0
+\end{align}
+\begin{center}
+  \includegraphics{FourierReflection}
+\end{center}
+So, whatever we get, we better have $\displaystyle \lim_{t \to \infty} u(x, t) = 0$. The method of reflection? relies on two things:
+\begin{enumerate}
+  \item Fourier Series
+  \item Linearity
+\end{enumerate}
+\underline{Method}
+\begin{enumerate}
+  \item Try a solution of the form
+  \begin{align}
+    u(x, t) = X(x)T(t) \leftarrow \text{ Assume the solution is separable}
+  \end{align}
+  Boundary Conditions:
+  Here, we conclude $X(0)$ is $0$ because we want $T(t)$ to change as $t$ changes.
+  \begin{align}
+    u(0, t) = 0 & \Rightarrow X(0)T(t) = 0 \Rightarrow X(0) = 0\\
+    u(L, t) = 0 & \Rightarrow X(L)T(t) = 0 \Rightarrow X(L) = 0\\
+    U_t = \alpha^2 u_{xx} & \Rightarrow X(x)T^\prime(t) = \alpha^2 X^{\prime\prime}(x) T(t)
+  \end{align}
+  Here, we divide by $X, T, \alpha^2$.
+  \begin{align}
+    \Rightarrow \frac{T^\prime(t)}{\alpha^2T(t)} & = \frac{X^{\prime\prime}}{X(x)} = -\lambda
+  \end{align}
+  Here, $\lambda$ is a constant.
+  \item
+  \begin{align}
+    \frac{X^{\prime\prime}}{X(x)} & = -\lambda\\
+    X^{\prime\prime}(x) & = -\lambda X(x)
+  \end{align}
+  Here, we know $(x) = X(L) = 0$. We call every $(\lambda, X(x))$ pair that satisfies this equation an eigenvalue/eigenfunction pair for the differential equation.
+
+  Assume $\lambda > 0$
+  \begin{align}
+    X^{\prime\prime} & = -\lambda x\\
+    x(0) & = x(L) = 0\\
+    & \Rightarrow X(x) = A \cos(\sqrt{\lambda} x) + B\sin(\sqrt{\lambda} x)\\
+    & \Rightarrow A \cos 0 + B \sin 0 = 0\\
+    & \Rightarrow A = 0\\
+    & \Rightarrow X(x) = B \sin(\sqrt \lambda x)\\
+    X(L) = 0 & \Rightarrow B \sin(\sqrt \lambda L) = 0\\
+    & \Rightarrow \sin(\sqrt \lambda L) = 0\\
+    & \Rightarrow \sqrt \lambda L = n \pi, n \in \Z^+\\
+    & \Rightarrow \lambda_n = \Big( \frac{n \pi}{L} \Big)^2\\
+    & \Rightarrow_n(x) = \FS
+  \end{align}
+\end{enumerate}
 \end{document}
