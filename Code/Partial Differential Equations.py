@@ -88,3 +88,20 @@ class Fourier2(Scene):
         l3 = axes.plot(e3, color = BLUE)
         self.add(axes, l1, l2, l3)
         self.wait()
+
+class HeatEquation(ThreeDScene):
+    def construct(self):
+        axes = ThreeDAxes()
+        arrowx1 = Arrow3D(start=np.array([-2, 1, 1]), end=np.array([0, 1, 1]), color=RED)
+        arrowx2 = Arrow3D(start=np.array([2, 1, 1]), end=np.array([4, 1, 1]), color=RED)
+        arrowy1 = Arrow3D(start=np.array([1, -2, 1]), end=np.array([1, 0, 1]), color=PURPLE_E)
+        arrowy2 = Arrow3D(start=np.array([1, 2, 1]), end=np.array([1, 4, 1]), color=PURPLE_E)
+        heat = Cube(
+            side_length = 2,
+            fill_opacity = 0.75
+        ).shift([1, 1, 1])
+        self.renderer.camera.light_source.move_to(3*IN) # changes the source of the light
+        self.set_camera_orientation(phi=60 * DEGREES, theta=-45 * DEGREES)
+        self.add(axes, heat)
+        self.add(arrowx1, arrowx2, arrowy1, arrowy2)
+        self.wait()
