@@ -89,6 +89,29 @@ class Fourier2(Scene):
         self.add(axes, l1, l2, l3)
         self.wait()
 
+class LaplacesEquation(Scene):
+    def construct(self):
+        axes = Axes(
+            x_range=[0, 4, 1],
+            y_range=[0, 3, 1],
+            axis_config={"color": WHITE},
+            tips=False
+        )
+        labels = axes.get_axis_labels()
+        
+        region_top_boundary = lambda y : 3
+        top = axes.plot(region_top_boundary)
+        line1 = axes.get_vertical_line(axes.input_to_graph_point(0, top), color = BLUE)
+        line2 = axes.get_vertical_line(axes.input_to_graph_point(1, top), color = RED)
+        area = axes.get_area(top, [0, 1], color = BLUE_B, opacity=0.2)
+        
+        axes.set_color(WHITE)
+        labels.set_color(WHITE)
+        self.camera_background_color = BLACK
+        
+        self.add(axes, line1, line2, area, labels)
+        self.wait()
+
 class HeatEquation(ThreeDScene):
     def construct(self):
         axes = ThreeDAxes()
