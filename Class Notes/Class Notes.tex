@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[letter, margin=1cm]{geometry}
+\usepackage[legalpaper, margin=1cm]{geometry} % Causing two errors
 \usepackage{amsmath,amssymb,amsthm}		% If AMS-LaTeX is used, this comes first
 \usepackage{color}
 
@@ -720,5 +720,203 @@ Now, let us perform the five steps to solve our equation:
     \end{itemize}
     This is if we know the heat flux $\vec q \cdot \vec n$ on the boundary.
   \end{enumerate}
+\end{enumerate}
+\newpage
+\subsection*{February 4, 2022}
+\topic{Solving Laplace's Equation}
+\begin{center}
+  \includegraphics{Laplaces}
+
+  $u_{xx} + u_{yy} = 0$
+\end{center}
+\begin{itemize}
+  \item $u_x(0, y) = 0$
+  \item $u_x(L, y) = 0$
+  \item $u(x, 0) = 0$
+  \item $u(x, M) = f(x)$
+\end{itemize}
+\begin{enumerate}
+  \item Assume $u(x, y) = X(x)Y(y)$
+
+  \underline{Boundary Conditions}
+  \begin{align}
+    u(x, y) & = X(x) Y(y)\\
+    & \Rightarrow X^\prime(x)Y(y)
+  \end{align}
+  Now, let us write our boundary condition:
+  \begin{align}
+    U_x(0, y) & = 0\\
+    & \Rightarrow X^\prime(0)Y(y) = 0\\
+    & \Rightarrow X^\prime(0) = 0
+  \end{align}
+  Now, let us find the next item,
+  \begin{align}
+    u_x(L, y) & = 0\\
+    & \Rightarrow X^\prime(L)Y(y) = 0\\
+    & \Rightarrow X^\prime(L) = 0
+  \end{align}
+  Now, the next two items do not have a derivative:
+  \begin{align}
+    u(x, 0) & = 0\\
+    & \Rightarrow X(x)Y(0) = 0\\
+    & \Rightarrow Y(0) = 0
+  \end{align}
+  Now, let us write:
+  \begin{align}
+    u_{xx} + u_{yy} & = 0\\
+    & \Rightarrow X^{\prime\prime}Y + XY^{\prime\prime} = 0\\
+    & \Rightarrow X^{\prime\prime}Y = - XY^{\prime\prime}\\
+    & \Rightarrow \frac{X^{\prime\prime}}{X} = - \frac{Y^{\prime\prime}}{Y} = -\lambda
+  \end{align}
+
+  \item Solve for $X$ (Note: We solve for $X$ first here, since we have more information about $X$).
+  \begin{align}
+    \frac{X^{\prime\prime}}{X} & = - \lambda\\
+    \Rightarrow X^{\prime\prime} & = - \lambda X, \quad X^\prime(0) = X^\prime(L) = 0\\
+    \lambda > 0 \Rightarrow x(x) & = A \sin(\sqrt \lambda x) + B \cos(\sqrt \lambda x)\\
+    \Rightarrow X^\prime(x) & = A \sqrt \lambda \cos(\sqrt \lambda x) - B \sqrt \lambda \sin(\sqrt \lambda x)\\
+    X^\prime(0) = 0 \Rightarrow A \sqrt \lambda & = 0
+  \end{align}
+Now, if we rewrite out equation, we have:
+\begin{align}
+  X(x) & = B \cos(\sqrt \lambda x)
+\end{align}
+Next, we want to find $X^\prime(L) = 0$:
+\begin{align}
+  0 & = - B \sqrt \lambda \sin(\sqrt \lambda L)\\
+  \sqrt \lambda L & = n \pi\\
+  \lambda_n & = \left(\frac{n \pi}{L}\right)^2\\
+  \Rightarrow X_n(x) & = \FC
+\end{align}
+If $\lambda = 0$
+\begin{align}
+  \frac{X^{\prime\prime}_0}{X_0} & \Rightarrow X^{\prime\prime}_0 = 0\\
+  & \Rightarrow X_0(x) = Ax + B\\
+  & \Rightarrow X^\prime_0(x) = A\\
+  & \Rightarrow X^\prime_0(0) = 0\\
+  & \Rightarrow A = 0\\
+  & \Rightarrow X^\prime_0(L) = 0\\
+  & \Rightarrow A = 0
+\end{align}
+Neither conditions tell us more information about $B$,
+\begin{align}
+  \Rightarrow X_0(x) = B_0
+\end{align}
+\item Now, we want to solve for $Y$: $- \frac{Y^{\prime\prime}}{Y} = -\lambda$
+\begin{align}
+  Y^{\prime\prime} & = \lambda y\\
+  Y^{\prime\prime} & = \left( \frac{n \pi}{L} \right)^2 Y_n, \quad Y_n(0) = 0\\
+  Y_n(y) & = Ce^{\frac{n \pi}{L}y} + De^{- \frac{n \pi}{L}}y\\
+  Y_n(0) = 0 & \Rightarrow C + D = 0
+\end{align}
+Here, we do not have an additional condition that could help use solve this equality. Let us consider the hyperbolic sin and cos:
+\begin{align}
+  \sinh(x) & = \frac{e^x - e^{-x}}{2}\\
+  \cosh(x) & = \frac{e^x + e^{-x}}{2}
+\end{align}
+Instead of writing $Y$ in the same fashion we solved for $X$, we use the hyperbolic $\sinh$ and $cosh$
+\begin{align}
+  Y_n(y) & = C \sinh \left(\frac{n \pi y}{L} \right) + D \cosh \left( \frac{n \pi y}{L} \right)\\
+  Y_n(0) = 0 & \Rightarrow D = 0\\
+  Y_n(y) & = \sinh \left( \frac{n \pi y}{L} \right)
+\end{align}
+Now, let us write:
+\begin{align}
+  \frac{Y^{\prime\prime}_0}{Y_0} = \lambda_0 &\\
+  & \Rightarrow Y^{\prime\prime}_0 = 0\\
+  & \Rightarrow Y_0 = Cy + D\\
+  & \Rightarrow Y_0(0) = 0\\
+  & \Rightarrow D = 0\\
+  & \Rightarrow Y_0(y) = C_0 y
+\end{align}
+\item Combine to find $u_n$ and $u$:
+\begin{align}
+  u_n(x, y) = X_n(x)Y_n(y) & =
+  \begin{cases}
+    \FC \sinh \left( \frac{n \pi y}{L} \right) & n \geq 1\\
+    B_0C_0y & n = 0
+  \end{cases}
+\end{align}
+By linearity,
+\begin{align}
+  u(x, y) & = \twiddle{B}_0 y + \sum^\infty_{n = 1} B_n \FC \sinh \left( \frac{n \pi y}{L} \right)
+\end{align}
+\item Here, use the final boundary condition to find the coefficients.
+\begin{align}
+  u(x, M) & = f(x)\\
+  u(x, M) & = \twiddle{B}_0 M + \sum^\infty_{n = 1} B_n \FC \sinh\left( \frac{n \pi M}{L} \right)
+\end{align}
+This is our Fourier Cosine Series for $f(x)$. Here, we can say a few things about this equation,
+\begin{itemize}
+  \item $b_0 = \twiddle B_0 M$
+  \item $b_n = B_n \sinh\left( \frac{n \pi M}{L} \right)$
+\end{itemize}
+\begin{align}
+  \twiddle B_0 M & = \frac{2}{2L} \int^L_0 f(x) \dx\\
+  \twiddle B_0 & = \frac{1}{ML} \int^L_0 f(x) \dx
+\end{align}
+Next, let us find:
+\begin{align}
+  B_n \sinh\left( \frac{n \pi M}{L} \right) & = \frac{2}{L} \int^L_0 f(x) \FC \dx\\
+  & = \frac{2}{L \sinh\left( \frac{n \pi M}{L} \right)} \int^L_0 f(x) \FC \dx
+\end{align}
+\end{enumerate}
+\ex Solve $\Delta u = 0$
+\begin{itemize}
+  \item $(x, y) = 0$
+  \item $(2, y) = 0$
+  \item $(x, 0) = 0$
+  \item $(x, 3) = 4 \sin (5x)$
+\end{itemize}
+\begin{enumerate}
+  \item Assume $u(x, y) = X(x)Y(y)$
+
+  Here, let us look at our boundary conditions:
+  \begin{align}
+    u(0, y) & = 0\\
+    X(0)Y(y) & = 0\\
+    X(0) = 0
+  \end{align}
+
+  Here, let us look at our next boundary conditions:
+  \begin{align}
+    u(2, y) & = 0\\
+    X(2)Y(y) & = 0\\
+    X(2) = 0
+  \end{align}
+
+  Here, let us look at our next boundary conditions:
+  \begin{align}
+    u(x, 0) & = 0\\
+    X(x)Y(0) & = 0\\
+    Y(x) = 0
+  \end{align}
+
+  Now, we can write:
+  \begin{align}
+    u_{xx} + u_{yy} & = 0\\
+    X^{\prime\prime}Y + XY^{\prime\prime} & = 0\\
+    \frac{X^{\prime\prime}}{X} & = -\frac{Y^{\prime\prime}}{Y} = - \lambda
+  \end{align}
+  \item Now, let us solve for $x$:
+  \begin{align}
+    \frac{X^{\prime\prime}}{X} & = -\lambda\\
+    X^{\prime\prime} & = - \lambda X, \quad X(0) = X(2) = 0\\
+    \lambda > 0 \Rightarrow X(x) & = A \sin(\sqrt \lambda x) + B \cos(\sqrt \lambda x)\\
+    X(0) & = B = 0\\
+    X(2) & = A \sin(\sqrt \lambda 2) = 0\\
+    & = \lambda 2 = n \pi\\
+    & = \lambda_n = \left( \frac{n \pi}{2} \right)^2\\
+    & = X_n(x) =  \sin(\frac{n \pi x}{2})
+  \end{align}
+  \item Let us solve for $y$:
+  \begin{align}
+    \frac{Y^{\prime\prime}_n}{Y_n} & = \lambda_n\\
+    Y^{\prime\prime}_n & = \left(\frac{n \pi}{2}\right)^2 Y_n, \quad Y_n(0) = 0\\
+    Y_n(y) & = C \sinh \left( \frac{n \pi y}{2} \right) + D \cosh \left( \frac{n \pi y}{2} \right)\\
+    & = Y_n(0) = 0 \Rightarrow D = 0\\
+    Y_n(y) & = \sinh \left( \frac{n \pi y}{2} \right)
+  \end{align}
+  We are picking a constant for this last term later, so we can drop $C$.
 \end{enumerate}
 \end{document}
