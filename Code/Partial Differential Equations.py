@@ -128,3 +128,40 @@ class HeatEquation(ThreeDScene):
         self.add(axes, heat)
         self.add(arrowx1, arrowx2, arrowy1, arrowy2)
         self.wait()
+
+class HomeworkiiProblemia(Scene):
+    def construct(self):
+        # Create the base graph
+        axes = Axes(
+            x_range=[-3 * PI - 0.0001, 3 * PI + 0.0001, PI],
+            y_range=[-4, 4, 1],
+            tips=False
+        )
+        labels = axes.get_axis_labels()
+        self.add(axes, labels)
+
+        # Create the x-labels
+        x_labels = [
+            MathTex("-3 \pi"), MathTex("-2 \pi"), MathTex("-\pi"), MathTex(""), MathTex("\pi"), MathTex("2 \pi"), MathTex("3 \pi")
+        ]
+        for i in range(len(x_labels)):
+            x_labels[i].move_to(axes.c2p(-3 * PI + i * PI)).shift(DOWN*0.4)
+            self.add(x_labels[i])
+        
+        discont = [0]
+
+        for i in range(1, math.floor(len(x_labels)/2) + 1):
+            discont.append(i * PI)
+            discont.append(i * -PI)
+        print(discont)
+        l1 = axes.plot(self.fourier, color=RED, discontinuities=[-3 * PI, -2 * PI, -1 * PI, 0, 1 * PI, 2 * PI, 3 * PI])
+        self.add(l1)
+        self.wait()
+        self.add(Dot())
+
+
+    def fourier(self, x):
+        if x % (2 * PI) > PI:
+            return -1
+        else: return 1
+
