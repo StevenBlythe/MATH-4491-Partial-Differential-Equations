@@ -1,0 +1,200 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{esvect}
+\usepackage[a4paper, margin=1cm]{geometry}
+\usepackage{stocktonmacros}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\begin{document}
+\begin{enumerate}
+  \item Let $f(x)$ be a $2 \pi$-period function on the interval $[-\pi, \pi]$ where
+  $\displaystyle
+  f(x) =
+  \begin{cases}
+    -1 & - \pi < x \leq 0\\
+    1 &\ \ 0 < x \leq \pi
+  \end{cases}
+  $
+  % Personal addition - add the Fourier Series Formula
+  \begin{align}
+    f(x) & = a_n \sin\left( \frac{n \pi x}{L} \right) + b_n \cos\left( \frac{n \pi x}{L} \right)
+  \end{align}
+  \begin{enumerate}
+%______________________________________________________________________________%
+%
+% ans
+    \item Plot the function on the interval $[-3\pi, 3\pi]$
+    %\begin{center}
+    %  \includegraphics{}
+    %\end{center}
+    \item Plot its (infinite) Fourier series on $[-3 \pi, 3 \pi]$
+    %\begin{center}
+    %  \includegraphics{}
+    %\end{center}
+    \item Find the Fourier series of $f(x)$
+    Here, let us consider a few points:
+    \begin{itemize}
+      \item $L = -\pi$
+    \end{itemize}
+
+%
+%______________________________________________________________________________%
+\newpage
+\end{enumerate}
+  \item Let $f(x) = x^2$ be a $2 \pi$-periodic function on the interval $[-\pi, \pi]$.
+  \begin{enumerate}
+    \item Derive its Fourier series
+    \item Use Maple of Matlab to plot its finite Fourier series on $[-\pi, \pi]$ for $N = 10, 20, 50$ together with $f(x)$
+    \item Use your Fourier series from part (a) to show that $\frac{\pi^2}{6} = 1 + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \ldots$.
+  \end{enumerate}
+%______________________________________________________________________________%
+%
+% ans
+Let us begin
+%
+%______________________________________________________________________________%
+  \item In the solution of the heat equation, we end up solving $X^{\prime\prime} = -\lambda X$. Show that if $\lambda < 0$ or $\lambda = 0$ there is only the trivial solution ($X(x) = 0$).
+
+%______________________________________________________________________________%
+%
+% ans
+Here, we have the equation:
+\begin{align}
+  X^{\prime\prime} & = - \lambda X
+\end{align}
+
+We want to use this equation and set our boundary conditions as $X(0) = X(L) = 0$. Now, we must find an equation where after two derivatives on the right, we obtain a similar function on the left. On the left, we have a sign, coefficient, and function of $x$. Let us write a general solution for our equation:
+%
+\begin{align}
+  X(x) & = A \cos(\sqrt \lambda x) + B \sin( \sqrt \lambda x)
+\end{align}
+
+Here, we can make three assumptions \ask{via trichotomy}: $\lambda < 0, \lambda = 0,$ or $\lambda > 0$. Let us look at the first two examples:
+
+\begin{enumerate}
+  \item $\lambda < 0$
+
+  Here, let us consider the case when $\lambda$ is negative. Let us consider rewriting $\lambda$:
+  %
+  \begin{align}
+    \lambda < 0\\
+    \lambda \cdot -1 > 0 \cdot -1\\
+    -1 \cdot \lambda > 0
+  \end{align}
+
+  Now, let us plug in our found value into our general equation:
+  %
+  \begin{align}
+    X(x) & =
+    A \cos (\sqrt{- 1 \cdot \lambda} x) +
+    B \sin (\sqrt{- 1 \cdot \lambda} x)
+  \end{align}
+
+  Let us separate the terms under the radical:
+%
+  \begin{align}
+    X(x) & =
+    A \cos (\sqrt{- 1 \cdot \lambda} x) +
+    B \sin (\sqrt{- 1 \cdot \lambda} x)\\
+    & =
+    A \cos (\sqrt{- 1} \sqrt{\lambda} x) +
+    B \sin (\sqrt{- 1} \sqrt{\lambda} x)\\
+    & =
+    A \cos (i \sqrt{\lambda} x) +
+    B \sin (i \sqrt{\lambda} x)
+  \end{align}
+
+  Here, in our expression, we see we are taking the square root of a negative number, which would give us an imaginary number. Here, we are evaluating our general solution with real numbers, therefore, the following form:
+  %
+  \begin{align}
+    X(x) & =
+    A \cos (i \sqrt{\lambda} x) +
+    B \sin (i \sqrt{\lambda} x)
+  \end{align}
+
+  Where $X(x)$ is a real number would only have the trivial solution $X(x) = 0$.
+
+  \item $\lambda = 0$
+
+  Here, let us consider the case when $\lambda$ is zero. Now, let us write our general equation:
+  %
+  \begin{align}
+    X(x) & = A \cos(\sqrt \lambda x) + B \sin(\sqrt \lambda x)
+  \end{align}
+
+  Here, since $\lambda = 0$, we can evaluate our equation:
+  %
+  \begin{align}
+    X(x) & = A \cos(0) + B \sin(0)\\
+    & = A
+  \end{align}
+
+  Now, let us evaluate our boundary condition for $X(x) = A$. First, we let $X(0) = 0$:
+  %
+  \begin{align}
+    X(0) & = 0 = A
+  \end{align}
+
+  Here, we know $A$ is $0$. For the second condition, let us write:
+  %
+  \begin{align}
+    X(L) & = 0 = A
+  \end{align}
+
+  Here, we will always have the trivial solution, $X(x) = 0$.
+
+\end{enumerate}
+%
+%______________________________________________________________________________%
+
+  \item Show that $u(x, t) = e^{-\lambda^2 a^2 t}\left[ A \cos(\lambda x) + B \sin(\lambda x) \right]$
+%______________________________________________________________________________%
+%
+
+% ans
+
+
+%
+%______________________________________________________________________________%
+%
+\newpage
+%
+%______________________________________________________________________________%
+%
+  \item Solve $u_t = u_{xx}$ given $u(0, t) = u(1, t) = 0$ for $t \geq 0$ and $u(x, 0) = 1$ for $0 \leq x \leq 1$
+%
+%______________________________________________________________________________%
+%
+
+% ans
+
+
+%
+%______________________________________________________________________________%
+%
+  \item Find the solution to the previous problem if $u(x, 0) = x - x^2$ for $0 \leq x \leq 1$
+%
+%______________________________________________________________________________%
+%
+
+%
+%______________________________________________________________________________%
+%
+  \item Solve $u_t = u_{xx}$ given $u(0, t) = u(1, t) = 0$ for $t \geq 0$ and $u(x, 0) = 10^{-5} \sin(10^6 \pi x)$ for $0 \leq x \leq 1$. Determine $u(x, 2)$ and $u(x, -2)$ and look at their magnitudes. Note that when $t = -2$, we are looking at the backward heat equation and given the magnitude of $u(x, -2)$, what can you say about the solution to the backward heat equation?
+
+  % ans
+  Let us consider the following conditions:
+  \begin{itemize}
+    \item $u(0, t) = 0, t \geq 0$
+    \item $u(1, t) = 0, t \geq 0$
+    \item $u(x, 0) = 10^{-5} \sin(10^6 \pi x), 0 \leq x \leq 1$
+    \item Determine the following and look at their magnitudes
+    \begin{itemize}
+      \item $u(x, 2)$
+      \item $u(x, -2)$
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+\end{document}
