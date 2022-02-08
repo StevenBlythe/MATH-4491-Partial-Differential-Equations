@@ -151,9 +151,9 @@ class HomeworkiiProblemia(Scene):
         
         discont = [0]
 
-        for i in range(1, math.floor(len(x_labels)/2) + 1):
-            discont.append(i * PI)
-            discont.append(i * -PI)
+        #for i in range(1, math.floor(len(x_labels)/2) + 1):
+            #discont.append(i * PI)
+            #discont.append(i * -PI)
         l1 = axes.plot(self.fourier, color=RED, discontinuities=[-3 * PI, -2 * PI, -1 * PI, 0, 1 * PI, 2 * PI, 3 * PI])
         self.add(l1)
         self.wait()
