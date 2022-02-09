@@ -19,47 +19,183 @@
   $
   % Personal addition - add the Fourier Series Formula
   \begin{align}
-    f(x) & = a_n \sin\left( \frac{n \pi x}{L} \right) + b_n \cos\left( \frac{n \pi x}{L} \right)
+    a_n & = \frac{1}{L}  \int^L_{-L} f(x) \sin\left( \frac{n \pi x}{L} \right) \dx\\
+    b_n & = \frac{1}{L}  \int^L_{-L} f(x) \cos\left( \frac{n \pi x}{L} \right) \dx\\
+    b_0 & = \frac{1}{2L} \int^L_{-L} f(x) \dx
   \end{align}
   \begin{enumerate}
 %______________________________________________________________________________%
 %
 % ans
     \item Plot the function on the interval $[-3\pi, 3\pi]$
+
     %\begin{center}
     %  \includegraphics{}
     %\end{center}
     \item Plot its (infinite) Fourier series on $[-3 \pi, 3 \pi]$
+
     %\begin{center}
     %  \includegraphics{}
     %\end{center}
     \item Find the Fourier series of $f(x)$
-    Here, let us consider a few points:
-    \begin{itemize}
-      \item $L = -\pi$
-    \end{itemize}
 
+    Here, let us consider the symmetry of our function.
+
+    When we look at the graph of $f(x)$, we can see there is a reflection about the origin, making the function odd. $\sin$ is also an odd function, therefore $a_n$ is an even function.
+
+    Looking at $b_n$, $\cos$ is an even function, therefore $b_n$ becomes an odd function.
+
+    Finally, $b_0$ is always an odd function. When we integrate these three coefficients, we lose $b_n$ and $b_0$, but keep $a_n$. Since $a_n$ is even, we can write:
+%
+    \begin{align}
+      a_n & = \frac{2}{L} \int^L_0 f(x) \sin\left( \frac{n \pi x}{L} \right) \dx
+    \end{align}
+
+    Here, we are looking at the interval from $0$ to $L$. Our given function, $f(x)$ runs from $-\pi$ to $\pi$, therefore our integral is:
+%
+    \begin{align}
+      a_n & = \frac{2}{\pi} \int^\pi_0 1 \cdot \sin\left( \frac{n \pi x}{\pi} \right) \dx\\
+      & = \frac{2}{\pi} \int^\pi_0 \sin\left( n x \right) \dx
+    \end{align}
+
+    From here, we can compute our integral:
+    %
+    \begin{align}
+      a_n & = \frac{2}{\pi } \int^\pi_0 \sin\left( n x \right) \dx\\
+      & = -\frac{2}{\pi n} \cos\left( n x \right) \bigg|^\pi_0\\
+      & = \frac{2}{\pi n}\big( 1 - \cos( n \pi ) \big)
+    \end{align}
+
+    Here, we found our coefficient, $a_n$. Now, since $f(x)$ is odd, we are only interested in the following:
+    %
+    \begin{align}
+      f(x) & = \sum^\infty_{n = 1} a_n \sin\left( \frac{n \pi x}{L} \right)\\
+      & = \sum^\infty_{n = 1}
+      \frac{2}{\pi n}\big( 1 - \cos( n \pi ) \big)
+      \sin\left( \frac{n \pi x}{L} \right)
+    \end{align}
+
+    Here, since our interval is $-\pi$ to $\pi$, so let us write:
+    %
+    \begin{align}
+      f(x) & =
+      \sum^\infty_{n = 1}
+      \frac{2}{\pi n}\big( 1 - \cos( n \pi ) \big)
+      \sin\left( \frac{n \pi x}{\pi} \right)\\
+      & =
+      \sum^\infty_{n = 1}
+      \frac{2}{\pi n}\big( 1 - \cos( n \pi ) \big)
+      \sin\left( n x \right)
+    \end{align}
+
+    Here, we have our Fourier series.
 %
 %______________________________________________________________________________%
+%
 \newpage
+%
+%______________________________________________________________________________%
+%
 \end{enumerate}
   \item Let $f(x) = x^2$ be a $2 \pi$-periodic function on the interval $[-\pi, \pi]$.
   \begin{enumerate}
     \item Derive its Fourier series
+    %
+
+    % ans
+    Let us consider the symmetry of our function. Our function, $f(x)$, is an even function. Therefore, we have the following coefficients:
+%
+    \begin{align}
+      b_n & = \frac{1}{L}  \int^L_{-L} f(x) \cos\left( \frac{n \pi x}{L} \right) \dx\\
+      b_0 & = \frac{1}{2L} \int^L_{-L} f(x) \dx
+    \end{align}
+
+    Since $f(x)$ is even, we can write:
+    %
+    \begin{align}
+      b_n & = \frac{2}{L}  \int^L_0 f(x) \cos\left( \frac{n \pi x}{L} \right) \dx\\
+      b_0 & = \frac{1}{L} \int^L_0 f(x) \dx
+    \end{align}
+
+    In addition, since we also know our interval and our function, we can write:
+    %
+    \begin{align}
+      b_n & = \frac{2}{\pi} \int^\pi_0 x^2 \cos\left( n x \right) \dx\\
+      b_0 & = \frac{1}{\pi} \int^\pi_0 x^2 \dx
+    \end{align}
+
+    First, let us find the integral of $b_n$. Let us rewrite $b_n$ first:
+    %
+    \begin{align}
+      b_n & = \frac{2}{\pi} \int^\pi_0 x^2 \cos\left( n x \right) \dx
+    \end{align}
+
+    Here, we want to do integration by parts. We want $x^2$ as our derived function since we can derive that function to $0$.
+
+    \begin{center}
+      \begin{tabular}{c|c}
+        $x^2$ & $\displaystyle \cos(n x)$\\
+        \hline
+        $2x$ & $\displaystyle \frac{1}{n} \sin(n x)$\\
+        \hline
+        $2$ & $\displaystyle -\frac{1}{n^2} \cos(n x)$\\
+        \hline
+        $0$ & $\displaystyle -\frac{1}{n^3} \sin(n x)$
+      \end{tabular}
+    \end{center}
+
+    Here, we can write our integral as the following:
+    %
+    \begin{align}
+      b_n & = \frac{2}{\pi} \left[ \frac{x^2}{n} \sin(n x) + \frac{2x}{n^2} \cos(n x) - \frac{2}{n^3} \sin(n x) \right]^\pi_0\\
+      & = \frac{2}{\pi n} \left[ x^2 \sin(n x) + \frac{2x}{n} \cos(n x) - \frac{2}{n^2} \sin(n x) \right]^\pi_0\\
+      & = \frac{2}{\pi n} \left[ \pi^2 \sin(\pi x) + \frac{2\pi}{n} \cos(n \pi) - \frac{2}{n^2} \sin(n \pi) \right] - \frac{2}{n \pi} \left[ 0^2 \sin(0) + \frac{0}{n} \cos(0) - \frac{2}{n^2} \sin(0) \right]
+    \end{align}
+
+    Here, the entire right term zeroes out. On the left, $\sin(n \pi)$ zeroes out, leaving us with:
+    %
+    \begin{align}
+      b_n & = \frac{4}{n^2} \cos(n \pi)
+    \end{align}
+
+    Now, let us find $b_0$:
+    %
+    \begin{align}
+      b_0 & = \frac{1}{\pi} \int^\pi_0 x^2 \dx\\
+      & = \frac{1}{\pi} \left[ \frac{x^3}{3} \right]^\pi_0\\
+      & = \frac{1}{3\pi} \left[ x^3 \right]^\pi_0\\
+      & = \frac{1}{3\pi} \left[ \pi^3 - 0 \right]\\
+      & = \frac{\pi^2}{3}
+    \end{align}
+
+    Now that we have our coefficients, we can write:
+    %
+    \begin{align}
+      f(x) & = \frac{\pi^2}{3} + \sum^\infty_{n = 1} \frac{4}{n^2} \cos(n x) \sin(n x)
+    \end{align}
+    %
     \item Use Maple of Matlab to plot its finite Fourier series on $[-\pi, \pi]$ for $N = 10, 20, 50$ together with $f(x)$
+    %
+
+    % ans
+
+    %
     \item Use your Fourier series from part (a) to show that $\frac{\pi^2}{6} = 1 + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \ldots$.
+    %
+
+    % ans
+
+    %
   \end{enumerate}
-%______________________________________________________________________________%
-%
-% ans
-Let us begin
 %
 %______________________________________________________________________________%
+%
+\newpage
+%
+%______________________________________________________________________________%
+%
   \item In the solution of the heat equation, we end up solving $X^{\prime\prime} = -\lambda X$. Show that if $\lambda < 0$ or $\lambda = 0$ there is only the trivial solution ($X(x) = 0$).
 
-%______________________________________________________________________________%
-%
-% ans
 Here, we have the equation:
 \begin{align}
   X^{\prime\prime} & = - \lambda X
@@ -148,7 +284,11 @@ Here, we can make three assumptions \ask{via trichotomy}: $\lambda < 0, \lambda 
 \end{enumerate}
 %
 %______________________________________________________________________________%
-
+%
+\newpage
+%
+%______________________________________________________________________________%
+%
   \item Show that $u(x, t) = e^{-\lambda^2 a^2 t}\left[ A \cos(\lambda x) + B \sin(\lambda x) \right]$
 %______________________________________________________________________________%
 %
@@ -169,16 +309,42 @@ Here, we can make three assumptions \ask{via trichotomy}: $\lambda < 0, \lambda 
 %
 
 % ans
+Let us consider the following conditions:
+%
+\begin{itemize}
+  \item $u_t = u_{xx}$
+  \item $u(0, t) = 0, t \geq 0$
+  \item $u(1, t) = 0, t \geq 0$
+  \item $u(x, 0) = 1, 0 \leq x \leq 1$
+\end{itemize}
 
+Let us begin finding our solution.
+\begin{enumerate}
+  \item Let us assume our solution is seperable. Therefore, we can write $u(x, t) = X(x)T(x)$. Now, using our initial conditions, let us write:
+  %
+  \begin{align}
+    u(0, t) & = X(0)T(t) = 0 \Rightarrow X(0) = 0\\
+    u(1, t) & = X(1)T(t) = 0 \Rightarrow X(1) = 0\\
+    u(x, 0) & = X(x)T(0) = 0 \Rightarrow T(0) = 0\\
+  \end{align}
+\end{enumerate}
+%
+%______________________________________________________________________________%
+%
+\item Find the solution to the previous problem if $u(x, 0) = x - x^2$ for $0 \leq x \leq 1$
+
+% ans
+\begin{itemize}
+  \item $u_t = u_{xx}$
+  \item $u(0, t) = 0, t \geq 0$
+  \item $u(1, t) = 0, t \geq 0$
+  \item $u(x, 0) = x - x^2, 0 \leq x \leq 1$
+\end{itemize}
 
 %
 %______________________________________________________________________________%
 %
-  \item Find the solution to the previous problem if $u(x, 0) = x - x^2$ for $0 \leq x \leq 1$
-%
-%______________________________________________________________________________%
-%
-
+\newpage
 %
 %______________________________________________________________________________%
 %
@@ -187,6 +353,7 @@ Here, we can make three assumptions \ask{via trichotomy}: $\lambda < 0, \lambda 
   % ans
   Let us consider the following conditions:
   \begin{itemize}
+    \item $u_t = u_{xx}$
     \item $u(0, t) = 0, t \geq 0$
     \item $u(1, t) = 0, t \geq 0$
     \item $u(x, 0) = 10^{-5} \sin(10^6 \pi x), 0 \leq x \leq 1$
