@@ -20,9 +20,9 @@ class InitialConditions(Scene):
         axes.set_color(WHITE)
         labels.set_color(WHITE)
         self.camera_background_color = BLACK
-        
-        self.add(axes, line1, line2, area, labels)
-        self.wait()
+        self.add(axes, labels)
+        self.play(Create(line1), Create(line2), Create(area))
+        self.wait(10)
 
 
 class Pipe(ThreeDScene):
@@ -53,7 +53,7 @@ class InitialCondition(Scene):
         self.add(t1, t2)
         self.wait()
 
-class Fourier(Scene):
+class Fourier2(Scene):
     def construct(self):
         axes = Axes(
             x_range=[-10, 10, 2],
@@ -72,7 +72,7 @@ class Fourier(Scene):
         self.add(axes, l1, l2, l3, pt1, pt2)
         self.wait()
 
-class Fourier2(Scene):
+class Fourier(Scene):
     def construct(self):
         axes = Axes(
             x_range=[-1.5, 1.5, 1],
@@ -88,6 +88,7 @@ class Fourier2(Scene):
         l3 = axes.plot(e3, color = BLUE)
         self.add(axes, l1, l2, l3)
         self.wait()
+        self.add(Dot())
 
 class LaplacesEquation(Scene):
     def construct(self):
@@ -150,9 +151,9 @@ class HomeworkiiProblemia(Scene):
         
         discont = [0]
 
-        for i in range(1, math.floor(len(x_labels)/2) + 1):
-            discont.append(i * PI)
-            discont.append(i * -PI)
+        #for i in range(1, math.floor(len(x_labels)/2) + 1):
+            #discont.append(i * PI)
+            #discont.append(i * -PI)
         l1 = axes.plot(self.fourier, color=RED, discontinuities=[-3 * PI, -2 * PI, -1 * PI, 0, 1 * PI, 2 * PI, 3 * PI])
         self.add(l1)
         self.wait()
