@@ -1095,4 +1095,236 @@ Here, $g \in C^2$, $g(0) = g(L)$.
     u(x, t) & = 2 \sin(3 \pi x) \cos(3 \pi t) - \frac{1}{5} \sin\left( \frac{7 \pi x}{2} \right) \cos\left( \frac{7 \pi t}{2} \right)
   \end{align}
 \end{enumerate}
+
+\newpage
+
+\subsection*{February 9, 2022}
+\topic{More general Boundary Conditions}
+
+Before, we used to deal with boundary conditions where $u$ starts and end at $0$. Now, let us consider boundary conditions where $u$ can start at any number.
+
+% To view different conditions, visit Visual Studio code, credits to @199071614166499328.
+
+The steady state solution is the following:
+%
+\begin{align}
+  \frac{T_2 - T_1}{L} x + T_1
+\end{align}
+
+Ideas, we want to try the following: $u(x, t) = w(x, t) + u(x, \infty)$. Note that $\infty$ is the steady state. Here, as time goes to infinity, $w(x, t)$ cancels out. We want to solve for $w$:
+
+We must specify $w$.
+%
+\begin{align}
+  u_t & = \alpha^2 u_{xx}\\
+  w_t & = \alpha^2 w_{xx}
+\end{align}
+
+We want to find out more about the boundary conditions. We also need the initial conditions to solve this.
+
+\underline{Boundary Conditions}
+\begin{itemize}
+  \item $u(0, t) = T_1$
+  \item $u(L, t) = T_2$
+\end{itemize}
+
+Let us consider the first boundary condition.
+%
+\begin{align}
+  w(0, t) + u(0, \infty) & = T_1
+\end{align}
+
+Here, we know that for the steady state, $x$ is $T_1$ at $x = 0$. Therefore,
+%
+\begin{align}
+  w(0, t) & = 0
+\end{align}
+
+We repeat with our second bullet.
+%
+\begin{align}
+  u(L, t &) = T_2 \Rightarrow\\
+  w(L, t) + u(L, \infty) & = T_2\\
+  w(L, t) & = 0
+\end{align}
+
+\underline{Initial Conditions}
+%
+\begin{align}
+  u(x, 0) & = f(x) \Rightarrow\\
+  w(x, 0) + u(x, \infty) & = f(x)\\
+  w(x, 0) & = f(x) - u(x, \infty)\\
+  w(x, 0) & = f(x) - \left[ \frac{T_2 - T_1}{L} x + T_1 \right]
+\end{align}
+
+\ex
+
+Solve $u_t = u_{xx}$, $u(0, t) = 2$, $u(4, t) = 3$, $u(x, 0) = -6 \sin(\pi x) + \frac{x}{4} + 2$.
+
+First, find the steady-state solution:
+%
+\begin{align}
+  u(x, \infty) & = \frac{3 - 2}{4} x + 2\\
+  & = \frac{x}{4} + 2
+\end{align}
+
+Now, we assume $u(x, t) = w(x, t) + u(x, \infty)$. We can make the following assumption:
+%
+\begin{align}
+  u_t = u_{xx} & \Rightarrow w_t = w_{xx}
+\end{align}
+
+\underline{Boundary Conditions}
+\begin{align}
+  u(0, t) = 2 & \Rightarrow w(0, t) = u(0, t) - u(0, \infty) = 2 - 2 = 0\\
+  u(4, t) = 3 & \Rightarrow w(4, t) = u(4, t) - u(4, \infty) = 3 - 3 = 0
+\end{align}
+
+Here, we plug in our $x$ into our steady-state solution and get 2, 3.
+
+\underline{Initial Conditions}
+
+\begin{align}
+  w(x, 0) & = u(x, 0) - u(x, \infty)\\
+  & = -\sin(\pi x) + \frac{x}{4} + 2 - \left(\frac{x}{4} + 2\right)\\
+  & = -\sin(\pi x)
+\end{align}
+
+Now, solve for $w$:
+\begin{enumerate}
+  \item Assume $w(x, t) = X(x)T(t)$
+
+  \underline{Boundary Conditions}
+
+  \begin{align}
+    w(0, t) = 0 & \Rightarrow X(0)T(t) = 0 \Rightarrow X(0) = 0\\
+    w(4, t) = 0 & \Rightarrow X(4)T(t) = 0 \Rightarrow X(4) = 0\\
+    w_t & = w_{xx} \Rightarrow XT^\prime & = X^{\prime\prime T} \Rightarrow \frac{T^\prime}{T} = \frac{X^{\prime\prime}}{X} = - \lambda
+  \end{align}
+
+  \item Solve for $X$ :
+  %
+  \begin{align}
+    \frac{X^{\prime\prime}}{X} & = - \lambda \Rightarrow\\
+    X^{\prime\prime} & = -\lambda X\\
+    X(0) & = X(4) = 0
+  \end{align}
+
+  Here, let us write our general equation:
+  %
+  \begin{align}
+    X(x) & = A \sin(\sqrt \lambda x) + B \cos(\sqrt \lambda x)\\
+    X(0) = 0 & \Rightarrow B = 0\\
+    X(4) = 0 & \Rightarrow A \sin(\sqrt \lambda 4) = 0\\
+    & \Rightarrow \sqrt \lambda 4 = n \pi\\
+    & \Rightarrow \lambda_n = \left(\frac{n \pi}{4} \right)^2\\
+    & \Rightarrow X_n(x) = \sin\left( \frac{n \pi x}{4} \right)
+  \end{align}
+
+  \item Solve for $T$:
+  %
+  \begin{align}
+    \frac{T^\prime_n}{T_n} & = -\lambda_n\\
+    T^\prime_n & = -\left( \frac{n \pi}{4} \right)^2 T_n\\
+    T_n(t) & = e^{- \left( \frac{n \pi}{4} \right)^2 t}
+  \end{align}
+
+  \item Combine to find $w_n$ and $w$:
+  %
+  \begin{align}
+    w_n(x, t) & = \sin\left(\frac{n \pi x}{4} \right)e^{-\left(\frac{n \pi}{4} \right)^2 t}
+  \end{align}
+
+  By linearity,
+  %
+  \begin{align}
+    w(x, t) & = \sum^\infty_{n = 1} A_n \sin\left(\frac{n \pi x}{4} \right)e^{-\left( \frac{n \pi}{4} \right)^2 t}
+  \end{align}
+
+  \item Find coefficients using Initial Condition
+  %
+  \begin{align}
+    w(x, 0) & = -\sin(\pi x)\\
+    w(x, 0) & = \sum^\infty_{n = 1} A_n \sin\left(\frac{n \pi x}{4}\right)\\
+    & = -6 \sin(\pi x)\\
+    w(x, t) & = -6 \sin(\pi x) e^{-\pi^2 t}
+  \end{align}
+  Here, $a_4 = -6$.
+  %
+  \begin{align}
+    u(x, t) & = -6 \sin(\pi x)e^{-\pi^2 t} + \frac{x}{4} + 2
+  \end{align}
+\end{enumerate}
+\topic{Laplace's Equation}
+\topic{General Dirichlet Boundary Conditions}
+\begin{itemize}
+  \item $u(x, 0) = f_1(x)$
+  \item $u(x, M) = f_2(x)$
+  \item $u(0, y) = f_3(y)$
+  \item $u(L, y) = f_4(y)$
+\end{itemize}
+
+Write our solution as the following:
+\begin{align}
+  u(x, y) = u_1(x, y) + u_2(x, y) + u_3(x, y) + u_4(x, y)
+\end{align}
+
+% Change this into a 4-multi col
+\begin{itemize}
+  \item $\Delta u_1 = 0$
+  \begin{itemize}
+    \item $u_1(x, 0) = f_1(x)$
+    \item $u_1(x, M) = 0$
+    \item $u_1(0, y) = 0$
+    \item $u_1(L, y) = 0$
+  \end{itemize}
+  \item $\Delta u_1 = 0$
+  \begin{itemize}
+    \item $u_2(x, 0) = 0$
+    \item $u_2(x, M) = f_2(x)$
+    \item $u_2(0, y) = 0$
+    \item $u_2(L, y) = 0$
+  \end{itemize}
+  \item $\Delta u_1 = 0$
+  \begin{itemize}
+    \item $u_3(x, 0) = 0$
+    \item $u_3(x, M) = 0$
+    \item $u_3(0, y) = f_3(y)$
+    \item $u_3(L, y) = 0$
+  \end{itemize}
+  \item $\Delta u_1 = 0$
+  \begin{itemize}
+    \item $u_4(x, 0) = 0$
+    \item $u_4(x, M) = 0$
+    \item $u_4(0, y) = 0$
+    \item $u_4(L, y) = f_4(y)$
+  \end{itemize}
+\end{itemize}
+
+This method works because Laplace's equation is linear.
+
+We have already seen that for $u_2$ :
+%
+\begin{align}
+  u_2(x, y) & = \sum^\infty_{n = 1} B_n \sin\left( \frac{n \pi x}{L} \right) \sinh\left( \frac{n \pi y}{L} \right)\\
+  u_2(x, M) & = f_2(x)\\
+  & \Rightarrow \sum^\infty_{n = 1} B_n \sin\left ( \frac{n \pi x}{L} \right) \sinh\left( \frac{n \pi M}{L} \right)\\
+  & = f(x)
+\end{align}
+
+Here, $B_n \sinh\left( \frac{n \pi M}{L}\right)$ is the coefficient for Laplace.
+%
+\begin{align}
+  B_n \sinh \left( \frac{n \pi M}{L} \right) & = \frac{2}{L} \int^L_0 f_2(x) \sin\left(\frac{n \pi x}{L}\right) \dx\\
+  B_n & = \frac{2}{L \sinh\left(\frac{n \pi M}{L}\right)} \int^L_0 f_2(x) \sin\left(\frac{n \pi x}{L}\right) \dx
+\end{align}
+
+Similarly, for $u_4$,
+%
+\begin{align}
+  u_4(x, y) & = \sum^\infty_{n = 1} D_n \sin\left(\frac{n \pi y}{M}\right)\sinh\left(\frac{n \pi x}{L}\right)\\
+  u_4(L, y) & = f_4(y)\\
+  & \Rightarrow \sum^\infty_{n = 1} D_n \sin\left(\frac{n \pi y}{M}\right) \sinh\left(\frac{n \pi L}{M}\right)\\
+  & = f_4(y)
+\end{align}
 \end{document}

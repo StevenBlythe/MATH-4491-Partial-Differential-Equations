@@ -290,6 +290,17 @@ Here, we can make three assumptions \ask{via trichotomy}: $\lambda < 0, \lambda 
 %______________________________________________________________________________%
 %
   \item Show that $u(x, t) = e^{-\lambda^2 a^2 t}\left[ A \cos(\lambda x) + B \sin(\lambda x) \right]$
+
+%  Here, our heat equation is $u_t = \alpha^2 u_{xx}$. To show we can just plug %in the solution and show that both right and left sides match up,
+%  \begin{align}
+%    u_t & = \alpha^2 u_{xx}\\
+%    \frac{du}{dt} & = \alpha^2 \frac{d^2 u}{dx^2}
+%    e^{-\lambda 2 \alpha^2 t} - \lambda^2 \alpha^2 (A \cos(\lambda x) + %B\sin(\lambda x))\\
+%    & = \alpha^2 e^{-\lambda^2 \alpha^2 t} (-\lambda A \sin(\lambda x) + %\lambda B \cos(\lambda x))\\
+%    & -\lambda^2(A \cos(\lambda x) + B\sin(\lambda x)) \alpha^2 e^{-\lambda^2 %\alpha^2 t}(-\lambda^2 A\cos(\lambda x) - \lambda^2 B \sin(\lambda x))\\
+%    & = -\lambda^2(A \cos(\lambda x) + B\sin(\lambda x)) \alpha^2 e^{-%\lambda^2\alpha^2 t}\\
+%    & = \lambda^2e^{-\lambda^2\alpha^2t} - \lambda^2(A\cos(\lambda x) + %B\sin(\lambda x))
+%  \end{align}
 %______________________________________________________________________________%
 %
 
@@ -405,7 +416,20 @@ Let us begin finding our solution.
     % T_n
     e^{-n \pi t}
   \end{align}
-  \item Here, we would use an initial condition to find $A_n$.
+  \item Here, we would use an initial condition to find $A_n$. We know $u(x, 0) = 1$, so let us write:
+  %
+  \begin{align}
+    u(x, 0) & =
+    % Summation
+    \sum^\infty_{n = 1}
+    % A term
+    A_n
+    % X_n
+    \sin(n x \pi)
+    % T_n
+    = 1\\
+    A_n & = 2 \in^1_0 \sin(n \pi x) \dx
+  \end{align}
 \end{enumerate}
 %
 %______________________________________________________________________________%
@@ -423,7 +447,13 @@ Let us begin finding our solution.
 Here, by following the same steps as the previous problem, we would reach the same conclusion up to step $e$. At step $e$, we want to replace our condition with the fourth bullet:
 %
 \begin{align}
-  u(x, t) & = \sum^\infty_{n = 1} A_n \sin(n x \pi)e^{-n \pi t}
+  u(x, 0) & = \sum^\infty_{n = 1} A_n \sin(n x \pi)e^{-n \pi t}
+\end{align}
+
+Simarly as the end of the last question,
+%
+\begin{align}
+  A_n & = 2 \int^1_0 (x-x^2) \sin(n \pi x) \dx
 \end{align}
 %
 %______________________________________________________________________________%
@@ -514,5 +544,15 @@ Here, by following the same steps as the previous problem, we would reach the sa
   \end{enumerate}
 
   \item Here, let us use our initial condition to find $A_n$:
+
+  % TAKEN
+  \begin{align}
+    2 \cdot 10^{-5} \int^1_0 \sin(10^6 \pi x) \sin(n \pi x) \dx
+  \end{align}
+  Here, $A_{10^6} = 10^{-5}$, so let us write:
+  \begin{align}
+    u(x, t) & = 10^{-5} \sin(10^6 \pi x)e^{-n^2 \pi^2 t}\\
+    u(x, 2) & = 10^{-5} \sin(10^6 \pi x)e^{-2 n^2 \pi^2} %-2? Not -4?
+  \end{align}
 \end{enumerate}
 \end{document}
