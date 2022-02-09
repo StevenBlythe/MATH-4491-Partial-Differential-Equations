@@ -325,8 +325,87 @@ Let us begin finding our solution.
   \begin{align}
     u(0, t) & = X(0)T(t) = 0 \Rightarrow X(0) = 0\\
     u(1, t) & = X(1)T(t) = 0 \Rightarrow X(1) = 0\\
-    u(x, 0) & = X(x)T(0) = 0 \Rightarrow T(0) = 0\\
+    u(x, 0) & = X(x)T(0) = 0 \Rightarrow T(0) = 0
   \end{align}
+
+  Now that we have used our initial conditions, let us write:
+  %
+  \begin{align}
+    u_t & = u_{xx}\\
+    XT^\prime & = X^{\prime\prime}T\\
+    \frac{T^\prime}{T} & = \frac{X^{\prime\prime}}{X} = -\lambda
+  \end{align}
+
+  \item Here, we have more information regarding $X$, so let us write:
+  %
+  \begin{align}
+    \frac{X^{\prime\prime}}{X} & = -\lambda\\
+    X^{\prime\prime} & = -\lambda X
+  \end{align}
+
+  Here, we know $X(0) = X(1) = 0$. We want to write the general form of our equation as the following:
+  %
+  \begin{align}
+    X(x) & = A \sin\left( \sqrt \lambda x\right) + B \cos\left( \sqrt \lambda x\right)
+  \end{align}
+
+  Here, we can input a condition for our general statement. Let us find $X(0)$ first:
+  %
+  \begin{align}
+    X(0) = 0 & = A \sin(0) + B \cos(0)\\
+    0 & = B\\
+    X(x) & = A \sin(\sqrt \lambda x)
+  \end{align}
+
+  We also know $X(1) = 0$:
+%
+  \begin{align}
+    X(1) = 0 & = A \sin(\sqrt \lambda)
+  \end{align}
+
+  Now, if $A$ is $0$, then our answer is trivial, therefore we want the inside of $\sin$ to be $n \pi$:
+  %
+  \begin{align}
+    n \pi & = \sqrt \lambda\\
+    n^2 \pi^2 & = \lambda_n
+  \end{align}
+
+  Therefore, we can write:
+  %
+  \begin{align}
+    X_n(x) & = \sin(n \pi x)
+  \end{align}
+
+  \item Now, let us find $T$:
+  %
+  \begin{align}
+    \frac{T^\prime}{T} & = -\lambda\\
+    \frac{T^\prime}{T} & = - n \pi\\
+    T^\prime_n & = - n \pi T\\
+    T_n & = e^{-n \pi t}
+  \end{align}
+
+  \item Now, let us combine to find $u_n$
+  %
+  \begin{align}
+    u_n(x, t) & = X_n(x)T_n(t)\\
+    & = \sin(n \pi x) e^{-n \pi t}
+  \end{align}
+
+  By linearity,
+  %
+  \begin{align}
+    u(x, t) & =
+    % Summation
+    \sum^\infty_{n = 1}
+    % A term
+    A_n
+    % X_n
+    \sin(n x \pi)
+    % T_n
+    e^{-n \pi t}
+  \end{align}
+  \item Here, we would use an initial condition to find $A_n$.
 \end{enumerate}
 %
 %______________________________________________________________________________%
@@ -341,6 +420,11 @@ Let us begin finding our solution.
   \item $u(x, 0) = x - x^2, 0 \leq x \leq 1$
 \end{itemize}
 
+Here, by following the same steps as the previous problem, we would reach the same conclusion up to step $e$. At step $e$, we want to replace our condition with the fourth bullet:
+%
+\begin{align}
+  u(x, t) & = \sum^\infty_{n = 1} A_n \sin(n x \pi)e^{-n \pi t}
+\end{align}
 %
 %______________________________________________________________________________%
 %
@@ -363,5 +447,72 @@ Let us begin finding our solution.
       \item $u(x, -2)$
     \end{itemize}
   \end{itemize}
+
+  Now, let us begin:
+
+  \begin{enumerate}
+    \item First, let us assume our equation is separable:
+    %
+    \begin{align}
+      X(x)T^\prime(t) & = X^{\prime\prime}T(t)
+    \end{align}
+
+    Using our boundary conditions, we can find the following:
+    %
+    \begin{align}
+      u(0, t) & = 0 = X(0)T(t) \Rightarrow X(0) = 0\\
+      u(1, t) & = 0 = X(1)T(t) \Rightarrow X(1) = 0
+    \end{align}
+
+    Now, let us separate:
+    %
+    \begin{align}
+      u_t & = u_{xx}\\
+      XT^\prime & = X^{\prime\prime}T\\
+      \frac{T^\prime}{T} & = \frac{X^{\prime\prime}}{X} = -\lambda
+    \end{align}
+
+    \item Here, let us solve for $X$:
+    %
+    \begin{align}
+      X(x) & = A \sin( \sqrt \lambda x) + B \cos( \sqrt \lambda x)\\
+      X(0) = 0 & = B\\
+      X(1) = 0 & = A \sin( \sqrt \lambda )\\
+      n \pi & = \sqrt \lambda\\
+      n^2 \pi^2 & = \lambda\\
+      X_n(x) & = \sin(n \pi x)
+    \end{align}
+
+    \item Now, let us solve for $T$:
+    %
+    \begin{align}
+      \frac{T^\prime}{T} & = - n^2 \pi^2\\
+      T^\prime & = - n^2 \pi^2 T_n\\
+      T_n & = e^{-n^2 \pi^2 t}
+    \end{align}
+
+    \item Now, let us combine both $T_n$ and $X_n$:
+    %
+    \begin{align}
+      u_n(x, t) & = X_n(x)T_n(x)\\
+      & = \sin(n \pi x) e^{-n^2 \pi^2 t}
+    \end{align}
+
+    By linearity,
+    %
+    \begin{align}
+      u(x, t) & =
+      % sum
+      \sum^\infty_{n = 1}
+      % A_n
+      A_n
+      % X_n
+      \sin(n \pi x)
+      % T_n
+      e^{-n^2 \pi^2 t}
+    \end{align}
+  \end{enumerate}
+
+  \item Here, let us use our initial condition to find $A_n$:
 \end{enumerate}
 \end{document}
