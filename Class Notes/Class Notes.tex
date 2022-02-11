@@ -1469,9 +1469,49 @@ Initial Conditions
   w(x, 0) & = u(x, 0) - u(x, \infty) = f(X) - \frac{H_2 - H_1}{L} x + H_1\\
   w_t(x, t) & = u_t(x, t) \Rightarrow w_t(x, 0) = u_t(x, 0) = g(x)
 \end{align}
+\end{enumerate}
 
 \topic{Laplace's Equation in Polar Coordinates}
 
 Let's say we want to solve $\Delta u = 0$ with Dirichlet Boundary Conditions on a disk or annulus.
+
+Problem: $\Delta u = u_{xx} + u_{yy} \leftarrow $ in terms of $x$ and $y$.
+
+We must find it in terms of $r$ and $\theta$.
+%
+\begin{align}
+  u(x, y) \rightarrow u(r, \theta)\\
+  x & = r \cos \theta\\
+  y & = r \sin \theta\\
+  r & = \sqrt{x^2 + y^2}\\
+  \theta & = \arctan \frac{y}{x}\\
+  \tan \theta & = \frac{y}{x}
+\end{align}
+
+We are going to find : $u_x, u_{xx}, u_{yy}$
+%
+\begin{enumerate}
+  \item $u_x$ :
+  %
+  \begin{align}
+    u(x, y) & = u( x(r, \theta), y(r, \theta)) = u(r, \theta) = u(r(x, y), \theta(x, y))
+  \end{align}
+  Here, we break our chain rule as the following:
+  \begin{center}
+    $u$\\
+    $|$ \quad \quad $|$\\
+    $r$ \quad \quad $\theta$\\
+    $|$ \quad $|$ \quad $|$ \quad $|$\\
+    $x$ \quad $y$ \quad $x$ \quad $y$
+  \end{center}
+
+  According to our tree, we have two routes.
+  %
+  \begin{align}
+    \frac{\p u}{\p x} & = \frac{\p u}{\p r} \frac{\p r}{\p x} + \frac{\p u}{\p \theta} \frac{\p \theta}{\p x}\\
+    & = u_r \frac{x}{\sqrt{x^2 + y^2}} + u_\theta \frac{- \frac{y}{x^2}}{1 + \left( \frac{y}{x}\right)^2}
+  \end{align}
+
+  Note that we know $r$ from line 370. We can rewrite $r$ as $(x^2 + y^2)^{\frac{1}{2}}$.
 \end{enumerate}
 \end{document}
