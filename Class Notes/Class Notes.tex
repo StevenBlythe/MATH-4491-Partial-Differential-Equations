@@ -1513,5 +1513,13 @@ We are going to find : $u_x, u_{xx}, u_{yy}$
   \end{align}
 
   Note that we know $r$ from line 370. We can rewrite $r$ as $(x^2 + y^2)^{\frac{1}{2}}$.
+
+  Now, let us multiply our equation by $\frac{x^2}{x^2}$.
+  %
+  \begin{align}
+    & = u_r \frac{x}{\sqrt{x^2 + y^2}} + u_\theta \frac{- \frac{y}{x^2}}{1 + \left( \frac{y}{x}\right)^2} \cdot \frac{x^2}{x^2}\\
+    & = u_r \frac{r \cos\theta}{r} - u_\theta \frac{r \sin \theta}{r^2}\\
+    & = u_r \cos\theta - u_\theta \frac{\sin \theta}{r}
+  \end{align}
 \end{enumerate}
 \end{document}
