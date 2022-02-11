@@ -1327,4 +1327,151 @@ Similarly, for $u_4$,
   & \Rightarrow \sum^\infty_{n = 1} D_n \sin\left(\frac{n \pi y}{M}\right) \sinh\left(\frac{n \pi L}{M}\right)\\
   & = f_4(y)
 \end{align}
+
+\bigbreak
+
+\subsection*{February 11, 2022}
+Recall we are consider $u = u_1 + u+2 + u_3 + u_4$. Let us write:
+%
+\begin{align}
+  u_4(x, y) & = \sum^\infty_{n = 1} D_n \sin\left( \frac{n \pi y}{M}\right)\sinh\left(\frac{n \pi x}{M}\right)\\
+  u_4(L, y) & = f_4(y)\\
+  & = \sum^\infty_{n = 1} D_n \sin\left( \frac{n \pi y}{M} \right) \sinh\left( \frac{n \pi L}{M} \right) = f_4(y)
+\end{align}
+
+Recall, our coefficient is $D_n$ and the $\sinh$ function.
+%
+\begin{align}
+  D_n \sinh\left( \frac{n \pi L}{M} \right) & =
+  \frac{2}{M} \int^M_0 f_4(y) \sin\left( \frac{n \pi y}{M} \right) dy\\
+  %
+  D_n & = \frac{2}{M \sinh\left( \frac{n \pi L}{M} \right)} \int^M_0 f_4(y) \sin\left( \frac{n \pi y}{M} \right) dy
+\end{align}
+
+Let's look at $u_1$:
+\begin{itemize}
+  \item $\Delta u_1 = 0$
+  \item $u_1(x, 0) = f_1(x)$
+  \item $u_1(x, M) = 0$
+  \item $u_1(0, y) = 0$
+  \item $u_1(L, y) = 0$
+\end{itemize}
+
+\begin{enumerate}
+  \item Here, let us consider $\Delta u_1 = 0$:
+
+  \begin{align}
+    \frac{X^{\prime\prime}}{X} & = -\frac{Y^{\prime\prime}}{y} = -\lambda\\
+    u_1(x, y) & = X(x)Y(y)
+  \end{align}
+
+  Boundary Conditions
+  %
+  \begin{align}
+    u_(x, M) & = 0 \Rightarrow X(x)Y(M) = 0 \Rightarrow Y(M) = 0\\
+    u_(0, M) & = 0 \Rightarrow X(0)Y(M) = 0 \Rightarrow X(0) = 0\\
+    u_(L, M) & = 0 \Rightarrow X(L)Y(M) = 0 \Rightarrow X(L) = 0\\
+  \end{align}
+
+\item $\lambda_n = \left( \frac{n \pi}{L} \right)^2$, $X_n(x) = \sin\left( \frac{n \pi x}{L} \right)$
+
+\item Solve for $y$:
+%
+\begin{align}
+  \frac{Y^{\prime\prime}}{Y_n} & = \lambda_n\\
+  Y^{\prime\prime}_n & = \left( \frac{n \pi}{L} \right)^2 Y_n\\
+  Y_n(y) & = C\sinh \left( \frac{n \pi y}{L} \right) + D \cosh \left( \frac{n \pi y}{L} \right)
+\end{align}
+
+Let us see what we have with $Y(m) = 0$:
+%
+\begin{align}
+  C \sinh \left( \frac{n \pi M}{L} \right) + D \cosh \left( \frac{n \pi M}{L} \right) & = 0
+\end{align}
+
+Here, this does not work for us. Let us go back and change our $Y_n(y)$:
+%
+\begin{align}
+  Y_n(y) & = C \sinh \left(\frac{n \pi (M - y)}{L} \right) + D \cosh \left( \frac{n \pi (M - y)}{L} \right)
+\end{align}
+
+Now, let us use our $Y$:
+%
+\begin{align}
+  Y_n(M) & = C \sinh \left(\frac{n \pi (M - M)}{L} \right) + D \cosh \left( \frac{n \pi (M - M)}{L} \right)\\
+  & = D = 0\\
+  Y_n(y) & = \sinh\left( \frac{n \pi (M -y)}{L} \right)
+\end{align}
+
+\item Let us combine:
+%
+\begin{align}
+  u_m(x, y) & = \FS \sinh\left( \frac{ n \pi (M - y)}{L} \right)
+\end{align}
+
+By linearity
+%
+\begin{align}
+  u_1(x, y) & = \sum^\infty_{n = 1} A_n \FS \sinh\left( \frac{n \pi(M -y)}{L} \right)
+\end{align}
+
+\item Find coefficients:
+%
+\begin{align}
+  u_1(x, 0) & = f_1(x)\\
+  & = \sum^\infty_{n = 1} A_n \FS \sinh\left( \frac{n \pi M}{L} \right) = f_1(x)
+\end{align}
+
+Once more, we have our coefficient with $A_n$ and $\sinh$.
+%
+\begin{align}
+  A_n \sinh \left( \frac{n \pi M}{L} \right) & = \frac{2}{L} \int^L_0 f_1(x) \FS \dx\\
+  A_n & = \frac{2}{L \sinh \left( \frac{n \pi M}{L} \right)} \int^L_0 f_1(x) \FS \dx
+\end{align}
+
+\topic{Wave Equation}
+
+\begin{center}
+  \begin{tabular}{r|c|l}
+    t & \# &\\
+    & \# & \\
+    $u = H_1$ & \# & $u = H_2$\\
+    & \# &\\
+    \hline
+  \end{tabular}\\
+  0 \quad L\\
+  $u(x, 0) = f(x)$\\
+  $u_t(x, 0) = g(x)$
+\end{center}
+
+Steady-state:
+%
+\begin{align}
+  u_t & = 0 \Rightarrow u_{tt} = 0 \Rightarrow u_{xx} = 0 \Rightarrow u = \frac{H_2 - H_1}{L} x + H_1
+\end{align}
+
+Try a solution of the form : $u(x, t) = w(x, t) + u(x, \infty)$. Therefore, $w(x, t) = u(x, t) - u(x, \infty)$.
+%
+\begin{align}
+  u_{tt} & = c^2 u_{xx} \Rightarrow w_{tt} = c^2 w_{xx}
+\end{align}
+
+Boundary conditions:
+%
+\begin{align}
+  w(0, t) & = u(0, t) - u(0, \infty) = H_1 - H_1 = 0\\
+  w(L, t) & = u(L, t) - u(L, \infty) = H_2 - H_2 = 0
+\end{align}
+
+Initial Conditions
+%
+\begin{align}
+  w(x, 0) & = u(x, 0) - u(x, \infty) = f(X) - \frac{H_2 - H_1}{L} x + H_1\\
+  w_t(x, t) & = u_t(x, t) \Rightarrow w_t(x, 0) = u_t(x, 0) = g(x)
+\end{align}
+
+\topic{Laplace's Equation in Polar Coordinates}
+
+Let's say we want to solve $\Delta u = 0$ with Dirichlet Boundary Conditions on a disk or annulus.
+\end{enumerate}
 \end{document}
