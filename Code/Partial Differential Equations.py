@@ -132,13 +132,15 @@ class HeatEquation(ThreeDScene):
 
 class HomeworkiiProblemia(Scene):
     def construct(self):
+        # Camera background
+        self.camera.background_color = WHITE
         # Create the base graph
         axes = Axes(
             x_range=[-3 * PI - 0.0001, 3 * PI + 0.0001, PI],
             y_range=[-4, 4, 1],
             tips=False
-        )
-        labels = axes.get_axis_labels()
+        ).set_color(BLACK)
+        labels = axes.get_axis_labels().set_color(BLACK)
         self.add(axes, labels)
 
         # Create the x-labels
@@ -146,7 +148,7 @@ class HomeworkiiProblemia(Scene):
             MathTex("-3 \pi"), MathTex("-2 \pi"), MathTex("-\pi"), MathTex(""), MathTex("\pi"), MathTex("2 \pi"), MathTex("3 \pi")
         ]
         for i in range(len(x_labels)):
-            x_labels[i].move_to(axes.c2p(-3 * PI + i * PI)).shift(DOWN*0.4)
+            x_labels[i].move_to(axes.c2p(-3 * PI + i * PI)).shift(DOWN*0.4).set_color(BLACK)
             self.add(x_labels[i])
         
         discont = [0]
@@ -154,10 +156,23 @@ class HomeworkiiProblemia(Scene):
         #for i in range(1, math.floor(len(x_labels)/2) + 1):
             #discont.append(i * PI)
             #discont.append(i * -PI)
-        l1 = axes.plot(self.fourier, color=RED, discontinuities=[-3 * PI, -2 * PI, -1 * PI, 0, 1 * PI, 2 * PI, 3 * PI])
+        l1 = axes.plot(self.fourier, color=BLACK, discontinuities=[-3 * PI, -2 * PI, -1 * PI, 0, 1 * PI, 2 * PI, 3 * PI])
         self.add(l1)
         self.wait()
-        self.add(Dot())
+        # Dots at Discontinuities
+        dots = [
+            Dot(axes.c2p(-3 * PI, 0, 0), color=BLACK),    
+            Dot(axes.c2p(-2 * PI, 0, 0), color=BLACK),    
+            Dot(axes.c2p(-1 * PI, 0, 0), color=BLACK),
+            Dot(axes.c2p(0, 0, 0), color=BLACK),
+            Dot(axes.c2p(PI, 0, 0), color=BLACK),
+            Dot(axes.c2p(2 * PI, 0, 0), color=BLACK),
+            Dot(axes.c2p(3 * PI, 0, 0), color=BLACK)
+        ]
+        #for dot in dots:
+        #    self.add(dot)
+        
+        self.wait()
 
 
     def fourier(self, x):

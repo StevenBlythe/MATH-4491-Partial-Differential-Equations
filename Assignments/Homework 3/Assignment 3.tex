@@ -29,14 +29,14 @@
 % ans
     \item Plot the function on the interval $[-3\pi, 3\pi]$
 
-    %\begin{center}
-    %  \includegraphics{}
-    %\end{center}
+    \begin{center}
+      \includegraphics[height=10cm]{HomeworkiiProblemia}
+    \end{center}
     \item Plot its (infinite) Fourier series on $[-3 \pi, 3 \pi]$
 
-    %\begin{center}
-    %  \includegraphics{}
-    %\end{center}
+    \begin{center}
+      \includegraphics[height=10cm]{HomeworkiiProblemib}
+    \end{center}
     \item Find the Fourier series of $f(x)$
 
     Here, let us consider the symmetry of our function.
@@ -93,6 +93,7 @@
 %______________________________________________________________________________%
 %
 \newpage
+\setcounter{equation}{0}
 %
 %______________________________________________________________________________%
 %
@@ -171,7 +172,7 @@
     Now that we have our coefficients, we can write:
     %
     \begin{align}
-      f(x) & = \frac{\pi^2}{3} + \sum^\infty_{n = 1} \frac{4}{n^2} \cos(n x) \sin(n x)
+      f(x) & = \frac{\pi^2}{3} + \sum^\infty_{n = 1} \frac{4}{n^2} \cos(n \pi) \sin(n x)
     \end{align}
     %
     \item Use Maple of Matlab to plot its finite Fourier series on $[-\pi, \pi]$ for $N = 10, 20, 50$ together with $f(x)$
@@ -184,6 +185,11 @@
     %
 
     % ans
+    Here, as we increase our $n$, our equation tends to flatten out to a straight line at around $y = 3.3$
+
+    \begin{center}
+      \includegraphics[height = 10cm]{Fourier}
+    \end{center}
 
     %
   \end{enumerate}
@@ -191,6 +197,7 @@
 %______________________________________________________________________________%
 %
 \newpage
+\setcounter{equation}{0}
 %
 %______________________________________________________________________________%
 %
@@ -286,31 +293,59 @@ Here, we can make three assumptions \ask{via trichotomy}: $\lambda < 0, \lambda 
 %______________________________________________________________________________%
 %
 \newpage
+\setcounter{equation}{0}
 %
 %______________________________________________________________________________%
 %
   \item Show that $u(x, t) = e^{-\lambda^2 a^2 t}\left[ A \cos(\lambda x) + B \sin(\lambda x) \right]$
 
-%  Here, our heat equation is $u_t = \alpha^2 u_{xx}$. To show we can just plug %in the solution and show that both right and left sides match up,
-%  \begin{align}
-%    u_t & = \alpha^2 u_{xx}\\
-%    \frac{du}{dt} & = \alpha^2 \frac{d^2 u}{dx^2}
-%    e^{-\lambda 2 \alpha^2 t} - \lambda^2 \alpha^2 (A \cos(\lambda x) + %B\sin(\lambda x))\\
-%    & = \alpha^2 e^{-\lambda^2 \alpha^2 t} (-\lambda A \sin(\lambda x) + %\lambda B \cos(\lambda x))\\
-%    & -\lambda^2(A \cos(\lambda x) + B\sin(\lambda x)) \alpha^2 e^{-\lambda^2 %\alpha^2 t}(-\lambda^2 A\cos(\lambda x) - \lambda^2 B \sin(\lambda x))\\
-%    & = -\lambda^2(A \cos(\lambda x) + B\sin(\lambda x)) \alpha^2 e^{-%\lambda^2\alpha^2 t}\\
-%    & = \lambda^2e^{-\lambda^2\alpha^2t} - \lambda^2(A\cos(\lambda x) + %B\sin(\lambda x))
-%  \end{align}
+
+
+
 %______________________________________________________________________________%
 %
 
 % ans
 
+Let us first consider the heat equation:
+%
+\begin{align}
+  u_t & = \alpha^2 u_{xx}
+\end{align}
+
+Here, let us rewrite our equations:
+%
+\begin{align}
+  XT^\prime & = \alpha^2 X^{\prime\prime}T\\
+  \frac{T^\prime}{T} & = \alpha^2 \frac{X^{\prime\prime}}{X} = -\lambda
+\end{align}
+
+From here, we can see for the $T$, we will get an exponential whereas for the $X$ we will get a sine function. Let us rewrite $X$ first:
+%
+\begin{align}
+  X(x) & = A \cos(\sqrt \lambda^2 x) + B \sin(\sqrt \lambda^2 x)\\
+  X(x) & = A \cos(\lambda x) + B \sin(\lambda x)
+\end{align}
+
+Next, we rewrite $T$ as the following:
+%
+\begin{align}
+  T(t) & = e^{-\lambda^2 \alpha^2 t}
+\end{align}
+
+We write $T$ in this form because when we derive $T$ once, we get a negative value, whereas when we derive it twice, we get a positive value. For $X$, we want to give it the general form in trig functions because after two derivatives, the equation looks similar but in the negative form.
+
+Now, we assume our equation is seperable, therefore we can write:
+%
+\begin{align}
+  T(t)X(x) & = e^{-\lambda^2 \alpha^2 t}[A \cos(\lambda x) + B \sin(\lambda x)]
+\end{align}
 
 %
 %______________________________________________________________________________%
 %
-\newpage
+\bigbreak
+\setcounter{equation}{0}
 %
 %______________________________________________________________________________%
 %
@@ -428,9 +463,19 @@ Let us begin finding our solution.
     \sin(n x \pi)
     % T_n
     = 1\\
-    A_n & = 2 \in^1_0 \sin(n \pi x) \dx
+    A_n & = 2 \int^1_0 \sin(n \pi x) \dx\\
+    & = \frac{2}{n \pi} \left( -\cos(n \pi (1)) + \cos(0) \right)\\
+    & = \frac{2}{n \pi} (-\cos(n \pi) + 1)
+  \end{align}
+
+  Here, let us write our formula as the following:
+  %
+  \begin{align}
+    u(x, t) & = \sum^\infty_{n = 1} \frac{2}{n \pi}(-\cos(n \pi) + 1)\sin(n x \pi)
   \end{align}
 \end{enumerate}
+
+\newpage
 %
 %______________________________________________________________________________%
 %
@@ -453,12 +498,69 @@ Here, by following the same steps as the previous problem, we would reach the sa
 Simarly as the end of the last question,
 %
 \begin{align}
-  A_n & = 2 \int^1_0 (x-x^2) \sin(n \pi x) \dx
+  A_n & = 2 \int^1_0 (x-x^2) \sin(n \pi x) \dx\\
+  & = 2 \int^1_0 x\sin(n \pi x) - x^2\sin(n \pi x) \dx
 \end{align}
+
+Here, let us create two integration tables:
+
+\begin{center}
+  \begin{tabular}{c|c}
+    $x$ & $\sin(n \pi x)$\\
+    \hline
+    $1$ & $- \frac{1}{n \pi} \cos(n \pi x) $\\
+    \hline
+    $0$ & $- \frac{1}{n^2\pi^2} \sin(n \pi x)$\\
+    \\
+  \end{tabular}
+  \begin{tabular}{c|c}
+    $x^2$ & $  \sin(n \pi x) $\\
+    \hline
+    $2x$  & $- \frac{1}{n\pi} \cos(n \pi x) $\\
+    \hline
+    $2$   & $- \frac{1}{n^2\pi^2} \sin(n \pi x) $\\
+    \hline
+    $0$   & $  \frac{1}{n^3\pi^3} \cos(n \pi x) $
+  \end{tabular}
+\end{center}
+
+Here, let us apply our integration:
+%
+\begin{align}
+  A_n & = 2
+  \left(
+  - \frac{x}{n \pi} \cos(n \pi x)
+  + \frac{1}{n^2\pi^2} \sin(n \pi x)
+  + \frac{x^2}{n \pi} \cos(n \pi x)
+  - \frac{2x}{n^2\pi^2} \sin(n \pi x)
+  - \frac{2}{n^3\pi^3} \cos(n \pi x)
+  \right)^1_0\\
+  & = 2\left(
+  - \frac{1}{n \pi}    \cos(n \pi)
+  + \frac{1}{n \pi}    \cos(n \pi)
+  - \frac{2}{n^3\pi^3} \cos(n \pi)
+  + \frac{2}{n^3\pi^3}
+  \right)\\
+  & = 4\left(
+  - \frac{1}{n^3\pi^3} \cos(n \pi)
+  + \frac{1}{n^3\pi^3}
+  \right)\\
+  & =
+  \frac{4 - 4\cos(n \pi)}{n^3\pi^3}
+\end{align}
+
+Here, our equation is the following:
+%
+\begin{align}
+  u(x, t) & = \sum^\infty_{n = 1} \frac{4 - 4\cos(n \pi)}{n^3\pi^3} \sin(n x \pi)e^{-n \pi t}
+\end{align}
+%
+
 %
 %______________________________________________________________________________%
 %
 \newpage
+\setcounter{equation}{0}
 %
 %______________________________________________________________________________%
 %
@@ -541,19 +643,31 @@ Simarly as the end of the last question,
       % T_n
       e^{-n^2 \pi^2 t}
     \end{align}
-  \end{enumerate}
 
   \item Here, let us use our initial condition to find $A_n$:
+  %
+  \begin{align}
+    2 \int^1_0 10^{-5}\sin(10^6 \pi x) \sin(n \pi x) \dx
+  \end{align}
 
-  % TAKEN
+  Here, we can find our $A_{10^6}$ with the help of our initial condition. We know at $n= 10^6$ that $A_{10^6} = 10^{-5}$, so let us write:
   \begin{align}
-    2 \cdot 10^{-5} \int^1_0 \sin(10^6 \pi x) \sin(n \pi x) \dx
+    u(x, t) & = 10^{-5} \sin(10^6 \pi x)e^{-(10^6)^2 \pi^2 t}\\
+    u(x, t) & = 10^{-5} \sin(10^6 \pi x)e^{-10^{12} \pi^2 t}
   \end{align}
-  Here, $A_{10^6} = 10^{-5}$, so let us write:
+
+  Here, using our equation, let us set $t$ to both $2$ and $-2$:
   \begin{align}
-    u(x, t) & = 10^{-5} \sin(10^6 \pi x)e^{-n^2 \pi^2 t}\\
-    u(x, 2) & = 10^{-5} \sin(10^6 \pi x)e^{-2 n^2 \pi^2} %-2? Not -4?
+    u(x, 2) & = 10^{-5} \sin(10^6 \pi x)e^{-10^{12} \pi^2 2}\\
+    & = \frac{\sin(10^6 \pi x)}{10^5 e^{10^{12} \pi^2 2}}\\
+    u(x, -2) & = 10^{-5} \sin(10^6 \pi x)e^{-10^{12} \pi^2 (-2)}\\
+    & = \frac{\sin(10^6 \pi x) e^{10^{12} \pi^2 2}}{10^5}
   \end{align}
+
+  Here, our magnitudes from the origin changes drastically. Whereas at $t = 2$ tends to stay close to $0$ for a while, $t = -2$ blows up drastically.
+\end{enumerate}
+%%%
+
 \end{enumerate}
 
 
