@@ -8,7 +8,33 @@
 \graphicspath{ {./images/} }
 
 \begin{document}
+%
+%______________________________________________________________________________%
+%
 \begin{enumerate}
-  \item
+  \item Solve $\Delta u = 0$ on $x \in [0, 4]$, $y \in [0, 3]$, with $u(x, 0) = u(x, 3) = 0$ where
+
+  \begin{enumerate}
+    \item $u_x(0, y) = 0$ and $u_x(4, y) = \cos(\pi y)$
+    \item $u(0, y) = 1$ and $u(4, y) = 0$ (Hint: Translate the $x$ coordinate so that $u(0, y) = 0$. This means that $x$ goes between $-4$ and $0$. Now go back to $0$ to $4$ with a $y$-axis flip.)
+  \end{enumerate}
+%
+%______________________________________________________________________________%
+%
+
+%
+%______________________________________________________________________________%
+%
+  \item Solve $u_{tt} = 4u_{xx}$ on $x \in [0, 3]$, $t \in [0, \infty)$, with $u(0, t) = u(3, t) = 0$ where
+
+  \begin{enumerate}
+    \item $u(x, 0) = 4 \sin(2 \pi x) + 7 \sin(6 \pi x) - 2\sin(\pi x)$, $u_t(x, 0) = 0$
+    \item $u(x, 0) = x(3 - x)$, $u_t(x, 0) = \sin(\pi x)$
+  \end{enumerate}
 \end{enumerate}
+
+%
+%______________________________________________________________________________%
+%
+
 \end{document}
