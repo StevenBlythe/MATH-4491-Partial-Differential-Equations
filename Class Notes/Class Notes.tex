@@ -1522,4 +1522,138 @@ We are going to find : $u_x, u_{xx}, u_{yy}$
     & = u_r \cos\theta - u_\theta \frac{\sin \theta}{r}
   \end{align}
 \end{enumerate}
+
+%
+
+\subsubsection*{February 14, 2021}
+
+Idea: What if we are on a disk?
+
+\begin{align}
+  \Delta u  & = 0 \Rightarrow u_{xx} + u_{yy} = 0\\
+  u_x       & = u_r \cos \theta u_\theta \frac{\sin \theta}{r}\\
+  u_{xx}    & = \\
+  & = \frac{\p}{\p x} [u_x]\\
+  & = \frac{\p u_x}{\p r} \frac{\p r}{\p x} + \frac{\p u_x}{\p \theta} \frac{\p \theta}{\p x}\\
+  & =
+  \frac{\p}{\p r}
+  \left[u_r \cos \theta -u_\theta \frac{\sin \theta}{r}\right] +
+  \frac{\p}{\p \theta}
+  \left[ u_r \cos \theta - u_\theta \frac{\sin \theta}{r} \right]
+  \left[ - \frac{\sin \theta}{r}\right]\\
+  & =
+  \left[ u_{rr} \cos \theta - u_{\theta r} \frac{\sin \theta}{r} + u_\theta \frac{\sin \theta}{r^2} \right] \cos \theta +
+  \left[ u_{r \theta} \cos \theta - u_r \sin \theta - u_{\theta \theta} \frac{\sin \theta}{r} - u_\theta \frac{\cos \theta}{r} \right]
+  \frac{\sin \theta}{r}\\
+  & =
+  u_{rr} \cos^2 \theta
+  - 2 u_{\theta r} \frac{\sin \theta \cos \theta}{r}
+  + 2 u_\theta \frac{\sin \theta \cos \theta}{r^2}
+  + u_r \frac{\sin^2 \theta}{r} + u_{\theta \theta} \frac{\sin^2 \theta}{r^2}\\
+  u_{yy} &
+  = u_{rr} \sin^2 \theta
+  + 2u_{\theta r} \frac{\sin \theta \cos \theta}{r}
+  - 2u_\theta \frac{\sin \theta \cos \theta}{r^2}
+  + u_r \frac{\cos^2 \theta}{r}
+  + u_{\theta \theta} \frac{\cos^2 \theta}{r^2}\\
+  \Delta u & = u_{xx} + u_{yy} \\ &
+  = u_{rr}
+  + \frac{u_r}{r}
+  + \frac{u_{\theta \theta}}{r^2} = 0
+\end{align}
+
+\topic{Solving Laplace's Equation in Polar Coordinates}
+
+If we have an open disk, akin to a washer, we have two boundaries: The innter boundary and outer boundary.
+%
+\begin{enumerate}
+  \item Assume $u(r, \theta) = R(r) \Theta(\theta)$
+  %
+  \begin{align}
+    u_{rr} + \frac{u_r}{r} + \frac{u_{\theta\theta}}{r^2} & = 0\\
+    R^{\prime\prime}\Theta + \frac{R^\prime \Theta}{r} + \frac{R\Theta^{\prime\prime}}{r^2} & = 0\\
+    R^{\prime\prime} \Theta + \frac{R^\prime \Theta}{r} & = - \frac{R \Theta^{\prime\prime}}{r^2}\\
+    \frac{r^2}{R^{\prime\prime}}{R} + \frac{r R^\prime}{R} & = - \frac{\Theta^{\prime\prime}}{\Theta} = \lambda
+  \end{align}
+
+  \item Solve for $\Theta$ : $-\frac{\Theta^{\prime\prime}}{\Theta} = \lambda \Rightarrow \Theta^{\prime\prime} = -\lambda \Theta$
+  %
+  If $\lambda > 0$, then we have:
+  %
+  \begin{align}
+    \Theta(\theta) & = A \sin(\sqrt \lambda \theta) + B \cos(\sqrt \lambda \theta)
+  \end{align}
+
+  Since the solution is periodic in terms of $\theta$ :
+  $\displaystyle
+  \begin{cases}
+    \Theta(0) & = \Theta(2 \pi)\\
+    \Theta^\prime(0) & = \Theta^\prime(2 \pi)
+  \end{cases}$
+  %
+  \begin{align}
+    \Theta(0) = \Theta(2 \pi) \Rightarrow B & = A \sin(\sqrt \lambda 2 \pi) + B \cos ( \sqrt \lambda 2 \pi)\\
+    \Theta^\prime(\theta) & = A \sqrt \lambda \cos(\sqrt \lambda \theta) - B \sqrt \lambda \sin( \sqrt \lambda \theta)\\
+    \Theta^\prime(0) = \Theta^\prime(2 \pi) \Rightarrow A \sqrt \lambda & = A \sqrt \lambda \cos(\sqrt \lambda 2 \pi) - B \sqrt \lambda \sin(\sqrt \lambda 2 \pi)
+  \end{align}
+
+  These equations are satisfied when $\sqrt \lambda 2 \pi = 2 \pi n$, $n \in \Z^+$. Then, $\lambda_n = n^2$. If we consider $n$, then we can also write $\Theta_n(\theta) = A_n \sin(n \theta) + B_n \cos(n \theta)$.
+
+  If $\lambda = 0 : \Theta^{\prime\prime}_0 = A \theta + B$.
+  %
+  \begin{align}
+    \Theta_0(0) = \Theta_0(2 \pi) & \Rightarrow B = A 2\pi + \theta\\
+    & \Rightarrow A = 0\\
+    \Theta^\prime_0 (\theta) = 0 & \Rightarrow \Theta^\prime(0) = \Theta^\prime(2 \pi)\\
+    & \Rightarrow \Theta_0(\theta) = B_0
+  \end{align}
+  Note: $\lambda < 0$ yields the trivial solution.
+
+  \item Solve for $R$
+  %
+  \begin{align}
+    r^2 \frac{R^{\prime\prime}_n}{R_n} + r \frac{R^\prime_n}{R_n} = \lambda_n & \Rightarrow r^2 R + rR^\prime_n = n^2 R_n\\
+    & \Rightarrow r^2 R^{\prime\prime}_n + rR^\prime_n - n^2 R_n = 0
+  \end{align}
+
+  Here, let our guess be $R_n(r) = r^m$. Let us plug our guess in:
+  %
+  \begin{align}
+    r^2 m(m - 1)r^{m - 2} + r mr^{m - 1} - n^2 r^m & = 0\\
+    r^2 \left( m(m - 1) + m - n^2 \right) & = 0\\
+    r^2 \left( m^2 - n^2 \right) & = 0 \Rightarrow m = \pm n
+  \end{align}
+
+  If $n > 0$,
+  %
+  \begin{align}
+    R_n(r) & = C_nr^n + D_nr^{-n}
+  \end{align}
+
+  If $n = 0$,
+  %
+  \begin{align}
+    r^2R^{\prime\prime}_0 + rR^\prime_0 & = 0\\
+    R_0(r) & = C_0 r^0 + D_0 \ln r\\
+    & = C_0 + D_0 \ln r
+  \end{align}
+  %
+  \item Combine to find $u_n$ and $u$:
+  %
+  \begin{align}
+    u_n(r, \theta) & =
+    \begin{cases}
+      B_0( C_0 + D_0 \ln r) & n = 0\\
+      C_nr^n + D_n r^{-n}\left(A_n \cos(n \theta) + B_n \cos(n \theta) \right) & n \in Z^+
+    \end{cases}
+  \end{align}
+
+  By linearity,
+  %
+  \begin{align}
+    u(n \theta) & = B_0(C_0 + D_0 \ln r) + \sum^\infty_{n = 1} \left(C_n r^n + D_n r^{-n}\right) \left( A_n \sin(n \theta) + B_n \cos(n \theta) \right)\\
+    & = c_0 + d_0 \ln r + \sum^\infty_{n = 1} (a_nr^n + b_nr^{-n}) \sin(n \theta) + (c_nr^n + d_nr^{-n}) \cos(n \theta)
+  \end{align}
+\end{enumerate}
+
 \end{document}
