@@ -16,8 +16,80 @@
 
   \begin{enumerate}
     \item $u_x(0, y) = 0$ and $u_x(4, y) = \cos(\pi y)$
+
     \item $u(0, y) = 1$ and $u(4, y) = 0$ (Hint: Translate the $x$ coordinate so that $u(0, y) = 0$. This means that $x$ goes between $-4$ and $0$. Now go back to $0$ to $4$ with a $y$-axis flip.)
   \end{enumerate}
+\bigbreak
+%_____________________________________________________________________________%
+  Here, let us first solve part a) of the problem.
+  %
+  \begin{enumerate}
+    \item First, let us assume our equation is separable:
+    %
+    \begin{align}
+      u(x, y) & = X(x)Y(y)
+    \end{align}
+
+    Here, let us consider our boundary conditions:
+    %
+    \begin{align}
+      u(x, 0) = 0 & = X(0)Y(y)
+    \end{align}
+
+    Here, we either have $X(0) = 0$ or $Y(y) = 0$. We do not want to assume $Y(y) = 0$ because that would make $u(x, y) = 0 \ \forall y \in [0, 3]$. Therefore, we consider $X(0) = 0$. We will follow this assumption for the upcoming boundary conditions.
+    %
+    \begin{align}
+      u(x, y) & = X(x)Y(y)\\
+      u(x, 0) & = X(x)Y(0) = 0 \Rightarrow Y(0) = 0\\
+      u(x, 3) & = X(x)Y(3) = 0 \Rightarrow Y(3) = 0
+    \end{align}
+
+    Now, let us consider $u_x(x, y)$ as $X^\prime(x)Y(y)$:
+    %
+    \begin{align}
+      u_x(x, y) & = X^\prime(0) Y(y)\\
+      u_x(0, y) & = X^\prime(0) Y(y) = 0
+      \Rightarrow X^\prime(0) = 0
+    \end{align}
+
+    Now, let us write:
+    %
+    \begin{align}
+      - \frac{X^{\prime\prime}}{X} & = \frac{Y^{\prime\prime}}{Y} = - \lambda
+    \end{align}
+    %
+    \item Next, we solve for $X$, first solving for $Y(y)$ since we have more information on $Y(y)$.
+    %
+    \begin{align}
+      \frac{Y^{\prime\prime}}{Y} & = -\lambda\\
+      Y^{\prime\prime} & = - \lambda Y
+    \end{align}
+
+    Here, let us write out our general equation:
+    %
+    \begin{align}
+      Y_n(y) & = A \sin ( \sqrt \lambda x) + B \cos ( \sqrt \lambda x )
+    \end{align}
+
+    Here, we know $Y(0) = Y(3) = 0$. Let us input our $y$:
+    %
+    \begin{align}
+      Y_n(0) = 0 & = B\\
+      Y_n(3) = 0 & = A \sin( \sqrt \lambda 3 )
+    \end{align}
+
+    Here, let us not consider $A$ as $0$, instead, the inside of our sine function to be $0$.
+    %
+    \begin{align}
+      \sqrt \lambda 3 & = n \pi\\
+      \sqrt \lambda & = \frac{n \pi}{3}\\
+      \lambda_n & = \left( \frac{n \pi}{3} \right)^2
+    \end{align}
+
+  \end{enumerate}
+
+\newpage
+  %__________________________________________________________________________%
 %
 %______________________________________________________________________________%
 %
