@@ -1656,4 +1656,226 @@ If we have an open disk, akin to a washer, we have two boundaries: The innter bo
   \end{align}
 \end{enumerate}
 
+%______________________________________________________________________________%
+
+\subsection*{February 16, 2022}
+\begin{enumerate}
+  \setcounter{enumi}{4}
+  \item Let us find the oefficients using the boundary conditions.
+  \begin{align}
+    u(R_1, \theta) & = g_1(\theta)\\
+    %%%%
+    \Rightarrow g_1(\theta) & = \underline{C_0 + d_0 \ln R_1} +
+    \sum^\infty_{n = 1}
+    \left[
+    (\underline{a_nR^n_1 + b_nR^{-n}_1}) \sin(n \theta) +
+    (\underline{C_n R^n_1 + d_n R^{-n}_1}) \cos(n \theta)
+    \right]\\
+    %%%%
+    u(R_2, \theta) & = G_2(\theta)\\
+    \Rightarrow g_2(\theta) & = \underline{C_0 + d_0 \ln R_2} +
+    \sum^\infty_{n = 1}
+    \left[
+    (\underline{a_n R^n_2 + b_n R^{-n}_2}) \sin(n \theta) +
+    (\underline{C_n R^n_2 + d_n R^{-n}_2}) \cos(n \theta)
+    \right]
+  \end{align}
+  Underlines book-scan: $B_0, A_n, B_n, \twiddle B_0, \twiddle A_n, \twiddle B_n$:
+  %
+  \begin{align}
+    &
+    \begin{cases}
+      B_0 & = c_0 + d_0 \ln R_1\\
+      \twiddle B_0 & = c_0 + d_0 \ln R_12
+    \end{cases}\\
+    %
+    &
+    \begin{cases}
+                A_n & = a_n R^n_1 + b_nR^{-n}_1\\
+      \twiddle  A_n & = a_n R^n_2 + b_nR^{-n}_2
+    \end{cases}\\
+    %
+    &
+    \begin{cases}
+               B_n & = c_n R^n_1 + d_n R^{-n}_1\\
+      \twiddle B_n & = c_n R^n_2 + d_n R^{-n}_2
+    \end{cases}
+  \end{align}
+\end{enumerate}
+\ex Solve $\Delta u = 0$, where
+\begin{itemize}
+  \item $u(1, \theta) = 3 \sin( 2 \theta )$
+  \item $u(2, \theta) = 7 \cos( 5 \theta )$
+\end{itemize}
+%
+\begin{enumerate}
+  \item Assume $u(r, \theta) = R(r) \Theta(\theta)$
+  %
+  \begin{align}
+    \Delta u = u_{rr} + \frac{u_r}{r} + \frac{u_{\theta\theta}}{r^2} & = R^{\prime\prime} \Theta + \frac{R^\prime \Theta}{r} + \frac{R \Theta^{\prime\prime}}{r^2} = 0\\
+    %%%%
+    & \Rightarrow R^{\prime\prime} \Theta + \frac{R^\prime \Theta}{r} = - \frac{R\Theta^{\prime\prime}}{r^2}\\
+    & \Rightarrow r^2 \frac{R^{\prime\prime}}{R} + r \frac{R^\prime}{R} = - \frac{\Theta^{\prime\prime}}{\Theta} = \lambda
+  \end{align}
+  %
+  \item Solve for $\Theta$ : $- \frac{\Theta^{\prime\prime}}{\Theta} = \lambda \Rightarrow \Theta^{\prime\prime} = -\lambda \Theta$.
+
+  If $\lambda > 0$, then
+  %
+  \begin{align}
+    \Theta(\theta) & =
+    A \sin(\sqrt \lambda \theta) + B \cos(\sqrt \lambda \theta)\\
+    %%
+    \Theta^\prime(\theta) & =
+    A \sqrt \lambda \cos ( \sqrt \lambda \theta) - B \sqrt \lambda \sin (\sqrt \lambda \theta)\\
+    %%
+    \sqrt \lambda 2 \pi = 2 n \pi \Rightarrow \lambda_n = n^2, n \in \Z^+ &
+    \begin{cases}
+      \Theta(0) = \Theta(2\pi) & \Rightarrow
+      B = A \sin(\sqrt \lambda 2 \pi) + B \cos(\sqrt \lambda 2 \pi)\\
+      %%
+      \Theta^\prime = \Theta^\prime(2 \pi) & \Rightarrow
+      A \sqrt \lambda = A \sqrt \lambda \cos (\sqrt \lambda 2 \pi) - B \sqrt \lambda \sin (\sqrt \lambda 2 \pi)
+    \end{cases}\\
+    %%
+    = n^2 & \Rightarrow
+    \Theta(n)(\theta) = A_n \sin(n \theta) + B_n \cos(n \theta)
+  \end{align}
+  If $\lambda = 0$, then the second derivative is $0$.
+  %
+  \begin{align}
+    \Theta^{\prime\prime}_0 & \Rightarrow
+    \Theta_0(\theta) = A_0\Theta + B_0\\
+    & \Rightarrow \Theta^\prime_0 (\theta) = A_0\\
+    & \Rightarrow \Theta_0(0) = \Theta_0(2 \pi) \Rightarrow B_0 = 2 \pi A_0 + B_0 \Rightarrow A_0 = 0\\
+    %%
+    & \Rightarrow \Theta^\prime_0(0) = \Theta^\prime_0 (2 \pi) = 0
+  \end{align}
+  \item Solve for $R$ : $r^2 \frac{R^{\prime\prime}_n}{R_n} + \frac{rR^\prime_n}{R_n} = \lambda_n$
+  %
+  \begin{align}
+    r^2 R^{\prime\prime}_n + rR^\prime_n - n^2 R_n = 0\\
+  \end{align}
+
+  Try $R_n(r) = R^m$, then
+  %
+  \begin{align}
+    r^2 m( m - 1) r^{m - 2} + r mr^{m - 1} - n^2 r^m & = 0\\
+    r^m \left[ m( m - 1) + m - n^2 \right] & = 0\\
+    m^n - n^2 & = 0\\
+    m & = \pm n
+  \end{align}
+  Next, let us write:
+  %
+  \begin{align}
+    & \Rightarrow
+    \begin{cases}
+      R_n(r) & = C_n r^n + D_n r^{-n}, n \in \Z^+\\
+      R_n(r) & = C_0 + D_0 \ln r
+    \end{cases}
+  \end{align}
+  \item Combine to obtain $u_n$ and $u$,
+  %
+  \begin{align}
+    u_n(r, \theta) & =
+    \begin{cases}
+      B_0(C_0 + D_0 \ln r) & n = 0\\
+      (C_n r^n + D_n r^{-n})(A_n \sin(n \theta) + B_n \cos(n \theta)) & n \in Z^+
+    \end{cases}
+  \end{align}
+  By linearity,
+  %
+  \begin{align}
+    u(r, \theta) & =
+    c_0 + d_0 \ln r + \sum^\infty_{n = 1}
+    \left(
+    (C_n r^n + D_n r^{-n})(A_n \sin(n \theta) + B_n \cos(n \theta))
+    \right)\\
+    %%
+    & =
+    c_0 + d_0 \ln r + \sum^\infty_{n = 1}
+    \left(
+    (a_n r^n + b_n r^{-n})\sin(n \theta) + (c_n r^n + d_n r^{-n}) \cos(n \theta)
+    \right)
+  \end{align}
+  %
+  \item Find coefficients using $BCs$ :
+  %
+  \begin{align}
+    u(1, \theta) & = 3 \sin(2 \theta)\\
+    u(2, \theta) & = 7 \cos(5 \theta)\\
+    u(1, \theta) & = c_0 + d_0 \ln(1) + \sum^\infty_{n = 1}
+    \left[
+    (a_n + b_n) \sin(n \theta) +
+    (c_n + d_n) \cos(n \theta)
+    \right]\\
+    &
+    \begin{cases}
+      c_0       & = 0\ \           \\
+      c_n + d_n & = 0\ \ \forall n \\
+      a_2 + b_2 & = 3\ \           \\
+      a_n + b_n & = 0\ \ \forall n, n \neq 2
+    \end{cases}
+  \end{align}
+  Now, let us write:
+  %
+  \begin{align}
+    u(2, \theta) & = 7 \cos(5 \theta)\\
+    u(2, \theta) & = c_0 + d_0 \ln 2 + \sum^\infty_{n = 1}
+    \left[
+    (a_n 2^n + b_n 2^{-n}) \sin( n \theta ) +
+    (c_n 2^n + d_n 2^{-n}) \cos( n \theta )
+    \right] = 7 \cos(5 \theta)\\
+    %
+    &
+    \begin{cases}
+      c_0 + d_0 \ln 2       & = 0 \Rightarrow d_0 = 0\\
+      a_n 2^n + b_n 2^{-n}  & = 0\ \forall n\\
+      c_5 2^5 + d_5 2^{-5}  & = 7\\
+      c_n 2^n + d_n 2^{-n}  & = 0\ \forall n, n \neq 5
+    \end{cases}
+  \end{align}
+  If $n \neq 5$:
+  %
+  \begin{align}
+    \begin{cases}
+      c_n + d_n & = 0\\
+      c_n 2^n + d_n 2^{-n} & = 0
+    \end{cases}
+    \Rightarrow c_n = d_n = 0
+  \end{align}
+  %
+  If $n \neq 2$:
+  %
+  \begin{align}
+    \begin{cases}
+      a_n     + b_n & = 0\\
+      a_n 2^n + b_n 2^{-n} & = 0
+    \end{cases}
+    \Rightarrow a_n = b_n = 0
+  \end{align}
+  %
+  If $n = 5$,
+  %
+  \begin{align}
+    &
+    \begin{cases}
+      c_5 2^5 + d_5 2^{-5} & = 7\\
+      c_5     + d_5        & = 0 \Rightarrow d_5 = -c_5
+    \end{cases}\\
+    c_5 2^5 - c_5 2^{-5} = &\ 7\\
+    c_5(32 - \frac{1}{32}) = &\ 7\\
+    c_5 = &\ \frac{7}{32 - \frac{1}{32}}
+  \end{align}
+  %
+  If $n = 2$,
+  %
+  \begin{align}
+    4(a_2 + b_2 & = 3) \\
+    - a_2 2^2 + b_2 2^{-3} & = 0\\
+    \hline
+    \frac{15}{4} b_2 = 12 & \Rightarrow b_2 = \frac{48}{15} = \frac{16}{5}\\
+    & \Rightarrow a_2 = 3 - b_2 = 3 - \frac{16}{5} = -\frac{1}{5}
+  \end{align}
+\end{enumerate}
 \end{document}
