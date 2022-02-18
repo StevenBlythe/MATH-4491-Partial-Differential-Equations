@@ -203,22 +203,121 @@
       \int^3_0 \cos(\pi y) \sin\left(\frac{n \pi y}{3}\right)
     \end{align}
 
-    %Here, we have b_n in between B_n and sin.
-    % B_n(n pi/3) \sinh(4 pi n/3) = 2/3 \int^3_0 \cos(\pi y) \sin(n \pi y/3) dy
-    % ...
-    % B_n =
-    % n cos(\pi n) + n / \pi n^2 - 9\pi
-    % /
-    % (n \pi/3) \sinh(4 n \pi/3)
+    Here, let us use trig identities to separate our product:
     %
-    % Final:
-    % u(x, y) = C + \sum^\infty_{n = 1}
-    % n^2 / 3(n^2 - 9)
-    % [(-1)^n + 1]
-    % \sinh(4 n \pi3)
-    % \cosh(n \pi x/3)
-    % \sin(n \pi y/3)
+    \begin{align}
+      \int^3_0
+      \cos(\pi y) \sin\left(\frac{n \pi y}{3}\right)
+      & =
+      \int^3_0
+      % Fraction start
+      \frac
+      {\sin\left(\frac{\pi n y - \pi 3 y}{3}\right) +
+      \sin\left( \frac{\pi n y + \pi 3 y}{3} \right)}
+      {2}\\
+      % frac end
+      %
+      % Simplify and break
+      & =
+      \frac{1}{2}
+      \int^3_0
+      \sin\left(\frac{(n - 3)\pi y}{3}\right) dy +
+      \frac{1}{2}
+      \int^3_0
+      \sin\left( \frac{(n + 3)\pi y}{3} \right) dy
+    \end{align}
 
+    From here, let us consider $u$ substitution on both sides. On the left, let us consider $u = \frac{(n - 3)\pi y}{3}$ and $du = \frac{(n - 3) \pi y}{3} dy$. From here, let us replace our interval from $0$ to $(n - 3) \pi$. For the right integral, let us consider the same procedure and replace $v = \frac{(n + 3) \pi y}{3}$ and $vu = \frac{(n + 3) \pi}{3} dy$. From here, let us change the interval to $0$ to $(n + 3)\pi$:
+
+    \begin{align}
+      & =
+      \frac{1}{2} \frac{3}{(n - 3) \pi} \int^{\pi(n - 3)}_0 \sin(u) du +
+      \frac{1}{2} \frac{3}{(n + 3) \pi} \int^{\pi(n + 3)}_0 \sin(v) dv\\
+      & =
+      -\frac{3}{2(n - 3)} \bigg[ \cos u \bigg]^{\pi(n - 3)}_0
+      -\frac{3}{2(n + 3)} \bigg[ \cos u \bigg]^{\pi(n - 3)}_0\\
+      & =
+      -\frac{3}{2(n - 3)\pi}
+      \left[ \cos(\pi((n - 3)) - 1 \right]
+      -\frac{3}{2(n + 3)\pi}
+      \left[ \cos(\pi(n + 3)) - 1 \right]\\
+      & =
+      -\frac{3}{2(n - 3)\pi}
+      \left[ \cos(\pi n - \pi 3) - 1 \right]
+      -\frac{3}{2(n + 3)\pi}
+      \left[ \cos(\pi n + \pi 3) - 1 \right]\\
+      & =
+      -\frac{3}{2(n - 3)\pi}
+      \left[ -\cos(\pi n) - 1 \right]
+      -\frac{3}{2(n + 3)\pi}
+      \left[ - \cos( \pi n ) - 1 \right]\\
+      & =
+      \frac{3(\cos(\pi n) + 1)}{2(n - 3)\pi} +
+      \frac{3(\cos(\pi n) + 1)}{2(n + 3)\pi}\\
+      & =
+      \frac{3n(\cos(\pi n) + 1)}{\pi(n^2 - 9)}
+    \end{align}
+
+    Here, let us plug our integral back into our equation at line (36):
+    %
+    \begin{align}
+      & =
+      \frac{2}{n \pi \sinh(\frac{4 \pi n}{3})}
+      \frac{3n(\cos(\pi n) + 1)}{\pi(n^2 - 9)}\\
+      & = \frac{6 (\cos (\pi n) + 1)}{\pi^2(n^2 - 9) \sinh(\frac{4 \pi n}{3})}
+    \end{align}
+
+    From here, let us write:
+    %
+    \begin{align}
+      u(x, y) & = \sum^\infty_{n = 1} \frac{6 (-1^n + 1)}{\pi^2(n^2 - 9) \sinh(\frac{4 \pi n}{3})} \cosh(\frac{n \pi x}{3}) \sin(\frac{n \pi y}{3})
+    \end{align}
+  \end{enumerate}
+
+  From here, allow us to backtrack and consider new conditions: $u(0, y) = 1$ and $u(4, y) = 0$. From here, we should consider shifting one of our functions. Let us start from part $c$, knowing
+  $Y_n(y) = \sin\left(\frac{n \pi y}{3}\right)$ and $\lambda_n = \left( \frac{n \pi}{3} \right)^2$:
+
+  \begin{enumerate}
+    \setcounter{enumii}{3}
+    \item Let us solve for $X(x)$
+    %
+    \begin{align}
+      X(x) & = C \sinh(\sqrt \lambda x) + D \cosh(\sqrt \lambda x)\\
+      X(0) = 0 & = D
+    \end{align}
+
+    Here, let us shift our $x$ to get $X(4) = 0$:
+    %
+    \begin{align}
+      X(x) & = C \sinh(\frac{n \pi}{3} (4 - x))\\
+      X(4) & = C \sinh(\frac{n \pi}{3} (4 - 4)) = 0
+    \end{align}
+
+
+    \item Here, let us combine our $u$ and $u_n$:
+    %
+    \begin{align}
+      u(x, y) & = C_n \sinh\left( \frac{n \pi (4 - x)}{3} \right) \sin\left( \frac{4 \pi y}{3} \right)
+    \end{align}
+
+    By linearity, let us write:
+    %
+    \begin{align}
+      u_n(x, y) & =
+      \sum^\infty_{n = 1}
+      C_n \sinh\left( \frac{n \pi( 4 - x)}{3} \right)
+      \sin\left( \frac{n \pi y}{3} \right)
+    \end{align}
+
+    From our initial conditions, we know $u(0, y) = 1$, so let us write:
+    %
+    \begin{align}
+      u_n(0, y) & =
+      \sum^\infty_{n = 1}
+      C_n \sinh\left( \frac{n \pi 4}{3} \right)
+      \sin\left( \frac{n \pi y}{3} \right)
+    \end{align}
+  \end{enumerate}
 
 
     % B: u(0, y) = 1 and u(4, y) = 0.
@@ -243,7 +342,6 @@
     % (2 (1 - cos(pi n))/(n pi sinh(4 n pi/3)))
     % sinh(n pi(4 -x)/3)
     % sin(n pi y/3)
-  \end{enumerate}
 
 \newpage
   %__________________________________________________________________________%
