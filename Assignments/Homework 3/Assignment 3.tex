@@ -126,6 +126,58 @@
       \frac{n \pi x}{3}
       \right)
     \end{align}
+    % Here, we will get X_n(x) = \Cosh(n\pix/3) because X'(0) -> c = 0
+    \item
+    % Here, u_n(x, y) = X_n(x) Y_n(y) to get a piecewise:
+    %\cosh(n pi x/3) sin(n pi y/2) n => 1
+    % F_0 n =0
+    % By linearity,
+    % u(x, y) = F_0 + \sum^\infty_{n \to 1} B_n \cosh(n pi x/3) \sin(n \pi y/3)
+    \item
+    % Final Boundary Condition:
+    % u_x(4, y) = \cos(\pi y)
+    % u_x(x, y) = \sum^\infty_{n = 1} B_n(n pi/3) \sinh(n \pi x/3) \sin(n \pi y/3)
+    % u_x(4, y) = \sum^\infty_n = 1 B_n (n pi/3) \sinh(4 n \pi /3) \sin(n \pi y/3)
+    %Here, we have b_n in between B_n and sin.
+    % B_n(n pi/3) \sinh(4 pi n/3) = 2/3 \int^3_0 \cos(\pi y) \sin(n \pi y/3) dy
+    % ...
+    % B_n =
+    % n cos(\pi n) + n / \pi n^2 - 9\pi
+    % /
+    % (n \pi/3) \sinh(4 n \pi/3)
+    %
+    % Final:
+    % u(x, y) = C + \sum^\infty_{n = 1}
+    % n^2 / 3(n^2 - 9)
+    % [(-1)^n + 1]
+    % \sinh(4 n \pi3)
+    % \cosh(n \pi x/3)
+    % \sin(n \pi y/3)
+
+
+
+    % B: u(0, y) = 1 and u(4, y) = 0.
+    % y_n(y) = \sin(n pi y/3)
+
+    %% X(x) =C \sinh(\sqrt \lambda x) + D \cosh(\sqrt \lambda x), X(0) = X(4) = 0
+    % X(x) = C \sinh(\sqrt \lambda (4 - x))
+
+    %% u(x, y) = \sinh(n pi (4 - x) / 3) \sin(4 \pi y / 3)
+    % Linearity
+    % u(x, y) = \sum... A_n \sinh( n \pi(4 - x) / 3) \sin(n \pi y/3)
+    % u(0, y) = \sum... A_n \sinh(4 n \pi / 3) \sin(n \pi y / 3) = 1
+    % Here, take the first A_n \sinh:
+    % A_n = \sinh(4 n pi / 3) = 2/3 \int^3_0 \sin(n pi y / 3) dy
+    % A_n =
+    % 2(1 - cos(\pi n))
+    % /
+    %n \pi \sinh(4 n \pi/3)
+    %
+    % Final
+    % u(x, y) = \sum..
+    % (2 (1 - cos(pi n))/(n pi sinh(4 n pi/3)))
+    % sinh(n pi(4 -x)/3)
+    % sin(n pi y/3)
   \end{enumerate}
 
 \newpage
