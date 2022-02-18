@@ -308,6 +308,21 @@
        \sin \left( \frac{2 n \pi t}{L} \right)
      \end{align}
 
+     % From here, we do matching terms:
+     % D_6 = 4
+     % D_18 = 7
+     % D_3 = -2
+     % D_n = 0
+
+     % u_t (x, 0) = 0
+     % \sum Cn Sin(n pi x / 3) Cn pi/3 = 0
+     % u(x, t) = 4\sin(2 pi x) cos(4 pi t) + 7 sin(6 pi x) cos(12 pi t) - 2sin(pi x) cos(2 pi t)
+
+     % u(x, 0) = x(3 - x)
+     % D_n = 2/3 \int^3_0 x(3-x)/(3x-x^2) sin(n pi x/3) dx
+     %...
+     % 27 n pi sin(n pi) + 54 cos(n pi) - 54/n^3 pi^3
+
      From here, let us plug in our initial condition, $u_t(x, 0) = 0$:
      %
      \begin{align}
