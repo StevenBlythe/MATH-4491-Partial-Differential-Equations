@@ -126,18 +126,83 @@
       \frac{n \pi x}{3}
       \right)
     \end{align}
-    % Here, we will get X_n(x) = \Cosh(n\pix/3) because X'(0) -> c = 0
-    \item
-    % Here, u_n(x, y) = X_n(x) Y_n(y) to get a piecewise:
-    %\cosh(n pi x/3) sin(n pi y/2) n => 1
-    % F_0 n =0
-    % By linearity,
-    % u(x, y) = F_0 + \sum^\infty_{n \to 1} B_n \cosh(n pi x/3) \sin(n \pi y/3)
-    \item
-    % Final Boundary Condition:
-    % u_x(4, y) = \cos(\pi y)
-    % u_x(x, y) = \sum^\infty_{n = 1} B_n(n pi/3) \sinh(n \pi x/3) \sin(n \pi y/3)
-    % u_x(4, y) = \sum^\infty_n = 1 B_n (n pi/3) \sinh(4 n \pi /3) \sin(n \pi y/3)
+
+    Here, let us find the derivative for $X$ and find $X^\prime(0)$:
+    %
+    \begin{align}
+      X^\prime(0) & = \frac{n \pi x}{3} C = 0\\
+      & = C = 0
+    \end{align}
+
+    Therefore, since $C = 0$, we get:
+    %
+    \begin{align}
+      X_n(x) & = D \cosh\left( \frac{n \pi x}{3} \right)
+    \end{align}
+    \item Now, let us combine $u_n$ and $u$:
+    %
+    \begin{align}
+      u_n(x, y) & =
+      D \cosh\left( \frac{n \pi x}{3} \right) \sin\left( \frac{n \pi y}{3} \right)
+    \end{align}
+
+    By linearity, let us write:
+    %
+    \begin{align}
+      u(x, y) & =
+      % Summation
+      \sum^\infty_{n = 1}
+      % Coefficient D
+      D_n
+      % Cosh
+      \cosh\left( \frac{n \pi x}{3} \right)
+      % Sin
+      \sin\left( \frac{n \pi y}{3} \right)
+    \end{align}
+
+    \item Here, let us use our boundary conditions to find our coefficients.
+    %
+    \begin{align}
+      u_x(4, y) & = \cos( \pi y)
+    \end{align}
+
+    Here, let us derive our $u(x, y)$ to get $u_x(x, y)$
+    %
+    \begin{align}
+      u_x(x, y) & =
+      \sum^\infty_{n = 1} D_n
+      \left( \frac{n \pi}{3} \right)
+      \sinh\left( \frac{n \pi x}{3} \right)
+      \sin\left( \frac{n \pi y}{3} \right)\\
+      %_______________________________________________________________________%
+      u_x(4, y) & =
+      \sum^\infty_{n = 1} D_n
+      \left( \frac{n \pi}{3} \right)
+      \sinh\left( \frac{n \pi 4}{3} \right)
+      \sin\left( \frac{n \pi y}{3} \right)
+    \end{align}
+
+    Here, let us consider our coefficient in the equation:
+    %
+    \begin{align}
+      D_n \left(\frac{n \pi}{3}\right) \sinh\left(\frac{4 \pi n}{3}\right)
+      & = \frac{2}{3} \int^3_0 \cos(\pi y) \sin\left(\frac{n \pi y}{3}\right) dy\\
+      D_n & =
+      \frac{2}{3}
+      \frac{3}{n \pi}
+      \frac{1}{\sinh\left(\frac{4 \pi n}{3}\right)}
+      \int^3_0 \cos(\pi y) \sin\left(\frac{n \pi y}{3}\right)\\
+      & =
+      \frac{2}{n \pi \sinh\left(\frac{4 \pi n}{3}\right)}
+      \int^3_0 \cos(\pi y) \sin\left(\frac{n \pi y}{3}\right)
+    \end{align}
+
+    Here, let us isolate our integral and solve for that. Afterwards, let us combine our function.
+    %
+    \begin{align}
+      \int^3_0 \cos(\pi y) \sin\left(\frac{n \pi y}{3}\right)
+    \end{align}
+
     %Here, we have b_n in between B_n and sin.
     % B_n(n pi/3) \sinh(4 pi n/3) = 2/3 \int^3_0 \cos(\pi y) \sin(n \pi y/3) dy
     % ...
