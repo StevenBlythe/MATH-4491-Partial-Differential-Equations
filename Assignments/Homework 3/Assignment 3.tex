@@ -30,6 +30,15 @@
       u(x, y) & = X(x)Y(y)
     \end{align}
 
+    Let us take note of our $u$:
+    %
+    \begin{align}
+      u_{xx} + u_{yy} & = 0\\
+      X^{\prime\prime}Y + XY^{\prime\prime} & = 0\\
+      XY^{\prime\prime} & = -X^{\prime\prime}Y\\
+      \frac{Y^{\prime\prime}}{Y} & = - \frac{X^{\prime\prime}}{X} = -\lambda
+    \end{align}
+
     Here, let us consider our boundary conditions:
     %
     \begin{align}
@@ -58,7 +67,7 @@
       - \frac{X^{\prime\prime}}{X} & = \frac{Y^{\prime\prime}}{Y} = - \lambda
     \end{align}
     %
-    \item Next, we solve for $X$, first solving for $Y(y)$ since we have more information on $Y(y)$.
+    \item Next we solve for $Y(y)$ since we have more information on $Y(y)$.
     %
     \begin{align}
       \frac{Y^{\prime\prime}}{Y} & = -\lambda\\
@@ -86,6 +95,37 @@
       \lambda_n & = \left( \frac{n \pi}{3} \right)^2
     \end{align}
 
+    Now we have the following:
+    %
+    \begin{align}
+      Y_n(y) & = \sin\left( \frac{n \pi y}{3} \right )
+    \end{align}
+
+    \item Now, let us solve for $X$:
+    %
+    \begin{align}
+      \frac{X^{\prime\prime}}{X} & = \lambda\\
+      X^{\prime\prime} & = \lambda X
+    \end{align}
+
+    Here, we solved for $\lambda$ in the previous step:
+    %
+    \begin{align}
+      X^{\prime\prime}_n & =
+      \left(
+      \frac{n \pi}{3}
+      \right)^2
+      X_n
+      \\
+      X_n(x) & =
+      C
+      \sinh \left(
+      \frac{n \pi x}{3}
+      \right) +
+      D \cosh \left(
+      \frac{n \pi x}{3}
+      \right)
+    \end{align}
   \end{enumerate}
 
 \newpage
@@ -103,10 +143,156 @@
     \item $u(x, 0) = 4 \sin(2 \pi x) + 7 \sin(6 \pi x) - 2\sin(\pi x)$, $u_t(x, 0) = 0$
     \item $u(x, 0) = x(3 - x)$, $u_t(x, 0) = \sin(\pi x)$
   \end{enumerate}
-\end{enumerate}
+
+  Let us begin with our boundary conditions.
+  %
+  \begin{enumerate}
+    \item Let us assume our equation is separable.
+    %
+    \begin{align}
+      u_{tt} & = 2^2 u_{xx}\\
+      XT^{\prime\prime} & = 2^2 X^{\prime\prime}T\\
+      \frac{T^{\prime\prime}}{2^2 T} & = \frac{X^{\prime\prime}}{X} = - \lambda
+    \end{align}
+
+    \item Here, since we have more information regarding $X$, let us solve for $X$:
+    %
+    \begin{align}
+      \frac{X^{\prime\prime}}{X} & = - \lambda\\
+      X^{\prime\prime} & = - \lambda X
+    \end{align}
+
+    In this equation, we want to consider $\cos$ and $\sin$ for our general equation.
+    %
+    \begin{align}
+      X(x) & = A \sin(\sqrt \lambda x) + B \cos (\sqrt \lambda x)
+    \end{align}
+
+    Here, we know $X(0) = X(3) = 0$, so let us write:
+    %
+    \begin{align}
+      X(0) & = B = 0\\
+      X(3) & = A \sin(\sqrt \lambda 3) = 0
+    \end{align}
+
+     Here, let us find when our sine function is $0$.
+     %
+     \begin{align}
+       \sqrt \lambda 3 & = n \pi\\
+       \sqrt \lambda & = \frac{n \pi}{3}\\
+       \lambda & = \left( \frac{n \pi}{3} \right)^2
+     \end{align}
+
+     Now, let us write our general equation for $X$:
+     %
+     \begin{align}
+       X_n(x) & = \sin \left( \frac{n \pi x}{3} \right)
+     \end{align}
+     %
+     \item Next, let us solve for $T$:
+     %
+     \begin{align}
+       \frac{T^{\prime\prime}}{2^2T} & = -\lambda\\
+       T^{\prime\prime} & = - 2^2 T \lambda
+     \end{align}
+
+     Here, let us write the general equation:
+     %
+     \begin{align}
+       T_n(t) & = C_n \sin\left( \frac{2 n \pi t}{L} \right) + D_n \cos \left( \frac{2 n \pi t}{L} \right)
+     \end{align}
+
+     % DIVERGING THEORIES, PATH 1: KEEP L
+     \item Here, let us combine to find $u_n$ and $u$:
+     %
+     \begin{align}
+       % Normal
+       u_n(x, t) & =
+       \sin\left( \frac{n \pi x}{3} \right)
+       \left[
+       C_n \sin \left( \frac{2 n \pi t}{L} \right) +
+       D_n \cos \left( \frac{2 n \pi t}{L} \right)
+       \right]\\
+       % Series
+       u(x, t) & =
+       % Summation
+       \sum^\infty_{n = 1}
+       % First coefficient
+       C_n
+       \sin \left( \frac{n \pi x}{3} \right)
+       \sin \left( \frac{2 n \pi t}{L} \right) +
+       % Second coefficient
+       D_n
+       \sin \left( \frac{n \pi x}{3} \right)
+       \cos \left( \frac{2 n \pi t}{L} \right)
+     \end{align}
+
+     \item Here, let us find the coefficients using the Initial Conditions:
+     %
+     \begin{itemize}
+       \item
+       $u(x, 0) =
+       4 \sin ( 2 \pi x ) +
+       7 \sin ( 6 \pi x ) -
+       2 \sin( \pi x )$
+       \item $u_t(x, 0) = 0$
+     \end{itemize}
+
+     Using this information, find our $t$ partial from our summation series:
+     %
+     \begin{align}
+       u_t(x, t) & =
+       % Summation
+       \sum^\infty_{n = 1}
+       % First coefficient
+       C_n
+       \sin \left( \frac{n \pi x}{3} \right)
+       \frac{2 n \pi}{L}
+       \cos \left( \frac{2 n \pi t}{L} \right) -
+       % Second coefficient
+       D_n
+       \sin \left( \frac{n \pi x}{3} \right)
+       \frac{2 n \pi}{L}
+       \sin \left( \frac{2 n \pi t}{L} \right)
+     \end{align}
+
+     From here, let us plug in our initial condition, $u_t(x, 0) = 0$:
+     %
+     \begin{align}
+       u_t(x, 0) & =
+       \sum^\infty_{n = 1}
+       C_n
+       \frac{2 n \pi}{L} \sin \left( \frac{n \pi x}{3} \right) = 0
+     \end{align}
+
+%     % DIVERGING THEORIES, PATH 2: L = \infty %
+%     Since our length spans over $\infty$, we can write:
+%     %
+%     \begin{align}
+%       T_n(t) & = C_n \sin(0) + D_n \cos(0)\\
+%       T_n(t) & = D_n
+%     \end{align}
+%    \item Here, let us combine to find $u_n$ and $u$:
+%    %
+%    \begin{align}
+%      % Normal
+%      u_n(x, t) & =
+%      D_n
+%      \sin\left( \frac{n \pi x}{3} \right)
+%      \\
+%      % Series
+%      u(x, t) & =
+%      % Summation
+%      \sum^\infty_{n = 1}
+%      D_n
+%      \sin\left( \frac{n \pi x}{3} \right)
+%    \end{align}
+
+  \end{enumerate}
 
 %
 %______________________________________________________________________________%
 %
 
+\end{enumerate}
 \end{document}
