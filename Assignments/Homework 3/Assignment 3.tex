@@ -317,41 +317,38 @@
       C_n \sinh\left( \frac{n \pi 4}{3} \right)
       \sin\left( \frac{n \pi y}{3} \right)
     \end{align}
+
+    From here, let us find our coefficient for $\sin$:
+    %
+    \begin{align}
+      C_n \sinh\left(\frac{4 n \pi}{3}\right) & =
+      \frac{2}{3} \int^3_0 \sin\left( \frac{n \pi y}{3} \right) dy\\
+      & = -
+      \frac{2}{3} \frac{3}{n \pi} \left[ \cos \left( \frac{n \pi y}{3} \right) \right]^3_0\\
+      C_n \sinh\left(\frac{4 n \pi}{3}\right) & = -
+      \frac{2}{n \pi} \left[ \cos (n \pi) - 1 \right]\\
+      C_n & = \frac{2 (1 - \cos (n \pi))}{n \pi \sinh(\frac{4 n \pi}{3})}
+    \end{align}
+
+    From here, let us write:
+    %
+    \begin{align}
+      u(x, y) & =
+      \sum^\infty_{n = 1}
+      \frac{2 (1 - (-1)^n)}{n \pi \sinh(\frac{4 n \pi}{3})}
+      \sinh\left(\frac{4 n \pi(4 - x)}{3}\right)
+      \sin\left(\frac{n \pi y}{3}\right)
+    \end{align}
   \end{enumerate}
 
 
-    % B: u(0, y) = 1 and u(4, y) = 0.
-    % y_n(y) = \sin(n pi y/3)
-
-    %% X(x) =C \sinh(\sqrt \lambda x) + D \cosh(\sqrt \lambda x), X(0) = X(4) = 0
-    % X(x) = C \sinh(\sqrt \lambda (4 - x))
-
-    %% u(x, y) = \sinh(n pi (4 - x) / 3) \sin(4 \pi y / 3)
-    % Linearity
-    % u(x, y) = \sum... A_n \sinh( n \pi(4 - x) / 3) \sin(n \pi y/3)
-    % u(0, y) = \sum... A_n \sinh(4 n \pi / 3) \sin(n \pi y / 3) = 1
-    % Here, take the first A_n \sinh:
-    % A_n = \sinh(4 n pi / 3) = 2/3 \int^3_0 \sin(n pi y / 3) dy
-    % A_n =
-    % 2(1 - cos(\pi n))
-    % /
-    %n \pi \sinh(4 n \pi/3)
-    %
-    % Final
-    % u(x, y) = \sum..
-    % (2 (1 - cos(pi n))/(n pi sinh(4 n pi/3)))
-    % sinh(n pi(4 -x)/3)
-    % sin(n pi y/3)
 
 \newpage
-  %__________________________________________________________________________%
-%
-%______________________________________________________________________________%
-%
 
 %
 %______________________________________________________________________________%
 %
+
   \item Solve $u_{tt} = 4u_{xx}$ on $x \in [0, 3]$, $t \in [0, \infty)$, with $u(0, t) = u(3, t) = 0$ where
 
   \begin{enumerate}
@@ -414,7 +411,7 @@
      Here, let us write the general equation:
      %
      \begin{align}
-       T_n(t) & = C_n \sin\left( \frac{2 n \pi t}{L} \right) + D_n \cos \left( \frac{2 n \pi t}{L} \right)
+       T_n(t) & = C_n \sin\left( \frac{2 n \pi t}{3} \right) + D_n \cos \left( \frac{2 n \pi t}{3} \right)
      \end{align}
 
      % DIVERGING THEORIES, PATH 1: KEEP L
@@ -425,8 +422,8 @@
        u_n(x, t) & =
        \sin\left( \frac{n \pi x}{3} \right)
        \left[
-       C_n \sin \left( \frac{2 n \pi t}{L} \right) +
-       D_n \cos \left( \frac{2 n \pi t}{L} \right)
+       C_n \sin \left( \frac{2 n \pi t}{3} \right) +
+       D_n \cos \left( \frac{2 n \pi t}{3} \right)
        \right]\\
        % Series
        u(x, t) & =
@@ -435,11 +432,11 @@
        % First coefficient
        C_n
        \sin \left( \frac{n \pi x}{3} \right)
-       \sin \left( \frac{2 n \pi t}{L} \right) +
+       \sin \left( \frac{2 n \pi t}{3} \right) +
        % Second coefficient
        D_n
        \sin \left( \frac{n \pi x}{3} \right)
-       \cos \left( \frac{2 n \pi t}{L} \right)
+       \cos \left( \frac{2 n \pi t}{3} \right)
      \end{align}
 
      \item Here, let us find the coefficients using the Initial Conditions:
@@ -462,20 +459,75 @@
        % First coefficient
        C_n
        \sin \left( \frac{n \pi x}{3} \right)
-       \frac{2 n \pi}{L}
-       \cos \left( \frac{2 n \pi t}{L} \right) -
+       \frac{2 n \pi}{3}
+       \cos \left( \frac{2 n \pi t}{3} \right) -
        % Second coefficient
        D_n
        \sin \left( \frac{n \pi x}{3} \right)
-       \frac{2 n \pi}{L}
-       \sin \left( \frac{2 n \pi t}{L} \right)
+       \frac{2 n \pi}{3}
+       \sin \left( \frac{2 n \pi t}{3} \right)
      \end{align}
 
-     % From here, we do matching terms:
-     % D_6 = 4
-     % D_18 = 7
-     % D_3 = -2
-     % D_n = 0
+     From here, let us plug in our initial condition, $u_t(x, 0) = 0$:
+     %
+     \begin{align}
+       u_t(x, 0) & =
+       \sum^\infty_{n = 1}
+       C_n
+       \frac{2 n \pi}{3} \sin \left( \frac{n \pi x}{3} \right)
+     \end{align}
+
+     From here, let us recall our terms:
+     %
+     \begin{itemize}
+       \item $4 \sin(2 \pi x) + 7 \sin(6 \pi x) - 2\sin(\pi x)$
+     \end{itemize}
+
+     Using these terms, we know the following:
+     \begin{itemize}
+       \item $D_3 = -2$
+       \item $D_6 = 4$
+       \item $D_{18} = 7$
+       \item $D_n = 0, n \in \N, n \neq 3, 6, 18$
+     \end{itemize}
+
+
+     Let us plug in our coefficients:
+     %
+     \begin{align}
+       u(x, t) & =
+       - 2\sin(\pi x) \cos(2 \pi t)
+       + 4\sin(2 \pi x) \cos(4 \pi t)
+       + 7 \sin(6 \pi x) \cos(12 \pi t)
+     \end{align}
+
+     Now, let us reconsider our initial conditions once more:
+     %
+     \setcounter{enumii}{4}
+     \item $u(x, 0) = x(3 - x), u_t(x, 0) = \sin(\pi x)$
+
+     Here, let us consider finding our coefficient where $u(x, 0) = x(3 - x)$:
+     %
+     \begin{align}
+       D_n & =
+       \frac{2}{3} \int^3_0 x(3 - x) \sin\left(\frac{n \pi x}{3}\right)\\
+       & =
+       \frac{2}{3} \int^3_0 3x \sin\left(\frac{n \pi x}{3}\right) - x^2 \sin\left(\frac{n \pi x}{3}\right)\\
+       & =
+       2 \int^3_0 x \sin\left(\frac{n \pi x}{3}\right) -
+       \frac{2}{3} \int^3_0  x^2 \sin\left(\frac{n \pi x}{3}\right)
+     \end{align}
+
+     Here, let us create two integration tables:
+     \begin{center}
+       \begin{tabular}{c|c}
+         $x$ & $\sin\left(\frac{n \pi x}{3}\right)$\\
+         \hline
+         $1$ & $-\frac{3}{n \pi} \cos\left(\frac{n \pi x}{3}\right)$\\
+         \hline
+         $1$ & $-\frac{3}{n \pi} \cos\left(\frac{n \pi x}{3}\right)$
+       \end{tabular}
+     \end{center}
 
      % u_t (x, 0) = 0
      % \sum Cn Sin(n pi x / 3) Cn pi/3 = 0
@@ -486,14 +538,6 @@
      %...
      % 27 n pi sin(n pi) + 54 cos(n pi) - 54/n^3 pi^3
 
-     From here, let us plug in our initial condition, $u_t(x, 0) = 0$:
-     %
-     \begin{align}
-       u_t(x, 0) & =
-       \sum^\infty_{n = 1}
-       C_n
-       \frac{2 n \pi}{L} \sin \left( \frac{n \pi x}{3} \right) = 0
-     \end{align}
 
 %     % DIVERGING THEORIES, PATH 2: L = \infty %
 %     Since our length spans over $\infty$, we can write:
