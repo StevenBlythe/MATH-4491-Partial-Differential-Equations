@@ -525,42 +525,108 @@
          \hline
          $1$ & $-\frac{3}{n \pi} \cos\left(\frac{n \pi x}{3}\right)$\\
          \hline
-         $1$ & $-\frac{3}{n \pi} \cos\left(\frac{n \pi x}{3}\right)$
+         $0$ & $-\left(\frac{3}{n \pi}\right)^2 \cos\left(\frac{n \pi x}{3}\right)$
+       \end{tabular}
+       %
+       \begin{tabular}{c|c}
+         $x^2$ & $\sin\left(\frac{n \pi x}{3}\right)$\\
+         \hline
+         $2x$ &  $-\frac{3}{n \pi} \cos\left(\frac{n \pi x}{3}\right)$\\
+         \hline
+         $2$ &   $-\left(\frac{3}{n \pi}\right)^2 \sin\left(\frac{n \pi x}{3}\right)$\\
+         \hline
+         $0$ &   $\left(\frac{3}{n \pi}\right)^3 \cos\left(\frac{n \pi x}{3}\right)$
        \end{tabular}
      \end{center}
 
-     % u_t (x, 0) = 0
-     % \sum Cn Sin(n pi x / 3) Cn pi/3 = 0
-     % u(x, t) = 4\sin(2 pi x) cos(4 pi t) + 7 sin(6 pi x) cos(12 pi t) - 2sin(pi x) cos(2 pi t)
+     Using our table, let us write out our integral:
+     %
+     \begin{align}
+       D_n =\ &
+       2
+      \left[
+       -\frac{3 x}{n \pi} \cos\left(\frac{n \pi x}{3}\right) +
+       \left(\frac{3}{n \pi}\right)^2 \cos\left(\frac{n \pi x}{3}\right)
+      \right]^3_0 \\ & -
+      \frac{2}{3}
+      \left[
+      - \frac{x^2 3}{n \pi} \cos\left( \frac{n \pi x}{3} \right)
+      + 2x \left(\frac{3}{n \pi}\right)^2 \sin\left( \frac{n \pi x}{3} \right)
+      - 2 \left(\frac{3}{n \pi}\right)^3  \cos\left( \frac{n \pi x}{3} \right)
+      \right]^3_0\\
+      D_n =\ &
+      2
+     \left[
+      -\frac{9}{n \pi} \cos\left(n \pi\right) +
+      \left(\frac{3}{n \pi}\right)^2 \cos\left(n \pi \right)
+      - \left(\frac{3}{n \pi}\right)^2
+     \right] +
+     2
+     \left[
+     \frac{9}{n \pi} \cos\left( n \pi \right)
+     + \frac{18}{n^3 \pi^3}  \cos\left( n \pi \right)
+     - \frac{27}{n^3\pi^3}
+     \right]
+     \end{align}
 
-     % u(x, 0) = x(3 - x)
-     % D_n = 2/3 \int^3_0 x(3-x)/(3x-x^2) sin(n pi x/3) dx
-     %...
-     % 27 n pi sin(n pi) + 54 cos(n pi) - 54/n^3 pi^3
+     Here, let us simplify:
+     %
+     \begin{align}
+       D_n & = 2\left[
+       \frac{9}{n^2 \pi^2} \cos(n \pi) - \frac{9}{n^2 \pi^2} + \frac{18}{n^3 \pi^3} \cos(n \pi) - \frac{27}{n^3 \pi^3}
+       \right]\\
+       & = \frac{9}{n^3 \pi^3}
+       \left[
+       n \pi \cos(n \pi) - n \pi + 2 \cos(n \pi) - 3
+       \right]\\
+       & = \frac{9}{n^3 \pi^3}
+       \left[
+       2 \cos(n \pi) + n \pi \cos(n \pi) - n \pi - 3
+       \right]
+     \end{align}
 
+     If we consider $n \in \Z$, then let us rewrite:
+     %
+     \begin{align}
+       D_n & = \frac{9}{n^3 \pi^3} \left[ 2 (-1)^n + n \pi (-1)^n - n \pi - 3\right]
+     \end{align}
 
-%     % DIVERGING THEORIES, PATH 2: L = \infty %
-%     Since our length spans over $\infty$, we can write:
-%     %
-%     \begin{align}
-%       T_n(t) & = C_n \sin(0) + D_n \cos(0)\\
-%       T_n(t) & = D_n
-%     \end{align}
-%    \item Here, let us combine to find $u_n$ and $u$:
-%    %
-%    \begin{align}
-%      % Normal
-%      u_n(x, t) & =
-%      D_n
-%      \sin\left( \frac{n \pi x}{3} \right)
-%      \\
-%      % Series
-%      u(x, t) & =
-%      % Summation
-%      \sum^\infty_{n = 1}
-%      D_n
-%      \sin\left( \frac{n \pi x}{3} \right)
-%    \end{align}
+     From here, let us write our second condition:
+     %
+     \begin{align}
+       u_t(x, t) & =
+       % Summation
+       \sum^\infty_{n = 1}
+       % First coefficient
+       C_n
+       \sin \left( \frac{n \pi x}{3} \right)
+       \frac{2 n \pi}{3}
+       \cos \left( \frac{2 n \pi t}{3} \right) -
+       % Second coefficient
+       D_n
+       \sin \left( \frac{n \pi x}{3} \right)
+       \frac{2 n \pi}{3}
+       \sin \left( \frac{2 n \pi t}{3} \right)\\
+       %
+       u_t(x, 0) & =
+       % Summation
+       \sum^\infty_{n = 1}
+       % First coefficient
+       C_n
+       \sin \left( \frac{n \pi x}{3} \right)
+       \frac{2 n \pi}{3}
+     \end{align}
+
+     Here, $C_3 = \frac{1}{2 \pi}$. Let us write:
+     %
+     \begin{align}
+       u(x, t) & =
+       \sin(\pi x) \cos(2 \pi t) -
+       \frac{6}{n^2 \pi^2}
+       \sum^\infty_{n = 1}
+       \sin\left( \frac{n \pi x}{3} \right) \sin\left(\frac{2 n \pi t}{3}\right)
+     \end{align}
+
 
   \end{enumerate}
 
