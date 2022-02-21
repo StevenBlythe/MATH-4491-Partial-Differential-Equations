@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{esvect}
+\usepackage[a4paper, margin=1cm]{geometry}
+\usepackage{stocktonmacros}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[parfill]{parskip}
+\setstretch{1.25}
+\begin{document}
+\begin{multicols}{2}
+%______________________________________________________________________________%
+  \topic{Fourier Series}
+  \begin{align*}
+    %______________________Fourier Series Representation_______________________%
+    f(x) & =
+    a_0 +
+    \sum^\infty_{n = 1}
+    (a_n \cos nx + b_n \sin nx)\\
+    %
+    %______________________________a0 Coefficient______________________________%
+    a_0 & =
+    \frac{1}{2 \pi}
+    \int^\pi_{-\pi}
+    f(x)
+    \text{ dx}\\
+    %
+    %______________________________a0 Coefficient______________________________%
+    a_n & =
+    \frac{1}{\pi}
+    \int^\pi_{-\pi}
+    f(x) \cos nx
+    \text{ dx}\\
+    %
+    %______________________________a0 Coefficient______________________________%
+    b_n & =
+    \frac{1}{\pi}
+    \int^\pi_{-\pi}
+    f(x) \sin nx
+    \text{ dx}
+  \end{align*}
+%______________________________________________________________________________%
+\topic{Laplace's Equation}
+
+Recall the Fourier Sine Series:
+\begin{align*}
+  A_n & = \frac{1}{L}\int^L_{-L} f(x) \sin\left(\frac{n \pi x}{L}\right)\text{ dx}\\
+  A_n & = \frac{2}{L}\int^L_0 f(x) \sin\left(\frac{n \pi x}{L}\right)\text{ dx}
+\end{align*}
+Recall general solutions: sine, exp, sinh
+
+Fill in the blanks at last step.
+
+\topic{Steady State Solution}
+
+Here, $T$ is our $u$ at the start or end, creates a line.
+\begin{align*}
+  v(x) & = \frac{T_2 - T_1}{L}x + T_1\\
+  u(x, t) & = w(x, t) + v(x)
+\end{align*}
+
+Continue with $w(x, t)$ using the interval.
+\begin{align*}
+  w(x, t) = u(x, t) - v(x)
+\end{align*}
+
+Use the appropriate condition ($e.g. u(x, 0)$)
+
+Continue to solve as usual with $w$. Once finished,
+\begin{align*}
+  u(x, t) & = w(x, t) + v(x)
+\end{align*}
+\end{multicols}
+\end{document}
