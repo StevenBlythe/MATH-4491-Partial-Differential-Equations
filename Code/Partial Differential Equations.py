@@ -156,27 +156,19 @@ class HomeworkiiProblemia(Scene):
         #for i in range(1, math.floor(len(x_labels)/2) + 1):
             #discont.append(i * PI)
             #discont.append(i * -PI)
-        l1 = axes.plot(self.fourier, color=BLACK, discontinuities=[-3 * PI, -2 * PI, -1 * PI, 0, 1 * PI, 2 * PI, 3 * PI])
+        l1 = axes.plot(self.fourier, color=BLACK, discontinuities=[0])
         self.add(l1)
-        self.wait()
         # Dots at Discontinuities
         dots = [
-            Dot(axes.c2p(-3 * PI, 0, 0), color=BLACK),    
-            Dot(axes.c2p(-2 * PI, 0, 0), color=BLACK),    
-            Dot(axes.c2p(-1 * PI, 0, 0), color=BLACK),
-            Dot(axes.c2p(0, 0, 0), color=BLACK),
-            Dot(axes.c2p(PI, 0, 0), color=BLACK),
-            Dot(axes.c2p(2 * PI, 0, 0), color=BLACK),
-            Dot(axes.c2p(3 * PI, 0, 0), color=BLACK)
+            Dot(axes.c2p(0, 2, 0), color=BLACK)
         ]
-        #for dot in dots:
-        #    self.add(dot)
+        for dot in dots:
+            self.add(dot)
         
         self.wait()
 
 
     def fourier(self, x):
-        if x % (2 * PI) > PI:
-            return -1
+        if x == 0:
+            return 2
         else: return 1
-

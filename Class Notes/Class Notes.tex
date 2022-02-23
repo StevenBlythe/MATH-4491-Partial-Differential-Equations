@@ -1880,4 +1880,190 @@ If we have an open disk, akin to a washer, we have two boundaries: The innter bo
   %
   \item $u_y(x, 0) = 0 \Rightarrow X(x)Y^\prime(0) = 0 \Rightarrow Y^\prime(0) = 0$
 \end{enumerate}
+
+\newpage
+\subsection*{February 23, 2022}
+\topic{Heat and Wave Equations in Polar Coordinates}
+
+Heat Equation:
+%
+\begin{align}
+  u_t & = \alpha^2 \Delta u
+\end{align}
+
+Let $\alpha = 1$, then let us write:
+%
+\begin{align}
+  u_t & = u_{rr} + \frac{u_r}{r} + \frac{u_{\theta\theta}}{r^2}
+\end{align}
+
+Wave Equation:
+%
+\begin{align}
+  u_{tt} & = c^2 \Delta u
+\end{align}
+
+Here, let $c = 1$:
+%
+\begin{align}
+  u_{tt} & = u_rr + \frac{u_r}{r} + \frac{u_{\theta\theta}}{r^2}
+\end{align}
+
+In the last two equations, we worked with three variables: $t, r, \theta$.
+%
+\begin{align}
+  u_t & = u_{rr} + \frac{u_r}{r} + \frac{u_{\theta\theta}}{r^2}
+\end{align}
+
+Here, assume $u(r, \theta, t) = R(r)\Theta(\theta)T(t)$
+%
+\begin{align}
+  R \Theta T^\prime & = R^{\prime\prime} \Theta T + \frac{R^\prime \Theta T}{r} + \frac{R \Theta^{\prime\prime}T}{r^2}\\
+  %
+  \frac{T^\prime}{T} & = \frac{R^{\prime\prime}}{R} + \frac{R^\prime}{rR} + \frac{\Theta^{\prime\prime}}{r^2 \Theta} = -\lambda\\
+  %
+  \frac{T^\prime}{T} & = -\lambda
+\end{align}
+
+Here, let us put a pin on $T$ and solve for the second part of the equation:
+%
+\begin{align}
+  \frac{R^{\prime\prime}}{R} + \frac{R^\prime}{rR} + \frac{\Theta^{\prime\prime}}{r^2\Theta} & = - \lambda\\
+  %
+  \frac{r^2R^{\prime\prime}}{R} + \frac{rR^\prime}{R} + \frac{\Theta^{\prime\prime}}{\Theta} & = - \lambda r^2\\
+  %
+  \frac{r^2 R^{\prime\prime}}{R} +
+  \frac{r   R^\prime}{R} +
+  \lambda r^2 & = -\frac{\Theta^{\prime\prime}}{\Theta} = \mu
+\end{align}
+
+We now have separate ODEs for each of the functions $T, R, \Theta$. The solution for $\Theta$ looks like Laplace in polar. Recall, we set $\lambda$ as $n^2$:
+%
+\begin{align}
+  \frac{r^2 R^{\prime\prime}}{R} + \frac{r R^\prime}{R} + \lambda r^2 & n^2\\
+  %
+  r^2 R^{\prime\prime} + rR^\prime + (\lambda r^2 - n^2)R & = 0
+  %
+  R^{\prime\prime} + \frac{R^\prime}{r} + (\lambda - \frac{n^2}{r^2})R & = 0
+\end{align}
+
+Here, this is Bessel's Equation.
+
+We use the power series to solve Bessel's Equation and obtain:
+%
+\begin{align}
+  R_n(r) & = \sum^\infty_{i = 1} \frac{(-\lambda)^i r^{2i + n}}{2^{n + 2}(i + n)! i!}
+\end{align}
+
+If $\lambda = 1$, we get the Bessel function:
+%
+\begin{align}
+  J_n(x) & = \sum^\infty_{i = 1} \frac{(-1)^i x^{2i + n}}{2^{n + 2}(i + n)! i!}
+\end{align}
+
+\topic{Laplace in Spherical Coordinates}
+%
+\begin{align}
+  \Delta u & = u_{xx} + u_{yy} + u_{zz}
+\end{align}
+
+Using the chain rule, we obtain:
+%
+\begin{align}
+  \Delta u & =
+  u_{\rho \rho} +
+  \frac{2}{\rho}u_\rho +
+  \frac{1}{p^2} u_{\phi\phi} +
+  \frac{\cot \theta}{\rho^2} u_\phi +
+  \frac{1}{\rho^2 \sin^2 \phi} u_{\theta\theta} = 0
+\end{align}
+
+Here, assume $u(\rho, \theta, \Phi) = P(\rho)\Theta(\theta)\Phi(\phi)$:
+
+Equation for $\Theta$
+%
+\begin{align}
+  (1 - x^2) \Theta^{\prime\prime}(x) -
+  2 \Theta^\prime(x) +
+  n(n + 1) \Theta(x)
+  & = 0
+\end{align}
+
+Where $x = \cos(\theta)$. This equation is Legendre's Equation.
+
+The solutions are Legendre Polynomials $P_n(x)$:
+%
+\begin{center}
+  \begin{tabular}{c|c}
+    $n$ & $P_n(x)$\\
+    \hline
+    $0$ & $1$\\
+    $1$ & $x$\\
+    $2$ & $\frac{3x^2 - 1}{2}$\\
+    $3$ & $\frac{5x^3 - 3x}{2}$\\
+    $4$ & $\frac{35 x^4 - 30x^2 + 3}{8}$
+  \end{tabular}
+\end{center}
+
+Legendre Polynomials ? make an orthogonal set on $[-1, 1]$
+%
+\begin{align}
+  \int^1_{-1} P_m(x) P_n(x) \text{ dx} = 0, m \neq n
+\end{align}
+
+Laplace's Equation: $\Delta u = 0$, $u \in \Omega \subset \R$, $x \in \twiddle{\Omega} \subseteq \R^n$
+
+\dfn A function that satisfies Laplace's Equation is called a harmonic function.
+
+\dfn Let the ball of radius $r$ centered on point $x_0$ be:
+%
+\begin{align}
+  B_r(x_0) & = \{x : ||x - x_0||_2 \leq r \}
+\end{align}
+
+Here, let us revisit what the norm notation indicates:
+%
+\begin{align}
+  x & =
+  \begin{bmatrix}
+    x_1\\
+    x_2\\
+    \ldots\\
+    x_n
+  \end{bmatrix}\\
+  %
+  ||x||_{\ell_2} & = \sqrt[2]{x^2_1 + x^2_2 + \ldots + x^2_n} \text{ Standard/Euclidean Norm}\\
+  ||x||_{\ell_1} & = |x_1| + |x_2| + \ldots + |x_n| \text{ Take $|x_n|$ for odd powers}\\
+  ||x||_{\ell_4} & = \sqrt[4]{x^4_1 + x^4_2 + \ldots + x^4_n}\\
+  ||x||_{\ell_\infty} & = \max\{ |x_1|, |x_2|, \ldots, |x_n| \}
+\end{align}
+
+Here, let us write:
+%
+\begin{align}
+  ||f||_{L_1} & = \int_\Omega |f(x)| \dx\\
+  %
+  ||f||_{L_2} & = \sqrt{\int_\Omega f(x)^2 \dx}\\
+  %
+  ||f||_{L_n} & = \sqrt[n]{\int_\Omega f(x)^n \dx}\\
+  %
+  ||f||_{L_\infty} & = \text{essup } |f(x)|
+\end{align}
+Essential Supremum, $x \in \Omega$.
+
+$\ell_2$ and $L_2$ are the only two that correspond to a Hilbert space.
+
+\thm If $u$ is harmonic and $B_r(x_0) \subset \Omega$, then then average value of $u$ in the ball equals $u(x_0)$.
+%
+\begin{align}
+  u(x_0) & = \frac
+  {
+    \int_{B_r(x_0)} u(x) \dx
+  }
+  {
+    \int_{B_r(x_0)} 1 \text{ dr}
+  }
+\end{align}
+
+
 \end{document}
