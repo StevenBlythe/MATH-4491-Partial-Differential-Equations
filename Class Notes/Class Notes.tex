@@ -2065,5 +2065,222 @@ $\ell_2$ and $L_2$ are the only two that correspond to a Hilbert space.
   }
 \end{align}
 
+\newpage
 
+\subsubsection*{February 25, 2022}
+\note These theorems are t? for any ball of any radians in dimensions $n$.
+The theorems don't care about the shape of $\Omega$ or Boundary Conditions.
+
+\ex $n = 1$, $\Delta u = u_{xx} = 0$
+
+Here, the function is a linear function
+%
+\begin{align}
+  u & = Ax + B
+\end{align}
+
+When $n = 1$, we are working with an interval $[x_0 - r, x_0 + r]$.
+
+Theorem 1:
+%
+\begin{align}
+  u(x_0) & = \frac
+  {
+    \int^{x_0 + r}_{x_0 - r} u(x) \text{ dx}
+  }
+  {
+    \int^{x_0 + r}_{x_0 - r} 1 \text{ dx}
+  }\\
+  & = \frac
+  {
+    \int^{x_0 + r}_{x_0 - r} u(x) \text{ dx}
+  }
+  {
+    2r
+  }
+\end{align}
+
+Here, we have the definition for average.
+
+Theorem:
+%
+\begin{align}
+  u(x_0) & =
+  \frac
+  {
+    u(x_0 - r) + u(x_0 + r)
+  }
+  {
+    2
+  }
+\end{align}
+
+\topic{Gauss' MVT in Complex Analysis}
+
+If $f(z)$ is analytic, then
+%
+\begin{align}
+  f(z_0) & =
+  \frac
+  {
+    \oint_c f(z) \text{ dz}
+  }
+  {
+    2 \pi r
+  }
+\end{align}
+
+Fourier Series are for $f(x)$ where $x$ is defined over a finite interval.
+Fourier Transforms are for $f(x)$ where $x$ is defined on $(-\infty, \infty)$.
+
+There is a different form of the Fourier Series.
+
+Here, let us consider Euler's Formula
+%
+\begin{align}
+  e^{ix} & = \cos x + i \sin x\\
+  e^{ix} & = \cos x - i \sin x
+\end{align}
+
+When we combine both formulas, we get
+%
+\begin{align}
+  \begin{cases}
+    \cos x& = \frac{e^{ix} + e^{-ix}}{2}\\
+    \sin x & = \frac{e^{ix} - e^{-ix}}{2i} = \frac{\sin ix}{2i}
+  \end{cases}
+\end{align}
+
+Now, let us rewrite Fourier Series:
+%
+\begin{align}
+  f(X) & = \sum^\infty_{n = 0} A_n \sin\left(\frac{n \pi x}{L}\right) + B_n \cos\left(\frac{n \pi x}{L}\right)
+\end{align}
+
+Here, let us replace our Fourier Series with terms we found,
+%
+\begin{align}
+  f(x) & =
+  \sum^\infty_{n = 0}
+  A_n \frac
+  {
+    e^{i \frac{n \pi x}{L}} - e^{-i \frac{n \pi x}{L}}
+  }
+  {
+    2 i
+  }
+  + B_n \frac
+  {
+    e^{i\frac{n \pi x}{L}} + e^{-i \frac{n \pi x}{L}}
+  }
+  {
+    2
+  }\\
+  & =
+  \sum^\infty_{n = 0}
+  \left[
+    \frac{A_n}{2i} + \frac{B_n}{2}
+  \right]
+  e^{\frac{i n \pi x}{L}}
+  +
+  \left[
+    - \frac{A_n}{2i} + \frac{B_n}{2}
+  \right]
+  e^{- \frac{i n \pi x}{L}}\\
+  & = \sum^\infty_{n = -\infty} \alpha_n e^{\frac{i n \pi x}{L}}
+\end{align}
+
+Here, we found an alternative Fourier Series where
+%
+\begin{align}
+  \alpha_n & = \frac{A_n}{2i} + \frac{B_n}{2}  n = 0, 1, 2, \ldots\\
+  \alpha_n & = -\frac{A_n}{2i} + \frac{B_n}{2} n = 0, -1, -2, \ldots
+\end{align}
+
+In the alternative Fourier Series, there is a basis function aside $\alpha_n$
+
+The basis functions are almost orthogonal
+%
+\begin{align}
+  \int^L_{-L}
+  e^{\frac{i m \pi x}{L}} e^{\frac{i n \pi x}{L}} \text{ dx} & =
+  \int^L_{-L}
+  e^{\frac{i \pi x (m + n)}{L}} \text{ dx}\\
+  & = \frac{L}{i \pi(m + n)} e^{\frac{i \pi x(m + n)}{L}} \Big|^L_{-L}\\
+  & = \frac{L}{i \pi(n + m)} \left[ e^{i \pi(m + n)} - e^{-i \pi(m + n)} \right]\\
+  & = \frac{L}{i \pi(m + n)} 2 i \sin(\pi(m + n)) = 0
+\end{align}
+
+If $m = -n$, then we get:
+%
+\begin{align}
+  \int^L_{-L} e^{\frac{i m \pi x}{L}} e^{\frac{-i m \pi x}{L}} \text{ dx}
+  & = \int^L_{-L} 1 \text{ dx} = 2L
+\end{align}
+
+To find $\alpha_n$:
+%
+\begin{align}
+  f(x) & = \sum^\infty_{n = - \infty} \alpha_n e^{\frac{i n \pi x}{L}}
+\end{align}
+
+Here, let us multiply by $e^{-\frac{i n \pi x}{L}}$ and integrate.
+%
+\begin{align}
+  \int^L_{-L} f(x)e^{-\frac{i k \pi x}{L}} \text{ dx} & =
+  %
+  \sum^\infty_{n = -\infty} \alpha_n \int^L_{-L} e^{\frac{i n \pi x}{L}} e^{\frac{-i k \pi x}{L}} \text{ dx}
+\end{align}
+
+Here, the integral is $0$ except when $k = n$.
+%
+\begin{align}
+  \int^L_{-L} f(x) e^{- \frac{n \pi x}{L}} \text{ dx} & = \alpha_n 2L\\
+  \alpha_n & = \frac{1}{2L} \int^L_{-L} f(x)e^{-\frac{i n \pi x}{L}} \text{ dx}\\
+  f(x) & = \sum^\infty_{n = -\infty} \alpha_n e^{\frac{i n \pi x}{L}}\\
+  & = \sum^\infty_{n = -\infty} \frac{1}{2L} \int^L_{-L} f(x) e^{- \frac{i n \pi x}{L}} \text{ dx} e^{\frac{i n \pi x}{L}}
+\end{align}
+
+\topic{Fourier Transform}
+
+Define $\xi_n = \frac{n \pi}{L}$, $\Delta \xi = \frac{\pi}{L}$.
+%
+\begin{align}
+  f(x) & = \sum^\infty_{n = -\infty} \frac{\Delta \xi}{2 \pi} \int^L_{-L} f(x) \text{ dx} e^{i \xi n x}
+\end{align}
+
+This is a Riemann Sum.
+
+Now let $L \to \infty, \Delta \xi \to d \xi$, replace $\xi_n$ with $\xi$ and $\sum \rightarrow \int$.
+%
+\begin{align}
+  f(x) & = \int^\infty_{-\infty} \frac{1}{2 \pi} \int^\infty_{-\infty} f(x) e^{-i \xi x} \text{ dx } e^{i \xi x} d\xi
+\end{align}
+
+Define the Fourier Transform
+%
+\begin{align}
+  F[f] & = \frac{1}{\sqrt {2 \pi}} \int^\infty_{- \infty} f(x) e^{-i \xi x} \text{ dx} = \hat f(\xi)\\
+  f^{-1}[\hat f] & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{- \infty} \hat f(\xi) e^{i \xi x} \text{ d}\xi = f(x)
+\end{align}
+The first line is the Fourier Transform, the second line is the Inverse Fourier Transform.
+
+\note Laplace Transform
+%
+\begin{align}
+  F(s) & = \frac{1}{\sqrt{2 \pi}} \int^\infty_0 f(t) e^{-st} \text{ dt}\\
+  f(t) & = \frac{1}{\sqrt{2 \pi} i} \int^{c + i \infty}_{c - i\infty} F(s)e^{st} \text{ ds}
+\end{align}
+
+The first line is the Laplace Transform, whereas the second line is the Inverse Laplace Transform.
+
+We use Laplace Transforms on $[0, \infty)$.
+
+\note We use Fourier Transforms for functions $f(x)$ where
+%
+\begin{align}
+  \int^\infty_{-\infty} |f(x)| \text{ dx } < \infty
+\end{align}
+
+\note $c < \infty$ indicates finite.
 \end{document}
