@@ -2283,4 +2283,170 @@ We use Laplace Transforms on $[0, \infty)$.
 \end{align}
 
 \note $c < \infty$ indicates finite.
+
+\newpage
+
+\subsection*{February 28, 2022}
+\topic{Fourier Transform}
+%
+\begin{align}
+  F[f(x)] & = \hat f(\xi)
+\end{align}
+
+Here, $F[f]$ represents the frequencies in $f$.
+\bigbreak
+\topic{Panseval's Equality}
+\begin{enumerate}
+  \item if $x \in [-L, L]$
+  %
+  \begin{align}
+    \frac{1}{2L} \int^L_{-L} [f(x)]^2 \text{ dx} & = \sum^\infty_{n = -\infty} |\alpha_n|^2
+  \end{align}
+
+  On the left integral, we have the inner product of $f$ with itself.
+  On the right side, we have the coefficients of Fourier Series
+  %
+  \item If $x \in (-\infty, \infty)$
+  %
+  \begin{align}
+    \int^\infty_{-\infty} [f(x)]^2 \text{ dx} & = \int^\infty_{-\infty} [\hat f(\xi)]^2 \text{ d}\xi
+  \end{align}
+\end{enumerate}
+
+\topic{Key Property of the Fourier Transform}
+%
+\begin{align}
+  \hat f(\xi) & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} f(x) e^{-i x \xi} \text{ dx}\\
+  F\left[\frac{df}{dx}\right] & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} \frac{df}{dx} e^{- i x \xi} \text{ dx}
+\end{align}
+
+Here, let us integrate our derivative to get $f(x)$.
+\begin{center}
+  \begin{tabular}{c|c}
+    $u = e^{-i x \xi}$ & $f(x)$\\
+    \hline
+    $du = -i \xi e^{-i x \xi}$ & $\frac{df}{dx}$ dx
+  \end{tabular}
+\end{center}
+
+\begin{align}
+  F\left[\frac{df}{dx}\right] & = \frac{1}{\sqrt{2 \pi}}
+  \left[
+  f(x) e^{-i x \xi}\Big|^\infty_{-\infty} + i \xi \int^\infty_{-\infty} f(x) e^{- i x \xi} \text{ dx}
+  \right]
+\end{align}
+
+Recall, the $L_1$ norm of $f$ is finite, allowing us to remove the term on the left in our brackets. Here, we are left with the integral:
+%
+\begin{align}
+  F\left[\frac{df}{dx}\right] & = \frac{i \xi}{\sqrt{2 \pi}} \int^\infty_{-\infty} f(x) e^{-i x \xi} \text{ dx}\\
+  & = i \xi \hat f(\xi)
+\end{align}
+
+So a derivative in real space corresponds to multiplication in Fourier Space.
+%
+\begin{align}
+  F\left[ \frac{d^nf}{dx^n} \right] & = (i \xi)^n \hat f(\xi)
+\end{align}
+
+We can use the Fourier Transform to help solve any linear PDE where the domain of a spatial variable is $(-\infty, \infty)$.
+\bigbreak
+\topic{Linear Equations with Infinite Domains}
+\begin{enumerate}
+  \item The Transport Equation
+  %
+  \begin{align}
+    u_t & = cu_x
+  \end{align}
+  \begin{enumerate}
+    \item First order equation
+    \item $x \in (-\infty, \infty)$
+    \item $t \in [0, \infty)$
+    \item In essence, $u(x, 0) = f(x)$
+  \end{enumerate}
+\end{enumerate}
+  \bigbreak
+
+  Here, let us guess $u(x, t) = v(x + ct)$. Solutions of this form are called travelling wave equations.
+
+  Here, let us establish $\eta = x + ct$
+
+  When finding our partials, we run through the following tree:
+
+  \begin{center}
+    $u$\\
+    $|$\\
+    $v$\\
+    $\eta$\\
+    $| \quad |$\\
+    $x \quad t$
+  \end{center}
+
+  Let's show that this satisfies $u_t = cu_x$.
+  %
+  \begin{align}
+    \frac{\p u}{\p t} & = \frac{\p v}{\p t} = \frac{dv}{d\eta} \frac{\p \eta}{\p t} = \frac{dv}{d \eta} \cdot c\\
+    \frac{\p u}{\p x} & = \frac{\p v}{\p t} = \frac{dv}{d \eta} \frac{\p \eta}{\p x} = \frac{dv}{d \eta} \cdot 1\\
+    u_t & = cu_x
+  \end{align}
+
+  Any function of the form $u = v(x + ct)$ is a solution to $u_t = cu_x$.
+
+  Let's look at the initial condition:
+  %
+  \begin{align}
+    u(x, 0) & = f(x)\\
+    u(x, 0) & = v(x)
+  \end{align}
+  Here, $v(x) = f(X)$. In addition, $u = v(x + ct) = f(x + ct)$.
+
+  \ex%
+  \begin{align}
+    u_t & = -3u_X\\
+    u(x, 0) & = e^{-x^2}\\
+    u(x, t) & = e^{-(x - 3t)^2}
+  \end{align}
+
+\begin{center}
+  \includegraphics{Transport Equation}
+\end{center}
+
+The solution translates as time increases, which is why it's called a travelling wave solution.
+
+In this particular case, if $x - 3t = $ constant, then $u$ is fixed.
+
+\underline{Remarks}
+%
+\begin{enumerate}
+  \item The parallel lines are called characteristic curves
+  \item The slope of the characteristic line is $-\frac{1}{c}$ for $u_t = cu_x$.
+  $c$ is the speed of the solution.
+  It tells us how fast the waves are translated in the $x-$direction.
+\end{enumerate}
+
+\underline{Lemma}
+%
+\begin{align}
+  \int^\infty_{-\infty} e^{-x^2} \text{ dx} & = \sqrt \pi
+\end{align}
+
+\begin{proof}
+  Let us look at our equation squared:
+  %
+  \begin{align}
+    I^2 & =
+    \int^\infty_{-\infty} e^{-x^2} \text{ dx} \cdot
+    \int^\infty_{-\infty} e^{-y^2} \text{ dy}\\
+    & = \int^\infty_{-\infty} \int^\infty_{-\infty}
+    e^{-x^2} \cdot e^{-y^2} \text{ dx dy}\\
+    & =
+    \int^\infty_{-\infty} \int^\infty_{-\infty}
+    e^{-x^2 - y^2} \text{ dx dy}\\
+    & =
+    \int^{2 \pi}_{0} \int^\infty_0
+    e^{-r^2} r \text{ dr d}\theta
+  \end{align}
+
+  Here, use polar to find our integral.
+\end{proof}
 \end{document}
