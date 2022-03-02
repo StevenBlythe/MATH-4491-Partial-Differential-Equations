@@ -2,6 +2,22 @@
 
 \usepackage{amsmath,amssymb,amsthm}
 
+%______________________________________________________________________________%
+
+\usepackage[a4paper, margin=1cm]{geometry} % Causing two errors
+\usepackage{color}
+\usepackage[parfill]{parskip}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\newcommand{\twiddle}[1]{\overset{\sim}{#1}}
+\newcommand{\Twiddle}{\overset{\sim}{T}}
+\graphicspath{ {./images/} }
+\date{\today}
+\author{Steven Blythe}
+
+%______________________________________________________________________________%
+
+
 %%% General class %%%
 \newcommand{\topic}[1]{\textbf{\underline{#1}}}
 \newcommand{\Ex}{\underline{Example:} }
@@ -26,6 +42,9 @@
 % Common text for integrals %
 \newcommand{\dx}{\text{ dx }}
 \newcommand{\dt}{\text{ dt }}
+
+% Limits %
+\newcommand{\dlim}[2]{\lim_{\substack{#1 \\ #2}}}
 
 % Fourier Series %
 \newcommand{\FS}{\sin \Big( \frac{n \pi x}{L} \Big)}
