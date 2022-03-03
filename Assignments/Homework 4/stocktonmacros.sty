@@ -2,7 +2,28 @@
 
 \usepackage{amsmath,amssymb,amsthm}
 
+<<<<<<< Updated upstream
 
+=======
+%%% General Formatting %%%
+% Page Layout
+\usepackage[a4paper, margin=1cm]{geometry}
+
+% Lists
+\usepackage{enumitem}
+
+% Create Graphics within Latex
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+% Multi Column Segments
+\usepackage{multicol}
+
+% Spacing
+\usepackage{setspace}
+\usepackage[parfill]{parskip}
+\setstretch{1.25}
+>>>>>>> Stashed changes
 
 
 %%% General class %%%
@@ -14,7 +35,11 @@
 \newcommand{\Note}{\underline{Note:} } % Set to depreciate \Note
 \newcommand{\note}{\underline{Note:} } % Set to
 \newcommand{\ask}[1]{\textbf{\emph{#1}}}
+
 %%% Math Notations %%%
+% Vectors %
+\usepackage{esvect}
+
 % Domains %
 \newcommand{\R}{\mathbb R}
 \newcommand{\Z}{\mathbb Z}
