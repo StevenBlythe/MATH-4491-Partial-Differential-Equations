@@ -1,0 +1,178 @@
+\item Solve $\Delta u = 0$ on $x^2 + y^2 \leq 25$, where $u(5, \theta) = 7 \sin(3 \theta) - 6 \sin(8 \theta)$ and $u$ is bounded when $r = 0$.
+
+Here, let us consider $x^2 + y^2 \leq 25$. From our assumptions, we know $r$ is bounded between $[0, 5]$.
+
+Here, we have $u_{xx} + u_{yy} = 0$. First, let us write our $u_x$:
+%
+\begin{align}
+  u_x & = \frac{\p u}{\p r} \frac{\p r}{\p x} + \frac{\p u}{\p \theta} \frac{\p \theta}{\p x}\\
+  u_x & = u_r \cos \theta - u_\theta \frac{\sin \theta}{r}
+\end{align}
+
+Here, let us write our $u_{xx}$ and $u_{yy}$ in terms of polar coordinates:
+%
+\begin{align}
+  u_{xx} & = u_{rr} \cos^2 \theta
+  - 2 u_{\theta r} \frac{\sin \theta \cos \theta}{r}
+  + 2 u_\theta \frac{\sin \theta \cos \theta}{r^2}
+  + u_r \frac{\sin^2 \theta}{r} + u_{\theta \theta} \frac{\sin^2 \theta}{r^2}\\
+  u_{yy} &
+  = u_{rr} \sin^2 \theta
+  + 2u_{\theta r} \frac{\sin \theta \cos \theta}{r}
+  - 2u_\theta \frac{\sin \theta \cos \theta}{r^2}
+  + u_r \frac{\cos^2 \theta}{r}
+  + u_{\theta \theta} \frac{\cos^2 \theta}{r^2}\\
+  \Delta u & = u_{xx} + u_{yy}\\
+  \Delta u & = u_{rr} + \frac{u_r}{r} + u_{\theta\theta}{r^2} = 0
+\end{align}
+
+Here, let us consider our inner and outer boundary:
+%
+\begin{enumerate}
+  \item Assume $u(r, \theta) = R(r)\Theta(\theta)$
+  %
+  \begin{align}
+    R^{\prime\prime} \Theta + \frac{R^\prime \Theta}{r} + \frac{R\Theta^{\prime\prime}}{r^2} & = 0\\
+    r^2 \frac{R}{R^{\prime\prime}} + r \frac{R^\prime}{R} & = - \frac{\Theta^{\prime\prime}}{\Theta} = \lambda
+  \end{align}
+  \item Here, let us solve for $\Theta$:
+  %
+  \begin{align}
+    \Theta^{\prime\prime} & = - \lambda \Theta
+  \end{align}
+
+  If $\lambda > 0$, then
+  %
+  \begin{align}
+    \Theta(\theta) & =
+    A \sin(\sqrt \lambda \theta) + B \cos(\sqrt \lambda \theta)\\
+    %%
+    \Theta^\prime(\theta) & =
+    A \sqrt \lambda \cos ( \sqrt \lambda \theta) - B \sqrt \lambda \sin (\sqrt \lambda \theta)\\
+    %%
+    \sqrt \lambda 2 \pi = 2 n \pi \Rightarrow \lambda_n = n^2, n \in \Z^+ &
+    \begin{cases}
+      \Theta(0) = \Theta(2\pi) & \Rightarrow
+      B = A \sin(\sqrt \lambda 2 \pi) + B \cos(\sqrt \lambda 2 \pi)\\
+      %%
+      \Theta^\prime = \Theta^\prime(2 \pi) & \Rightarrow
+      A \sqrt \lambda = A \sqrt \lambda \cos (\sqrt \lambda 2 \pi) - B \sqrt \lambda \sin (\sqrt \lambda 2 \pi)
+    \end{cases}\\
+    %%
+    = n^2 & \Rightarrow
+    \Theta(n)(\theta) = A_n \sin(n \theta) + B_n \cos(n \theta)
+  \end{align}
+  If $\lambda = 0$, then the second derivative is $0$.
+  %
+  \begin{align}
+    \Theta^{\prime\prime}_0 & \Rightarrow
+    \Theta_0(\theta) = A_0\Theta + B_0\\
+    & \Rightarrow \Theta^\prime_0 (\theta) = A_0\\
+    & \Rightarrow \Theta_0(0) = \Theta_0(2 \pi) \Rightarrow B_0 = 2 \pi A_0 + B_0 \Rightarrow A_0 = 0\\
+    %%
+    & \Rightarrow \Theta^\prime_0(0) = \Theta^\prime_0 (2 \pi) = 0
+  \end{align}
+  \item Next, we solve for $R$:
+  %
+  \begin{align}
+    r^2 \frac{R^{\prime\prime}_n}{R_n} + r\frac{R^\prime_n}{R_n} & = \lambda_n
+  \end{align}
+
+  Here, let us consider the following homogeneous equation of our equation:
+  %
+  \begin{align}
+    r^2 R^{\prime\prime}_n + rR^\prime_n - n^2 R_n = 0\\
+  \end{align}
+
+  Try $R_n(r) = R^m$, then
+  %
+  \begin{align}
+    r^2 m( m - 1) r^{m - 2} + r mr^{m - 1} - n^2 r^m & = 0\\
+    r^m \left[ m( m - 1) + m - n^2 \right] & = 0\\
+    m^n - n^2 & = 0\\
+    m & = \pm n
+  \end{align}
+  Next, let us write:
+  %
+  \begin{align}
+    & \Rightarrow
+    \begin{cases}
+      R_n(r) & = C_n r^n + D_n r^{-n}, n \in \Z^+\\
+      R_0(r) & = C_0 + D_0 \ln r
+    \end{cases}
+  \end{align}
+
+  Recall our interval for $r$ is $[0, 5]$.
+  \item Combine to find $u_n$ and $u$:
+  %
+  \begin{align}
+    u_n(r, \theta) & =
+    \begin{cases}
+      B_0( C_0 + D_0 \ln r) & n = 0\\
+      C_nr^n + D_n r^{-n}\left(A_n \cos(n \theta) + B_n \cos(n \theta) \right) & n \in Z^+
+    \end{cases}
+  \end{align}
+
+  By linearity,
+  %
+  \begin{align}
+    u(r, \theta) & = c_0 + d_0 \ln r + \sum^\infty_{n = 1} (a_nr^n + b_nr^{-n}) \sin(n \theta) + (c_nr^n + d_nr^{-n}) \cos(n \theta)
+  \end{align}
+
+  \item Next, let us find the coefficients using our boundary condition:
+  %
+  \begin{align}
+    u(5, \theta) & = 7 \sin(3 \theta) - 6\sin(8 \theta)
+  \end{align}
+
+  Now, let us write:
+  %
+  \begin{align}
+    u(5, \theta) & = c_0 + d_0 \ln 5 + \sum^\infty_{n = 1} (a_n 5^n + b_n r^{-n}) \sin(n \theta) + (c_n 5^n + d_n 5^{-n}) \cos(n \theta)
+  \end{align}
+
+  Here, for our coefficients, let us write:
+  %
+  \begin{align}
+    \begin{cases}
+      c_0 + d_0 \ln 5 & = 0\\
+      c_n 5^n + d_n 5^{-n} & = 0\ \forall n\\
+      a_3 5^3 + b_3 5^{-3} & = 7, n = 3\\
+      a_8 5^8 + b_8 5^{-8} & = -6, n = 8\\
+      a_n 5^n + b_n 5^{-n} & = 0\ \forall n, n \neq 3, 8
+    \end{cases}
+  \end{align}
+
+  If $n \neq 5$:
+  %
+  \begin{align}
+    c_0 + d_0 \ln 5 = 0 & \Rightarrow c_0 = d_0 = 0\\
+    c_n + d_n = 0 & \Rightarrow c_0 = d_0 = 0
+  \end{align}
+
+  If $n \neq 3, 8$:
+  %
+  \begin{align}
+    a_n 5^n + b_n 5^{-n} = 0 & \Rightarrow a_n = b_n = 0
+  \end{align}
+
+  If $n = 3$
+  %
+  \begin{align}
+    a_3 5^3 + b_3 5^{-3} = 7
+  \end{align}
+
+  If $n = 8$
+  %
+  \begin{align}
+    a_8 5^8 + b_8 5^{-8} = -6
+  \end{align}
+
+  From here, let us write $u$:
+  %
+  \begin{align}fi
+    u(r, \theta) & = \sum^\infty_{n = 1}
+    (a_n 5^n + b_n 5^{-n}) \sin(n \theta) +
+    7 \sin(3 \theta) - 6 \sin(8 \theta)
+  \end{align}
+\end{enumerate}

@@ -1,0 +1,158 @@
+\item Solve $u_{tt} = u_{xx}$ on $x \in [0, 1]$ if $u(0, t) = 5$, $u(1, t) = 2$, $u(x, 0) = x(1 - x) - 3x + 5$ and $u_t(x, 0) = 4$.
+
+% Begin Answer
+Here, let us write out our given conditions:
+\begin{enumerate}
+  \item $x \in [0, 1]$
+  \item $u_{tt} = u_{xx}$
+  \item $u\ (0, t) = 5$
+  \item $u\ (1, t) = 2$
+  \item $u\ (x, 0) = x(1 - x) - 3x + 5$
+  \item $u_t(x, 0) = 4$
+\end{enumerate}
+
+Here, similar to the last problem, let us consider $w$ through $T_1$ and $T_1$:
+%
+\begin{align}
+  \frac{T_1 - T_2}{L} & = (2 - 5)x + 2\\
+  & = 3x - 5
+\end{align}
+
+Now, let us consider our steady state:
+%
+\begin{align}
+  u(0, t) & = 5 \Rightarrow w(0, t) = u(0, t) - u(0, \infty) = 5 - 5 = 0\\
+  u(0, t) & = 5 \Rightarrow w(0, t) = u(0, t) - u(0, \infty) = 2 - 2 = 0
+\end{align}
+
+Now, let us begin:
+%
+\begin{enumerate}
+  \item Let us assume $w(x, t) = X(x)T(t)$
+  %
+  \begin{align}
+    XT^{\prime\prime} & = X^{\prime\prime}T\\
+    \frac{T^{\prime\prime}}{T} & = \frac{X^{\prime\prime}}{X} = - \lambda
+  \end{align}
+
+  \item Let us solve for $X$
+  %
+  \begin{align}
+    X^{\prime\prime} & = - \lambda X
+  \end{align}
+
+  Here, let us use the general cosine, sine form:
+  %
+  \begin{align}
+    X(x) & = A \sin \left(\sqrt \lambda x \right) + B \cos \left(\sqrt \lambda x \right)\\
+    X(0) = 0 & = B\\
+    X(x) & = A \sin \left( \sqrt \lambda x \right)\\
+    X(1) = 0 & = A \sin \left( \sqrt \lambda 1 \right)\\
+    n \pi & = \sqrt \lambda 1\\
+    \sqrt \lambda & = n \pi\\
+    \lambda_n & = (n \pi)^2\\
+    X_n(x) & = \sin(n \pi x)
+  \end{align}
+
+  \item Let us solve for $T_n$
+  %
+  \begin{align}
+    T^{\prime\prime}_n(t) & = - (n \pi)^2T\\
+    T_n(t) & = C_n \cos(n \pi t) + D_n \sin(n \pi t)
+  \end{align}
+
+  \item Combine and find $w_n$ and $w$
+
+  Here, let us combined our values:
+  %
+  \begin{align}
+    w_n(x, t) & = \sin(n \pi x)\left[ C_n \cos(n \pi t) + D_n \sin(n \pi t) \right]
+  \end{align}
+
+  By linearity,
+  %
+  \begin{align}
+    w(x, t) & = \sum^\infty_{n = 1}
+    \sin(n \pi x)\left[ C_n \cos(n \pi t) + D_n \sin(n \pi t) \right]\\
+    & = \sum^\infty_{n = 1}
+    C_n \sin(n \pi x) \cos(n \pi t) + D_n \sin(n \pi x) \sin(n \pi t)
+  \end{align}
+
+  \item Let us find the coefficients using the initial condition:
+  %
+  \begin{align}
+    w(x, t) & = \sum^\infty_{n = 1}
+    C_n \sin(n \pi x) \cos(n \pi t) + D_n \sin(n \pi x) \sin(n \pi t)\\
+    w_t(x, t) & = \sum^\infty_{n = 1}
+    -C_n n \pi \sin(n \pi x) \sin(n \pi t) + D_n n \pi \sin(n \pi x) \cos(n \pi t)\\
+    w_t(x, 0) & = \sum^\infty_{n = 1}
+    D_n n \pi \sin(n \pi x) = 4
+  \end{align}
+
+  Here, let us integrate:
+  %
+  \begin{align}
+    D_n n \pi & = 2 \int^1_0 4 \sin(n \pi x) \text{ dx}\\
+    D_n & = \frac{8}{n \pi} \int^1_0 \sin(n \pi x) \text{ dx}\\
+    & = - \frac{8}{n \pi} \frac{1}{n \pi} \cos(n \pi x) \Big|^1_0\\
+    & = - \frac{8}{n^2 \pi^2} \cos(n \pi x) \Big|^1_0\\
+    & = - \frac{8}{n^2 \pi^2} (\cos(n \pi) - 1)\\
+    & = \frac{8}{n^2 \pi^2} (1 - \cos(n \pi))\\
+    & \Rightarrow \frac{8}{n^2 \pi^2} (1 - (-1)^n)
+  \end{align}
+
+  Now, let us find $w(x, 0)$:
+  %
+  \begin{align}
+    w(x, t) & = \sum^\infty_{n = 1} C_n \sin(n \pi x) \cos(n \pi t) + \frac{8}{n^2 \pi^2} (1 - (-1)^n) \sin(n \pi x) \sin(n \pi t)\\
+    w(x, 0) & = \sum^\infty_{n = 1} C_n \sin(n \pi x) = x - x^2
+  \end{align}
+
+  Here, let us integrate:
+  %
+  \begin{align}
+    C_n & = 2 \int^1_0 x \sin(n \pi x) - x^2 \sin(n \pi x)
+  \end{align}
+\end{enumerate}
+
+Let us create our integration tables:
+%
+\begin{center}
+  \begin{tabular}{c|c}
+    $x$ & $\sin(n \pi x)$\\
+    \hline
+    $1$ & $-\frac{1}{n \pi} \cos(n \pi x)$\\
+    \hline
+    $0$ & $-\frac{1}{n^2 \pi^2} \sin(n \pi x)$\\
+    &
+  \end{tabular}
+  \begin{tabular}{c|c}
+    $x^2$ & $\sin(n \pi x)$\\
+    \hline
+    $2x$ & $-\frac{1}{n \pi} \cos(n \pi x)$\\
+    \hline
+    $2$ & $-\frac{1}{n^2 \pi^2} \sin(n \pi x)$\\
+    \hline
+    $0$ & $\frac{1}{n^3 \pi^3} \cos(n \pi x)$
+  \end{tabular}
+\end{center}
+
+Here, we have:
+%
+\begin{align}
+  C_n & = 2 \left(
+  \frac{x}{n \pi} \cos(n \pi x) - \frac{1}{n^2 \pi^2} \sin(n \pi x) -
+  \frac{x^2}{n \pi} \cos(n \pi x) + \frac{2x}{n^2 \pi^2} \sin(n \pi x) + \frac{2}{n^3 \pi^3} \cos(n \pi x)
+  \right)^1_0\\
+  & = 2 \left( \frac{1}{n \pi} \cos(n \pi) - \frac{1}{n \pi} \cos(n \pi) - \frac{2}{n^3 \pi^3} \cos(n \pi) + \frac{2}{n^3 \pi^3} \right)\\
+  & = 2 \left( - \frac{2}{n^3 \pi^3} \cos(n \pi) + \frac{2}{n^3 \pi^3} \right)\\
+  & = 4 \left(\frac{1 - \cos(n \pi)}{n^3 \pi^3} \right)\\
+  & = \left(\frac{4 - 4\cos(n \pi)}{n^3 \pi^3} \right)
+\end{align}
+
+Now, our heat equation is:
+%
+\begin{align}
+  u(x, t) & =
+  \sum^\infty_{n = 1} \frac{4 - 4\cos(n \pi)}{n^3 \pi^3} \sin(n \pi x) \cos(n \pi t) + \frac{8}{n^2 \pi^2} (1 - (-1)^n) \sin(n \pi x) \sin(n \pi t) - 3x + 5
+\end{align}
