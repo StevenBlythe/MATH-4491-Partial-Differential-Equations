@@ -12,66 +12,75 @@
 %\import{Lectures/}{Legacy.tex}
 %\import{Lectures/}{2022-03-02.tex}
 %\import{Lectures/}{2022-03-04.tex}
-\import{Lectures/}{2022-03-07}
+%\import{Lectures/}{2022-03-07}
 
 %______________________________________________________________________________%
+
 \topic{Wave Equation Solutions}
 %
 \begin{itemize}
-  \item $u_{tt} = c^2 u_{xx}$
-  \item $x \in (- infty, \infty), t \in [0, \infty)$
+  \item $u_t = u_xx$
+  \item $x \in (-\infty, \infty)$, $t \in [0, \infty)$
   \item $u(x, 0) = f(x)$
-  \item $u_t(x, 0) = g(x)$
-  \item $\displaystyle u(x, t) = \frac{1}{2} \left[ f(x + ct) + f(x - ct) \right] + \frac{1}{2c} \int^{x + ct}_{x - ct} g(y) \text{ dy}$
+  \item $\displaystyle u(x, t) = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} f(y) e^{- \frac{(x - y)^2}{4t}} \text{ dy}$
 \end{itemize}
+
+Let the initial condition be a ``delta function,'' $\delta(x)$.
+
+\bigbreak
+
+\emph{What is a delta function, $\delta(x)$?}
+
+It has two main properties:
 %
 \begin{enumerate}
-  \item Conservation of Energy
-  %
-  \begin{align}
-    \frac{dE}{dt} & = 0
-  \end{align}
-
-  Here, let us consider the energy as:
-  %
-  \begin{align}
-    E & = \frac{1}{2} \int^\infty_{-\infty} (u^2_t + c^2 u^2_x) \text{ dx}
-  \end{align}
-
-  Here, the first term is kinetic energy and the second term is the potential energy. Let us derive our $E$:
-  %
-  \begin{align}
-    \frac{dE}{dt}
-    & = \frac{d}{dt} \frac{1}{2} \int^\infty_{-\infty} (u^2_t + c^2 u^2_x) \text{ dx}\\
-    & = \frac{1}{2} \int^\infty_{-\infty} 2u_t u_{tt} + 2 c^2 u_x u_{xt} \text{ dx}\\
-    & = \int^\infty_{-\infty} u_t u_{tt} + c^2 u_x u_{xt} \text{ dx}\\
-    & = \int^\infty_{-\infty} u_t c^2 u_{xx} + c^2 u_x u_{xt} \text{ dx}\\
-    & = c^2 \int^\infty_{-\infty} u_t u_{xx} + u_x u_{xt} \text{ dx}
-  \end{align}
-
-  Here, let us integrate $u_{xx}$ and differentiate $u_t$:
-  %
-  \begin{align}
-    c^2
-    \left[
-     u_t u_x \Big|^\infty_{-\infty} + \int^\infty_{-\infty} - u_{tx} u_x + u_x u_{xt} \text{ dx}
-    \right]
-    & = 0
-  \end{align}
-
-  Here, this shows our conservation of energy.
-  %
-  \item \topic{Domain of Dependence / Range of Influence}
-
-  How does the solution at a point depend on the initial condition?
-  % Image
-
-  The domain of dependence is the interval between these two points:
-  %
-  \begin{align}
-    [x_0 - ct_0, x_0 + ct_0]
-  \end{align}
+  \item $\delta(x) = 0$, $x \neq 0$.
+  \item $\displaystyle \int^\infty_{-\infty} \delta(x) \text{ dx } = 1$
 \end{enumerate}
 
+The ``mass'' is centered at $x = 0$. The delta function is not a function because $\delta(0) = ?$. Actually, the delta function is a measure.
+
+\underline{Calculations with Delta Functions}
+%
+\begin{align}
+  \int^\infty_{-\infty} \delta(y) g(x - y) \text{ dy}
+  & = \int^\infty_{-\infty} \delta(x- y) g(y) \text{ dy} = g(x)
+\end{align}
+
+Here, $\delta(y)$ is zero except when $y = 0$ and $\delta(x - y) = 0$ except when $x = y$.
+
+Here, we have a convolution $\delta * g$, where our variables can switch.
+
+What do we expect when $f(x) = \delta(x)$?
+
+When $t = 0$, our area is the $t$ axis: $|$, however, as $t \to \infty$, then the area slowly flattens, akin to a candle.
+
+Mathematically, what do we expect?
+%
+\begin{align}
+  u(x, t) & = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} \delta(y) e^{- \frac{(x - y)^2}{4t}} \text{ dy}\\
+  & = \frac{1}{\sqrt{4 \pi t}} e^{- \frac{x^2}{4 t}}
+\end{align}
+
+The $t$'s impact in the fraction reduces the amplitude and the $t$ in the exponent flattens out the curve.
+
+This is the Gaussian Normal Distributions
+
+What if $f(x) = 7 \delta(x) + 5 \delta(x - 3)$?
+%
+\begin{align}
+  u(x, t) & = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} [7 \delta(y) + 5 \delta(y - 3)] e^{-\frac{(x - y)^2}{4 t}} \text{ dy}\\
+  & = \frac{1}{\sqrt{4 \pi t}}
+  \left[
+    \int^\infty_{-\infty} 7 \delta(y) e^{- \frac{(x - y)^2}{4 t}} \text{ dy} +
+    \int^\infty_{-\infty} 5 \delta(y - 3) e^{-\frac{(x - y)^2}{4t}} \text{ dy}
+  \right]\\
+  & = \frac{1}{\sqrt{4 \pi t}}
+  \left[
+    7e^{- \frac{x^2}{4 t}} + 5 e^{-\frac{(x - 3)^2}{4 t}}
+  \right]
+\end{align}
+
+So for a general $f(x)$, think of $f(x)$ as a bunch of delta functions.
 %______________________________________________________________________________%
 \end{document}
