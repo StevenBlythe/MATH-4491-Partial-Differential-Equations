@@ -1,0 +1,110 @@
+\item Solve $u_t = 9u_{xx}$ on $x \in [0, 2]$ if $u(0, t) = 4$, $u(2, t) = 8$ and $u(x, 0) = 3 \sin(5 \pi x) - 11 \sin(9 \pi x) + 2x + 4$
+
+% Begin Answer
+Here, let us write out our given conditions:
+\begin{enumerate}
+  \item $x \in [0, 2]$
+  \item $u_t = 9u_xx$
+  \item $u(0, t) = 4$
+  \item $u(2, t) = 8$
+  \item $u(x, 0) = 3\sin(5 \pi x) - 11\sin(9 \pi x) + 2x + 4$
+\end{enumerate}
+
+Let us consider general boundaries, as $u$ does not start and end at $0$. We have $T_1 = 4$ and $T_2 = 8$.
+
+Now, our line can be described as the following:
+%
+\begin{align}
+  \frac{8 - 4}{2}x + 4\\
+  2x + 4
+\end{align}
+
+Here, let us solve for $u(x, t) = w(x, t) + u(x, \infty)$. To begin, let us consider our steady state condition as well:
+%
+\begin{align}
+  u(0, t) = 4 & \Rightarrow w(0, t) = u(0, t) - u(0, \infty) = 4 - 4 = 0\\
+  u(2, t) = 8 & \Rightarrow w(2, t) = u(2, t) - u(2, \infty) = 8 - 8 = 0
+\end{align}
+
+Now, let us plug in our $x$ into our steady-state solution and get the next two solutions:
+%
+\begin{enumerate}
+\item Assume $w(x, t) = X(x)T(t)$
+%
+\begin{align}
+  XT^\prime & = 9X^{\prime\prime}T\\
+  \frac{T^\prime}{9T} & = \frac{X^{\prime\prime}}{X} = -\lambda
+\end{align}
+
+\item Here, let us solve for $X$:
+%
+\begin{align}
+  \frac{X^{\prime\prime}}{X} & = -\lambda\\
+  X^{\prime\prime} & = -\lambda X
+\end{align}
+
+Here, we want to use the general cosine and sine form:
+%
+\begin{align}
+  X(x) & = A \sin \left( \sqrt \lambda x \right) + B \cos \left( \sqrt \lambda x \right)
+\end{align}
+
+Here, let us write our conditions:
+%
+\begin{align}
+  X(0) & = B = 0\\
+  X(x) & = A \sin \left( \sqrt \lambda x \right)\\
+  X(2) & = A \sin \left( \sqrt \lambda 2 \right) = 0\\
+  & \Rightarrow \sqrt \lambda 2 = n \pi\\
+  & \Rightarrow \sqrt \lambda = \frac{n \pi}{2}\\
+  & \Rightarrow \lambda = \left(\frac{n \pi}{2}\right)\\
+  X(x) & = A \sin\left(\frac{n \pi x}{2}\right)
+\end{align}
+
+\item Let us solve for $T$:
+%
+\begin{align}
+  \frac{T^\prime_n}{3^2 T_n} & = -\lambda_n\\
+  T^\prime_n & = -\lambda_n T_n 3^2
+\end{align}
+
+Here, we want to consider the general form from an expontential. Let us write:
+%
+\begin{align}
+  T_n(t) & = e^{- \left( \frac{n \pi 3}{2} \right)^2 t}
+\end{align}
+
+\item Combine and find $w_n$ and $w$:
+%
+\begin{align}
+  w_n(x, t) & =
+  \sin\left(\frac{n \pi x}{2}\right)
+  e^{- \left( \frac{n \pi 3}{2} \right)^2 t}
+\end{align}
+
+By linearity,
+%
+\begin{align}
+  w(x, t) & =
+  \sum^\infty_{n = 1}
+  \sin\left(\frac{n \pi x}{2}\right)
+  e^{- \left( \frac{n \pi 3}{2} \right)^2 t}
+\end{align}
+
+Recall the characteristic of our line, $2x + 4$. When we solve for $u(x, 0)$ in terms of $w$, we get $w(x, 0) = 3 \sin(5 \pi x) - 11 \sin(9 \pi x)$:
+%
+\begin{align}
+  w(x, 0) & =
+  3 \sin(5 \pi x) - 11 \sin(9 \pi x)\\
+  w(x, 0) & =
+  \sum^\infty_{n = 1}
+  A_n \sin\left(\frac{n \pi x}{2}\right)\\
+  & = 3\sin(5 \pi x) - 11\sin(9 \pi x)
+\end{align}
+
+Here, we found $A_{10} = 3$ and $A_{18} = 11$. We can write:
+%
+\begin{align}
+  u(x, t) & = 3\sin(5 \pi x)e^{- \left( \frac{n \pi 3}{2} \right)^2 t} - 11\sin(9 \pi x)e^{- \left( \frac{n \pi 3}{2} \right)^2 t} + 2x + 4
+\end{align}
+\end{enumerate}
