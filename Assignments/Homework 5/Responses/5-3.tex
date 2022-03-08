@@ -11,3 +11,70 @@ or
 \end{align*}
 
 In other words, show they are equivalent.
+
+% Need this in the heat equation
+% Use convolution
+
+\begin{proof}
+  Here, let us prove both equations are equivalent,
+
+Here, let us work with the first equation to get to the second equation.
+
+Here, let us consider our function:
+%
+\begin{align}
+  (f * g)(x) & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} f(x - \xi) g(\xi) \text{ d}\xi
+\end{align}
+
+Here, let us consider substituting the inside of our equation with the following:
+%
+\begin{align}
+  u & = x - \xi\\
+  \text du & = - \text d\xi\\
+  - \text du & = \text d\xi
+\end{align}
+
+Here, instead of using $u$, let us use $x - u$.
+
+Furthermore, let us consider our domain of integration and input them into $u$:
+%
+\begin{align}
+  u(x) & = x - \xi\\
+  u(\infty) & = x - \infty\\
+  & = -\infty\\
+  u(-\infty) & = x - - \infty\\
+  & = x + \infty\\
+  & = \infty
+\end{align}
+
+Now, let us execute the substitution in our first equation:
+%
+\begin{align}
+  (f * g)(x)
+  & =
+  \frac{1}{\sqrt{2 \pi}}
+  \int^\infty_{-\infty}
+  f(x - \xi) g(\xi) \text d \xi\\
+  & =
+  -\frac{1}{\sqrt{2 \pi}}
+  \int^{-\infty}_\infty
+  f(u) g(x - u) \text du
+\end{align}
+
+Here, let us flip our integral,
+%
+\begin{align}
+  & =
+  -\frac{1}{\sqrt{2 \pi}}
+  \int^{-\infty}_\infty
+  f(u) g(x - u) \text du\\
+  (f * g)(x) & =
+  \frac{1}{\sqrt{2 \pi}}
+  \int^{\infty}_{-\infty}
+  f(u) g(x - u) \text du
+\end{align}
+% u sub in problem
+
+Here, using $u$ substitution, we have reached the second given equation by using the first equation. The convolution of the two functions are equivalent.
+
+\end{proof}

@@ -399,72 +399,64 @@ class HomeworkVPi(ThreeDScene):
         self.play(Transform(surface_plane, surface_e))
         self.wait(2)
 
-class HomeworkVPia(ThreeDScene):
+class HomeworkVPiia(Scene):
     def construct(self):
+        ### Set Theme Color ###
+        colors = {
+            "Theme": WHITE,
+            "Theme_A": RED,
+            "Theme_B": BLUE,
+            "Theme_C": PURPLE,
+            "Theme_D": GREEN
+        }
 
-        self.set_camera_orientation(phi=75 * DEGREES, theta=-30 * DEGREES)
-        axes = ThreeDAxes(
-            x_range=(-4, 4, 2), 
-            y_range=(-4, 4, 2), 
-            z_range=(-1, 1, 0.5))
+        ### Setup axes and Labels
+        axes = Axes(
+            x_range=[-2, 2, 1],
+            y_range=[-2, 2, 0.5],
+            axis_config={"color": colors["Theme"]},
+            tips=False
+        )
 
+        labels = axes.get_axis_labels().set_color(colors["Theme"])
 
-from manim import *
-#import numpy as np
-#
-#current_frame = 0
-#
-#class Doppler(Scene):
-#
-#    def construct(self):
-#        
-#        source=Dot()
-#        
-#        #creates a group to store the wavefronts
-#        waves=VGroup() 
-#
-#        
-#        #function to add each wavefront
-#        def addwavefront(mob,dt):
-#
-#            global current_frame
-#
-#            wavefront=Circle(
-#                radius=0.01,
-#                color=YELLOW,
-#                stroke_width=1.5,
-#                arc_center=source.get_center()
-#            ) 
-#            current_frame += 1
-#            if current_frame%8 == 0: #frequency of the wave
-#                waves.add(wavefront)
-#            return current_frame
-#
-#        #function to expand and fade away each wavefront
-#        def expandwaves(mob, dt):
-#
-#            for wavefront in waves:
-#                wavefront.scale_to_fit_width(wavefront.width + 0.055)#wave speed
-#                wavefront.set_stroke(opacity = 1 - wavefront.width/20)
-#                if (1 - wavefront.width/20) == 0:
-#                    waves.remove(wavefront)
-#    
-#
-#        waves.add_updater(addwavefront)
-#        waves.add_updater(expandwaves)
-#
-#        self.add(source)
-#        self.add(waves)
-#
-#        self.wait(2)
-#        self.play(
-#                source.animate.shift(RIGHT*5), rate_func=linear, run_time=10
-#        )
-#        self.play(
-#                source.animate.shift(LEFT*8), run_time=5
-#        )
-#        waves.remove_updater(addwavefront)
-#        self.wait(1)
-#        self.play(FadeOut(waves), FadeOut(source))
-#        self.wait(1)
-#
+        self.add(axes, labels)
+
+        ### Setup both functions ###
+        def func_a(x):
+            if -1 < x and x < 0:
+                return -1
+            elif 0 < x and x < 1:
+                return 1
+            else:
+                return 0
+        
+        def func_b(x):
+            v = abs(x)
+            if v <= 1:
+                return 1 - v
+            else:
+                return 0
+        
+        ### Create lines a and b ###
+        line_a = axes.plot(
+            lambda x : func_a(x),
+            x_range=[-2, 2],
+            discontinuities=[-1, 0, 1],
+            color=colors["Theme_B"]
+        )
+
+        line_b = axes.plot(
+            lambda x : func_b(x),
+            x_range=[-2, 2],
+            discontinuities=[-1, 0, 1],
+            color=colors["Theme_D"]
+        )
+
+        self.play(Create(line_a), run_time=2, rate_function=smooth)
+        self.wait()
+        self.play(FadeOut(line_a))
+        self.wait()
+        self.play(Create(line_b), run_time=2, rate_function=smooth)
+        self.wait()
+        self.play(FadeOut(line_b))
