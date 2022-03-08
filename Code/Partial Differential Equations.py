@@ -173,6 +173,37 @@ class HomeworkiiProblemia(Scene):
             return 2
         else: return 1
 
+class HomeworkVPib(Scene):
+    def construct(self):
+        colors = {
+            "Theme": BLACK
+        }
+        self.camera.background_color = WHITE
+
+        ### Begin ###
+        axes = Axes(
+            x_range=(-4, 4, 2),
+            y_range=(-4, 4, 2),
+            x_length=12,
+            y_length=12
+        ).set_color(colors["Theme"])
+
+        self.add(axes)
+
+        ### Circle around 
+        graphp = ImplicitFunction(
+            lambda x, y: x**2/9 + y**2/9 * y - 1,
+            color=BLACK,
+            x_range=[-3.01, 3.01],
+            y_range=[-3.01, 3.01]
+        )
+        graphn = ImplicitFunction(
+            lambda x, y: -(x**2/9 + y**2/9 * y - 1),
+            color=BLACK,
+            x_range=[-3.01, 3.01],
+            y_range=[-3.01, 3.01]
+        )
+        self.add(graphn)
 
 class HomeworkVPi(ThreeDScene):
     def construct(self):
@@ -200,7 +231,8 @@ class HomeworkVPi(ThreeDScene):
             x = u
             y = v
             z = np.sin(x) * np.cos(y)
-            return z
+            if z < 1:
+                return z
         surface_plane = Surface(
             lambda u, v: axes.c2p(u, v, param_surface(u, v)),
             resolution=(42, 42),
@@ -210,9 +242,10 @@ class HomeworkVPi(ThreeDScene):
         surface_plane.set_style(fill_opacity=1)
         surface_plane.set_fill_by_value(axes=axes, colors=[(RED, -0.5), (PURPLE, 0), (BLUE, 0.5)], axis=2)
 
-        #self.add(surface_plane)
+        self.add(surface_plane)
 
-        # New 
+        # Set up 2-D Surface
+
 
         self.wait()
 
