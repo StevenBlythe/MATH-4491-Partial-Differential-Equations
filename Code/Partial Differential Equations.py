@@ -172,3 +172,58 @@ class HomeworkiiProblemia(Scene):
         if x == 0:
             return 2
         else: return 1
+
+
+class HomeworkVPi(ThreeDScene):
+    def construct(self):
+        # General colors 
+        colors = {
+            "Theme": BLACK
+        }
+        self.camera.background_color = WHITE
+
+        ### Begin ###
+        # Rotate Camera
+        self.set_camera_orientation(phi = 75 * DEGREES, theta = -30 * DEGREES)
+
+        # Setup Axes
+        axes = ThreeDAxes(
+            x_range=(-4, 4, 2), 
+            y_range=(-4, 4, 2), 
+            z_range=(-1, 1, 0.5)
+        ).set_color(colors["Theme"])
+
+        self.add(axes)
+
+        # Set up Surface
+        def param_surface(u, v):
+            x = u
+            y = v
+            z = np.sin(x) * np.cos(y)
+            return z
+        surface_plane = Surface(
+            lambda u, v: axes.c2p(u, v, param_surface(u, v)),
+            resolution=(42, 42),
+            v_range=[-3.5, 3.5],
+            u_range=[-3.5, 3.5],
+            )
+        surface_plane.set_style(fill_opacity=1)
+        surface_plane.set_fill_by_value(axes=axes, colors=[(RED, -0.5), (PURPLE, 0), (BLUE, 0.5)], axis=2)
+
+        #self.add(surface_plane)
+
+        # New 
+
+        self.wait()
+
+
+class HomeworkVPia(ThreeDScene):
+    def construct(self):
+
+        self.set_camera_orientation(phi=75 * DEGREES, theta=-30 * DEGREES)
+        axes = ThreeDAxes(
+            x_range=(-4, 4, 2), 
+            y_range=(-4, 4, 2), 
+            z_range=(-1, 1, 0.5))
+
+
