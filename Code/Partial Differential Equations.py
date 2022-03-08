@@ -176,42 +176,139 @@ class HomeworkiiProblemia(Scene):
 class HomeworkVPib(Scene):
     def construct(self):
         colors = {
-            "Theme": BLACK
+            "Theme": WHITE,
+            "Theme_A": RED,
+            "Theme_B": BLUE,
+            "Theme_C": PURPLE,
+            "Theme_D": GREEN
         }
-        self.camera.background_color = WHITE
-
+        self.camera.background_color = BLACK
+        
         ### Begin ###
         axes = Axes(
             x_range=(-4, 4, 2),
             y_range=(-4, 4, 2),
             x_length=12,
-            y_length=12
+            y_length=12,
+            x_axis_config={
+                "numbers_to_include": np.arange(-4, 4.01, 2)
+            },
+            y_axis_config={
+                "numbers_to_include": np.arange(-4, 4.01, 2)
+            },
+            tips=False
         ).set_color(colors["Theme"])
 
-        self.add(axes)
+        x_label = axes.get_x_axis_label("x").set_color(colors["Theme"])
+        y_label = axes.get_y_axis_label("y").set_color(colors["Theme"]).shift(UP*2.8)
+        self.add(axes, x_label, y_label)
+        
 
         ### Circle around 
-        graphp = ImplicitFunction(
-            lambda x, y: x**2/9 + y**2/9 * y - 1,
-            color=BLACK,
-            x_range=[-3.01, 3.01],
-            y_range=[-3.01, 3.01]
-        )
-        graphn = ImplicitFunction(
-            lambda x, y: -(x**2/9 + y**2/9 * y - 1),
-            color=BLACK,
-            x_range=[-3.01, 3.01],
-            y_range=[-3.01, 3.01]
-        )
-        self.add(graphn)
+        rounded = RoundedRectangle(corner_radius=3, height=12, width=12.0).set_color(colors["Theme_A"])
+        self.play(Create(rounded))
+
+
+        ### Write Omega
+        omega = Tex("$\Omega$").set_color(colors["Theme"]).move_to(axes.c2p(2, 2, 0)).scale(2)
+        
+        self.play(FadeIn(omega))
+
+        self.wait(2)
+
+        self.play(FadeOut(omega))
+
+        ### Create a point x_0
+        point = Dot(color=colors["Theme"])
+        x0 = Tex("$x_0$").next_to(point, UP).set_color(colors["Theme"])
+
+        ### Move point x_0
+        location = VGroup(x0, point).move_to(axes.c2p(1, 1, 0))
+        self.play(FadeIn(location))
+        self.wait(1)
+        self.play(location.animate.shift(RIGHT*1 + UP*2))
+        self.wait(1)
+        self.play(location.animate.shift(LEFT*5 + DOWN*8))
+        self.wait(1)
+        self.play(location.animate.shift(RIGHT*6 + UP*3))
+        self.wait(1)
+        self.play(location.animate.move_to(axes.c2p(1, 1, 0)))
+
+        ### Create a neighborhood around x_0
+
+        ### Circle Size ###
+        ball = Circle(radius=0.75).move_to(point).set_color(colors["Theme_B"])
+        radius = Line(ball.get_center(), ball.point_at_angle(0)).set_color(colors["Theme_D"])
+        self.play(Create(ball), Create(radius))
+
+        # Eps
+        eps = Tex("$\epsilon$", color=colors["Theme_C"]).next_to(radius, UP)
+        self.play(FadeIn(eps))
+        eps.add_updater(lambda z: z.become(Tex("$\epsilon$", color=colors["Theme_C"]).next_to(radius, UP)))
+
+        self.add(radius)
+        self.wait(1)
+        circa = Circle(radius = 3).move_to(point).set_color(colors["Theme_B"])
+        radiusa = Line(circa.get_center(), circa.point_at_angle(0)).set_color(colors["Theme_D"])
+        self.play(Transform(ball, circa), Transform(radius, radiusa))
+        self.wait(1)
+        circb = Circle(radius = 1.5).move_to(point).set_color(colors["Theme_B"])
+        radiusb = Line(circb.get_center(), circb.point_at_angle(0)).set_color(colors["Theme_D"])
+        self.play(Transform(ball, circb), Transform(radius, radiusb))
+        self.wait(2)
+
+        self.play(FadeOut(eps))
+        self.wait(2)
+
+        # Move to the center, ball, radius, and location
+        circc = Circle(radius = 6).move_to((0, 0, 0)).set_color(colors["Theme_B"])
+        radiusc = Line(circc.get_center(), circc.point_at_angle(0)).set_color(colors["Theme_D"])
+        self.play(location.animate.move_to((0, 0.28, 0)), Transform(ball, circc), Transform(radius, radiusc))
+        self.wait(2)
+
+        # Here, let us consider the area of the other region
+
+        # Now, let us shrink to find our value:
+        circd = Circle(radius = 3.0).move_to((0, 0, 0)).set_color(colors["Theme_B"])
+        radiusd = Line(circd.get_center(), circd.point_at_angle(0)).set_color(colors["Theme_D"])
+        self.play(location.animate.move_to((0, 0.28, 0)), Transform(ball, circd), Transform(radius, radiusd))
+        self.wait(2)
+
+        # Now, let us consider another area
+        whole = VGroup(point, x0, ball, radius)
+        self.play(whole.animate.move_to(axes.c2p(2, 2, 0)))
+
+        self.wait(2)
+
+        # Change the shape
+
+        self.wait(2)
+
+        whole = VGroup(point, x0, ball, radius)
+        self.play(whole.animate.move_to(axes.c2p(-2, -2, 0)))
+
+        # Now, let us shrink to find our value:
+        circe = Circle(radius = 1.5).move_to(point).set_color(colors["Theme_B"])
+        radiuse = Line(circe.get_center(), circe.point_at_angle(0)).set_color(colors["Theme_D"])
+        self.play(Transform(ball, circe), Transform(radius, radiuse))
+        self.wait(2)
+
+
+         
+
+
+
 
 class HomeworkVPi(ThreeDScene):
     def construct(self):
         # General colors 
         colors = {
-            "Theme": BLACK
+            "Theme": WHITE,
+            "Theme_A": BLUE,
+            "Theme_B": RED,
+            "Theme_C": GREEN
         }
-        self.camera.background_color = WHITE
+        self.camera.background_color = BLACK
 
         ### Begin ###
         # Rotate Camera
@@ -231,24 +328,76 @@ class HomeworkVPi(ThreeDScene):
             x = u
             y = v
             z = np.sin(x) * np.cos(y)
-            if z < 1:
-                return z
+            return z
         surface_plane = Surface(
             lambda u, v: axes.c2p(u, v, param_surface(u, v)),
             resolution=(42, 42),
-            v_range=[-3.5, 3.5],
-            u_range=[-3.5, 3.5],
+            v_range=[-3.6, 3.6],
+            u_range=[-3.6, 3.6],
             )
         surface_plane.set_style(fill_opacity=1)
         surface_plane.set_fill_by_value(axes=axes, colors=[(RED, -0.5), (PURPLE, 0), (BLUE, 0.5)], axis=2)
+        #surface_plane.set_fill_by_value(axes=axes, colors=[(BLACK, -0.5), (GRAY_D, 0), (GRAY, 0.5)], axis=2)
 
         self.add(surface_plane)
 
-        # Set up 2-D Surface
+        self.wait(2)
 
+        # Set up Surface 
+        surface_a = Surface(
+            lambda u, v: axes.c2p(u, v, param_surface(u, v)),
+            resolution=(42, 42),
+            v_range=[-2.0, 2.0],
+            u_range=[-2.0, 2.0],
+            ).set_style(fill_opacity=1).set_fill_by_value(axes=axes, colors=[(RED, -0.5), (PURPLE, 0), (BLUE, 0.5)], axis=2)
+        
+        self.play(Transform(surface_plane, surface_a))
+        
+        self.wait(2)
 
-        self.wait()
+        # Set up Surface 
+        surface_b = Surface(
+            lambda u, v: axes.c2p(u, v, param_surface(u, v)),
+            resolution=(42, 42),
+            v_range=[0, 3.5],
+            u_range=[0, 3.5],
+            ).set_style(fill_opacity=1).set_fill_by_value(axes=axes, colors=[(RED, -0.5), (PURPLE, 0), (BLUE, 0.5)], axis=2)
+        
+        self.play(Transform(surface_plane, surface_b))
 
+        self.wait(4)
+
+        # Define new Surface
+        
+        surface_c = Surface(
+            lambda u, v: axes.c2p(u, v, 0.2),
+            resolution=(42, 42),
+            v_range=[0, 3.5],
+            u_range=[0, 3.5],
+            ).set_style(fill_opacity=1).set_fill_by_value(axes=axes, colors=[(RED, -0.5), (PURPLE, 0), (BLUE, 0.5)], axis=2)
+        
+        self.play(Transform(surface_plane, surface_c))
+        self.wait(2)
+
+        surface_d = Surface(
+            lambda u, v: axes.c2p(u, v, 0.2),
+            resolution=(42, 42),
+            v_range=[-4, 0],
+            u_range=[-4, 0],
+            ).set_style(fill_opacity=1).set_fill_by_value(axes=axes, colors=[(RED, -0.5), (PURPLE, 0), (BLUE, 0.5)], axis=2)
+        
+        self.play(Transform(surface_plane, surface_d))
+        self.wait(2)
+
+        surface_e = Surface(
+            lambda u, v: axes.c2p(u, v, 0.2),
+            resolution=(42, 42),
+            v_range=[-3, -1],
+            u_range=[-3, -1],
+            ).set_style(fill_opacity=1).set_fill_by_value(axes=axes, colors=[(RED, -0.5), (PURPLE, 0), (BLUE, 0.5)], axis=2)
+        
+        self.play(Transform(surface_plane, surface_e))
+        self.wait(2)
 
 class HomeworkVPia(ThreeDScene):
     def construct(self):
@@ -260,3 +409,62 @@ class HomeworkVPia(ThreeDScene):
             z_range=(-1, 1, 0.5))
 
 
+from manim import *
+#import numpy as np
+#
+#current_frame = 0
+#
+#class Doppler(Scene):
+#
+#    def construct(self):
+#        
+#        source=Dot()
+#        
+#        #creates a group to store the wavefronts
+#        waves=VGroup() 
+#
+#        
+#        #function to add each wavefront
+#        def addwavefront(mob,dt):
+#
+#            global current_frame
+#
+#            wavefront=Circle(
+#                radius=0.01,
+#                color=YELLOW,
+#                stroke_width=1.5,
+#                arc_center=source.get_center()
+#            ) 
+#            current_frame += 1
+#            if current_frame%8 == 0: #frequency of the wave
+#                waves.add(wavefront)
+#            return current_frame
+#
+#        #function to expand and fade away each wavefront
+#        def expandwaves(mob, dt):
+#
+#            for wavefront in waves:
+#                wavefront.scale_to_fit_width(wavefront.width + 0.055)#wave speed
+#                wavefront.set_stroke(opacity = 1 - wavefront.width/20)
+#                if (1 - wavefront.width/20) == 0:
+#                    waves.remove(wavefront)
+#    
+#
+#        waves.add_updater(addwavefront)
+#        waves.add_updater(expandwaves)
+#
+#        self.add(source)
+#        self.add(waves)
+#
+#        self.wait(2)
+#        self.play(
+#                source.animate.shift(RIGHT*5), rate_func=linear, run_time=10
+#        )
+#        self.play(
+#                source.animate.shift(LEFT*8), run_time=5
+#        )
+#        waves.remove_updater(addwavefront)
+#        self.wait(1)
+#        self.play(FadeOut(waves), FadeOut(source))
+#        self.wait(1)
+#
