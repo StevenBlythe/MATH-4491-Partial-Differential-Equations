@@ -9,95 +9,121 @@
 \maketitle
 \newpage
 
-\import{Lectures/}{Legacy.tex}
-\import{Lectures/}{2022-03-02.tex}
-\import{Lectures/}{2022-03-04.tex}
-\import{Lectures/}{2022-03-07.tex}
+%\import{Lectures/}{Legacy.tex}
+%\import{Lectures/}{2022-03-02.tex}
+%\import{Lectures/}{2022-03-04.tex}
+%\import{Lectures/}{2022-03-07.tex}
+%\import{Lectures/}{2022-03-09.tex}
 
 %______________________________________________________________________________%
 
-\topic{Wave Equation Solutions}
-%
-\begin{itemize}
-  \item $u_t = u_xx$
-  \item $x \in (-\infty, \infty)$, $t \in [0, \infty)$
-  \item $u(x, 0) = f(x)$
-  \item $\displaystyle u(x, t) = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} f(y) e^{- \frac{(x - y)^2}{4t}} \text{ dy}$
-\end{itemize}
+\subsection*{Project Information}
 
-Let the initial condition be a ``delta function,'' $\delta(x)$.
+If you want to mess with an image, you have to think about how computers view images. The image is stored. When we see it, we see an image, but what does the computer see?
+
+Computers stores images as a point of pixels akin to a grid. Pixels contain RGB value information and location. Pictures are generally large.
+
+The first thing is: An image is a grid of numbers (Array, matrix). This is what the computer sees.
+
+Color: Saturation, hue, not the focus.
+
+Focus: Grayscale, same functions, can be extended into color. Add extra dimensions.
+
+Idea: Have a grid of values with pixels and a value at each point (Tells us the gray scale, point of scale between black and white).
 
 \bigbreak
 
-\emph{What is a delta function, $\delta(x)$?}
+\topic{Image Processing}
 
-It has two main properties:
+Let's say we have a black and white digital image.
+
+% ^ y
+% |
+% |  :^)
+% |
+% |________> x
+% |
+
+Here, we have:
+
+\begin{itemize}
+  \item $u(x, y)$ : $u$ (int) is the darkness (grayscale) of the image at point $(x, y)$.
+  \item $u = 0$ black, $u = 255$ = white
+\end{itemize}
+
+Steps to our process:
 %
 \begin{enumerate}
-  \item $\delta(x) = 0$, $x \neq 0$.
-  \item $\displaystyle \int^\infty_{-\infty} \delta(x) \text{ dx } = 1$
+  \item Remove Noise. In the case of our project, we will remove Salt and Pepper noise.
+  \item Remove Blur.
 \end{enumerate}
 
-The ``mass'' is centered at $x = 0$. The delta function is not a function because $\delta(0) = ?$. Actually, the delta function is a measure.
+We know Heat, Laplace, Wave, and Transport.
 
-\underline{Calculations with Delta Functions}
-%
-\begin{align}
-  \int^\infty_{-\infty} \delta(y) g(x - y) \text{ dy}
-  & = \int^\infty_{-\infty} \delta(x- y) g(y) \text{ dy} = g(x)
-\end{align}
+We want to use Heat.
 
-Here, $\delta(y)$ is zero except when $y = 0$ and $\delta(x - y) = 0$ except when $x = y$.
+% ^ y
+% | .  . .. .
+% | . :^) .
+% | .   . .
+% |________> x
+% |
 
-Here, we have a convolution $\delta * g$, where our variables can switch.
+Here, we want to remove the 'spikes' in our image. The idea is if we apply heat to our point, the peak of the spike reduces in magnitude and spreads out.
 
-What do we expect when $f(x) = \delta(x)$?
+When we smoothen our picture, we also blur our ideal picture.
 
-When $t = 0$, our area is the $t$ axis: $|$, however, as $t \to \infty$, then the area slowly flattens, akin to a candle.
+\begin{enumerate}
+  \item First step: Take an image and blur it.
 
-Mathematically, what do we expect?
-%
-\begin{align}
-  u(x, t) & = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} \delta(y) e^{- \frac{(x - y)^2}{4t}} \text{ dy}\\
-  & = \frac{1}{\sqrt{4 \pi t}} e^{- \frac{x^2}{4 t}}
-\end{align}
+  The heat equation blurs things. This will cause the salt and pepper noise fade.
 
-The $t$'s impact in the fraction reduces the amplitude and the $t$ in the exponent flattens out the curve.
+  Here, let us consider an initial image with noise. Our initial image has $t = 0$. Then, we apply
+  %
+  \begin{align}
+    u_t & = u_{xx} + u_{yy}\\
+    u(x, y, 0) & = f(x, y)
+  \end{align}
 
-This is the Gaussian Normal Distributions
+  Here, $f(x, y)$ is our image, the initial condition.
 
-What if $f(x) = 7 \delta(x) + 5 \delta(x - 3)$?
-%
-\begin{align}
-  u(x, t) & = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} [7 \delta(y) + 5 \delta(y - 3)] e^{-\frac{(x - y)^2}{4 t}} \text{ dy}\\
-  & = \frac{1}{\sqrt{4 \pi t}}
-  \left[
-    \int^\infty_{-\infty} 7 \delta(y) e^{- \frac{(x - y)^2}{4 t}} \text{ dy} +
-    \int^\infty_{-\infty} 5 \delta(y - 3) e^{-\frac{(x - y)^2}{4t}} \text{ dy}
-  \right]\\
-  & = \frac{1}{\sqrt{4 \pi t}}
-  \left[
-    7e^{- \frac{x^2}{4 t}} + 5 e^{-\frac{(x - 3)^2}{4 t}}
-  \right]
-\end{align}
+  However, when we apply our heat function, we have a pro and a con:
+  %
+  \begin{itemize}
+    \item Pro: Salt and pepper noise are pretty much gone.
+    \item Con: Whole image is blurred.
+  \end{itemize}
 
-So for a general $f(x)$, think of $f(x)$ as a bunch of delta functions.
+  If we just have one point of noise, Let's say we have an $m \times n$ white grid and black dot in the center,
+  % |
+  % |
+  % |   *
+  % |
+  % |_______>
+  % |
+  then let us consider the following:
+  %
+  \begin{align}
+    f(x, y) & = \delta\left(x - \frac{L}{2}\right) \delta\left(y - \frac{M}{2}\right)
+  \end{align}
 
-\topic{Conservation of Energy}
+  Here, we have the following conditions:
+  %
+  \begin{enumerate}
+    \item $u(x, y, 0) = f(x, y)$
+  \end{enumerate}
 
-The amount of heat stamp? constant
-%
-\begin{align}
-  \frac{d}{dt} \int^\infty_{-\infty} u(x, t) \text{ dx}
-  & = \int^\infty_{-\infty} u(x, t) \text{ dx}\\
-  & = \alpha^2 \int^\infty_{-\infty} u_{xx} (x, t) \text{ dx}\\
-  & = \alpha^2 u_x(x, t) \Big|^\infty_{-\infty}
-\end{align}
+  and
+  %
+  \begin{enumerate}
+    \item $u(0, y, t) = f(0, y)$
+    \item $u(L, y, t) = f(L, y)$
+    \item $u(x, 0, t) = f(x, 0)$
+    \item $u(x, M, t) = f(x, M)$
+  \end{enumerate}
+\end{enumerate}
+  %
 
-\underline{Recall} We know $\lim_{x \pm \infty} u(x, t) = 0$, therefore the rate of change at both infinities is zero.
-%
-\begin{align}
-  \alpha^2 u_x(x, t) \Big|^\infty_{-\infty} & = 0
-\end{align}
+
 %______________________________________________________________________________%
 \end{document}
