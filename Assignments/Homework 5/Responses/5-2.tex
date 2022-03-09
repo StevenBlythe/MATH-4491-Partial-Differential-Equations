@@ -144,12 +144,12 @@ Here, let us evaluate our expressions and simplify:
   & =
   \frac{2}{i \xi \sqrt{2} \sqrt{\pi}}
   \left[
-  1 - e^{i \xi}
+  - e^{i \xi} - e^{-i \xi}
   \right]\\
   % Setup for substitution
   & =
   \frac{\sqrt 2}{\xi \sqrt \pi}
-  \frac{1 - e^{i \xi}}{i}
+  \frac{e^{i \xi} + e^{-i \xi}}{i}
 \end{align}
 
 
@@ -262,34 +262,47 @@ Here, let us evaluate both integrals side-by-side:
 \begin{align}
   &
   \left[
-     \frac{1}{ \xi^2} e^{-i \xi x}
-   - \frac{1}{ i \xi} e^{-i \xi x}
-   - \frac{x}{ i \xi} e^{-i \xi x}
+    - \frac{1}{ i \xi} e^{-i \xi x}
+    - \frac{x}{ i \xi} e^{-i \xi x}
+    + \frac{1}{ \xi^2} e^{-i \xi x}
   \right]^1_0\\
   % Plug in
   &
-  \frac{1}{ \xi^2} e^{-i \xi}
-- \frac{2}{ i \xi} e^{-i \xi}
+  % 1 side
+  \left(
+  - \frac{1}{ i \xi} e^{-i \xi}
+  - \frac{1}{ i \xi} e^{-i \xi}
+  + \frac{1}{ \xi^2} e^{-i \xi}
+  \right)
   % 0 side
-- \frac{1}{ \xi^2}
-+ \frac{1}{ i \xi}
+  +
+  \left(
+    \frac{1}{ i \xi}
+  - \frac{1}{ \xi^2}
+  \right)
 \end{align}
   Now, let us consider the integral on the right:
 \begin{align}
   &
   \left[
-  - \frac{1}{ \xi^2} e^{-i \xi x}
   - \frac{1}{ i \xi} e^{-i \xi x}
   + \frac{x}{ i \xi} e^{-i \xi x}
+  - \frac{1}{ \xi^2} e^{-i \xi x}
   \right]^0_{-1}\\
   % Plug in
   &
-%  \frac{0}{ i \xi} 1
-- \frac{1}{ \xi^2}
-- \frac{1}{ i \xi}
+  % 0 side
+  \left(
+  - \frac{1}{ i \xi}
+  - \frac{1}{ \xi^2}
+  \right)
   % -1 Side
-+ \frac{1}{ \xi^2} e^{i \xi}
-+ \frac{2}{ i \xi} e^{i \xi}
+  +
+  \left(
+    \frac{1}{ i \xi} e^{i \xi}
+  + \frac{1}{ i \xi} e^{i \xi}
+  + \frac{1}{ \xi^2} e^{i \xi}
+  \right)
 \end{align}
 \end{multicols}
 
@@ -300,36 +313,170 @@ Now, let us plug in our parts back into our integral:
   & =
   \frac{1}{\sqrt{2 \pi}}
   \left[
-      \frac{1}{ \xi^2} e^{-i \xi}
-      - \frac{2}{ i \xi} e^{-i \xi}
-      - \frac{1}{ \xi^2}
-      + \frac{1}{ i \xi}
-%
-      - \frac{1}{ \xi^2}
-      - \frac{1}{ i \xi}
-      + \frac{1}{ \xi^2} e^{i \xi}
-      + \frac{2}{ i \xi} e^{i \xi}
+    % 1 side
+    \left(
+    - \frac{1}{ i \xi} e^{-i \xi}
+    - \frac{1}{ i \xi} e^{-i \xi}
+    + \frac{1}{ \xi^2} e^{-i \xi}
+    \right)
+    % 0 side
+    +
+    \left(
+      \frac{1}{ i \xi}
+    - \frac{1}{ \xi^2}
+    \right)
+    +
+    \left(
+    - \frac{1}{ i \xi}
+    - \frac{1}{ \xi^2}
+    \right)
+    % -1 Side
+    +
+    \left(
+      \frac{1}{ i \xi} e^{i \xi}
+    + \frac{1}{ i \xi} e^{i \xi}
+    + \frac{1}{ \xi^2} e^{i \xi}
+    \right)
   \right]\\
+  % Step two: Shift
   & =
   \frac{1}{\sqrt{2 \pi}}
   \left[
-        \frac{1}{ \xi^2} e^{-i \xi}
-      + \frac{1}{ \xi^2} e^{i \xi}
-      - \frac{2}{ \xi^2}
-      + \frac{2}{ i \xi} e^{i \xi}
-      - \frac{2}{ i \xi} e^{-i \xi}
+    \left(
+    - \frac{1}{ i \xi} e^{-i \xi}
+    - \frac{1}{ i \xi} e^{-i \xi}
+    + \frac{1}{ \xi^2} e^{-i \xi}
+    \right)
+    +
+    \left(
+      \frac{1}{ i \xi} e^{i \xi}
+    + \frac{1}{ i \xi} e^{i \xi}
+    + \frac{1}{ \xi^2} e^{i \xi}
+    \right)
+    +
+    \left(
+      \frac{1}{ i \xi}
+    - \frac{1}{ \xi^2}
+    \right)
+    +
+    \left(
+    - \frac{1}{ i \xi}
+    - \frac{1}{ \xi^2}
+    \right)
   \right]\\
+  % Step three: Combine
   & =
-  \frac{1}{\xi^2 \sqrt{2 \pi}}
+  \frac{1}{\sqrt{2 \pi}}
   \left[
+    \left(
+    - \frac{2}{ i \xi} e^{-i \xi}
+    + \frac{1}{ \xi^2} e^{-i \xi}
+    \right)
+    +
+    \left(
+      \frac{2}{ i \xi} e^{i \xi}
+    + \frac{1}{ \xi^2} e^{i \xi}
+    \right)
+    +
+    \left(
+    - \frac{2}{ \xi^2}
+    \right)
+  \right]
+\end{align}
+
+From here, let us shift our terms around then group them.
+%
+\begin{align}
+  % Step Four: Shift
+  & =
+  \frac{1}{\sqrt{2 \pi}}
+  \left[
+    \left(
+    - \frac{2}{ i \xi} e^{-i \xi}
+    + \frac{2}{ i \xi} e^{i \xi}
+    \right)
+    +
+    \left(
+      \frac{1}{ \xi^2} e^{-i \xi}
+    + \frac{1}{ \xi^2} e^{i \xi}
+    \right)
+    +
+    \left(
+    - \frac{2}{ \xi^2}
+    \right)
+  \right]\\
+  % Step Five: Group
+  & =
+  \frac{1}{\sqrt{2 \pi}}
+  \left[
+    \left(
+    \frac{2}{\xi}
+    \left[
+    \frac{
+       e^{i \xi}
+    -  e^{-i \xi}
+    }{i}
+    \right]
+    \right)
+    +
+    \left(
+    \frac{1}{ \xi^2}
+    \left[
       e^{-i \xi}
     + e^{i \xi}
+    \right]
+    \right)
+    +
+    \left(
+    - \frac{2}{ \xi^2}
+    \right)
+  \right]
+\end{align}
+
+From here, let us distribute our fraction and factor our terms.
+%
+\begin{align}
+  % Step Six: Distribute
+  & =
+  \frac{\sqrt 2}{\xi \sqrt\pi }
+  \left[
+    \frac{
+    e^{i \xi}
+    -  e^{-i \xi}
+    }{i}
   \right]
   +
-  \frac{\sqrt 2}{\xi \sqrt \pi}
+  \frac{1}{ \xi^2 \sqrt{2 \pi} }
   \left[
-      \frac{e^{i \xi} - e^{-i \xi}}{i}
+    e^{-i \xi}
+    + e^{i \xi}
   \right]
-  - \frac{2}{\xi^2 \sqrt{2 \pi}}
+    - \frac{\sqrt 2}{ \xi^2 \sqrt\pi }
+\end{align}
+
+Here, using Euler's Formula, let us replace our terms in brackets:
+%
+\begin{align}
+  F[f]
+  & =
+  \frac{\sqrt 2}{\xi \sqrt\pi }
+  \left[
+    2 \sin(\xi)
+  \right]
+  +
+  \frac{1}{ \xi^2 \sqrt{2 \pi} }
+  \left[
+    2 \cos(\xi)
+  \right]
+    - \frac{\sqrt 2}{ \xi^2 \sqrt\pi }\\
+%
+  & =
+  \frac{2 \sqrt 2}{\xi \sqrt\pi }
+  \sin(\xi)
+  +
+  \frac{\sqrt 2}{ \xi^2 \sqrt\pi }
+  \cos(\xi)
+% +
+  - \frac{\sqrt 2}{ \xi^2 \sqrt\pi }
 \end{align}
 \end{enumerate}

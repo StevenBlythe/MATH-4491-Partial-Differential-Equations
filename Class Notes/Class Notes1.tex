@@ -82,5 +82,22 @@ What if $f(x) = 7 \delta(x) + 5 \delta(x - 3)$?
 \end{align}
 
 So for a general $f(x)$, think of $f(x)$ as a bunch of delta functions.
+
+\topic{Conservation of Energy}
+
+The amount of heat stamp? constant
+%
+\begin{align}
+  \frac{d}{dt} \int^\infty_{-\infty} u(x, t) \text{ dx}
+  & = \int^\infty_{-\infty} u(x, t) \text{ dx}\\
+  & = \alpha^2 \int^\infty_{-\infty} u_{xx} (x, t) \text{ dx}\\
+  & = \alpha^2 u_x(x, t) \Big|^\infty_{-\infty}
+\end{align}
+
+\underline{Recall} We know $\lim_{x \pm \infty} u(x, t) = 0$, therefore the rate of change at both infinities is zero.
+%
+\begin{align}
+  \alpha^2 u_x(x, t) \Big|^\infty_{-\infty} & = 0
+\end{align}
 %______________________________________________________________________________%
 \end{document}
