@@ -39,7 +39,7 @@ Here, let us consider both problems individually.
   Here, let us plot our given function:
 
   \begin{center}
-    First image here%\includegraphics{}
+    \includegraphics[height=8cm]{2a}
   \end{center}
 
   Now, let us find the Fourier Transform of this problem.
@@ -149,12 +149,16 @@ Here, let us evaluate our expressions and simplify:
   % Setup for substitution
   & =
   \frac{\sqrt 2}{\xi \sqrt \pi}
-  \frac{e^{i \xi} + e^{-i \xi}}{i}
+  \frac{e^{i \xi} + e^{-i \xi}}{i}\\
+  & =
+  \frac{\sqrt 2}{\xi \sqrt \pi}
+  \frac{2 \cos(\xi)}{i}
 \end{align}
 
 
 %______________________________________________________________________________%
 \setcounter{equation}{0}
+\newpage
 \item Now, let us consider our second given equation:
 
 $\displaystyle
@@ -168,7 +172,7 @@ $
 Here, let us plot our given function:
 
 \begin{center}
-  % Image here
+  \includegraphics[height=8cm]{2b}
 \end{center}
 
 Now, let us find the Fourier Transform of this problem.
@@ -256,7 +260,7 @@ Here, we have our integration by parts. Now, let us proceed with our integrals:
 \end{align}
 
 Here, let us evaluate both integrals side-by-side:
-\newpage
+\bigbreak
 \begin{multicols}{2}
   Let us consider the integral on the left:
 \begin{align}
@@ -428,7 +432,7 @@ From here, let us shift our terms around then group them.
   \right]
 \end{align}
 
-From here, let us distribute our fraction and factor our terms.
+From here, let us rewrite our exponential and factor our terms.
 %
 \begin{align}
   & =
@@ -443,6 +447,9 @@ From here, let us distribute our fraction and factor our terms.
    & =
    -\frac{\sqrt 2}{\sqrt{\pi} \xi^2} \cos(\xi)
    +
-    \frac{\sqrt 2}{\sqrt{\pi} \xi^2}
+    \frac{\sqrt 2}{\sqrt{\pi} \xi^2}\\
+  %
+  & =
+  -\frac{\sqrt 2}{\sqrt \pi \xi^2} (\cos(\xi) + 1)
 \end{align}
 \end{enumerate}

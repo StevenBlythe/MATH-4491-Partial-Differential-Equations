@@ -402,12 +402,15 @@ class HomeworkVPi(ThreeDScene):
 class HomeworkVPiia(Scene):
     def construct(self):
         ### Set Theme Color ###
+
+        self.camera.background_color = WHITE
+
         colors = {
-            "Theme": WHITE,
-            "Theme_A": RED,
-            "Theme_B": BLUE,
-            "Theme_C": PURPLE,
-            "Theme_D": GREEN
+            "Theme": GRAY,
+            "Theme_A": BLACK,
+            "Theme_B": BLACK,
+            "Theme_C": BLACK,
+            "Theme_D": BLACK
         }
 
         ### Setup axes and Labels
@@ -418,7 +421,7 @@ class HomeworkVPiia(Scene):
             tips=False
         )
 
-        labels = axes.get_axis_labels().set_color(colors["Theme"])
+        labels = axes.get_axis_labels().set_color(colors["Theme_A"])
 
         self.add(axes, labels)
 

@@ -13,23 +13,22 @@ Here, let us consider the area $\Omega$, where $\Omega$ is any closed area.
 For the sake of coding these graphs, let us assume our boundary assumes the shape of a rounded rectangle %an ellipse
 
 \begin{center}
-  \includegraphics[height=8cm]{Region}
-  + $\Omega$ % Idea: Had a circle in Q1 with \Omega in the center of the circle
+  \includegraphics[height=8cm]{1a}
 \end{center}
 
 Now, let us consider a point within this interval, $x_0$. Here, let us consider point $x_0$ to be an arbitrary point within our area, $\Omega$:
 
 \begin{center}
-  \includegraphics[height=8cm]{x0_0}
-  \includegraphics[height=8cm]{x0_1}
+  \includegraphics[height=8cm]{1b1}
+  \includegraphics[height=8cm]{1b2}
   % Move $x_0$ around \Omega
 \end{center}
 
 To begin, let us consider a neighborhood, or ball, around our point, $x_0$. Here, our ball around $x_0$, has a radius $\eps$, where $\eps > 0$, and the area of our ball is a subset of $\Omega$.
 
 \begin{center}
-  \includegraphics[height=8cm]{eps_0}
-  \includegraphics[height=8cm]{eps_1}
+  \includegraphics[height=8cm]{1c1}
+  \includegraphics[height=8cm]{1c3}
   % Static x_0 point, change the size of \eps, spanning from x_0 to \p \Omega
 \end{center}
 
@@ -39,9 +38,19 @@ within its neighborhood is the center point of our neighborhood. In this case,
 our neighborhood is centered about $x_0$.
 
 \begin{center}
-  \includegraphics[height=8cm]{harmonic_base}
+  \includegraphics[height=8cm]{1di}
+  \includegraphics[height=8cm]{1dii}
   % x_0 in the center, introduce a harmonic graph on the left and a 2-d graph
   % on the right with $x_0$ moving around along with $\eps$
+\end{center}
+
+Here, let us consider the contents of $u$ within nour neighborhood. We can change the size of our neighborhood, as long as the size does not exceed $\Omega$'s boundaries, and move the center of our neighborhood throughout the region.
+
+\begin{center}
+  \includegraphics[height=6cm]{1ei}
+  \includegraphics[height=6cm]{1eii}\\
+  \includegraphics[height=6cm]{1fi}
+  \includegraphics[height=6cm]{1fii}\\
 \end{center}
 
 Here, let us consider a function where the average value of its neighborhood
@@ -51,9 +60,12 @@ region, then our harmonic function's value is uniform throughout the region.
 In other words, there is a constant value throughout the region.
 
 \begin{center}
-  % Constant harmonic function, move throughout the region
+  \includegraphics[height=6cm]{1fi}
+  \includegraphics[height=6cm]{1fii1}\\
+  \includegraphics[height=6cm]{1gi}
+  \includegraphics[height=6cm]{1gii}\\
 \end{center}
 
 While the average of our neighborhood is considered the max in a constant function as shown, a function like this will not always occur.
-% QUESTIONABLE CONTENT HERE
-Here,
+
+Here, we have a contradiction, as a function will only have an average max within its interior when the function is constant. However, this cannot always happen, therefore we will not see the max in the interior, rather on the boundary.
