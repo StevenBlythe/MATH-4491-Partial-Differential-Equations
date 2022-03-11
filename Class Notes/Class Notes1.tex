@@ -124,6 +124,158 @@ When we smoothen our picture, we also blur our ideal picture.
 \end{enumerate}
   %
 
+\subsection*{March 11, 2022}
+How do you get rid of Salt and Pepper noise without blurring the image at the same time?
+
+The heat equation removes the noise, but blurs as well.
+
+% | # # / .  .
+% | # / .  . .
+% | / .  .. .
+% | .  .  . .
+% |____________
+% |
+
+Selective blur: Blur in some direction. It all depends on the boundary.
+
+If we are parallel to the boundary, we could care less.
+
+We want to blur in the direction perpendicular to the gradient.
+
+
+% | # # / .  .
+% | # / -> \Delta u.
+% | / .  .. .
+% | .  .  . .
+% |____________
+% |
+
+We are going to try to modify the heat equation so that it does not blur the edge.
+
+% | # # # # # # ^ \eta
+% | # # # # # # |     ----> \xi
+% | ------------
+% |
+% |____________
+% |
+
+Here, we define:
+
+\begin{itemize}
+  \item $\eta$ : Direction of gradient
+  \item $\xi$ : Direction normal to gradient
+\end{itemize}
+
+To blur only in the direction perpendicular to $\nabla u$, use
+%
+\begin{align}
+  u_t & = u_{xx} + u_{yy} - u_{yy}\\
+  u_t & = u_{xx}
+\end{align}
+
+Here, $\Delta u$ is $u_{xx} + u_{yy}$ and the component in the direction of $\nabla u$ is $u_{yy}$.
+
+The equation that blurs only in the direction normal to the gradient is
+%
+\begin{align}
+  u_t & = \Delta u - u_{\eta \eta}\\
+  & = u_{\xi \xi} + u_{\eta \eta} - u_{\eta \eta}\\
+  & = u_{\xi \xi}
+\end{align}
+
+\note $\Delta u = u_{xx} + u_{yy} = u_{\xi \xi} + u_{\eta \eta}$ since $\xi \perp \eta$ and they are unit vectors.
+
+How do we express $u_{\eta\eta}$ in terms of $u_x, u_y, u_{xx}, u_{yy}, u_{xy}$?
+
+Let $\vv n$ be a unit vector.
+%
+\begin{align}
+  u_n & = \grad u \cdot \vv n
+\end{align}
+
+This is called the directional derivative (Calc III)
+%
+\begin{align}
+  u_{nn}
+  & = (u_n)_n\\
+  & = \grad u_n \cdot \vv n\\
+  & = \grad(\grad u \cdot \vv n) \cdot \vv n\\
+  & = \grad \grad u \vv n \cdot \vv n
+\end{align}
+
+Here, $\grad \grad u$ is the tensor. The tensor is also called the Hessian Matrix.
+
+$\vv u \cdot \vv v = \vv v^T \vv u$
+
+$\vv n = n_1 \hat i + n_2 \hat j$
+
+%
+\begin{align}
+  & =
+  \begin{bmatrix}
+    n_1 & n_2
+  \end{bmatrix}
+  \begin{bmatrix}
+    u_{xx} & u_{xy}\\
+    u_{xy} & u_{yy}
+  \end{bmatrix}
+  \begin{bmatrix}
+    n_1\\
+    n_2
+  \end{bmatrix}\\
+  %
+  & =
+  \begin{bmatrix}
+    n_1 & n_2
+  \end{bmatrix}
+  \begin{bmatrix}
+    u_{xx}n_1 + u_{xy} n_2\\
+    u_{xy}n_1 + u_{yy} n_2
+  \end{bmatrix}\\
+  %
+  & =
+    n_1 (u_{xx}n_1 + u_{xy} n_2) +
+    n_2 (u_{xy}n_1 + u_{yy} n_2)\\
+  & =
+    n^2_1 u_{xx} + 2n_1 n_2 u_{xy} + n^2_2 u_{yy}
+\end{align}
+
+We know the following:
+%
+\begin{align}
+  \vv \nabla
+  & = \frac{\grad}{||\grad u||}\\
+  & = \frac{\left<u_x, u_y\right>}{\sqrt{u^2_x + u^2_y}}\\
+  & = \left<  \frac{u_x}{\sqrt{u^2_x + u^2_y}} , \frac{u_y}{\sqrt{u^2_x + u^2_y}} \right>\\
+  \vv \xi & = \left<- \frac{u_y}{\sqrt{u^2_x + u^2_y}} , \frac{u_x}{\sqrt{u^2_x + u^2_y}} \right>
+\end{align}
+
+Here, let us call the first vector $n_1$ and the second $n_2$. Now:
+%
+\begin{align}
+  u_{\xi \xi} & = \frac{u^2_y}{u^2_x + u^2_y} u_{xx} - \frac{2 u_x u_y}{u^2_x + u^2_y} u_{xy} + \frac{u^2_x}{u^2_x + u^2_y} u_{yy}\\
+  & = \frac{u^2_y u_{xx} - 2u_x u_y u_{xy} + u^2_x u_{yy}}{u^2_x + u^2_y}
+\end{align}
+
+Here, let us write:
+%
+\begin{align}
+  u_t & = u_{\xi\xi}\\
+  & \Downarrow\\
+  u_t & = \frac{u^2_y u_{xx} - 2u_x u_y u_{xy} + u^2_x u_{yy}}{u^2_x + u^2_y}
+\end{align}
+
+This was given credit to James Sethian (Berkeley) in 1988. This is called the Level Set Equation (Mean Curvature Equation)
+
+Idea: We have a picture with three different circles with different sizes. The circle with the smallest radius has the largest curvature. The Mean Curvature Equation attacks the circles with the smallest curvatures first, so our salt and pepper noise, which can be seen as a minute circle, is attacked first.
+
+When the level set equation is applied to an image, the boundaries of each level set move with speed proportional to their curvature.
+
+One thing to note about two circles: Smaller circles become smaller at a faster rate than bigger circles since the radius is smaller and the curvature is bigger.
+
+\topic{Grayson's Theorem} (For 2-D level sets)
+
+For any closed simple curve, as it evolves under the influence of $u_t = u_{\xi \xi}$, the curve the curve becomes more and more circle-like and disappears as a single point.
 
 %______________________________________________________________________________%
 \end{document}

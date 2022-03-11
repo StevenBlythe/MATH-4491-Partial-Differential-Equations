@@ -463,3 +463,15 @@ class HomeworkVPiia(Scene):
         self.play(Create(line_b), run_time=2, rate_function=smooth)
         self.wait()
         self.play(FadeOut(line_b))
+
+class ProjectGradient(Scene):
+    def construct(self):
+        axes = Axes(
+            x_range=[0, 3, 1],
+            y_range=[0, 2, 1],
+            tips=False
+        )
+        l1 = lambda x : 1
+        l2 = lambda x : 2
+        axes.plot(l1)
+        axes.plot(l2)
