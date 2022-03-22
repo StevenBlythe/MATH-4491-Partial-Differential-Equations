@@ -9,11 +9,11 @@
 \maketitle
 \newpage
 
-%\import{Lectures/}{Legacy.tex}
-%\import{Lectures/}{2022-03-02.tex}
-%\import{Lectures/}{2022-03-04.tex}
-%\import{Lectures/}{2022-03-07.tex}
-%\import{Lectures/}{2022-03-09.tex}
+\import{Lectures/}{Legacy.tex}
+\import{Lectures/}{2022-03-02.tex}
+\import{Lectures/}{2022-03-04.tex}
+\import{Lectures/}{2022-03-07.tex}
+\import{Lectures/}{2022-03-09.tex}
 
 %______________________________________________________________________________%
 
@@ -278,4 +278,106 @@ One thing to note about two circles: Smaller circles become smaller at a faster 
 For any closed simple curve, as it evolves under the influence of $u_t = u_{\xi \xi}$, the curve the curve becomes more and more circle-like and disappears as a single point.
 
 %______________________________________________________________________________%
+
+\subsection*{March 21, 2022}
+
+Effect on an image with Salt and Pepper Noise
+
+% t = 0 . .   %  t = 5                %
+% .   .   .   %                       %
+% . . :^) ..  %    ::^)) Thicker edge %   :::^))) smaller face, eyes,
+% .    .  . . %                       %           and smile.
+% .   . . . . %                       %
+
+When applying our our algorith, the circle around the smile is thicker since inside boundary of circle has large curvature and goes in faster.
+
+The dots are like circles with really large curvatures so they go away quickly.
+
+At a small T: Eliminates noise.
+At a large T: The image shrinks and mutates.
+
+%###/ . .   %###/
+%##/ .  .   %##/
+%#/ . .. .  %#/
+%/.  . ..   %/
+%.  . . .   % No curvature + touches boundary, no effect
+
+%###\.    %####/
+%###| .   %###/
+%###|     %##/
+%##/ .    %#/
+%_/ . .   %/ Curved line becomes straight
+
+Where we have a curved line running through the boundaries of the picture, when do you stop? When the image looks the "Best."
+
+Can we modify level set to work better?
+
+Idea: use $u_t = u_{\xi\xi} - \alpha(u - f(x, y))$, where $\alpha > 0$.
+
+$u$ is the current image, $f$ is the initial image. The first term pushes away, modifies, and distorts, whereas the second term wants to bring us back to the original image.
+% ^
+% |   _
+% | /__\___
+% |     \_/
+% |____________>
+% |
+
+Let's consider $u_t = - \alpha(u - f(x))$, where our straight line is $f(x)$ is the modified image and $u$ is the original. Where the gaps are bigger in our image, the change is greater.
+
+If you run this method, the $u_{\xi\xi}$ will tend to blur in the orthogonal direction (to gradient) and $-\alpha(u - f)$ will tend toward the initial picture.
+
+There two terms compete with each other and eventually the .e.net stabilizes as $t \to \infty$ (steady-state)
+
+The idea is that you get a method that removes the noise but doesn't deviate too much from the original image. $\alpha$ is arbitrary, so you find the $\alpha$ that works best.
+
+\topic{Deblurring an Image}
+
+We know that the heat equation will blur an image. $u_t = u_{xx} + u_{yy}$.
+
+To deblur, perhaps we could run the backward heat equation $u_t = -(u_{xx} + u_{yy})$, but we know this is unstable and ill-posed.
+
+Perhaps we could tweak the backward heat equation?
+
+\underline{Idea} $u_t = -\alpha u_{xx}, \alpha > 0$ is unstable.
+
+However, $u_t = -|u_x| u_{xx}$ is not ill-posed
+
+Why is our new equation not ill-posed? Let us consider the following function:
+%
+\begin{align*}
+  u_t & = -u_{xx}\\
+  u(x, 0) = \sin x\\
+  u_{xx} & = -\sin x\\
+  u_t & = \sin x
+\end{align*}
+
+\begin{center}
+  \includegraphics[height=5cm]{Reverse Heat a}
+  \includegraphics[height=5cm]{Reverse Heat b}
+\end{center}
+
+$u(x, t) = e^t \sin x$, the amplitude tends to infinity.
+
+If we apply the shock filter, then:
+%
+\begin{align*}
+  u_t = -|u_x| u_{xx}\\
+  u(x, 0) = \sin x\\
+  u_t = |cos x| \sin x
+\end{align*}
+
+\begin{center}
+  \includegraphics[height=5cm]{Reverse Heat c}
+\end{center}
+
+Here, where $u_x = 0$, there is no change. Opposed to our first image, our graph will no longer increase its amplitude drastically. The image is stable at the peaks now and the change is greatest at the midpoints. As time goes on, the curve would beome boxy.
+
+As time goes on, the new image will start taking the save of square sine waves, but will eventually exhibit a graph akin to discontinuous lines at the peaks with a point at the mid point, similar to the infinite fourier.
+
+\note
+\begin{enumerate}
+  \item The solution does not blow up
+  \item Discontinuities are encouraged
+\end{enumerate}
+
 \end{document}

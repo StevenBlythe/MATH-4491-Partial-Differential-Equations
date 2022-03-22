@@ -1,0 +1,30 @@
+\item
+
+% Transform equation,
+% Solve ODE,
+% Transform back
+
+% f(x + ct) u_t = cu_x u(x, 0) = f(x)
+
+% Transform middle Equations
+% F[u_t] = F[cu_x]
+% We pick up ix\xi at each derivative
+
+% \hat u_t = c i\xi \hat u
+% x partials on the fourier becomes multiplication, get an ODE
+
+% \hat u(\xi, 0) = \hat f(\xi)
+% \hat u(\xi, t) =
+
+% \hat u_t = ci\xi \hat u
+% \hat u(\xi, t) = A(\xi) ^ci\xi \hat u -- REFER TO HEAT EQUATION
+% \hat(\xi, 0) = \hat f(\xi) = A(\xi)
+
+% This tells me
+% \hat u(\xi, t) = A(\xi) e^i c \xi t = \hat f(\xi)e^ic\xit
+
+% Transform back
+% u(x, t) = \frac{1}{\sqrt 2 \pi} \int^\infty_{-\infty \hat u(\xi, t) e^ix\xi d\xi = 1/\sqrt{2 \pi}} \int^\infty_{-\infty} \hat f(\xi) e^{i c \xi t} e^{i x \xi} d \xi
+% Combine exponents
+% 1/\sqrt{2 \pi} \int^\infty_-\infty f(\xi) e^{i \xi(x + ct)} d \xi
+% = f(x + ct)
