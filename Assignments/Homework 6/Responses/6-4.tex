@@ -1,3 +1,171 @@
 \item Derive d'Alembert's formula for $u_{tt} = u_{xx}$ by assuming that $u(x, t) = v(x + t, x - t) = v(y, z)$. Next show that the wave equation yields $v_{yz} = 0$ and hence $v = A(y) + B(z)$ and solve for $A$ and $B$ using the initial conditions $u(x, 0) = f(x)$ and $u_t(x, 0) = g(x)$.
 \bigbreak
 %_____________________________________________________________________________%
+
+Here, let us take a look at our assumption:
+%
+\begin{align}
+  u(x, t) & = v(x + t, x - t) = v(y, z)
+\end{align}
+
+Here, we have the following relationship:
+%
+% y = x + t, z = x-t.
+\begin{align}
+  \begin{cases}
+    y & = x + t\\
+    z & = x - t
+  \end{cases}
+\end{align}
+
+% mixed partial v_yz = 0
+Next, we want to show that the wave equation yields $v_{yz} = 0$. In orderfor
+% if Means that vy had no z's, vz had no y's.
+the equation to be zero, that means $v_y$ does not contain any $z's$, so when
+you differentiate $v_y$ once more, then the non-z terms zero out. The same can
+be argued for $v_z$, where $v_z$ does not contain any $y's$ and will zero out.
+
+%v is a function of y + z,
+Therefore, $v$ is a function of $y + z$ and we can write $v$ as
+% v = A(y) + B(z)
+$v = A(y) + B(z)$.
+
+%__________________________________________________________________________%
+% if u satisfies heat heation, so does v.
+% v_tt = u_xx
+%__________________________________________________________________________%
+
+% partial with respect to y and z.
+Here, let us find the partial of $v$ with respect to $y$ and $z$.
+
+% Find
+%   v
+% x   t
+%y  z  y   z
+Let us consider the following tree:
+
+\begin{center}
+  \import{Snippets/}{tree_v}
+\end{center}
+
+Here, let us consider our tree and find $v_y$:
+%
+\begin{align}
+  % vy = \pv/\x \x/\y + \v/\t \t/\y
+  v_y & = \frac{\p v}{\p x} \frac{\p x}{\p y} + \frac{\p v}{\p t} \frac{\p t}{\p y}
+\end{align}
+
+Earlier, we found the following system of equations:
+% y = x + t
+% z = x - t
+\begin{align}
+  \begin{cases}
+    y & = x + t\\
+    z & = x - t
+  \end{cases}
+\end{align}
+
+% add the following for an equation
+Here, notice we can isolate $x$ or $t$ by adding or subtracting
+the two equations together. First, let us add the equations to
+obtain the following:
+%
+\begin{align}
+  % y + z = 2x
+  y + z & = 2x\\
+  x & = \frac{1}{2}(y + z)
+\end{align}
+
+Using this information, we can find $\frac{\p x}{\p y}$:
+%
+\begin{align}
+  \frac{\p x}{\p y} & = \frac{1}{2}
+\end{align}
+
+% Then to find t, subtract instead
+Now, to find $t$, we subtract the equations:
+%
+\begin{align}
+  % 2t = y - z
+  y - z & = 2t\\
+  t & = \frac{1}{2}(y - z)
+\end{align}
+
+Similarly, let us find $\frac{\p t}{\p y}$
+%
+\begin{align}
+  \frac{\p t}{\p y} & = \frac{1}{2}
+\end{align}
+
+% We need them to find \x/\y = 1/2 and \pt/\py = 1/2
+Here, now that we know $\frac{\p x}{\p y}$ and $\frac{\p t}{\p y}$, let us substitute this into line 3:
+%
+\begin{align}
+  % vy = 1/2 vx + 1/2 v_T
+  v_y & = \frac{1}{2} v_x + \frac{1}{2} v_t
+\end{align}
+
+% v_yz
+Now, let us find $v_{yz}$. Let us rewrite our tree:
+% go from v_y to v_z
+% follow the tree
+\begin{center}
+  \import{Snippets/}{tree_vy}
+\end{center}
+
+Here, let us find $v_{yz}$ using our tree.
+%
+\begin{align}
+  % v_yz = \p v_y \p_x
+  % vyz = \pvy/\x \pyx/\pz + \pvy/\pt \pt/\pz
+  v_{yz} & = \frac{\p v_y}{\p x} \frac{\p x}{\p y} + \frac{\p v_y}{\p t} \frac{\p t}{\p y}
+\end{align}
+% = 1/2 v_xx + 1/2 v_tx
+
+% Now, we still have x = 1/2y + z and t = 1/2 y - z
+% = 1/2v_xx + 1/2v_tx \cdot 1/2 + 1/2v_xt + 1/2v_tt \cdot -1/2
+% This cancels out a bit
+% 1/2v_xx - 1/2_vtt
+% Recall from initial, v_tt = u_xx
+% Now, we can say v = A(y) + B(z)
+
+% We have two initial conditions.
+% Recall u(x, 0) = f(X)
+% u_t(x, 0) = g(x)
+% V = A(y) + B(z)
+% u(x, t) = v(x + t, x - t)
+
+% Plug in for u(x, 0)
+% v = A(y) + B(z) = A(x + t) + B(x - t)
+% A(x) + B(x) = f(X)
+
+% u_t says we need a t-partial
+% u_t = v_t
+% Use A(x + t) + B(x - t)
+% A\prime (only has one variable in reality)
+% u_t = v_t = A^\prime(x + t)\cdot 1 - B^\prime(x - t) \cdot 1
+% u_t(x, 0) A^\prime(x) - B^\prime(X) = g(x)
+
+% Let us rewrite
+% u  (x, 0) = f(x) -> A(x) + B(x) = f(X)
+% u_t(x, 0) = f(x) -> a^\prime(x) - B^\prime(x) = g(X)
+%
+% Integrate the second line
+
+% How we dealt with the wave equation
+% h(x) = \int g(X) dx
+% h(x) = \int^x_{-\infty} g(y) dy
+% g will head towards 0 at -infty
+
+% Integrating A\prime and B\pyime is simply
+% A(x) - B(x) = \int^x_{-\infty} g(y) dy
+% Add A(x) + B(x) = f(x) and A(x) - B(x) = integral
+
+% 2A(x) = f(x) + \int^x_-\infty g(y) dy
+% 2B(x) f(x) - integral
+
+% WE want to plug this into our v
+% Out A(x + t) + B(x - t) has x+t and x-t, swap these into our new functions
+
+% v = 1/2(f(x + t) + int^{x + t}_{-\infty} g(y)) dy + 1/2(f(x - t) - int^x - t_-\infty g(Y) dy)
+% SWap the limits of integration for the right side and combine

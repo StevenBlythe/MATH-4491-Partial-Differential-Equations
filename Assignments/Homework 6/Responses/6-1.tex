@@ -1,3 +1,104 @@
 \item Determine the solution to the heat equation $u_t = \alpha^2 u_{xx}$ with $\alpha \neq 1$ (We did the $\alpha = 1$ case in class).
 \bigbreak
 %_____________________________________________________________________________%
+
+Now, let us consider the following steps:
+%
+\begin{enumerate}
+  \item Solve for $u_t = u_{xx}$
+  %
+  \begin{align}
+    u_t & = \alpha^2 u_{xx}\\
+    F[u_t] & = F[\alpha^2 u_{xx}]\\
+    \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} u_t e^{-i x \xi} \text{ dx} & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} \alpha^2 u_{xx} e^{-i x \xi} \text{ dx}\\
+    %
+    \frac{\p}{\p t} \left[ \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} u e^{-i x \xi} \text{ dx} \right]
+    & = (i \xi)^2 \frac{\alpha^2}{\sqrt{2 \pi}} \int^\infty_{-\infty} u e^{-i x \xi} \text{ dx}\\
+    %
+    \frac{\p}{\p t} \hat u(\xi, t) & = - \xi^2 \alpha^2 \hat u(\xi, t)
+  \end{align}
+
+  Our initial condition becomes:
+  %
+  \begin{align}
+    F[u(x, 0)] & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} u(x, 0) e^{-i x \xi} \text{ dx}\\
+    & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} f(x) e^{-i x \xi} \text{ dx}\\
+    & = \hat f(\xi)
+  \end{align}
+  %
+  \item Solve $\hat u_t = -\xi^2 \alpha^2 \hat u$,
+
+  $\hat u(\xi, 0) = \hat f(\xi)$. Here, let us write the general form of $\hat u$:
+  %
+  \begin{align}
+    \hat u(\xi, t) & = A(\xi) e^{- \xi^2 t}
+  \end{align}
+
+  Here, let us use our initial condition to find $A(\xi)$
+  %
+  \begin{align}
+    \hat u (\xi, 0) \hat f(\xi) & = A(\xi)\\
+    \hat u(\xi, t) & = \hat f(\xi) e^{-\xi^2 t}
+  \end{align}
+
+  \item Retransform
+  %
+  \begin{align}
+    u(x, t) & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} \hat u(\xi, t) e^{-i x \xi} \text{ d}\xi\\
+    & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} \hat f(\xi) e^{-\xi^2 t}e^{i x \xi} \text{ d}\xi\\
+    & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty}
+    \color{blue}{\frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} f(y) e^{-i y \xi} \text{ dy}} \ \color{black}
+    e^{-\xi^2 t} e^{i x \xi} \text{ d}\xi\\
+    & = \frac{1}{2 \pi} \int^\infty_{-\infty} \int^\infty_{-\infty}
+    f(y)e^{-i y \xi} e^{-\xi^2 t} e^{i x \xi} \text{ dy d}\xi\\
+    & = \frac{1}{2 \pi} \int^\infty_{-\infty} f(y)
+    \int^\infty_{-\infty} e^{-i y \xi} e^{-\xi^2 t} e^{i x \xi} \text{ d}\xi \text{ dy}\\
+    & = \frac{1}{2 \pi}
+    \int^\infty_{-\infty} f(y)
+    \color{red}
+    \int^\infty_{-\infty} e^{-\xi^2 t + i \xi(x - y)} \text{ d}\xi
+    \color{black}
+    \text{ dy}
+  \end{align}
+
+  Here, let us focus our attention on the inner integral, where we rewrite it as \textcolor{red}{Q}.
+  %
+  \begin{align}
+    Q & = \int^\infty_{-\infty} e^{-\xi^2 t + i\xi(x - y)} \text{ d}\xi
+  \end{align}
+
+  Let's look at the following:
+  %
+  \begin{align}
+    -\xi^2 t + i\xi(x - y) & = -t\left[ \xi^2 - \frac{i \xi(x - y)}{t}\right]\\
+    & = -t \left[ \left(\xi - \frac{i(x - y)}{2t}\right)^2 - \frac{i^2(x - y)^2}{4t^2} \right]\\
+    & = -t \left[ \left(\xi - \frac{i(x - y)}{2t}\right)^2 + \frac{(x - y)^2}{4t^2} \right]
+  \end{align}
+
+  Now, we have the following for Q:
+  %
+  \begin{align}
+    Q & = \int^\infty_{-\infty} e^{-t \left[ \left(\xi - \frac{i(x - y)}{2t}\right)^2 + \frac{(x - y)^2}{4t^2} \right]} \text{ d}\xi\\
+    & = \int^\infty_{-\infty} e^{-t\left( \xi - \frac{i(x - y)}{2t}\right)^2 - \frac{(x - y)^2}{4t}} \text{ d}\xi\\
+    & = \int^\infty_{-\infty} e^{-t \left(\xi - \frac{i(x - y)}{2t}\right)^2} e^{- \frac{(x - y)^2}{4t}} \text{ d}\xi\\
+    & = e^{- \frac{(x - y)^2}{4t}} \int^\infty_{-\infty} e^{-t \left(\xi - \frac{i(x - y)}{2t}\right)^2} \text{ d}\xi
+  \end{align}
+
+  Here, let us consider the following substitution:
+  %
+  \color{blue}
+  \begin{align}
+    w & = \sqrt t \left( \xi - \frac{i(x - y)}{2t}\right)\\
+    dw & = \sqrt t \text{ d}\xi
+  \end{align}
+  \color{black}
+
+  Now, let us write:
+  %
+  \begin{align}
+    e^{- \frac{(x - y)^2}{4t}} \frac{1}{\sqrt t} \int^{\textcolor{blue}{\infty}}_{\textcolor{blue}{-\infty}} e^{-w^2} \text{ dw}
+    & = \sqrt{\frac{\pi}{t}} e^{- \frac{(x - y)^2}{4t}}\\
+    u(x, t) & = \frac{1}{2 \pi} \int^\infty_{- \infty} f(y) \sqrt{\frac{\pi}{t}} e^{- \frac{(x - y)^2}{4t}} \text{ dy}\\
+    & = \frac{1}{2 \sqrt{\pi t}} \int^\infty_{-\infty} f(y) e^{- \frac{(x - y)^2}{ty}} \text{ dy}
+  \end{align}
+\end{enumerate}

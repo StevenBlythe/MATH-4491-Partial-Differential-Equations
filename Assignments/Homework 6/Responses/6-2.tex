@@ -1,30 +1,90 @@
 \item Use Fourier Transforms to determine the solution to $u_t = cu_x$ is $u(x, t) = f(x + ct)$ where $u(x, 0) = f(x)$.
 
-% Transform equation,
-% Solve ODE,
-% Transform back
-
 % f(x + ct) u_t = cu_x u(x, 0) = f(x)
+Here, let us consider the given equation:
+%
+\begin{align}
+  u_t & = cu_x
+\end{align}
 
+% Transform equation,
+Here, let us use Fourier Transform to transform the equation:
+%
 % Transform middle Equations
 % F[u_t] = F[cu_x]
 % We pick up ix\xi at each derivative
+\begin{align}
+  F[u_t] & = F[cu_x]
+\end{align}
 
+Here, we are deriving the right side once. Since we're doing one derivative, we pick up one $c i \xi$.
+%
 % \hat u_t = c i\xi \hat u
+\begin{align}
+  \hat u_t & = c i \xi \hat u
+\end{align}
+
+% Solve ODE,
+% Transform back
+
 % x partials on the fourier becomes multiplication, get an ODE
+
+
+
+Here, let us consider the following equation:
+%
+\begin{align}
+  u(x, 0) & = f(x)\\
+  \hat u(\xi, 0) & = \hat f(\xi)
+\end{align}
 
 % \hat u(\xi, 0) = \hat f(\xi)
 % \hat u(\xi, t) =
 
-% \hat u_t = ci\xi \hat u
-% \hat u(\xi, t) = A(\xi) ^ci\xi \hat u -- REFER TO HEAT EQUATION
-% \hat(\xi, 0) = \hat f(\xi) = A(\xi)
+Now, let us consider our equation $u_t = cu_x$. Here, recall we are picking up $c i \xi$ on the right. Let us attempt to write a general form for our equation:
+%
+\begin{align}
+  % \hat u_t = ci\xi \hat u
+  \hat u_t & = c i \xi \hat u\\
+  % \hat u(\xi, t) = A(\xi) ^ci\xi \hat u -- REFER TO HEAT EQUATION
+  \hat u(\xi, t) & = A(\xi)e^{c i \xi}
+  % \hat(\xi, 0) = \hat f(\xi) = A(\xi)
+\end{align}
 
+Here, we want to find a way to solve for our general solution. If we consider what we wrote for $hat u(\xi, 0)$, we want to find:
+%
+\begin{align}
+  \hat(\xi, 0) & = \hat f(\xi) = A(\xi)
+\end{align}
+
+So, our exponential must disappear at $t = 0$, which means we have the following:
+%
+\begin{align}
+  \hat u(\xi, t) & = A(\xi) e^{i c \xi t}
+\end{align}
 % This tells me
+
+Here, let us rewrite $A(\xi)$ as $f(\xi)$
+%
+\begin{align}
+  \hat u(\xi, t) & = f(\xi) e^{i c \xi t}
+\end{align}
 % \hat u(\xi, t) = A(\xi) e^i c \xi t = \hat f(\xi)e^ic\xit
 
 % Transform back
-% u(x, t) = \frac{1}{\sqrt 2 \pi} \int^\infty_{-\infty \hat u(\xi, t) e^ix\xi d\xi = 1/\sqrt{2 \pi}} \int^\infty_{-\infty} \hat f(\xi) e^{i c \xi t} e^{i x \xi} d \xi
+Now, let us take our equation and retransform back.
+%
+\begin{align}
+  % u(x, t) = \frac{1}{\sqrt 2 \pi} \int^\infty_{-\infty \hat u(\xi, t) e^ix\xi d\xi = 1/\sqrt{2 \pi}} \int^\infty_{-\infty} \hat f(\xi) e^{i c \xi t} e^{i x \xi} d \xi
+  u(x, t) & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} \hat u(\xi, t) e^{i x \xi} \text{ d}\xi\\
+  & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} \hat f(\xi) e^{i c \xi t} e^{i x \xi} \text{ d}\xi
+\end{align}
+
 % Combine exponents
-% 1/\sqrt{2 \pi} \int^\infty_-\infty f(\xi) e^{i \xi(x + ct)} d \xi
-% = f(x + ct)
+Here, let us combine our exponents.
+%
+\begin{align}
+  % 1/\sqrt{2 \pi} \int^\infty_-\infty f(\xi) e^{i \xi(x + ct)} d \xi
+  % = f(x + ct)
+  u(x, t) & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} f(\xi) e^{i \xi(x + ct)} \text{ d}\xi
+\end{align}
