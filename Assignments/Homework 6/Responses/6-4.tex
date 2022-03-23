@@ -158,7 +158,7 @@ Let us reconsider what we know:
   \item $u(x, 0) = f(x)$
   \item $u_t(x, 0) = g(x)$
   \item $V = A(y) + B(z)$
-  \item $u(x, t) & = v(x + t, x - t)$
+  \item $u(x, t) = v(x + t, x - t)$
 \end{itemize}
 
 % Plug in for u(x, 0)
@@ -168,7 +168,7 @@ Here, let us plug in for $u(x, 0)$ and substitute for $y$ and $z$:
   % v = A(y) + B(z) =
   v & = A(y) + B(z)\\
   %    A(x + t) + B(x - t)
-  & = A(x + t) + B(x - t)
+  & = A(x + t) + B(x - t)\\
   u(x, 0) & = A(x) + B(x) = f(x)
 \end{align}
 % A(x) + B(x) = f(X)
@@ -187,32 +187,74 @@ Now, let us find $u_t$, which requests for the t-partial, $u_t = v_t$. Let us us
 \end{align}
 
 Here, we found both $g(x)$ and $f(x)$:
-%
+% Let us rewrite:
+% u  (x, 0) = f(x) -> A(x) + B(x) = f(X)
+% u_t(x, 0) = f(x) -> a^\prime(x) - B^\prime(x) = g(X)
 \begin{align}
   f(x) & = A(x) + B(x)\\
   g(x) & = A^\prime(x) - B^\prime(x)
 \end{align}
 
-% Let us rewrite
-% u  (x, 0) = f(x) -> A(x) + B(x) = f(X)
-% u_t(x, 0) = f(x) -> a^\prime(x) - B^\prime(x) = g(X)
-%
 % Integrate the second line
-
 % How we dealt with the wave equation
-% h(x) = \int g(X) dx
-% h(x) = \int^x_{-\infty} g(y) dy
+Here, let us integrate the second line: %similar to the heat equation
+%
+\begin{align}
+  % h(x) = \int g(X) dx
+  h(x) & = \int g(x) \text dx
+  % h(x) = \int^x_{-\infty} g(y) dy
+\end{align}
+
+Here, we want to integrate over an area while keeping $g$ spanning over the entire number line.
+
+\begin{align}
+  h(x) & = \int^x_{-\infty} g(y) \text dy
+\end{align}
+
 % g will head towards 0 at -infty
-
+Here, let us consider $g(y)$'s behavior as $-\infty$ tends to infinity. As $g$ tends to $-\infty$, then $g$ will head towards $0$. Now, let us consider integrating $A^\prime(x) - B^\prime(x)$
 % Integrating A\prime and B\pyime is simply
-% A(x) - B(x) = \int^x_{-\infty} g(y) dy
-% Add A(x) + B(x) = f(x) and A(x) - B(x) = integral
+\begin{align}
+  % A(x) - B(x) = \int^x_{-\infty} g(y) dy
+  A(x) - B(x) & = \int^x_{-\infty} g(y) \text dy
+\end{align}
 
-% 2A(x) = f(x) + \int^x_-\infty g(y) dy
-% 2B(x) f(x) - integral
+% Add A(x) + B(x) = f(x) and A(x) - B(x) = integral
+Here, recall $A(x) + B(x) = f(x)$. Here, let this function and the previous function together:
+%
+\begin{align}
+  A(x) + B(x) & = f(x)\\
+  A(x) - B(x) & = \int^x_{-\infty} g(y) \text dy\\
+  \hline
+  % 2A(x) = f(x) + \int^x_-\infty g(y) dy
+  2A(x) & = f(x) + \int^x_{-\infty} g(y) \text dy\\
+  % 2B(x) f(x) - integral
+  2B(x) & = f(x) - \int^x_{-\infty} g(y) \text dy
+\end{align}
 
 % WE want to plug this into our v
 % Out A(x + t) + B(x - t) has x+t and x-t, swap these into our new functions
+Here, we want to plug our previous two functions into $v$. See how $A(x + t) + B(x - t)$ has $x + t$ and $x - t$. Let us swap these into our new functions:
+%
+\begin{align}
+  % v =
+  % 1/2(f(x + t) + int^{x + t}_{-\infty} g(y)) dy +
+  % 1/2(f(x - t) - int^x - t_-\infty g(Y) dy)
+  v & =
+  \frac{1}{2} \left( f(x + t) + \int^{x + t}_{-\infty} g(y) \right) \text dy +
+  \frac{1}{2} \left( f(x - t) - \int^{x - t}_{-\infty} g(y) \text dy \right)\\
+  v & =
+  \frac{1}{2} \left( f(x + t) + \int^{x + t}_{-\infty} g(y) \right) \text dy +
+  \frac{1}{2} \left( f(x - t) + \int_{x - t}^{-\infty} g(y) \text dy \right)
+\end{align}
 
-% v = 1/2(f(x + t) + int^{x + t}_{-\infty} g(y)) dy + 1/2(f(x - t) - int^x - t_-\infty g(Y) dy)
 % SWap the limits of integration for the right side and combine
+Here, notice how our integrations are similar. The bottom and top intervals are the same respectively, we can combine them:
+%
+\begin{align}
+  v & =
+  \frac{1}{2} \left( f(x - t) + f(x + t) + \int^{x + t}_{x - t} g(y) \text dy \right)
+\end{align}
+
+
+Here, we have derive D'Alembert's Formula.
