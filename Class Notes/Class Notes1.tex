@@ -9,11 +9,11 @@
 \maketitle
 \newpage
 
-\import{Lectures/}{Legacy.tex}
-\import{Lectures/}{2022-03-02.tex}
-\import{Lectures/}{2022-03-04.tex}
-\import{Lectures/}{2022-03-07.tex}
-\import{Lectures/}{2022-03-09.tex}
+%\import{Lectures/}{Legacy.tex}
+%\import{Lectures/}{2022-03-02.tex}
+%\import{Lectures/}{2022-03-04.tex}
+%\import{Lectures/}{2022-03-07.tex}
+%\import{Lectures/}{2022-03-09.tex}
 
 %______________________________________________________________________________%
 
@@ -379,5 +379,267 @@ As time goes on, the new image will start taking the save of square sine waves, 
   \item The solution does not blow up
   \item Discontinuities are encouraged
 \end{enumerate}
+
+\subsection*{March 23, 2022}
+
+\dfn Discontinuities that appear in solutions as time progresses are called shocks.
+
+Objective of our algorithm $u_t = -|u_x| u_{xx}|$: Places where the rate of change is $0$ exhibits no change, and places near $0$ rate of change experiences minimal change. Inflection points also exhibit no change.
+
+The algorithm pushes towards a piecewise constant solution where the values of each constant part corresponds to the values of $f$ where $f^\prime = 0$.
+
+The endpoints of each constant interval are where $f^{\prime\prime} = 0$.
+%                 __
+%                /  \
+%    __         /    \
+%   /  \       .      \
+%  /    .     /        \
+% .     \    /          .
+%        \__/            \
+%                         \      /
+%                          \    /
+%                           \__/
+
+\note The shock filter equation will make noise worse.
+
+\note 2-D Version
+%
+\begin{align}
+  u_t & = - | \grad u | \Delta u\\
+  & = - \sqrt{u^2_x + u^2_y} (u_{xx} + u_{yy})
+\end{align}
+
+Recall $\grad u = \left< u_x, u_y \right>$
+
+% Heat
+% Level Set
+% Modified Level Set -- Tweak Level Set
+% Shock Filter
+
+\topic{Implementation}
+
+It is important to let a computer know how to find a derivative.
+With an image, we have a box of numbers (Array/matrix)
+How do we take these numbers and create derivatives?
+$u$ is our image
+Our computer simply has pixel values (grayscale)
+If we are finding $u_x$, what does it mean to the computer?
+
+\underline{Derivatives - Numerically}
+
+On a computer, we can only specify the value of a function at certain values.
+% ^ u
+%  |    .   .
+%  | .    o   .
+%  .           .
+%  |___|___|___|____> x
+% x_0 x_1 x_2 x_3
+
+
+We will have a function at many points.
+
+Looking at $o$, what does the derivative represent?
+
+The derivative represents a slope.
+
+We can do rise over run, but we must have two points.
+
+We can use the point to the right (Forward Difference)
+
+We can also use the point to the left (Backward Difference)
+
+Using both is called Centered Difference, which is preferred.
+
+%______________________________________________________________________________%
+
+Let's say we want to approximate $u^\prime(x_0)$.
+
+Let use consider:
+%
+\begin{align}
+  u_1 & = u(x_1)\\
+  u_2 & = u(x_2)\\
+  & \vdots
+\end{align}
+
+We could do the following:
+%
+\begin{itemize}
+  \item Forward Difference
+  %
+  \begin{align}
+    u^\prime(x_2) \approx \frac{u_3 - u_2}{\Delta x}
+  \end{align}
+  \item Backward Difference
+  %
+  \begin{align}
+    u^\prime(x_2) \approx \frac{u_2 - u_1}{\Delta x}
+  \end{align}
+  \item Centered Difference
+  %
+  \begin{align}
+    u^\prime(x_2) \approx \frac{u_3 - u_1}{2 \Delta x}
+  \end{align}
+\end{itemize}
+
+Here, let us consider $j$ as the $x-$dimension, $k$ as the $y-$dimension, and $n$ as the $t-$dimension.:
+%
+\begin{align}
+  u^n_{j, k} & = u(x_j, y_k, t^n)\\
+  & = u(j \Delta x, k \Delta y, n \Delta t)
+\end{align}
+
+Here, we assume $x_0 = y_0 = t^0 = 0$.
+
+Here, if we want to find the $x-$partial with forward difference:
+%
+\begin{align}
+  u_x(x_j, t_k, t^n) & = u^{\ n}_{x\ j, k}\\
+  & \approx \frac{u^n_{j + 1, k}-u^n_{j, k}}{\Delta x}
+\end{align}
+
+If we want to consider change in $y$ with forward difference,
+%
+\begin{align}
+  u^{\ n}_{y\ j, k}
+  & \approx \frac{u^n_{j, k + 1}-u^n_{j, k}}{\Delta y}
+\end{align}
+
+Now, let us consider $x$ again, but in terms of backward difference:
+%
+\begin{align}
+  u^{\ n}_{x\ j, k} & \approx \frac{u^n_{j, k} - u^n_{j - 1, k}}{\Delta x}
+\end{align}
+
+\topic{Second Derivatives Numerically}
+
+Here, let us use forward difference for our next equation:
+%
+\begin{align}
+  u_{xx} = (u_x)^{\ n}_{x\ j,k}
+  & = \frac{(u_x)^n_{j + 1, k} - (u_x)^n_{j, k}}{\Delta x}
+\end{align}
+
+Here, we found our terms in the previous equation,
+%
+\begin{align}
+  & \approx
+  \frac
+  {
+  \frac{u^n_{j+1, k} - u^n_{j - 1, k}}{\Delta x} -
+  \frac{u^n_{j, k} - u^n_{j - 1, k}}{\Delta x}
+  }
+  {\Delta x}\\
+  & \approx
+  \frac
+  {
+  u^n_{j+1, k} - 2u^n_{j, k} + u^n_{j - 1, k}
+  }
+  {(\Delta x)^2}
+\end{align}
+
+\smallbreak
+
+Let us consider centered for both,
+%
+\begin{align}
+  (u_{xy})^n_{j, k} & = (u_x)^{\ n}_{y\ j, k}\\
+  & \approx
+  \frac
+  {
+  (u_x)^n_{j, k+1} - (u_x)^n_{j, k - 1}
+  }
+  {2 \Delta y}\\
+  & =
+  \frac
+  {
+  \frac{u^n_{j + 1, k+1} - u^n_{j-1, k+1}}{2\Delta x}
+  -
+  \frac{u^n_{j+1, k - 1} - u^n_{j - 1, k - 1}}{2 \Delta x}
+  }
+  {2\Delta y}\\
+  & = \frac
+  {
+  u^n_{j+1, k+1} -
+  u^n_{j-1, k+1} -
+  u^n_{j+1, k-1} +
+  u^n_{j-1, k-1}
+  }
+  {4 \Delta x \Delta y}
+\end{align}
+
+\topic{Equation Simulation}
+% ^ y
+% | .  .  .  .
+% | .  .  .  .
+% | .  .  .  .
+% |____________> x
+% /
+
+\emph{See comments, bpeqs}
+
+Only update the interior points.
+
+% ^ y
+% | u_{1, 3}, u_{2, 3}, u_{3, 3}
+% | u_{1, 2}, u_{2, 2}, u_{3, 2}
+% | u_{1, 1}, u_{2, 1}, u_{3, 1}
+% |____________> x
+% /
+
+\emph{See comments, bpeqspts}
+
+Here, we have $u(x, y, 0)$ as the original image.
+
+We want to step up the value of time.
+
+
+\topic{Heat Equation}
+
+We are able to make $\Delta x$ and $\Delta y$. We want to make both a length of $1$.
+%
+\begin{align}
+  u_t & = u_{xx} + u_{yy}
+\end{align}
+
+Here, let us consider forward difference in time:
+%
+\begin{align}
+  \frac
+  {u^{n + 1}_{j, k} - u^n_{j, k}}
+  {\Delta t}
+  & =
+  \frac
+  {
+  u^n_{j+1, k} - 2u^n_{j, k} + u^n_{j - 1, k}
+  }
+  {
+  (\Delta x)^2
+  }
+  +
+  \frac
+  {
+  u^n_{j, k+1} - 2u^n_{j, k} + u^n_{j, k - 1}
+  }
+  {
+  (\Delta y)^2
+  }
+\end{align}
+
+Here, let $\Delta x = \Delta y = h$.
+%
+\begin{align}
+  \frac
+  {u^{n + 1}_{j, k} - u^n_{j, k}}
+  {\Delta t}
+  & = \frac
+  {
+  u^n_{j+1, k} + u^n_{j-1, k} - 4u^n_{j, k} + u^n_{j, k+1} + u^n_{j, k-1}
+  }
+  {h^2}
+\end{align}
+
+Here, we have all the old image and we want to find the new image.
+
 
 \end{document}
