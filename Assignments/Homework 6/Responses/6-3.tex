@@ -1,3 +1,105 @@
 \item Determine d'Alembert's solution for $u_{tt} = c^2u_{xx}$
 \bigbreak
 %_____________________________________________________________________________%
+
+Here, let us consider the fourier transform on both sides of the equation:
+%
+\begin{align}
+  F[u_{tt}] & = F[c^2 u_{xx}]
+\end{align}
+
+Here, we are deriving $u_{xx}$ twice, therefore:
+%
+\begin{align}
+  \hat u_{tt} & = c^2(i \xi)^2 \hat u\\
+  & = - c^2 \xi^2 \hat u
+\end{align}
+
+Here, let us consider $\hat u(\xi, 0)$ and $\hat u_t(\xi, 0)$. Here, let us write:
+%
+\begin{align}
+  \hat u(\xi, 0) & = \hat f(\xi)
+\end{align}
+ Next, let us consider $F[u_(x, 0)]$:
+ %
+ \begin{align}
+   \hat u_t(\xi, 0)
+   & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} u_t(x, 0) e^{-i x \xi} \text dx\\
+   & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} g(x) e^{-i x \xi} \text dx\\
+   & = \hat g(\xi)
+ \end{align}
+
+ Next, let us solve for $\hat u_{tt} = -c^2 \xi^2 \hat u$.
+ Recall we have $\hat f(\xi)$ and $\hat g(\xi)$.
+ Here, we want to find the general form for our equations. Here, let us consider finding the general form for $\hat u$:
+ %
+ \begin{align}
+   \hat u(\xi, t) & = A(\xi) e^{c i \xi t} + B(\xi) e^{-c i \xi t}
+ \end{align}
+
+ Now, let us find $\hat u(\xi, 0)$
+ %
+ \begin{align}
+   \hat u(\xi, 0) & = A(\xi) + B(\xi) = \hat f(\xi)
+ \end{align}
+
+Here, we found an equation for $f(\xi)$. Next, let us find the $t$ partial and find $\hat g$:
+%
+\begin{align}
+  \hat u_t(\xi, t) & = c i \xi A(\xi) e^{c i \xi t} - c i \xi B(\xi) e^{-c i \xi t}\\
+  \hat u_t(\xi, 0) & = c i \xi A(\xi) - c i \xi B(\xi) = \hat g(\xi)
+\end{align}
+
+Here, let us rewrite $\hat f$ and $\hat g$:
+%
+\begin{align}
+  c i \xi \hat f(\xi) & = c i \xi A(\xi) + c i \xi B(\xi)\\
+  \hat g(\xi) & = c i \xi A(\xi) - c i \xi B(\xi)
+\end{align}
+
+Here, let us add these terms together,
+%
+\begin{align}
+  c i \xi \hat f(\xi) + \hat g(\xi) & = 2 c i \xi A(\xi)\\
+  \frac{\hat f(\xi)}{2} + \frac{\hat g(\xi)}{2 ci \xi} & = A(\xi)
+\end{align}
+
+Similarly for $B$:
+%
+\begin{align}
+  c i \xi \hat f(\xi) - \hat g(\xi) & = 2 c i \xi B(\xi)\\
+  \frac{\hat f(\xi)}{2} - \frac{\hat g(\xi)}{2 ci \xi} & = B(\xi)
+\end{align}
+
+Next, let us substitute in for both $A(\xi)$ and $B(\xi)$ using our found equation, $\hat u(\xi, t)$.
+%
+\begin{align}
+  \hat u(\xi, t) & =
+  \left( \frac{\hat f(\xi)}{2} + \frac{\hat g(\xi)}{2 c i \xi} \right)e^{c i \xi t} +
+  \left( \frac{\hat f(\xi)}{2} - \frac{\hat g(\xi)}{2 c i \xi} \right) e^{-c i \xi t}
+\end{align}
+
+Now, let us retransform our equation back.
+%
+\begin{align}
+  u(x, t)
+  & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty}
+  \hat u(\xi, t) e^{i x \xi} \text d\xi\\
+  & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty}
+  \left(\left( \frac{\hat f(\xi)}{2} + \frac{\hat g(\xi)}{2 c i \xi} \right)e^{c i \xi t} +
+  \left( \frac{\hat f(\xi)}{2} - \frac{\hat g(\xi)}{2 c i \xi} \right) e^{-c i \xi t}\right) e^{i x \xi}\\
+  & = \frac{1}{2 \sqrt{2 \pi}} \int^\infty_{-\infty}
+  \left( \hat f(\xi)\left(e^{c i \xi t} + e^{-c i \xi t} \right)e^{i x \xi} + \frac{\hat g(\xi)}{c i \xi}\left( e^{c i \xi t} - e^{-c i \xi t} \right) e^{i x \xi} \right) \text d\xi\\
+  & =
+  \frac{1}{2 \sqrt{2 \pi}} \int^\infty_{-\infty}
+  \left(
+  \hat f(\xi)\left(e^{i \xi(c t + x)} + e^{i \xi (x - c t)} \right) +
+  \frac{\hat g(\xi)}{c i \xi}\left( e^{i \xi(c t + x)} - e^{i \xi (x - c t)} \right) \right) \text d\xi
+\end{align}
+
+Here, note that we have the transforms for $f(x+ct)$ and $f(x - ct)$ present in our equation. Let us write:
+%
+\begin{align}
+  u(x, t) & = \frac{1}{2} \left(f(x + ct) + f(x - ct)\right) + \frac{1}{2 \sqrt{2 \pi}} \int^\infty_{-\infty}
+  \frac{\hat g(\xi)}{c i \xi}\left( e^{i \xi(c t + x)} - e^{i \xi (x - c t)} \right)
+\end{align}
