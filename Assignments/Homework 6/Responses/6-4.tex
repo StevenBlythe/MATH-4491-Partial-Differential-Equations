@@ -118,25 +118,59 @@ Here, let us find $v_{yz}$ using our tree.
 \begin{align}
   % v_yz = \p v_y \p_x
   % vyz = \pvy/\x \pyx/\pz + \pvy/\pt \pt/\pz
-  v_{yz} & = \frac{\p v_y}{\p x} \frac{\p x}{\p y} + \frac{\p v_y}{\p t} \frac{\p t}{\p y}
+  v_{yz} & = \frac{\p v_y}{\p x} \frac{\p x}{\p z} + \frac{\p v_y}{\p t} \frac{\p t}{\p z}\\
+  % = 1/2 v_xx + 1/2 v_tx
+  & = \frac{1}{2} v_{xx} + \frac{1}{2} v_{tx}
 \end{align}
-% = 1/2 v_xx + 1/2 v_tx
 
-% Now, we still have x = 1/2y + z and t = 1/2 y - z
+Now, we still have the following terms for $x$ and $t$:
+%
+\begin{align}
+  x & = \frac{1}{2}(y + z)\\
+  t & = \frac{1}{2}(y - z)
+\end{align}
+
+So let us substitute these back into the equation:
+%
+% Now, we still have x = 1/2y + z and t = 1/2 y -z
 % = 1/2v_xx + 1/2v_tx \cdot 1/2 + 1/2v_xt + 1/2v_tt \cdot -1/2
 % This cancels out a bit
 % 1/2v_xx - 1/2_vtt
+\begin{align}
+  v_{yz} &
+  = \frac{1}{2} \left(v_{xx} + v_{tx}\right)
+  - \frac{1}{2} \left(v_{xt} + v_{tt}\right)\\
+  & = \frac{1}{2} v_{xx} - \frac{1}{2} v_{tt}
+\end{align}
+
 % Recall from initial, v_tt = u_xx
 % Now, we can say v = A(y) + B(z)
+Recall from our initial conditions, we have $v_{tt} = u_{xx}$.
+Now, we can say $v = A(y) + B(z)$ since $v_{yz} = v_{xx} - v_{tt} = 0$.
 
+Let us reconsider what we know:
 % We have two initial conditions.
 % Recall u(x, 0) = f(X)
 % u_t(x, 0) = g(x)
 % V = A(y) + B(z)
 % u(x, t) = v(x + t, x - t)
+\begin{itemize}
+  \item $u(x, 0) = f(x)$
+  \item $u_t(x, 0) = g(x)$
+  \item $V = A(y) + B(z)$
+  \item $u(x, t) & = v(x + t, x - t)$
+\end{itemize}
 
 % Plug in for u(x, 0)
-% v = A(y) + B(z) = A(x + t) + B(x - t)
+Here, let us plug in for $u(x, 0)$ and substitute for $y$ and $z$:
+%
+\begin{align}
+  % v = A(y) + B(z) =
+  v & = A(y) + B(z)\\
+  %    A(x + t) + B(x - t)
+  & = A(x + t) + B(x - t)
+  u(x, 0) & = A(x) + B(x) = f(x)
+\end{align}
 % A(x) + B(x) = f(X)
 
 % u_t says we need a t-partial
@@ -145,6 +179,19 @@ Here, let us find $v_{yz}$ using our tree.
 % A\prime (only has one variable in reality)
 % u_t = v_t = A^\prime(x + t)\cdot 1 - B^\prime(x - t) \cdot 1
 % u_t(x, 0) A^\prime(x) - B^\prime(X) = g(x)
+Now, let us find $u_t$, which requests for the t-partial, $u_t = v_t$. Let us use $A(x + t) + B(x - t)$ and find the derivative in terms of $A$ and $B$:
+%
+\begin{align}
+  u_t & = A^\prime(x + t) \cdot 1 - B^\prime(x - t) \cdot 1\\
+  u_t(x, 0) & = A^\prime(x) - B^\prime(x) = g(x)
+\end{align}
+
+Here, we found both $g(x)$ and $f(x)$:
+%
+\begin{align}
+  f(x) & = A(x) + B(x)\\
+  g(x) & = A^\prime(x) - B^\prime(x)
+\end{align}
 
 % Let us rewrite
 % u  (x, 0) = f(x) -> A(x) + B(x) = f(X)
