@@ -641,5 +641,96 @@ Here, let $\Delta x = \Delta y = h$.
 
 Here, we have all the old image and we want to find the new image.
 
+\subsection*{March 25, 2022}
+
+\topic{Maple}
+
+Maple can read five types of images, BMP, JPEG, PNG, TIFF
+
+How to read, write, create, manipulate an image.
+
+Preview on Maple
+
+Grayscale on Maple
+
+\subsection*{March 28, 2022}
+%
+\begin{align}
+  u_t & = u_{xx} + u_{yy}
+\end{align}
+
+Here, let us write:
+%
+\begin{align}
+  \frac{u^{n + 1}_{j, k} - u^n_{j, k}}{\Delta t}
+  & =
+  \frac{u^n_{j+1, k} + u^n_{j-1, k} - 4u^n_{j, k} + u^n_{j, k+1} + u^n_{j, k - 1}}{h^2}\\
+  u^{n + 1}_{j, k}
+  & = u^n_{j, k} + \frac{\Delta t}{h^2}
+  \left[
+    u^n_{j+1, k} + u^n_{j - 1, k} - 4u^n_{j, k} + u^n_{j, k+1} + u^n_{j, k -1}
+  \right]
+\end{align}
+
+This updates to the new time.
+
+Use two matrices: One for old time values and one for new time values. Must use:
+%
+\begin{align}
+  \frac{\Delta t}{h^2} \leq \frac{1}{2}
+\end{align}
+
+This is considered the stability condition.
+
+In our program, we use $h = 1$, $\Delta t$ is arbitrary. $\Delta t$ is ideally small.
+
+\underline{Level Set}
+%
+\begin{align}
+  u_t & = \frac{u^2_x u_{yy} - 2 u_x u_y u_{xy} + u^2_yu_{xx}}{u^2_x + u^2_y}
+\end{align}
+
+Use forward difference for $u_t,$ centered difference for $u_x$ and $u_y$ and given formulas for $u_{xx}, u_{yy}$, and $u_{xy}$.
+
+Isolate $u^{n + 1}_{j, k}$ as
+Need $\frac{\Delta t}{h^2} \leq \frac{1}{2}$
+
+In the denominator, let us use $u^2_x + u^2_y + \eps$ to avoid dividing by zero.
+
+\topic{Modified Level Set}
+%
+\begin{align}
+  u_t
+  & = \frac
+  {u^2_x u_{yy} - 2 u_x u_y u_{xy} + u^2_y u_{xx}}
+  {u^2_x + u^2_y} - \alpha(u - u_0),  \alpha > 0
+\end{align}
+
+Here, $u_0$ is our original image.
+
+Ideally, we have 3 matrices: old, new, original.
+
+\topic{Shock Filter}
+%
+\begin{align}
+  u_t & = -\sqrt{u^2_x + u^2_y} (u_{xx} + u_{yy})
+\end{align}
+
+Use forward difference for $u_t$.
+
+Use given formulas for $u_{xx}$ and $u_{yy}$.
+
+For $u_x = m$ (forward difference, backward difference) % Compute both, find min of either
+
+Where $m$ is defined by the following:
+%
+\begin{align}
+  m(x, y) & =
+  \begin{cases}
+    \quad \min(|x|, |y|)  & \text{if } x, y > 0\\
+    -\min(|x|, |y|)       & \text{if } x, y < 0\\
+    \quad 0               & \text{if } xy \leq 0
+  \end{cases}
+\end{align}
 
 \end{document}
