@@ -103,3 +103,49 @@ Here, note that we have the transforms for $f(x+ct)$ and $f(x - ct)$ present in 
   u(x, t) & = \frac{1}{2} \left(f(x + ct) + f(x - ct)\right) + \frac{1}{2 \sqrt{2 \pi}} \int^\infty_{-\infty}
   \frac{\hat g(\xi)}{c i \xi}\left( e^{i \xi(c t + x)} - e^{i \xi (x - c t)} \right)
 \end{align}
+
+Here, let us consider our integral. Let us write:
+%
+\begin{align}
+  \frac{\hat g(\xi)}{c i \xi}
+  & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} \frac{g(x) e^{-i x \xi}}{i \xi} \text dx
+\end{align}
+
+Here, let us create a table for our integration.
+%
+\begin{center}
+  \begin{tabular}{c|c}
+    $\frac{e^{-x \xi}}{- i \xi}$ & $\int^x_{-\infty} g(y) \text dy$\\
+    \hline
+    $e^{-x \xi}$ & $g(x) \text dx$
+  \end{tabular}
+\end{center}
+
+Here, let us continue:
+%
+\begin{align}
+  & = \frac{1}{c \sqrt{2 \pi}} \left( \int^x_{-\infty} g(y) \text dy \frac{e^{-i x \xi}}{-i \xi} |^\infty_{-\infty} \right) - \int^\infty_{-\infty} \int^x_{-\infty} g(y) \text dy\ e^{-i x \xi} \text dx\\
+  \frac{\hat g(\xi)}{c i \xi} & = \hat h (\xi)
+\end{align}
+
+Here, let us replace $\hat g$ and substitute into line 22:
+%
+\begin{align}
+  u(x, t) & = \frac{1}{2} \left(f(x + ct) + f(x - ct)\right) + \frac{1}{2c \sqrt{2 \pi}} \int^\infty_{-\infty}
+  \hat h \left( e^{i \xi(c t + x)} - e^{i \xi (x - c t)} \right) \text d\xi\\
+  & = \frac{1}{2}[f(x + ct) + f(x - ct)] + \frac{1}{2}(h(x + ct) - h(x - ct))
+\end{align}
+
+Here, let us modify $h$ and write $h$ in terms of $g$:
+%
+\begin{align}
+  & = \frac{1}{2}[f(x + ct) + f(x - ct)] + \frac{1}{2c} \left(
+  \int^{x + ct}_{-\infty} g(y) \text dy \ - \int^{x - ct}_{-\infty} g(y) \text dy
+  \right)
+\end{align}
+
+Here, let us swap the integral and combine both integrals for $g$:
+%
+\begin{align}
+  u(x, t)   & = \frac{1}{2}[f(x + ct) + f(x - ct)] + \frac{1}{2c} \int^{x + ct}_{x - ct} g(y) \text dy
+\end{align}
