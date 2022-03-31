@@ -5,3 +5,56 @@
 \end{align*}
 \bigbreak
 %_____________________________________________________________________________%
+
+We want to find the integral of the following:
+%
+\begin{align}
+  \int^\infty_{-\infty} \frac{1}{\sqrt{4 \pi t}} e^{-x^2 / 4t} \text dx
+\end{align}
+
+First, let us move the constant out of our integral:
+%
+\begin{align}
+  \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} e^{-x^2 / 4t} \text dx
+\end{align}
+
+From here, let us rename our constant on the outside of our integral as $\zeta$:
+%
+\begin{align}
+  \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} e^{-x^2 / 4t} \text dx
+  & = \zeta \int^\infty_{-\infty} e^{-x^2 / 4t} \text dx
+\end{align}
+
+
+Here, let us focus on our integral. First, let us square our integral and change our variables in the second integral:
+%
+\begin{align}
+  I   & = \int^\infty_{-\infty} e^{-x^2/4t} \text dx\\
+  I^2 & = \int^\infty_{-\infty} e^{-x^2/4t} \text dx
+          \int^\infty_{-\infty} e^{-y^2/4t} \text dy
+\end{align}
+
+From here, let us find the product of our integrals then combine our powers:
+%
+\begin{align}
+  I^2
+  & = \int^\infty_{-\infty} \int^\infty_{\infty}
+      e^{-x^2/4t} e^{-y^2/4t} \text dx \text dy\\
+  & = \int^\infty_{-\infty} \int^\infty_{\infty}
+      e^{-(x^2 + y^2)/4t} \text dx \text dy\\
+\end{align}
+
+Here, let us write our integral and variables in terms of polar
+coordinates:
+%
+\begin{align}
+  I^2
+  & = \int^{2\pi}_0 \int^\infty_0
+      e^{-r^2/4t} r\ \text dr \text d \theta \\
+  & = \int^\infty_0 \int^{2\pi}_0
+      e^{-r^2/4t} r\ \text d \theta \text dr\\
+  & = 2 \pi \int^\infty_0
+      e^{-r^2/4t} r\ \theta \text dr\\
+\end{align}
+
+Here, let us perform u-substitution, where we write $u = r^2/4t$ and $\text du = \frac{1}{2t}$
