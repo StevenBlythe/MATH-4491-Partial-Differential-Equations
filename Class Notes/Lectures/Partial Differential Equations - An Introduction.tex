@@ -1,0 +1,216 @@
+\section{Partial Differential Equations: An Introduction}
+\subsection{What is a Partial Differential Equation?}
+\topic{January 19, 2022}
+
+A PDE is an equation which contains partial derivatives of an unknown function and we want to find that unknown function.
+
+\Ex $F(
+t, x, y, z, u,
+\frac{\partial u}{\partial t},
+\frac{\partial u}{\partial x},
+\frac{\partial u}{\partial y},
+\frac{\partial u}{\partial z},
+\frac{\partial^2 u}{\partial t^2},
+\frac{\partial^2 u}{\partial x \partial y},
+\ldots
+) = 0$.
+
+Note, the first partial derivatives are considered \underline{$1^{st}$ ordered partials}
+
+whereas the second ordered partials are considered \underline{$2^{nd}$ ordered partials}.
+
+The variables that are not $u$ are considered independent variables and $u$ is considered a dependent variable.
+
+What PDEs do we study?
+
+Generally, we restrict our attention to equations that model some phenomenom from physics, engineering, economics, geology, \ldots\ etc. We can use physical intuition to help guide the math.
+
+\subsection{Classification of PDEs}
+\begin{enumerate}
+  \item Order of PDE: Highest derivative.
+
+  \Ex $\frac{\partial^3 u}{\partial x^3} - \sin(y) u^7 = 3$ is a third order PDE.
+
+  \Ex $(\frac{\partial y}{\partial t})^5 - \frac{\partial^2y}{\partial x \partial t} = e^x$ is a second order PDE.
+  %
+  \item Number of independent variables.
+
+  \Ex $\frac{du}{dt} = \frac{\partial^2 u}{\partial x^2}$ has two independent variables: $t, x$.
+
+  This is the $1-D$ heat equation.
+
+  \Ex $\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} = \Delta u$ has 4 independent variables.
+
+  This is the $3-D$ heat equation. $\Delta u$ is Laplacian of $u$.
+
+  \underline{Notation}
+
+  $
+  \Delta u =
+  \grad^2 u =
+  \grad \cdot \grad u =
+  (\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}) \cdot (\frac{\partial u}{\partial x}, \frac{\partial u}{\partial y}, \frac{\partial u}{\partial z}) =
+  \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}
+  $
+
+  $\Delta u = 0$ is considered Laplace's equation.
+  %
+  \item Linear vs non-linear
+
+  A linear PDE is any equation of the form $L[u(x)] = f(x)$ where $f(x)$ is a known function is a linear partial differential operator.
+\end{enumerate}
+
+\dfn A differential operator is any rule that takes a function as its input and returns an expression that involves the derivatives of that function.
+
+\Ex
+%
+\begin{align}
+  u(x, t) & \qquad v(x, t)\\
+  O[u] & = \frac{\partial^2 u}{\partial x^2} + \sin x + \pi - 7e^{tu}\\
+  O[u + 3v] & = \frac{\partial^2}{\partial x^2}(u + 3v) + \sin x + \pi - 7e^{tu + 3tv}\\
+  & = \frac{\partial^2 u}{\partial x^2} + 3 \frac{\partial^2 v}{\partial x^2}+ \sin x + \pi - 7e^{tu + 3tv}
+\end{align}
+
+\dfn A linear operator, L, is an operator that has the property:
+%
+\begin{align}
+  L[au + bv] & = aL[u] + bL[v]
+\end{align}
+
+Where $a$ and $b$ are constants.
+
+\thm If $u$ and $v$ are vectors and $L$ is linear, then $L$ can be represented by a matrix.
+
+\thm If $L$ is linear ordinary operator, it must take the form:
+%
+\begin{align}
+  L[u] = f_0(x)u + f_1(x)u^\prime + f_2(x)u^{\prime\prime} + \ldots + f_n(x)u^{(n)}
+\end{align}
+
+Where the $f_i$'s are known functions.
+
+\dfn A linear ODE is any ODE of the form where $f(x)$ is known is the following:
+%
+\begin{align}
+  L[u] = f(x)
+\end{align}
+
+If $f(x) = 0$, then the equation is homogeneous. Otherwise, the equation is non-homogeneous.
+
+\ex $(u^\prime)^2 = 0 \Rightarrow u^\prime = 0 \rightarrow$ linear, homogeneous.
+
+\thm If $L$ is a linear partial differential operator, it must take the form ($x$ is a vector with $n$ unknowns)
+%
+\begin{align}
+  L[u(x)] = f_0(x)u + \sum^n_{i = 1} f_i(x) \frac{\partial u}{\partial x_i} +
+  \sum^n_{i = 1} \sum^n_{j = 1} f_{ij}(x) \frac{\p^2 u}{\p x_i \p x_j} + \ldots
+\end{align}
+
+\dfn A linear PDE is any PDE of the form
+%
+\begin{align}
+  L[u(x)] = f(x)
+\end{align}
+
+If $f(x) = 0$, the equation is homogeneous, else it is non-homogeneous.
+
+\ex $u_t = 4u_x$ - Linear, homogeneous.
+
+\bigbreak
+\topic{January 21, 2022}
+
+\Ex
+%
+\begin{align}
+  u_{tt} & = u_{xx} + u{yy}\quad \text{Linear, homogeneous}\\
+  \cos{(xt)} & = u + u_t + u_{xyz}\quad \text{Linear, non-homogeneous}\\
+  u_tu_{xt} & = 0\quad \text{non-linear}\\
+  u_{xt} + e^x \cos t\ u_t & = 0\quad \text{linear, homogeneous}\\
+  u_t + u_{xx} + ue^u & = 0\quad \text{non-linear}
+\end{align}
+
+\note You can add linear combinations of solutions to linear homogeneous equations and still get a solution.
+
+\Ex $u_x = u_t$.
+
+Some solutions to this are:
+\begin{multicols}{2}
+  \begin{enumerate}
+    \item $u_1(x, t) = 3$
+    \item $u_2(x, t) = x + t$
+    \item $u_3(x, t) = e^{x+t} \cos(x + t)$
+    \item $\qquad \vdots$\\
+    $Au_1 + Bu_2 + Cu_3$ is also a solution.
+\end{enumerate}
+\end{multicols}
+
+\subsection{How do we solve an ODE?}
+
+\begin{enumerate}
+  \item Use some technique to find an explicit solution.
+  %
+  \item Use power series and determine the coefficients
+  \begin{align}
+    y(x) & = \sum^\infty_{n = 0} a_nx^n
+  \end{align}
+  %
+  \item Laplace Transforms
+\end{enumerate}
+
+\subsection{How do we solve PDEs?}
+
+\begin{enumerate}
+  \item Try to locate an explicit solution
+  %
+  \item We don't use power series, instead, we use a trigonometric series $\Rightarrow$ Fourier Series.
+  \begin{align}
+    y(x) & = \sum^\infty_{n = 0} a_n \sin(nx) + b_n \cos(nx)
+  \end{align}
+  %
+  \item Laplace Transforms are good if the domain is $[0, \infty)$.\\
+  Fourier Transforms are good if the domain is $(-\infty, \infty)$.
+  %
+  \item Reduce the PDE to a system of ODEs.
+\end{enumerate}
+
+\subsection{Initial Condiction}
+
+\begin{enumerate}
+  \item For ODEs, to solve a
+  $1^{st}$ order equation, you need $y(0)$.
+
+  $2^{nd}$ order $\rightarrow y(0), y^\prime(0)$
+
+  $3^{rd}$ order $\rightarrow y(0), y^\prime(0), y^{\prime\prime}(0)$
+  $\vdots$
+
+  $n^{th}$ order $\rightarrow y(0), y^\prime(0), y^{\prime\prime}(0), \ldots, y^{(n - 1)}(0)$
+  %
+  \item For PDEs, it's more complicated $\Rightarrow$ it depends on the PDE.
+
+  \Ex $u(x, t), x \in [a, b], t \in [0, \infty)$
+
+  If $u_t = u_{xx}$
+  %
+  \item Boundary conditions:
+  \begin{align}
+    u(a, t) & = g_1(t)\\
+    u(b, t) & = g_2(t)
+  \end{align}
+
+  If $u_{tt} = u_{xx}$, we must specify:
+  %
+  \begin{enumerate}
+    \item Initial Conditions
+    \begin{align}
+      u(x, 0) & = f_1(x)\\
+      u_t(x, 0) & = f_2(x)
+    \end{align}
+    %
+    \item Boundary Conditions
+    \begin{align}
+      u(a, t) & = g_1(t)\\
+      u(b, t) & = g_2(t)
+    \end{align}
+  \end{enumerate}
+\end{enumerate}

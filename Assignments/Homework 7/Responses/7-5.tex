@@ -1,3 +1,22 @@
-\item Derive d'Alembert's formula for $u_{tt} = u_{xx}$ by assuming that $u(x, t) = v(x + t, x - t) = v(y, z)$. Next show that the wave equation yields $v_{yz} = 0$ and hence $v = A(y) + B(z)$ and solve for $A$ and $B$ using the initial conditions $u(x, 0) = f(x)$ and $u_t(x, 0) = g(x)$.
+\item We know that the solution to the $2-D$ heat equation
+$u_t = u_{xx} + u_{yy}$, with $u(x, y, 0) = f(x, y)$ is
+%
+\begin{align}
+  u(x, y, t)
+  & = \frac{1}{4 \pi t} \int^\infty_{-\infty} \int^\infty_{-\infty}
+  f(\xi, \eta) e^{-\frac{(x - \xi)^2 + (y - \eta)^2}{4t}} \text d\xi \text d\eta
+\end{align}
+
+If
+%
+\begin{align}
+  f(x, y) & =
+  \begin{cases}
+    1 & 2 \leq r \leq 4, r = \sqrt{x^2 + y^2}\\
+    0 & \text{otherwise}
+  \end{cases}
+\end{align}
+
+Sketch $u(x, y, t)$ for different $t$ values, say $t = 0, 5, 100, \infty$
 \bigbreak
 %_____________________________________________________________________________%

@@ -1,0 +1,224 @@
+\newpage
+\section{Heat, Wave Equation}
+
+\subsection{1-D Heat Equation}
+
+Assume cross sections are uniform
+Imagine a cross section:
+%
+\begin{center}
+  O o==========o L
+\end{center}
+
+Assume cross sections are uniform and the lateral sides are well insulated $\Rightarrow$ heat only flows in the x-direction.
+
+We need the following:
+%
+\begin{itemize}
+  \item $u(x, t)$ : Temperature of rod at position $x$ and time $t$.
+  \item $u(x, 0)$ : Initial temperature
+  \item $u(0, t)$ and $u(L, t)$ : Boundary Conditions
+\end{itemize}
+
+\dfn
+%
+\begin{itemize}
+  \item $g(x, t)$ : heat flux (energy / area time)
+  \item $Q(x, t)$ : heat energy density (energy / volume)
+  \item $A$ : Cross sectional area
+  \item $C_P$ : Heat capacity or specific heat
+  \item $\rho$ : Density
+  \item $K$ : Thermal conductivity
+\end{itemize}
+
+We want to find an equation for the temperature evolution. We will use conservation of energy : Look at a little $\Delta x$ section of the rod starting at $x_0$.
+%
+\begin{center}
+  $\Delta x$\\
+  o=====$|$o$|$=====o\\
+  $x_0\  x_0\Delta x$
+\end{center}
+
+Conservation of energy : heat in - heat out = heat accumulated
+
+Heat in $ = 'qA\Delta t' = A \int_{t_0}^{t_0 + \Delta t} q(x_0, t) \text{ dt}$
+
+Heat out $ = A\int_{t_0}^{t_0 + \Delta t} q(x_0 + \Delta x, t) \text{ dt}$
+
+Heat Accumulated $ = QA\Delta x |_{t_0 + \Delta t} - QA\Delta x|_{t_0}$
+%
+\begin{align}
+  & = A\int^{x_0 + \Delta x}_{x_0} Q(x, t_0 + \Delta t) \text{ dx} - A\int^{x_0 + \Delta x}_{x_0} Q(x, t_0) \text{ dx}
+\end{align}
+
+\bigbreak
+
+\subsection{Heat Equation, Conservation of Energy}
+
+\topic{January 24, 2022}
+
+Heat in - heat out = heat accumulated
+%
+\begin{align}
+  A \int^{t_0 \rightarrow \Delta t}_{t_0} g(x_0, t) \dt -
+  A \int^{t_0 \rightarrow \Delta t}_{t_0} q(x_0 + \Delta x, t) \dt =
+  A \int^{t_0 \rightarrow \Delta t}_{t_0} Q(x, t_0 + \Delta t) \dx -
+  A \int^{t_0 \rightarrow \Delta t}_{t_0} Q(x, t_0) \dx
+\end{align}
+
+Let us simplify and divide by $A$. Then, let us combine the integrals:
+%
+\begin{align}
+  \int^{t_0 \rightarrow \Delta t}_{t_0} [q(x_0, t) - q(x_0 + \Delta x, t)] \dt =
+  \int^{t_0 \rightarrow \Delta t}_{t_0} [Q(x, t_0 + \Delta t) - Q(x, t_0)] \dx
+\end{align}
+
+Divide by $\Delta x \Delta t$ and take limit as $\Delta x, \Delta t \rightarrow 0$
+%
+\begin{align}
+  \lim_{\Delta t, \Delta x \rightarrow 0} \frac{1}{\Delta x \Delta t}
+  \int^{t_0 \rightarrow \Delta t}_{t_0} [q(x_0, t) - q(x_0 + \Delta x, t)] \dt & =
+  \lim_{\Delta t, \Delta x \rightarrow 0} \frac{1}{\Delta x \Delta t}
+  \int^{t_0 \rightarrow \Delta t}_{t_0} [Q(x, t_0 + \Delta t) - Q(x, t_0)] \dx\\
+  \lim_{\Delta t} \frac{1}{\Delta t} \int^{t_0 \rightarrow \Delta t}_{t_0} [\lim_{\Delta x \rightarrow 0} \frac{q(x_0, t) - q(x_0 + \Delta x, t)}{\Delta x}] \dt & =
+  \lim_{\Delta x \rightarrow 0} \frac{1}{\Delta x}
+  \int^{t_0 \rightarrow \Delta t}_{t_0} \lim_{\Delta t \rightarrow 0} \frac
+  {Q(x, t_0 + \Delta t) - Q(x, t_0)}{\Delta t} \dx
+\end{align}
+
+On the left side, we see the order is a bit difference. We want the delta to come first, such as in the difference quotient. The eft is now $-q_x(x_0, t)$ and the right is $Q_t(x, t_0)$.
+%
+\begin{align}
+  \lim_{\Delta t \rightarrow} \frac{1}{\Delta t} \int^{t_0 + \Delta t}_{t_0} - q_x(x_0 t) \dt & =
+  \lim_{\Delta x \rightarrow 0} \frac{1}{\Delta x} \int^{x_0 + \Delta x}_{x_0} Q_t(x, t_0) \dx\\
+  \lim_{\Delta t \rightarrow 0} -q_x(x_0, t_0 + \Delta t) & = \lim_{\Delta x \rightarrow 0} Q_t(x_0 + \Delta x, t_0)
+\end{align}
+
+At step 28, we used the fundamental theorem of calculus and derived both sides.
+%
+\begin{align}
+  -q_x(x_0, t_0) & = Q_t(x_0, t_0)
+\end{align}
+
+Since $x_0$ and $t_0$ are arbitrary, $-q_x(x, t) = Q_t(x, t)$\\
+$q$ and $Q$ are related to $u$:
+%
+\begin{align}
+  Q = \rho c_p u \qquad & \qquad q = -Ku_x\\
+  -q_x = Q_t & \Rightarrow Ku_{xx} = \rho c_p u_t\\
+  & \Rightarrow u_t = \frac{k}{\rho c_p} u_{xx}\\
+  & \Rightarrow u_t = \alpha^2 u_{xx}\\
+  \alpha & = \sqrt{\frac{K}{\rho c_p}}
+\end{align}
+
+$\alpha$ is thermal diffusivity
+
+$u_t = \alpha^2 u_{xx} \leftarrow$ 1-D heat equation (diffusivity equation)
+
+We have a steady-state:
+$(t \rightarrow \infty)$, $u_t = 0 \Rightarrow u_{xx} = 0 \Rightarrow$ straight line
+
+1-D: $-q_x = Q_t \Rightarrow -\grad \cdot \vec q = Q_t, \qquad \vec q$ is a vector.
+%
+\begin{align}
+  q = -K \grad u & \Rightarrow - \grad \cdot (-K \grad u) = \rho c_p u_t\\
+  & \Rightarrow K \Delta u = \rho c_p u_t\\
+  & \Rightarrow u_t = \alpha^2 \Delta u
+\end{align}
+
+What about a steady-state? $u_t = 0$
+%
+\begin{align}
+  \Delta u & = 0
+\end{align}
+
+Here, we have Laplace's equation.
+
+\note It is not dependent on time.
+
+\subsection{The Wave Equation}
+
+$u(x, t)$ is the height of the rope.
+We use Newton's $2^{nd}$ law on small segments of rope.
+%
+\begin{itemize}
+  \item $\rho = $ density of rope.
+  \item $\text{dm} = \rho \dx$
+\end{itemize}
+% Image here
+% March 30, 2022 comment -- No idea what that image should be
+\begin{align}
+  F & = ma\\
+  T \sin(\theta(x + \Delta x)) - T \sin(\theta(x)) & = \int^{x + \Delta x}_x u_{tt} \text{ dm}\\
+  T[ \sin(\theta (x + \Delta x)) - \sin(\theta (x))] & = \rho \int^{x + \Delta x}_{x} u_{tt} \dx
+\end{align}
+
+Let us assume $\theta$ is small, $\sin \theta \approx \tan \theta$
+%
+\begin{align}
+  T[\tan(\theta(x + \Delta x)) - \tan(\theta(x))] & = \rho \int^{x + \Delta x}_x u_{tt} \dx
+\end{align}
+
+Also, $\tan(\theta(x)) = u_x(x, t)$.
+%
+\begin{align}
+  T[u_x(x + \Delta x, t) - u_x(x, t)] & =
+  \rho \int^{x + \Delta x}_x u_{tt} \dx
+\end{align}
+
+Now, let us divide both sides by
+$\Delta x$ and take the limit as
+$\Delta x \rightarrow 0$
+%
+\begin{align}
+  \lim_{\Delta x \rightarrow 0}
+  T\Big[\frac{u_x(x + \Delta x, t) - u_x(x, t)}{\Delta x}\Big]
+  & =
+  \rho \lim_{\Delta x \rightarrow 0}
+  \frac{\int^{x + \Delta x}_x u_{tt} \dx}{\Delta x}
+\end{align}
+
+On the left side, we have $u_xx$ and the right side we have
+$u_{tt}(x + \Delta x, t)$.
+%
+\begin{align}
+  Tu_{xx}(x, t) & = \rho u_{tt}(x, t)\\
+  u_{tt} = \frac{T}{\rho} u_{xx} & = c^2 u_{xx}\\
+  c & = \sqrt{\frac{T}{\rho}} = \text{ wave speed }
+\end{align}
+
+On the left, we have the $1-D$ wave equation which is used for light, sound, rope, etc.
+
+In 2-D, it corresponds to a vibrating membrane (drum)
+%
+\begin{align}
+  u_{tt} & = c^2\Delta u
+\end{align}
+
+\underline{Remark}:
+%
+\begin{align}
+  u_t = u_{xx} \quad & \text{Heat Equation}\\
+  u_{xx} + u_{yy} = 0 \quad & \text{ Laplace Equation}\\
+  u_{tt} = u_{xx} \quad & \text{ wave}
+\end{align}
+
+Here, we can replace:
+
+$u_t$ with $t$\\
+$u_x$ with $x$\\
+$u_{xx}$ with $x^2$
+%
+\begin{enumerate}
+  \item $t = x^2$ parabola
+  \item $x^2 + y^2 = 0$ ellipse
+  \item $t^2 = x^2$ hyperbolas
+\end{enumerate}
+
+So, the equations behave like the following:
+%
+\begin{enumerate}
+  \item The Heat Equation is called parabolic
+  \item The Laplace Equation is called elliptic
+  \item The Wave Equation is called hyperbolic
+\end{enumerate}

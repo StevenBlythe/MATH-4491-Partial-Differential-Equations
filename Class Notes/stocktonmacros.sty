@@ -1,21 +1,46 @@
 \ProvidesPackage{stocktonmacros}[Stockton 2022 Spring]
 
-\usepackage{amsmath,amssymb,amsthm}
+%%% Fundamental Packages %%%
+\usepackage{import} % Imports sub .tex files
 
-%______________________________________________________________________________%
+%%% General Formatting %%%
+% Page Layout %
+\usepackage[letterpaper, margin=1cm]{geometry}
+\usepackage{multicol}
 
-\usepackage[a4paper, margin=1cm]{geometry} % Causing two errors
+% Colors %
 \usepackage{color}
-\usepackage[parfill]{parskip}
-\usepackage{enumitem}
-\usepackage{graphicx}
-\newcommand{\twiddle}[1]{\overset{\sim}{#1}}
-\newcommand{\Twiddle}{\overset{\sim}{T}}
-\graphicspath{ {./images/} }
-\date{\today}
-\author{Steven Blythe}
+\usepackage{xcolor}
 
-%______________________________________________________________________________%
+% Spacing %
+\usepackage{setspace}
+\usepackage[parfill]{parskip}
+\setstretch{1.25}
+
+% List %
+\usepackage{enumitem}
+
+
+% Images %
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+% Heading Information
+\title{Partial Differential Equations - Class Notes} % Customized for \maketitle
+\author{Steven Blythe}
+\date{\today}
+
+% Lists
+\usepackage{enumitem}
+
+% Create Graphics within Latex
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+
+%%% Math packages %%%
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{forest} % Chain derivatives
 
 
 %%% General class %%%
@@ -27,7 +52,12 @@
 \newcommand{\Note}{\underline{Note:} } % Set to depreciate \Note
 \newcommand{\note}{\underline{Note:} } % Set to
 \newcommand{\ask}[1]{\textbf{\emph{#1}}}
+
+
 %%% Math Notations %%%
+% Vectors %
+\usepackage{esvect}
+
 % Domains %
 \newcommand{\R}{\mathbb R}
 \newcommand{\Z}{\mathbb Z}
@@ -42,9 +72,6 @@
 % Common text for integrals %
 \newcommand{\dx}{\text{ dx }}
 \newcommand{\dt}{\text{ dt }}
-
-% Limits %
-\newcommand{\dlim}[2]{\lim_{\substack{#1 \\ #2}}}
 
 % Fourier Series %
 \newcommand{\FS}{\sin \Big( \frac{n \pi x}{L} \Big)}
@@ -66,5 +93,6 @@
 \newcommand{\extra}{\emph{Extra Credit:} }
 \newcommand{\dfnLimit}{\displaystyle \lim_{x \to p} f(x) = L}
 
-% Vectors %
-\usepackage{esvect}
+% Numerical Analysis
+\newcommand{\twiddle}[1]{\overset{\sim}{#1}}
+\newcommand{\Twiddle}{\overset{\sim}{T}}

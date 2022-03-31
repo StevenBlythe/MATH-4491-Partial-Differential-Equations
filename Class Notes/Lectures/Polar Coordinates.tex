@@ -1,0 +1,648 @@
+\newpage
+\section{Polar Coordinates}
+
+\subsection{Laplace's Equation in Polar Coordinates}
+
+Let's say we want to solve $\Delta u = 0$ with Dirichlet Boundary Conditions on a disk or annulus.
+
+Problem: $\Delta u = u_{xx} + u_{yy} \leftarrow $ in terms of $x$ and $y$.
+
+We must find it in terms of $r$ and $\theta$.
+%
+\begin{align}
+  u(x, y) \rightarrow u(r, \theta)\\
+  x & = r \cos \theta\\
+  y & = r \sin \theta\\
+  r & = \sqrt{x^2 + y^2}\\
+  \theta & = \arctan \frac{y}{x}\\
+  \tan \theta & = \frac{y}{x}
+\end{align}
+
+We are going to find : $u_x, u_{xx}, u_{yy}$
+%
+\begin{enumerate}
+  \item $u_x$ :
+  %
+  \begin{align}
+    u(x, y) & = u( x(r, \theta), y(r, \theta)) = u(r, \theta) = u(r(x, y), \theta(x, y))
+  \end{align}
+  Here, we break our chain rule as the following: % TODO
+  \begin{center}
+    $u$\\
+    $|$ \quad \quad $|$\\
+    $r$ \quad \quad $\theta$\\
+    $|$ \quad $|$ \quad $|$ \quad $|$\\
+    $x$ \quad $y$ \quad $x$ \quad $y$
+  \end{center}
+
+  According to our tree, we have two routes.
+  %
+  \begin{align}
+    \frac{\p u}{\p x} & = \frac{\p u}{\p r} \frac{\p r}{\p x} + \frac{\p u}{\p \theta} \frac{\p \theta}{\p x}\\
+    & = u_r \frac{x}{\sqrt{x^2 + y^2}} + u_\theta \frac{- \frac{y}{x^2}}{1 + \left( \frac{y}{x}\right)^2}
+  \end{align}
+
+  Note that we know $r$ from line 370. We can rewrite $r$ as $(x^2 + y^2)^{\frac{1}{2}}$.
+
+  Now, let us multiply our equation by $\frac{x^2}{x^2}$.
+  %
+  \begin{align}
+    & = u_r \frac{x}{\sqrt{x^2 + y^2}} + u_\theta \frac{- \frac{y}{x^2}}{1 + \left( \frac{y}{x}\right)^2} \cdot \frac{x^2}{x^2}\\
+    & = u_r \frac{r \cos\theta}{r} - u_\theta \frac{r \sin \theta}{r^2}\\
+    & = u_r \cos\theta - u_\theta \frac{\sin \theta}{r}
+  \end{align}
+\end{enumerate}
+
+%
+
+\topic{February 14, 2021}
+
+Idea: What if we are on a disk?
+%
+\begin{align}
+  \Delta u  & = 0 \Rightarrow u_{xx} + u_{yy} = 0\\
+  u_x       & = u_r \cos \theta u_\theta \frac{\sin \theta}{r}\\
+  u_{xx}
+  & = \frac{\p}{\p x} [u_x]\\
+  & = \frac{\p u_x}{\p r} \frac{\p r}{\p x} + \frac{\p u_x}{\p \theta} \frac{\p \theta}{\p x}\\
+  & =
+  \frac{\p}{\p r}
+  \left[u_r \cos \theta -u_\theta \frac{\sin \theta}{r}\right] +
+  \frac{\p}{\p \theta}
+  \left[ u_r \cos \theta - u_\theta \frac{\sin \theta}{r} \right]
+  \left[ - \frac{\sin \theta}{r}\right]\\
+  & =
+  \left[ u_{rr} \cos \theta - u_{\theta r} \frac{\sin \theta}{r} + u_\theta \frac{\sin \theta}{r^2} \right] \cos \theta +
+  \left[ u_{r \theta} \cos \theta - u_r \sin \theta - u_{\theta \theta} \frac{\sin \theta}{r} - u_\theta \frac{\cos \theta}{r} \right]
+  \frac{\sin \theta}{r}\\
+  & =
+  u_{rr} \cos^2 \theta
+  - 2 u_{\theta r} \frac{\sin \theta \cos \theta}{r}
+  + 2 u_\theta \frac{\sin \theta \cos \theta}{r^2}
+  + u_r \frac{\sin^2 \theta}{r} + u_{\theta \theta} \frac{\sin^2 \theta}{r^2}\\
+  u_{yy} &
+  = u_{rr} \sin^2 \theta
+  + 2u_{\theta r} \frac{\sin \theta \cos \theta}{r}
+  - 2u_\theta \frac{\sin \theta \cos \theta}{r^2}
+  + u_r \frac{\cos^2 \theta}{r}
+  + u_{\theta \theta} \frac{\cos^2 \theta}{r^2}\\
+  \Delta u & = u_{xx} + u_{yy} \\ &
+  = u_{rr}
+  + \frac{u_r}{r}
+  + \frac{u_{\theta \theta}}{r^2} = 0
+\end{align}
+
+\subsection{Solving Laplace's Equation in Polar Coordinates}
+
+If we have an open disk, akin to a washer, we have two boundaries: The innter boundary and outer boundary.
+%
+\begin{enumerate}
+  \item Assume $u(r, \theta) = R(r) \Theta(\theta)$
+  %
+  \begin{align}
+    u_{rr} + \frac{u_r}{r} + \frac{u_{\theta\theta}}{r^2} & = 0\\
+    R^{\prime\prime}\Theta + \frac{R^\prime \Theta}{r} + \frac{R\Theta^{\prime\prime}}{r^2} & = 0\\
+    R^{\prime\prime} \Theta + \frac{R^\prime \Theta}{r} & = - \frac{R \Theta^{\prime\prime}}{r^2}\\
+    \frac{r^2}{R^{\prime\prime}}{R} + \frac{r R^\prime}{R} & = - \frac{\Theta^{\prime\prime}}{\Theta} = \lambda
+  \end{align}
+
+  \item Solve for $\Theta$ : $-\frac{\Theta^{\prime\prime}}{\Theta} = \lambda \Rightarrow \Theta^{\prime\prime} = -\lambda \Theta$
+  %
+  If $\lambda > 0$, then we have:
+  %
+  \begin{align}
+    \Theta(\theta) & = A \sin(\sqrt \lambda \theta) + B \cos(\sqrt \lambda \theta)
+  \end{align}
+
+  Since the solution is periodic in terms of $\theta$ :
+  $\displaystyle
+  \begin{cases}
+    \Theta(0) & = \Theta(2 \pi)\\
+    \Theta^\prime(0) & = \Theta^\prime(2 \pi)
+  \end{cases}$
+  %
+  \begin{align}
+    \Theta(0) = \Theta(2 \pi) \Rightarrow B & = A \sin(\sqrt \lambda 2 \pi) + B \cos ( \sqrt \lambda 2 \pi)\\
+    \Theta^\prime(\theta) & = A \sqrt \lambda \cos(\sqrt \lambda \theta) - B \sqrt \lambda \sin( \sqrt \lambda \theta)\\
+    \Theta^\prime(0) = \Theta^\prime(2 \pi) \Rightarrow A \sqrt \lambda & = A \sqrt \lambda \cos(\sqrt \lambda 2 \pi) - B \sqrt \lambda \sin(\sqrt \lambda 2 \pi)
+  \end{align}
+
+  These equations are satisfied when $\sqrt \lambda 2 \pi = 2 \pi n$, $n \in \Z^+$. Then, $\lambda_n = n^2$. If we consider $n$, then we can also write $\Theta_n(\theta) = A_n \sin(n \theta) + B_n \cos(n \theta)$.
+
+  If $\lambda = 0 : \Theta^{\prime\prime}_0 = A \theta + B$.
+  %
+  \begin{align}
+    \Theta_0(0) = \Theta_0(2 \pi) & \Rightarrow B = A 2\pi + \theta\\
+    & \Rightarrow A = 0\\
+    \Theta^\prime_0 (\theta) = 0 & \Rightarrow \Theta^\prime(0) = \Theta^\prime(2 \pi)\\
+    & \Rightarrow \Theta_0(\theta) = B_0
+  \end{align}
+  Note: $\lambda < 0$ yields the trivial solution.
+
+  \item Solve for $R$
+  %
+  \begin{align}
+    r^2 \frac{R^{\prime\prime}_n}{R_n} + r \frac{R^\prime_n}{R_n} = \lambda_n & \Rightarrow r^2 R + rR^\prime_n = n^2 R_n\\
+    & \Rightarrow r^2 R^{\prime\prime}_n + rR^\prime_n - n^2 R_n = 0
+  \end{align}
+
+  Here, let our guess be $R_n(r) = r^m$. Let us plug our guess in:
+  %
+  \begin{align}
+    r^2 m(m - 1)r^{m - 2} + r mr^{m - 1} - n^2 r^m & = 0\\
+    r^2 \left( m(m - 1) + m - n^2 \right) & = 0\\
+    r^2 \left( m^2 - n^2 \right) & = 0 \Rightarrow m = \pm n
+  \end{align}
+
+  If $n > 0$,
+  %
+  \begin{align}
+    R_n(r) & = C_nr^n + D_nr^{-n}
+  \end{align}
+
+  If $n = 0$,
+  %
+  \begin{align}
+    r^2R^{\prime\prime}_0 + rR^\prime_0 & = 0\\
+    R_0(r) & = C_0 r^0 + D_0 \ln r\\
+    & = C_0 + D_0 \ln r
+  \end{align}
+  %
+  \item Combine to find $u_n$ and $u$:
+  %
+  \begin{align}
+    u_n(r, \theta) & =
+    \begin{cases}
+      B_0( C_0 + D_0 \ln r) & n = 0\\
+      C_nr^n + D_n r^{-n}\left(A_n \cos(n \theta) + B_n \cos(n \theta) \right) & n \in Z^+
+    \end{cases}
+  \end{align}
+
+  By linearity,
+  %
+  \begin{align}
+    u(n \theta) & = B_0(C_0 + D_0 \ln r) + \sum^\infty_{n = 1} \left(C_n r^n + D_n r^{-n}\right) \left( A_n \sin(n \theta) + B_n \cos(n \theta) \right)\\
+    & = c_0 + d_0 \ln r + \sum^\infty_{n = 1} (a_nr^n + b_nr^{-n}) \sin(n \theta) + (c_nr^n + d_nr^{-n}) \cos(n \theta)
+  \end{align}
+\end{enumerate}
+
+%______________________________________________________________________________%
+
+\topic{February 16, 2022}
+\begin{enumerate}
+  \setcounter{enumi}{4}
+  \item Let us find the oefficients using the boundary conditions.
+  \begin{align}
+    u(R_1, \theta) & = g_1(\theta)\\
+    %%%%
+    \Rightarrow g_1(\theta) & = \underline{C_0 + d_0 \ln R_1} +
+    \sum^\infty_{n = 1}
+    \left[
+    (\underline{a_nR^n_1 + b_nR^{-n}_1}) \sin(n \theta) +
+    (\underline{C_n R^n_1 + d_n R^{-n}_1}) \cos(n \theta)
+    \right]\\
+    %%%%
+    u(R_2, \theta) & = G_2(\theta)\\
+    \Rightarrow g_2(\theta) & = \underline{C_0 + d_0 \ln R_2} +
+    \sum^\infty_{n = 1}
+    \left[
+    (\underline{a_n R^n_2 + b_n R^{-n}_2}) \sin(n \theta) +
+    (\underline{C_n R^n_2 + d_n R^{-n}_2}) \cos(n \theta)
+    \right]
+  \end{align}
+  Underlines book-scan: $B_0, A_n, B_n, \twiddle B_0, \twiddle A_n, \twiddle B_n$:
+  %
+  \begin{align}
+    &
+    \begin{cases}
+      B_0 & = c_0 + d_0 \ln R_1\\
+      \twiddle B_0 & = c_0 + d_0 \ln R_12
+    \end{cases}\\
+    %
+    &
+    \begin{cases}
+                A_n & = a_n R^n_1 + b_nR^{-n}_1\\
+      \twiddle  A_n & = a_n R^n_2 + b_nR^{-n}_2
+    \end{cases}\\
+    %
+    &
+    \begin{cases}
+               B_n & = c_n R^n_1 + d_n R^{-n}_1\\
+      \twiddle B_n & = c_n R^n_2 + d_n R^{-n}_2
+    \end{cases}
+  \end{align}
+\end{enumerate}
+\ex Solve $\Delta u = 0$, where
+\begin{itemize}
+  \item $u(1, \theta) = 3 \sin( 2 \theta )$
+  \item $u(2, \theta) = 7 \cos( 5 \theta )$
+\end{itemize}
+%
+\begin{enumerate}
+  \item Assume $u(r, \theta) = R(r) \Theta(\theta)$
+  %
+  \begin{align}
+    \Delta u = u_{rr} + \frac{u_r}{r} + \frac{u_{\theta\theta}}{r^2} & = R^{\prime\prime} \Theta + \frac{R^\prime \Theta}{r} + \frac{R \Theta^{\prime\prime}}{r^2} = 0\\
+    %%%%
+    & \Rightarrow R^{\prime\prime} \Theta + \frac{R^\prime \Theta}{r} = - \frac{R\Theta^{\prime\prime}}{r^2}\\
+    & \Rightarrow r^2 \frac{R^{\prime\prime}}{R} + r \frac{R^\prime}{R} = - \frac{\Theta^{\prime\prime}}{\Theta} = \lambda
+  \end{align}
+  %
+  \item Solve for $\Theta$ : $- \frac{\Theta^{\prime\prime}}{\Theta} = \lambda \Rightarrow \Theta^{\prime\prime} = -\lambda \Theta$.
+
+  If $\lambda > 0$, then
+  %
+  \begin{align}
+    \Theta(\theta) & =
+    A \sin(\sqrt \lambda \theta) + B \cos(\sqrt \lambda \theta)\\
+    %%
+    \Theta^\prime(\theta) & =
+    A \sqrt \lambda \cos ( \sqrt \lambda \theta) - B \sqrt \lambda \sin (\sqrt \lambda \theta)\\
+    %%
+    \sqrt \lambda 2 \pi = 2 n \pi \Rightarrow \lambda_n = n^2, n \in \Z^+ &
+    \begin{cases}
+      \Theta(0) = \Theta(2\pi) & \Rightarrow
+      B = A \sin(\sqrt \lambda 2 \pi) + B \cos(\sqrt \lambda 2 \pi)\\
+      %%
+      \Theta^\prime = \Theta^\prime(2 \pi) & \Rightarrow
+      A \sqrt \lambda = A \sqrt \lambda \cos (\sqrt \lambda 2 \pi) - B \sqrt \lambda \sin (\sqrt \lambda 2 \pi)
+    \end{cases}\\
+    %%
+    = n^2 & \Rightarrow
+    \Theta(n)(\theta) = A_n \sin(n \theta) + B_n \cos(n \theta)
+  \end{align}
+  If $\lambda = 0$, then the second derivative is $0$.
+  %
+  \begin{align}
+    \Theta^{\prime\prime}_0 & \Rightarrow
+    \Theta_0(\theta) = A_0\Theta + B_0\\
+    & \Rightarrow \Theta^\prime_0 (\theta) = A_0\\
+    & \Rightarrow \Theta_0(0) = \Theta_0(2 \pi) \Rightarrow B_0 = 2 \pi A_0 + B_0 \Rightarrow A_0 = 0\\
+    %%
+    & \Rightarrow \Theta^\prime_0(0) = \Theta^\prime_0 (2 \pi) = 0
+  \end{align}
+  \item Solve for $R$ : $r^2 \frac{R^{\prime\prime}_n}{R_n} + \frac{rR^\prime_n}{R_n} = \lambda_n$
+  %
+  \begin{align}
+    r^2 R^{\prime\prime}_n + rR^\prime_n - n^2 R_n = 0\\
+  \end{align}
+
+  Try $R_n(r) = R^m$, then
+  %
+  \begin{align}
+    r^2 m( m - 1) r^{m - 2} + r mr^{m - 1} - n^2 r^m & = 0\\
+    r^m \left[ m( m - 1) + m - n^2 \right] & = 0\\
+    m^n - n^2 & = 0\\
+    m & = \pm n
+  \end{align}
+  Next, let us write:
+  %
+  \begin{align}
+    & \Rightarrow
+    \begin{cases}
+      R_n(r) & = C_n r^n + D_n r^{-n}, n \in \Z^+\\
+      R_n(r) & = C_0 + D_0 \ln r
+    \end{cases}
+  \end{align}
+  \item Combine to obtain $u_n$ and $u$,
+  %
+  \begin{align}
+    u_n(r, \theta) & =
+    \begin{cases}
+      B_0(C_0 + D_0 \ln r) & n = 0\\
+      (C_n r^n + D_n r^{-n})(A_n \sin(n \theta) + B_n \cos(n \theta)) & n \in Z^+
+    \end{cases}
+  \end{align}
+  By linearity,
+  %
+  \begin{align}
+    u(r, \theta) & =
+    c_0 + d_0 \ln r + \sum^\infty_{n = 1}
+    \left(
+    (C_n r^n + D_n r^{-n})(A_n \sin(n \theta) + B_n \cos(n \theta))
+    \right)\\
+    %%
+    & =
+    c_0 + d_0 \ln r + \sum^\infty_{n = 1}
+    \left(
+    (a_n r^n + b_n r^{-n})\sin(n \theta) + (c_n r^n + d_n r^{-n}) \cos(n \theta)
+    \right)
+  \end{align}
+  %
+  \item Find coefficients using $BCs$ :
+  %
+  \begin{align}
+    u(1, \theta) & = 3 \sin(2 \theta)\\
+    u(2, \theta) & = 7 \cos(5 \theta)\\
+    u(1, \theta) & = c_0 + d_0 \ln(1) + \sum^\infty_{n = 1}
+    \left[
+    (a_n + b_n) \sin(n \theta) +
+    (c_n + d_n) \cos(n \theta)
+    \right]\\
+    &
+    \begin{cases}
+      c_0       & = 0\ \           \\
+      c_n + d_n & = 0\ \ \forall n \\
+      a_2 + b_2 & = 3\ \           \\
+      a_n + b_n & = 0\ \ \forall n, n \neq 2
+    \end{cases}
+  \end{align}
+  Now, let us write:
+  %
+  \begin{align}
+    u(2, \theta) & = 7 \cos(5 \theta)\\
+    u(2, \theta) & = c_0 + d_0 \ln 2 + \sum^\infty_{n = 1}
+    \left[
+    (a_n 2^n + b_n 2^{-n}) \sin( n \theta ) +
+    (c_n 2^n + d_n 2^{-n}) \cos( n \theta )
+    \right] = 7 \cos(5 \theta)\\
+    %
+    &
+    \begin{cases}
+      c_0 + d_0 \ln 2       & = 0 \Rightarrow d_0 = 0\\
+      a_n 2^n + b_n 2^{-n}  & = 0\ \forall n\\
+      c_5 2^5 + d_5 2^{-5}  & = 7\\
+      c_n 2^n + d_n 2^{-n}  & = 0\ \forall n, n \neq 5
+    \end{cases}
+  \end{align}
+  If $n \neq 5$:
+  %
+  \begin{align}
+    \begin{cases}
+      c_n + d_n & = 0\\
+      c_n 2^n + d_n 2^{-n} & = 0
+    \end{cases}
+    \Rightarrow c_n = d_n = 0
+  \end{align}
+  %
+  If $n \neq 2$:
+  %
+  \begin{align}
+    \begin{cases}
+      a_n     + b_n & = 0\\
+      a_n 2^n + b_n 2^{-n} & = 0
+    \end{cases}
+    \Rightarrow a_n = b_n = 0
+  \end{align}
+  %
+  If $n = 5$,
+  %
+  \begin{align}
+    &
+    \begin{cases}
+      c_5 2^5 + d_5 2^{-5} & = 7\\
+      c_5     + d_5        & = 0 \Rightarrow d_5 = -c_5
+    \end{cases}\\
+    c_5 2^5 - c_5 2^{-5} = &\ 7\\
+    c_5(32 - \frac{1}{32}) = &\ 7\\
+    c_5 = &\ \frac{7}{32 - \frac{1}{32}}
+  \end{align}
+  %
+  If $n = 2$,
+  %
+  \begin{align}
+    4(a_2 + b_2 & = 3) \\
+    - a_2 2^2 + b_2 2^{-3} & = 0\\
+    \hline
+    \frac{15}{4} b_2 = 12 & \Rightarrow b_2 = \frac{48}{15} = \frac{16}{5}\\
+    & \Rightarrow a_2 = 3 - b_2 = 3 - \frac{16}{5} = -\frac{1}{5}
+  \end{align}
+  %
+  \item $u_y(x, 0) = 0 \Rightarrow X(x)Y^\prime(0) = 0 \Rightarrow Y^\prime(0) = 0$
+\end{enumerate}
+
+\subsection{Heat and Wave Equations in Polar Coordinates}
+
+\topic{February 23, 2022}
+
+Heat Equation:
+%
+\begin{align}
+  u_t & = \alpha^2 \Delta u
+\end{align}
+
+Let $\alpha = 1$, then let us write:
+%
+\begin{align}
+  u_t & = u_{rr} + \frac{u_r}{r} + \frac{u_{\theta\theta}}{r^2}
+\end{align}
+
+Wave Equation:
+%
+\begin{align}
+  u_{tt} & = c^2 \Delta u
+\end{align}
+
+Here, let $c = 1$:
+%
+\begin{align}
+  u_{tt} & = u_rr + \frac{u_r}{r} + \frac{u_{\theta\theta}}{r^2}
+\end{align}
+
+In the last two equations, we worked with three variables: $t, r, \theta$.
+%
+\begin{align}
+  u_t & = u_{rr} + \frac{u_r}{r} + \frac{u_{\theta\theta}}{r^2}
+\end{align}
+
+Here, assume $u(r, \theta, t) = R(r)\Theta(\theta)T(t)$
+%
+\begin{align}
+  R \Theta T^\prime & = R^{\prime\prime} \Theta T + \frac{R^\prime \Theta T}{r} + \frac{R \Theta^{\prime\prime}T}{r^2}\\
+  %
+  \frac{T^\prime}{T} & = \frac{R^{\prime\prime}}{R} + \frac{R^\prime}{rR} + \frac{\Theta^{\prime\prime}}{r^2 \Theta} = -\lambda\\
+  %
+  \frac{T^\prime}{T} & = -\lambda
+\end{align}
+
+Here, let us put a pin on $T$ and solve for the second part of the equation:
+%
+\begin{align}
+  \frac{R^{\prime\prime}}{R} + \frac{R^\prime}{rR} + \frac{\Theta^{\prime\prime}}{r^2\Theta} & = - \lambda\\
+  %
+  \frac{r^2R^{\prime\prime}}{R} + \frac{rR^\prime}{R} + \frac{\Theta^{\prime\prime}}{\Theta} & = - \lambda r^2\\
+  %
+  \frac{r^2 R^{\prime\prime}}{R} +
+  \frac{r   R^\prime}{R} +
+  \lambda r^2 & = -\frac{\Theta^{\prime\prime}}{\Theta} = \mu
+\end{align}
+
+We now have separate ODEs for each of the functions $T, R, \Theta$. The solution for $\Theta$ looks like Laplace in polar. Recall, we set $\lambda$ as $n^2$:
+%
+\begin{align}
+  \frac{r^2 R^{\prime\prime}}{R} + \frac{r R^\prime}{R} + \lambda r^2 & n^2\\
+  %
+  r^2 R^{\prime\prime} + rR^\prime + (\lambda r^2 - n^2)R & = 0\\
+  %
+  R^{\prime\prime} + \frac{R^\prime}{r}
+  + \left(\lambda - \frac{n^2}{r^2}\right)R & = 0
+\end{align}
+
+Here, this is Bessel's Equation.
+
+We use the power series to solve Bessel's Equation and obtain:
+%
+\begin{align}
+  R_n(r) & = \sum^\infty_{i = 1} \frac{(-\lambda)^i r^{2i + n}}{2^{n + 2}(i + n)! i!}
+\end{align}
+
+If $\lambda = 1$, we get the Bessel function:
+%
+\begin{align}
+  J_n(x) & = \sum^\infty_{i = 1} \frac{(-1)^i x^{2i + n}}{2^{n + 2}(i + n)! i!}
+\end{align}
+
+\subsection{Laplace in Spherical Coordinates}
+%
+\begin{align}
+  \Delta u & = u_{xx} + u_{yy} + u_{zz}
+\end{align}
+
+Using the chain rule, we obtain:
+%
+\begin{align}
+  \Delta u & =
+  u_{\rho \rho} +
+  \frac{2}{\rho}u_\rho +
+  \frac{1}{p^2} u_{\phi\phi} +
+  \frac{\cot \theta}{\rho^2} u_\phi +
+  \frac{1}{\rho^2 \sin^2 \phi} u_{\theta\theta} = 0
+\end{align}
+
+Here, assume $u(\rho, \theta, \Phi) = P(\rho)\Theta(\theta)\Phi(\phi)$:
+
+Equation for $\Theta$
+%
+\begin{align}
+  (1 - x^2) \Theta^{\prime\prime}(x) -
+  2 \Theta^\prime(x) +
+  n(n + 1) \Theta(x)
+  & = 0
+\end{align}
+
+Where $x = \cos(\theta)$. This equation is Legendre's Equation.
+
+The solutions are Legendre Polynomials $P_n(x)$:
+%
+\begin{center}
+  \begin{tabular}{c|c}
+    $n$ & $P_n(x)$\\
+    \hline
+    $0$ & $1$\\
+    $1$ & $x$\\
+    $2$ & $\frac{3x^2 - 1}{2}$\\
+    $3$ & $\frac{5x^3 - 3x}{2}$\\
+    $4$ & $\frac{35 x^4 - 30x^2 + 3}{8}$
+  \end{tabular}
+\end{center}
+
+Legendre Polynomials ? make an orthogonal set on $[-1, 1]$
+%
+\begin{align}
+  \int^1_{-1} P_m(x) P_n(x) \text{ dx} = 0, m \neq n
+\end{align}
+
+Laplace's Equation: $\Delta u = 0$, $u \in \Omega \subset \R$, $x \in \twiddle{\Omega} \subseteq \R^n$
+
+\dfn A function that satisfies Laplace's Equation is called a harmonic function.
+
+\dfn Let the ball of radius $r$ centered on point $x_0$ be:
+%
+\begin{align}
+  B_r(x_0) & = \{x : ||x - x_0||_2 \leq r \}
+\end{align}
+
+Here, let us revisit what the norm notation indicates:
+%
+\begin{align}
+  x & =
+  \begin{bmatrix}
+    x_1\\
+    x_2\\
+    \ldots\\
+    x_n
+  \end{bmatrix}\\
+  %
+  ||x||_{\ell_2} & = \sqrt[2]{x^2_1 + x^2_2 + \ldots + x^2_n} \text{ Standard/Euclidean Norm}\\
+  ||x||_{\ell_1} & = |x_1| + |x_2| + \ldots + |x_n| \text{ Take $|x_n|$ for odd powers}\\
+  ||x||_{\ell_4} & = \sqrt[4]{x^4_1 + x^4_2 + \ldots + x^4_n}\\
+  ||x||_{\ell_\infty} & = \max\{ |x_1|, |x_2|, \ldots, |x_n| \}
+\end{align}
+
+Here, let us write:
+%
+\begin{align}
+  ||f||_{L_1} & = \int_\Omega |f(x)| \dx\\
+  %
+  ||f||_{L_2} & = \sqrt{\int_\Omega f(x)^2 \dx}\\
+  %
+  ||f||_{L_n} & = \sqrt[n]{\int_\Omega f(x)^n \dx}\\
+  %
+  ||f||_{L_\infty} & = \text{essup } |f(x)|
+\end{align}
+Essential Supremum, $x \in \Omega$.
+
+$\ell_2$ and $L_2$ are the only two that correspond to a Hilbert space.
+
+\thm If $u$ is harmonic and $B_r(x_0) \subset \Omega$, then then average value of $u$ in the ball equals $u(x_0)$.
+%
+\begin{align}
+  u(x_0) & = \frac
+  {
+    \int_{B_r(x_0)} u(x) \dx
+  }
+  {
+    \int_{B_r(x_0)} 1 \text{ dr}
+  }
+\end{align}
+
+\newpage
+
+\topic{February 25, 2022}
+
+\note These theorems are t? for any ball of any radians in dimensions $n$.
+The theorems don't care about the shape of $\Omega$ or Boundary Conditions.
+
+\ex $n = 1$, $\Delta u = u_{xx} = 0$
+
+Here, the function is a linear function
+%
+\begin{align}
+  u & = Ax + B
+\end{align}
+
+When $n = 1$, we are working with an interval $[x_0 - r, x_0 + r]$.
+
+Theorem 1:
+%
+\begin{align}
+  u(x_0) & = \frac
+  {
+    \int^{x_0 + r}_{x_0 - r} u(x) \text{ dx}
+  }
+  {
+    \int^{x_0 + r}_{x_0 - r} 1 \text{ dx}
+  }\\
+  & = \frac
+  {
+    \int^{x_0 + r}_{x_0 - r} u(x) \text{ dx}
+  }
+  {
+    2r
+  }
+\end{align}
+
+Here, we have the definition for average.
+
+Theorem:
+%
+\begin{align}
+  u(x_0) & =
+  \frac
+  {
+    u(x_0 - r) + u(x_0 + r)
+  }
+  {
+    2
+  }
+\end{align}
