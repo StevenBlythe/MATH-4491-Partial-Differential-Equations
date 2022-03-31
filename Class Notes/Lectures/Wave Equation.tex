@@ -1,0 +1,204 @@
+\newpage
+\section{Wave Equation}
+%
+\begin{align}
+  u_{tt} & = c^2 u_{xx}
+\end{align}
+
+Boundary conditions:
+%
+\begin{align}
+  u(0, t) & = u(L, t) = 0
+\end{align}
+
+Initial Conditions:
+%
+\begin{align}
+  u(x, 0) & = f(x)\\
+  u_t(x, 0) & = g(x)
+\end{align}
+
+Here, $g \in C^2$, $g(0) = g(L)$.
+%
+\begin{enumerate}
+  \item Assume separable:
+  \begin{align}
+    u(x, t)
+  \end{align}
+
+  Boundary conditions:
+  %
+  \begin{align}
+    u(0, t) = 0 & \Rightarrow X(0)T(t) = 0 \Rightarrow X(0) = 0\\
+    u(L, t) = 0 & \Rightarrow X(L)T(t) = 0 \Rightarrow X(L) = 0
+  \end{align}
+
+  Now, let us rewrite our variables:
+  %
+  \begin{align}
+    u_{tt} & = c^2u_{xx}\\
+    XT^{\prime\prime} & = c^2 X^{\prime\prime}T\\
+    \frac{T^{\prime\prime}}{c^2 T} & = \frac{X^{\prime\prime}}{X} = -\lambda
+  \end{align}
+
+  \item Solve for $X$:
+  \begin{align}
+    \frac{X^{\prime\prime}}{X} & = -\lambda\\
+    X^{\prime\prime} & = -\lambda x\\
+    X(0) & = X(L) = 0
+  \end{align}
+
+  Here, let us write our general equation:
+  %
+  \begin{align}
+    X(x) & = A\sin(\sqrt \lambda x) + B \cos (\sqrt \lambda x)\\
+    X(0) & = 0 \Rightarrow B = 0\\
+    X(L) & = A \sin(\sqrt \lambda L) = 0\\
+    & = \sqrt \lambda L = n \pi
+  \end{align}
+
+  \item Solve for $T$:
+  \begin{align}
+    \frac{T^{\prime\prime}}{c^2 T_n}
+    & = - \lambda_n\\
+    T^{\prime\prime}_n
+    & = -c^2 \left( \frac{n \pi}{L} \right)^2 T_n\\
+    T_n(t)
+    & = C_n \sin \left( \frac{c n \pi t}{L} \right)
+    + D_n \cos \left( \frac{c n \pi t}{L} \right)
+  \end{align}
+
+  \item Combine to find $u_n$ and $u$
+  \begin{align}
+    u_n(x, t)
+    & = \FS \left[ C_n \sin\left(\frac{ c n \pi z}{L} \right)
+    + D_n \cos \left( \frac{c n \pi z}{L} \right) \right]\\
+    u(x, t)
+    & = \sum^\infty_{n = 1} c_n \FS \sin \left( \frac{c n \pi z}{L}\right)
+    + D_n \FS \cos \left( \frac{c n \pi z}{L} \right)
+  \end{align}
+
+  \item Find coefficients using Inidial Conditions
+  \begin{align}
+    u(x, 0) & = f(x)\\
+    & = \sum^\infty_{n = 1} D_n \FS = f(x)\\
+    D_n & = \frac{2}{L} \int^L_0 f(x) \FS \dx\\
+    u_t(x, 0) & = g(x)\\
+    u_t(x, t)
+  \end{align}
+
+  Here, we took the $t$ partial from line 246.
+  %
+  \begin{align}
+    u_t(x, t)
+    & = \sum^\infty_{n = 1}
+    C_n \FS \frac{c n \pi}{L} \cos \left(\frac{c n \pi t}{L}\right)
+    - D_n \FS \frac{c n \pi}{L} \sin\left( \frac{c n \pi t}{L} \right)\\
+    u_t(x, 0)
+    & = \sum^\infty_{n = 1} C_n \FS \frac{c n \pi}{L} = g(x)
+  \end{align}
+
+  Here, the non-sin terms are the coefficients of the Fourier Sine Series.
+  %
+  \begin{align}
+    C_n \frac{c n \pi}{L} & = \frac{2}{L} \int^L_0 g(x) \FS \dx\\
+    C_n & = \frac{2}{c n \pi} \int^L_0 g(x) \FS \dx
+  \end{align}
+\end{enumerate}
+
+\thm You can differentiate a Fourier Series if it represents a $C^2$ function that is the same as the endpoints.
+
+\ex Solve $u_{tt} = u_{xx}$
+\begin{itemize}
+  \item $u(0, t)   = 0 $
+  \item $u(4, t)   = 0 $
+  \item $u(x, 0)   = 2 \sin(3 \pi x)
+  - \frac{1}{5} \sin\left( \frac{7 \pi x}{2} \right)$
+  \item $u_t(x, 0) = 0$
+\end{itemize}
+%
+\begin{enumerate}
+  \item Assume separable
+  \begin{align}
+    u(x, t) = X(x)T(t)
+  \end{align}
+
+  Here, we have our boundary conditions,
+  %
+  \begin{align}
+    u(0, t) & = 0 \Rightarrow X(0)T(t) = 0 \Rightarrow X(0) = 0\\
+    u(4, t) & = 0 \Rightarrow X(4)T(t) = 0 \Rightarrow X(4) = 0
+  \end{align}
+
+  Now, let us separate:
+  %
+  \begin{align}
+    u_{tt} & = u_{xx}\\
+    XT^{\prime\prime} & = X^{\prime\prime}T\\
+    \frac{T^{\prime\prime}}{T} & = \frac{X^{\prime\prime}}{X} = -\lambda
+  \end{align}
+
+  \item Solve for $x$:
+  \begin{align}
+    \frac{X^{\prime\prime}}{X} & = - \lambda\\
+    X^{\prime\prime} & = -\lambda x\\
+    X(0) & = X(4) = 0\\
+    X(x) & = A \sin(\sqrt \lambda x) + B \cos (\sqrt \lambda x)\\
+    X(0) & = B = 0\\
+    X(4) & = A \sin(\sqrt \lambda 4) = 0\\
+    & = \sqrt \lambda 4 = n \pi\\
+    & = \lambda_n = \left( \frac{n \pi}{4} \right)^2\\
+    & = X_n(x) = \sin\left( \frac{n \pi x}{4}\right)
+  \end{align}
+
+  \item Solve for $T$:
+  \begin{align}
+    \frac{T^{\prime\prime}_n}{T_n} & = - \lambda_n\\
+    T^{\prime\prime}_n & = - \left( \frac{n \pi}{4} \right)^2 T_n
+  \end{align}
+
+  Here, we have the negative sign, therefore we use sine and cosine:
+  %
+  \begin{align}
+    T_n(t) & = C_n \sin \left( \frac{n \pi t}{4} \right)
+  \end{align}
+  \item Combine to get $u_n$ and $u$
+  \begin{align}
+    u_n(x, t)
+    & = \sin\left(\frac{n \pi x}{4}\right)
+    + D_n \cos \left( \frac{n \pi t}{4} \right)
+  \end{align}
+
+  By linearity,
+  %
+  \begin{align}
+    u(x, t)
+    & = \sum^\infty_{n = 1} C_n \sin\left( \frac{n \pi x}{4} \right)
+    + D_n \sin\left( \frac{n \pi t}{4} \right) \cos\left( \frac{n \pi t}{4}
+    \right)
+  \end{align}
+
+  \item Use the initial conditions to find the coefficients
+  \begin{align}
+    u(x, 0)
+    & = 2 \sin (3 \pi x) - \frac{1}{5} \sin \left( \frac{ 7 \pi x}{2} \right)\\
+    u(x, 0)
+    & = \sum^\infty_{n = 1} D_n \sin\left( \frac{n \pi x}{4} \right)\\
+    & D_{12} = 2, D_{14} = -\frac{1}{5}, D_n = 0 \ \forall n, n \neq 12, 14\\
+    u_t(x, t)
+    & =
+    \sum^\infty_{n = 1}
+    C_n \sin\left( \frac{n \pi x}{4} \right) \frac{n \pi}{4}
+    \cos\left( \frac{n \pi t}{4} \right)
+    - D_n \sin\left( \frac{n \pi x}{4} \right) \frac{n \pi}{4}
+    \sin\left( \frac{n \pi t}{4} \right)\\
+    u_t(x, 0)
+    & = \sum^\infty_{n = 1}
+    C_n \sin\left( \frac{n \pi x}{4} \right) \frac{n \pi}{4} = g(x) = 0\\
+    & C_n = 0 \ \forall n\\
+    u(x, t)
+    & = 2 \sin(3 \pi x) \cos(3 \pi t)
+    - \frac{1}{5} \sin\left( \frac{7 \pi x}{2} \right)
+    \cos\left( \frac{7 \pi t}{2} \right)
+  \end{align}
+\end{enumerate}

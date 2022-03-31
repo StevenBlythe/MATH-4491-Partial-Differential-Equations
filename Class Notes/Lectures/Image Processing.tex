@@ -1,4 +1,5 @@
-\subsection*{Project Information}
+\newpage
+\section{Semester Project Information}
 
 If you want to mess with an image, you have to think about how computers view images. The image is stored. When we see it, we see an image, but what does the computer see?
 
@@ -14,7 +15,7 @@ Idea: Have a grid of values with pixels and a value at each point (Tells us the 
 
 \bigbreak
 
-\topic{Image Processing}
+\subsection{Image Processing}
 
 Let's say we have a black and white digital image.
 
@@ -105,7 +106,8 @@ When we smoothen our picture, we also blur our ideal picture.
 \end{enumerate}
   %
 
-\subsection*{March 11, 2022}
+\topic{March 11, 2022}
+
 How do you get rid of Salt and Pepper noise without blurring the image at the same time?
 
 The heat equation removes the noise, but blurs as well.
@@ -254,13 +256,13 @@ When the level set equation is applied to an image, the boundaries of each level
 
 One thing to note about two circles: Smaller circles become smaller at a faster rate than bigger circles since the radius is smaller and the curvature is bigger.
 
-\topic{Grayson's Theorem} (For 2-D level sets)
+\subsection{Grayson's Theorem} (For 2-D level sets)
 
 For any closed simple curve, as it evolves under the influence of $u_t = u_{\xi \xi}$, the curve the curve becomes more and more circle-like and disappears as a single point.
 
 %______________________________________________________________________________%
 
-\subsection*{March 21, 2022}
+\topic{March 21, 2022}
 
 Effect on an image with Salt and Pepper Noise
 
@@ -311,7 +313,7 @@ There two terms compete with each other and eventually the .e.net stabilizes as 
 
 The idea is that you get a method that removes the noise but doesn't deviate too much from the original image. $\alpha$ is arbitrary, so you find the $\alpha$ that works best.
 
-\topic{Deblurring an Image}
+\subsection{Deblurring an Image}
 
 We know that the heat equation will blur an image. $u_t = u_{xx} + u_{yy}$.
 
@@ -361,7 +363,7 @@ As time goes on, the new image will start taking the save of square sine waves, 
   \item Discontinuities are encouraged
 \end{enumerate}
 
-\subsection*{March 23, 2022}
+\topic{March 23, 2022}
 
 \dfn Discontinuities that appear in solutions as time progresses are called shocks.
 
@@ -397,7 +399,7 @@ Recall $\grad u = \left< u_x, u_y \right>$
 % Modified Level Set -- Tweak Level Set
 % Shock Filter
 
-\topic{Implementation}
+\subsection{Implementation}
 
 It is important to let a computer know how to find a derivative.
 With an image, we have a box of numbers (Array/matrix)
@@ -492,7 +494,7 @@ Now, let us consider $x$ again, but in terms of backward difference:
   u^{\ n}_{x\ j, k} & \approx \frac{u^n_{j, k} - u^n_{j - 1, k}}{\Delta x}
 \end{align}
 
-\topic{Second Derivatives Numerically}
+\subsection{Second Derivatives Numerically}
 
 Here, let us use forward difference for our next equation:
 %
@@ -549,7 +551,7 @@ Let us consider centered for both,
   {4 \Delta x \Delta y}
 \end{align}
 
-\topic{Equation Simulation}
+\subsection{Equation Simulation}
 % ^ y
 % | .  .  .  .
 % | .  .  .  .
@@ -575,7 +577,7 @@ Here, we have $u(x, y, 0)$ as the original image.
 We want to step up the value of time.
 
 
-\topic{Heat Equation}
+\subsection{Heat Equation}
 
 We are able to make $\Delta x$ and $\Delta y$. We want to make both a length of $1$.
 %
@@ -622,9 +624,9 @@ Here, let $\Delta x = \Delta y = h$.
 
 Here, we have all the old image and we want to find the new image.
 
-\subsection*{March 25, 2022}
+\topic{March 25, 2022}
 
-\topic{Maple}
+\subsection{Maple}
 
 Maple can read five types of images, BMP, JPEG, PNG, TIFF
 
@@ -634,7 +636,7 @@ Preview on Maple
 
 Grayscale on Maple
 
-\subsection*{March 28, 2022}
+\topic{March 28, 2022}
 %
 \begin{align}
   u_t & = u_{xx} + u_{yy}
@@ -678,7 +680,7 @@ Need $\frac{\Delta t}{h^2} \leq \frac{1}{2}$
 
 In the denominator, let us use $u^2_x + u^2_y + \eps$ to avoid dividing by zero.
 
-\topic{Modified Level Set}
+\subsection{Modified Level Set}
 %
 \begin{align}
   u_t
@@ -691,7 +693,7 @@ Here, $u_0$ is our original image.
 
 Ideally, we have 3 matrices: old, new, original.
 
-\topic{Shock Filter}
+\subsection{Shock Filter}
 %
 \begin{align}
   u_t & = -\sqrt{u^2_x + u^2_y} (u_{xx} + u_{yy})
