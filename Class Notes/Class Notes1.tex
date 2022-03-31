@@ -14,7 +14,7 @@
 %\import{Lectures/}{2022-03-04.tex}
 %\import{Lectures/}{2022-03-07.tex}
 %\import{Lectures/}{2022-03-09.tex}
-%\import{lectures/}{Image Processing}
+\import{lectures/}{Image Processing}
 %______________________________________________________________________________%
 \topic{Conservation Laws}
 
@@ -95,4 +95,116 @@ Recall how we mentioned heat is conserved, accumulated heat is heat in - heat ou
   % Graph with $-\frac{1}{c} + k, Vk
 
   The values of the solution is constant along characteristic.
+
+  \subsection*{March 30, 2022}
+  Burger's Equation:
+  %
+  \begin{align}
+    u_t + uu_x & = 0
+  \end{align}
+
+  The slope is $\frac{1}{u}$.
+
+  Recall, the slope of the characteristic of the equation $u_t - cu_x = 0$ is $-\frac{1}{c}$.
+
+  \ex
+  %
+  \begin{align}
+    u(x, 0) & =
+    \begin{cases}
+      1     &         x < 0\\
+      1 - x & 0 \leq  x < 1\\
+      0     & x \geq  1
+    \end{cases}
+  \end{align}
+
+  % Graph, ////. /^ /^^ /^^^ . ||||||||
+
+  At $t = 1$, the solution is no longer continuous, therefore $u_x$ is not defined at $x = 1, t = 1$.
+
+  For $t \geq 1$, there is no differentiable solution (everywhere).
+
+  % Slope 1 continues until hitting \infty slope
+
+  If we allow solutions that aren't defined only for a single curve $\xi(t)$ of discontinuity, then we have an infinite number of solutions. From physics, we know that gas velocity (momentum) looks like this:
+
+  % From x = t = 1, Slope 2 appears
+
+  The shock in velocity causes a sonic boom
+  %
+  \begin{align}
+    \text{Slope } & = 2\\
+    \xi^\prime(t) & = \frac{1}{2}
+  \end{align}
+  %
+  $u_t + [f(u)]_x = 0$ has no classical solution (existence problem) and $\infty$ number of solutions if we don't care about the equation being satisfied on shocks (uniqueness problem)
+
+  We would like:
+  %
+  \begin{enumerate}
+    \item a unique solution to exist
+    \item We want this solution to be what we observe
+  \end{enumerate}
+
+  Define a weak solution to be $u(x, t)$ where
+  %
+  \begin{align}
+    \int^{t_1}_{t_0} \int^{x_1}_{x_0} [u_t + [f(u)]_x] \text dx \text dt & = 0
+  \end{align}
+
+  where $u_t$ and $[f(u)]_x$ are measures (they can contain $\delta$ functions)
+
+  This idea will lead to a formula for shock speed, $\xi^\prime(t)$.
+
+  The integral in $x-$direction is enough.
+  %
+  \begin{align}
+    \int^{x_1}_{x_0} [u_t + [f(u)]_x]\ \text dx|_{t = t_0} & = 0
+  \end{align}
+
+  Here,
+  %
+  \begin{align}
+    \int^{x_1}_{x_0} u_t\ \text dx
+    & = - \int^{x_1}_{x_0} [f(u)]_x\ \text dx |_{t = t_0}\\
+    \frac{d}{dt} \int^{x_1}_{x_0} u\ \text dx |_{t = t_0}
+    & = f(u(x_0, t_0) - f(u(x_1, t_0)))\\
+    \frac{d}{dt} \left[ \int^{\xi(t)}_{x_0} u(x, t)\ \text dx + \int^{x_1}_{\xi(t)} u(x, t)\ \text dx \right] \big|_{t = t_0}
+    & = f(u_L) - f(u_R)
+  \end{align}
+
+  Using the second fundamental theorem of calculus,
+  %
+  \begin{align}
+    \int^{\xi(t)}_{x_0} u_t(x, t) \text dx + u(\xi(t), t) \xi^\prime(t) + \int^{x_1}_{\xi(t)} u_t(x, t) \text dx - u(\xi(t), t)\xi^\prime(t)|_{t = t_0} & = f(u_L) - f(u_R)
+  \end{align}
+
+  You cannot cancel the second and fourth term, as the second term is on the left of the shock and the fourth term is on the right of the shock.
+
+  Take $\lim$ as $x_0 \to \xi(t)^-$,
+  %
+  \begin{align}
+    \int^{\xi(t)}_{x_0} u_t(x, t) \text dx & = 0
+  \end{align}
+
+  Take $\lim$ as $x_1 \to \xi(t)^+$,
+  %
+  \begin{align}
+    \int^{x_1} u_t(x, t) \text dx & = 0
+  \end{align}
+
+  We now have:
+  %
+  \begin{align}
+    u_L \xi^\prime(t_0) - u_R \xi^\prime(t_0) & = f(u_L) - f(u_R)
+  \end{align}
+
+  $t_0$ is arbitrary.
+  %
+  \begin{align}
+    \xi^\prime(t) & = \frac{f(u_L) - f(u_R)}{u_L - u_R}
+  \end{align}
+
+  Here, we have Rankine-Hugniot jump condition.
+
 \end{document}
