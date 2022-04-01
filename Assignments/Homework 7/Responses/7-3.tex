@@ -12,3 +12,57 @@ where
 
 Show that if $f(\xi, \eta) = \delta(\xi)\delta(\eta)$, then $\Delta u = 0$ for $(x, y) \neq (0, 0)$.
 %_____________________________________________________________________________%
+
+Let us consider the given equation $1)$. Here, let us use given assumption, $f(\xi, \eta) = \delta(\xi)\delta(\eta)$ and substitute it into $1)$
+%
+\begin{align}
+  \int^\infty_{-\infty} \int^\infty_{-\infty}
+  k(x - \xi, y - \eta) f(\xi, \eta) \text d \xi \text d \eta
+  & =   \int^\infty_{-\infty} \int^\infty_{-\infty}
+  k(x - \xi, y - \eta) \delta(\xi)\delta(\eta) \text d \xi \text d \eta
+\end{align}
+
+Let us consider our function, $k$. Equation $2)$ defines the function of $k$. Let us evaluate our function with the given parameters, $x - \xi$ and $y - \eta$:
+%
+\begin{align}
+  \int^\infty_{-\infty} \int^\infty_{-\infty}
+  k(x - \xi, y - \eta) \delta(\xi)\delta(\eta) \text d \xi \text d \eta
+  & = \int^\infty_{-\infty} \int^\infty_{-\infty}
+  - \frac{1}{2 \pi} \left(\ln \sqrt{(x - \xi)^2 + (y - \eta)^2} \right)
+  \delta(\xi)\delta(\eta) \text d \xi \text d \eta
+\end{align}
+
+Here, let us consider our $\delta$ function and ways to manipulate the function. Here, we have the property:
+%
+\begin{align}
+  \int^\infty_{-\infty} \delta(x - y)f(y) \text dy & = f(x)
+\end{align}
+
+If we apply it to equation 4, we get:
+%
+\begin{align}
+  \int^\infty_{-\infty} \int^\infty_{-\infty}
+  - \frac{1}{2 \pi} \left(\ln \sqrt{(x - \xi)^2 + (y - \eta)^2} \right)
+  \delta(\xi)\delta(\eta) \text d \xi \text d \eta
+  & = - \frac{1}{2 \pi} \ln\left( \sqrt{x^2 + y^2} \right)
+\end{align}
+
+Now, let us take the $x$ and $y$ partial of line $6)$
+%
+\begin{align}
+u(x, y)
+& = - \frac{1}{2\pi} \ln\left( \sqrt{x^2 + y^2} \right)\\
+u_{xx}(x, y) + u_{yy}(x, y)
+& =
+\left(- \frac{1}{2\pi} \frac{x}{x^2 + y^2} \right)_x +
+\left(- \frac{1}{2\pi} \frac{y}{x^2 + y^2}) \right)_y\\
+& =
+\left(- \frac{1}{2\pi} \frac{y^2 - x^2}{(x^2 + y^2)^2} \right)
+\left(- \frac{1}{2\pi} \frac{x^2 - y^2}{(x^2 + y^2)^2} \right)\\
+& =
+\left(\frac{1}{2\pi} \frac{x^2 - y^2}{(x^2 + y^2)^2} \right)
+\left(\frac{1}{2\pi} \frac{y^2 - x^2}{(x^2 + y^2)^2} \right)\\
+& =
+\frac{1}{2\pi}\left( \frac{x^2 - y^2 + y^2 - x^2}{(x^2 + y^2)^2} \right)\\
+& = 0
+\end{align}

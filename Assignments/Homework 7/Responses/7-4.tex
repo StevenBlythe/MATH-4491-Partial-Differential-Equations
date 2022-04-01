@@ -54,7 +54,22 @@ coordinates:
   & = \int^\infty_0 \int^{2\pi}_0
       e^{-r^2/4t} r\ \text d \theta \text dr\\
   & = 2 \pi \int^\infty_0
-      e^{-r^2/4t} r\ \theta \text dr\\
+      r e^{-r^2/4t} \ \text dr\\
 \end{align}
 
-Here, let us perform u-substitution, where we write $u = r^2/4t$ and $\text du = \frac{1}{2t}$
+Here, let us perform u-substitution, where we write
+$u = \frac{r^2}{4t}$ and $\text du = \frac{r}{2t} \text dr$
+%
+\begin{align}
+  I^2
+  & = 4 \pi t \int^\infty_0
+      e^{-u} \ \text dr\\
+  I^2 & = 4 \pi t\\
+  I & = \sqrt{4 \pi t}
+\end{align}
+
+Here, let us plug our evaluation back to line 3 to find the solution:
+%
+\begin{align}
+  \frac{1}{\sqrt{4 \pi t}} \sqrt{4 \pi t} & = 1
+\end{align}

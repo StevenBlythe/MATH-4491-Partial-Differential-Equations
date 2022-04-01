@@ -466,12 +466,41 @@ class HomeworkVPiia(Scene):
 
 class ProjectGradient(Scene):
     def construct(self):
+        self.camera.background_color = WHITE
         axes = Axes(
-            x_range=[0, 3, 1],
-            y_range=[0, 2, 1],
+            x_range=[-1, 7, 1],
+            y_range=[0, 5, 1],
             tips=False
-        )
-        l1 = lambda x : 1
-        l2 = lambda x : 2
-        axes.plot(l1)
-        axes.plot(l2)
+        ).set_color(BLACK)
+
+        l1 = lambda x : x - 1
+        l2 = lambda x : x + 1
+        l3 = lambda x : 3 - x
+        l4 = lambda x : 7 - x
+        lines1 = axes.plot(l1, x_range=[2, 4]).set_color(BLACK)
+        lines2 = axes.plot(l2, x_range=[1, 3]).set_color(BLACK)
+        lines3 = axes.plot(l3, x_range=[1, 2]).set_color(BLACK)
+        lines4 = axes.plot(l4, x_range=[3, 4]).set_color(BLACK)
+        self.add(axes, lines1, lines2, lines3, lines4)
+        dotA = Dot(color=BLACK).move_to(axes.c2p(2, 1, 0))
+        dotB = Dot(color=BLACK).move_to(axes.c2p(3, 4, 0))
+        dotC = Dot(color=BLACK).move_to(axes.c2p(1, 2, 0))
+        dotD = Dot(color=BLACK).move_to(axes.c2p(4, 3, 0))
+        A = Tex("$A$").move_to(dotA).shift(DOWN*0.4).set_color(BLACK)
+        B = Tex("$B$").move_to(dotB).shift(UP*0.4).set_color(BLACK)
+        C = Tex("$C$").move_to(dotC).shift(LEFT*0.4).set_color(BLACK)
+        D = Tex("$D$").move_to(dotD).shift(RIGHT*0.4).set_color(BLACK)
+        self.add(A, B, C, D)
+
+        dashed1 = DashedLine(axes.c2p(-1, 0, 0), axes.c2p(1, 2, 0), dash_length=0.25, dashed_ratio=0.4).set_color(BLACK)
+        dashed2 = DashedLine(axes.c2p(1, 0, 0), axes.c2p(2, 1, 0), dash_length=0.25, dashed_ratio=0.4).set_color(BLACK)
+        dashed3 = DashedLine(axes.c2p(3, 0, 0), axes.c2p(2, 1, 0), dash_length=0.25, dashed_ratio=0.4).set_color(BLACK)
+        dashed4 = DashedLine(axes.c2p(7, 0, 0), axes.c2p(4, 3, 0), dash_length=0.25, dashed_ratio=0.4).set_color(BLACK)
+        self.add(dashed1, dashed2, dashed3, dashed4)
+
+        x1 = Tex("$x_1$").move_to(axes.c2p(-1,0,0)).shift(DOWN*0.4).set_color(BLACK)
+        x2 = Tex("$x_2$").move_to(axes.c2p(1,0,0) ).shift(DOWN*0.4).set_color(BLACK)
+        x3 = Tex("$x_3$").move_to(axes.c2p(3,0,0) ).shift(DOWN*0.4).set_color(BLACK)
+        x4 = Tex("$x_4$").move_to(axes.c2p(7,0,0) ).shift(DOWN*0.4).set_color(BLACK)
+        self.add(x1, x2, x3, x4)
+        self.wait()
