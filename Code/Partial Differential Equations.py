@@ -504,3 +504,43 @@ class ProjectGradient(Scene):
         x4 = Tex("$x_4$").move_to(axes.c2p(7,0,0) ).shift(DOWN*0.4).set_color(BLACK)
         self.add(x1, x2, x3, x4)
         self.wait()
+
+class RangeofInfluence(Scene):
+    def construct(self):
+        self.camera.background_color = WHITE
+        axes = Axes(
+            x_range=[-4, 7, 1],
+            y_range=[0, 5, 1],
+            tips=False
+        ).set_color(BLACK)
+        self.add(axes)
+
+        l0 = lambda x : 5
+        l1 = lambda x : -x/3
+        l2 = lambda x : x/3
+        l3 = lambda x : 4/3 - x/3
+        l4 = lambda x : x/3 - 4/3
+        lines0 = axes.plot(l0)
+        lines1 = axes.plot(l1, x_range=[-4, 0]).set_color(BLACK)
+        lines2 = axes.plot(l2, x_range=[0, 7]).set_color(BLACK)
+        lines3 = axes.plot(l3, x_range=[-4, 4]).set_color(BLACK)
+        lines4 = axes.plot(l4, x_range=[4, 7]).set_color(BLACK)
+
+        area1a = axes.get_area(lines0, [-4, 0], bounded_graph=lines1, color=GREY, opacity=0.5)
+        area1b = axes.get_area(lines0, [0, 7],  bounded_graph=lines2, color=GREY, opacity=0.5)
+        area2a = axes.get_area(lines0, [-4, 4], bounded_graph=lines3, color=GREY, opacity=0.5)
+        area2b = axes.get_area(lines0, [4, 7],  bounded_graph=lines4, color=GREY, opacity=0.5)
+        area3a = axes.get_area(lines0, [-4, 0], bounded_graph=lines1, color=GREY, opacity=0.5)
+        area3b = axes.get_area(lines0, [0, 4],                        color=GREY, opacity=0.5)
+        area3c = axes.get_area(lines0, [4, 7],  bounded_graph=lines4, color=GREY, opacity=0.5)
+
+        #self.add(lines1, lines2, area1a, area1b)
+        #self.add(lines3, lines4, area2a, area2b)
+        self.add(lines1, lines4, area3a, area3b, area3c)
+
+
+        x1 = Tex("$x_1$").move_to(axes.c2p(0,0,0)).shift(DOWN*0.4).set_color(BLACK)
+        x4 = Tex("$x_n$").move_to(axes.c2p(4,0,0) ).shift(DOWN*0.4).set_color(BLACK)
+        self.add(x1)
+        self.add(x4)
+        self.wait()
