@@ -4,116 +4,102 @@
 
 \begin{document}
 
-%\maketitle
+\maketitle
+
+\newpage
+
+\tableofcontents
 %
-%\newpage
+\newpage
 %
-%\tableofcontents
-%%
-%\newpage
-%%
-%\import{Lectures/}{Partial Differential Equations - An Introduction}
-%\import{Lectures/}{Heat, Wave Equation}
-%\import{Lectures/}{Approximating Functions with Other Functions}
-%\import{Lectures/}{Heat Equation}
-%\import{Lectures/}{Wave Equation}
-%\import{Lectures/}{Boundary Conditions}
-%\import{Lectures/}{Laplace's Equation}
-%\import{Lectures/}{Polar Coordinates}
-%\import{Lectures/}{Complex Analysis, Fourier Transform}
-%\import{Lectures/}{Transport Equation}
-%\import{lectures/}{Image Processing}
-%\import{Lectures/}{Conservation Laws}
+\import{Lectures/}{Partial Differential Equations - An Introduction}
+\import{Lectures/}{Heat, Wave Equation}
+\import{Lectures/}{Approximating Functions with Other Functions}
+\import{Lectures/}{Heat Equation}
+\import{Lectures/}{Wave Equation}
+\import{Lectures/}{Boundary Conditions}
+\import{Lectures/}{Laplace's Equation}
+\import{Lectures/}{Polar Coordinates}
+\import{Lectures/}{Complex Analysis, Fourier Transform}
+\import{Lectures/}{Transport Equation}
+\import{lectures/}{Image Processing}
+\import{Lectures/}{Conservation Laws}
 %______________________________________________________________________________%
 
+\subsection*{Harmonic Function - Review Number 7}
 
-\topic{April 1, 2022}
+Show that $u(x, y) = xy - x^2 + y^2$ is a harmonic function and find its min and max on $0 \leq x \leq 1$ and $0 \leq y \leq 1$
+
+Here, let us consider the following properties for our $u(x, y)$:
 %
-\begin{align}
-  \xi^\prime(t) & = \frac{f(u_L) - f(u_R)}{u_L - u_R}
-\end{align}
+\begin{itemize}
+  \item $u_x = y - 2x$
+  \item $u_{xx} = -2x$
+  \item $u_y = x + 2y$
+  \item $u_{yy} = 2$
+\end{itemize}
 
-For some example $f(u) = \frac{u^2}{2}$, $u_L = 1, u_R = 0$
-%
-\begin{align}
-  \xi^\prime(t) & = \frac{\frac{1}{2} - 0}{1 - 0}\\
-  & = \frac{1}{2}
-\end{align}
+Here, let us find the min/max on one boundary.
+\begin{itemize}
+  \item $y = 0 : u(x, 0) = -x^2$
 
-There are other initial conditions that still lead to two solutions.
-%
-\begin{align}
-  u_t + uu_x & = 0\\
-  u(x, 0) & =
-  \begin{cases}
-    0 & x < 0\\
-    1 & e \geq 0
-  \end{cases}
-\end{align}
+  min: $-1$, max: $0$
+  \item $y = 1 : u(x, 1) = x - x^2 + 1$
 
-Riemann Problem. The slope of our characteristic line is $\frac{1}{u}$.
+  The points are not obvious, $u^\prime(x, 1) = 1 - 2x$, we have our critical number at $x = \frac{1}{2}$.
 
-In our solution, we have the verticals on the left side and slope = 1 on the right side, so the solutions do not collide. To remediate this, we add a shock in between and extend both solutions to the shock line.
+  $u(\frac{1}{2}, 1)$, $u(0, 1)$, $u(1, 1)$ are evaluated and checked for min/max. Always check the endpoints.
+\end{itemize}
 
-R-H Jump Condition
-%
-\begin{align}
-  \xi^\prime(t) & = \frac{0 - \frac{1}{2}}{0 - 1}\\
-  & = \frac{1}{2}
-\end{align}
+\subsection*{Fourier Transform - Review Number 3}
 
-Another solution is to make a fan (paper fan)
+Use Fourier Transform to solve $u_{xt} = 4u_x$, where $u(x, 0) = xe^{-x^2}$, with $x \in (-\infty, \infty)$ and $t \in [0, \infty)$.
 
-There would be no shock and the solution is continuous. The R-H jump condition is not used.
-%
-\begin{align}
-  u(x, t) & =
-  \begin{cases}
-    0 & x < 0\\
-    \frac{x}{t} & 0 \frac{x}{t} < 1\\
-    1 & \frac{x}{t} \geq 1
-  \end{cases}
-\end{align}
+\begin{enumerate}
+  \item Fourier Transform on both sides.
+  %
+  \begin{align}
+    F[u_{xt}] & = i \xi \hat u_t\\
+    F[4u_x] & = 4 i \xi \hat u
+  \end{align}
 
-Conservation Law: $u_t + [f(u)]_x = 0$.
+  With every $x$ partial, we obtain an $i \xi$. For each $t$ partial, we keep $t$.
+  %
+  \begin{align}
+    i \xi \hat u_t & = 4 i \xi \hat u\\
+    \hat u_t & = 4 \hat u
+  \end{align}
 
-If $f$ is smooth: $u_t + f^\prime(u) u_x = 0$.
+  Recall our initial condition, $f(X) = u(x, 0)$,
+  %
+  \begin{align}
+    F[f(x)] & = \hat f(\xi)
+  \end{align}
 
-$f^\prime(u)$ is the speed of the characteristic.
+  \item Evaluate
+  \begin{align}
+    \hat u(\xi, t) & = A(\xi) e^{4t}
+  \end{align}
 
-Slope of characteristic $= \frac{1}{f^\prime(u)}$
+  When we plug in $t = 0$ for our initial condition, we simply get:
+  %
+  \begin{align}
+    \hat u(\xi, 0) & = A(\xi) = \hat f(\xi)
+  \end{align}
 
-\note If the solution is continuous, the $R-H$ condition gives the slope of a characteristic, not the slope of shocks.
+  Now, we can write:
+  %
+  \begin{align}
+    \hat u(\xi, t) & = \hat f(\xi) e^{4t}
+  \end{align}
 
-What is the actual solution to the last problem?
-%
-\begin{align}
-  u_t + u u_x & = \eps u_{xx}
-\end{align}
-
-Therefore, if $\eps > 0$ is a smoothing term (as in heat) $\to C^\infty$.
-
-Which solution is the solution that you get if you solve the last equation and let $\eps \to 0$?
-
-This ends up giving us the lax entropy condition:
-
-The characteristic curves can enter a shock as time increases, but they cannot exit (or be created) from a shock.
-
-% Solution one: tree leaf, branch out from center stem
-% Solution two: hut
-Solution one violates the lax entropy condition, therefore solution two is the correct solution.
-
-\thm There exists a unique solution to any conservation law $u_t + [f(u)]_x = 0$, $u(x, 0) = g(x)$, $x \in (-\infty, \infty), t \in [0, \infty)$ whose shocks satisfy the $R-H$ jump condition and the lax entropy condition.
-
-\note The fan is called a carefaction wave.
-
-For any general first order equation $F(\vv x, u(\vv x), \grad(\vv x)) = 0$
-
-$\vv x = (x, t)$ is our conservation law, you always have characteristic curves. The difficulty lies with how to resolve what happens when characteristic collide.
-
-
-
-
-
-
+  \item Retransform
+  \begin{align}
+    u(x, t) & = \frac{1}{\sqrt{2 \pi}}
+    \int^\infty_{-\infty} \hat f(\xi) e^{4t} e^{i x \xi}\ \text d\xi\\
+    & = \frac{e^{4t}}{\sqrt{2 \pi}}
+    \int^\infty_{-\infty} \hat f(\xi) e^{i x \xi}\ \text d \xi\\
+    & = e^{4t} f(x)
+  \end{align}
+\end{enumerate}
 \end{document}

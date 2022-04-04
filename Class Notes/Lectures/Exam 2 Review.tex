@@ -1,0 +1,165 @@
+\section{Exam 2 Review}
+
+\topic{April 4, 2022}
+
+\subsection*{Heat Kernel, Review Number 5}
+
+\begin{itemize}
+  \item Use the Heat Kernel to solve $u_t = u_{xx}$ on $x \in (-\infty, \infty)$ and $t \in [0, \infty]$, where $u(x, 0) = x^2$
+\end{itemize}
+
+Here, let us consider $\alpha = 1$, then we have:
+%
+\begin{align}
+  u(x, t) & = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} f(y) e^{-\frac{(x - y)^2}{4t}}\ \text dy
+\end{align}
+
+Here, we are given a function in our initial condition. Let us write it in:
+
+\begin{align}
+  u(x, t) & = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} y^2 e^{-\frac{(x - y)^2}{4t}}\ \text dy
+\end{align}
+
+Here, let us make the power and use w-substitution.
+
+$w = \frac{x - y}{2\sqrt t}$ and $dw = -\frac{1}{2 \sqrt t}\ \text dy$
+
+Now, let us make our substitution:
+%
+\begin{align}
+  u(x, t) & = - \frac{1}{\sqrt \pi} \int^{-\infty}_{\infty} y^2 e^{-w^2}\ \text dw
+\end{align}
+
+Here, let us solve for $y$ using our sub. Using our substitution, we find $y = x - 2 \sqrt t w$.
+%
+\begin{align}
+  u(x, t) & = - \frac{1}{\sqrt \pi} \int^{-\infty}_{\infty} (x - 2 \sqrt t w)^2 e^{-w^2}\ \text dw\\
+  & = \frac{1}{\sqrt \pi}
+  \left[
+  x^2 \int^\infty_{-\infty} e^{-w^2}\ \text dw
+  - 4 \sqrt t x \int^\infty_{-\infty} w e^{-w^2}\ \text dw
+  + 4t \int^\infty_{-\infty} w^2 e^{-w^2}\ \text dw
+  \right]
+\end{align}
+
+For the first term, we use our formulas to find $\sqrt \pi$.
+
+For the second term, we use $v$ substitution to find $v = -w^2$, $dv = -2w dw$
+
+For the third term, with the following table:
+%
+\begin{center}
+  \begin{tabular}{c|c}
+    $w$ & $we^{-w^2}$\\
+    \hline
+    $1$ & $-\frac{1}{2} e^{-w^2}$
+  \end{tabular}
+\end{center}
+
+We perform integration by parts.
+%
+\begin{align}
+  u(x, t) & = - \frac{1}{\sqrt \pi} \int^{-\infty}_{\infty} (x - 2 \sqrt t w)^2 e^{-w^2}\ \text dw\\
+  & = \frac{1}{\sqrt \pi}
+  \left[
+  \sqrt \pi
+  + 0
+  + 4t
+  \left(
+  -\frac{1}{2} we^{-w^2} \bigg|^\infty_{-\infty} + \frac{1}{2} \int^\infty_{-\infty} e^{-w^2}\ \text dw
+  \right)
+  \right]\\
+  & = x^2 + \frac{4t}{\sqrt \pi} \cdot \frac{1}{2} \sqrt \pi\\
+  & = x^2 + 2t
+\end{align}
+
+\subsection*{Range of Influence - Review Number 4}
+
+Find the range of influence of the point $(-1, 0)$ given the equation $u_{tt} = 16u_{xx}$. For the same equation, find the domain of dependence for the point $(5, 7)$
+
+\subsection*{Fourier Transform - Review Number 1}
+
+Find the Fourier transform for the following instruction:
+%
+\begin{itemize}
+  \item $f(x) = e^{-|x|}$
+\end{itemize}
+
+Recall,
+%
+\begin{align}
+  \hat f(\xi) & = \frac{1}{\sqrt{2\pi}} \int^\infty_{-\infty} f(X) e^{-i x \xi \text dx}\\
+  & = \frac{1}{\sqrt 2 \pi} \int^\infty_{-\infty} e^{-|x|} e^{-i x \xi} \text dx
+\end{align}
+
+Here, let us rewrite our integral to fit in our absolute value:
+%
+\begin{align}
+  & = \frac{1}{\sqrt{2 \pi}}
+  \left[
+  \int^0_{-\infty} e^x e^{-i x \xi}\ \text dx +
+  \int^\infty_{-\infty} e^{-x} e^{-i x \xi}\ \text dx
+  \right]\\
+  & = \frac{1}{\sqrt{2 \pi}}
+  \left[
+  \int^0_{-\infty} e^{x(1 - i \xi)}\ \text dx +
+  \int^\infty_{-\infty} e^{x(-1 - i \xi)}\ \text dx
+  \right]\\
+  & = \frac{1}{\sqrt{2 \pi}}
+  \left[
+  \int^0_{-\infty} e^{x(1 - i \xi)}\ \text dx +
+  \int^\infty_{-\infty} e^{x(-1 - i \xi)}\ \text dx
+  \right]\\
+  & = \frac{1}{\sqrt{2 \pi}}
+  \left[
+  \frac{1}{1 - i \xi} e^{x(1 - i \xi)} \bigg|^0_{-\infty} -
+  \frac{1}{1 + i \xi} e^{x(-1 - i\xi)} \bigg|^\infty_0
+  \right]\\
+  & = \frac{1}{\sqrt{2 \pi}}
+  \left[
+  \frac{1}{1 - i \xi} e^{x} e^{-i x \xi} \bigg|^0_{-\infty} -
+  \frac{1}{1 + i \xi} e^{-x}e^{-i x \xi} \bigg|^\infty_0
+  \right]
+  \\
+  & = \frac{1}{\sqrt{2 \pi}}
+  \left[
+  \frac{1}{1 - i \xi} e^{x} (\cos(x \xi) - i\sin(x \xi) \bigg|^0_{-\infty} -
+  \frac{1}{1 + i \xi} e^{-x}(\cos(x \xi) - i\sin(x \xi) \bigg|^\infty_0
+  \right]\\
+  & = \frac{1}{\sqrt{2 \pi}}
+  \left[
+  \frac{1}{1 - i\xi} - 0 - 0 + \frac{1}{1 + i \xi}
+  \right]
+\end{align}
+
+\subsection*{Heat Equation, Delta Functions - Review Number 8}
+
+Find the solution of the heat equation $u_t = u_{xx}$, on $x \in (-\infty, \infty)$ and $t \in [0, \infty)$ if $f(x) = 4 \delta(x - 1) + 2 \delta(x + 5)$
+
+Here, we have the heat kernel once again.
+%
+\begin{align}
+  u(x, t)
+  & = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} f(y) e^{- \frac{(x - y)^2}{4t}}\ \text dy\\
+  & = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty}
+  \left[
+  4 \delta(y - 1) + 2 \delta(y + 5)
+  \right]
+  e^{-\frac{(x - y)^2}{4t}}\ \text dy
+\end{align}
+
+Here, our delta function is not zero when $y = 1$ and $y = 5$.
+%
+\begin{align}
+  & = \frac{1}{\sqrt{4 \pi t}}
+  \left[
+  4 \int^\infty_{-\infty} \delta(y - 1) e^{-\frac{(x - y)^2}{4t}}\ \text dy +
+  2 \int^\infty_{-\infty} \delta(y + 5) e^{-\frac{(x - y)^2}{4t}}\ \text dy
+  \right]\\
+  & = \frac{1}{\sqrt{4 \pi t}}
+  \left[
+  4 e^{- \frac{(x - 1)^2}{4t}} + 2e^{-\frac{(x + 5)^2}{4t}}
+  \right]
+\end{align}
+
+Steps to the problem: Identify when the integral is non-zero (When the delta function is zero) and plug in what is left.
