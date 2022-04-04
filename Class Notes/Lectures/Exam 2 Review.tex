@@ -1,3 +1,4 @@
+\newpage
 \section{Exam 2 Review}
 
 \topic{April 4, 2022}
@@ -163,3 +164,80 @@ Here, our delta function is not zero when $y = 1$ and $y = 5$.
 \end{align}
 
 Steps to the problem: Identify when the integral is non-zero (When the delta function is zero) and plug in what is left.
+
+\subsection*{Harmonic Function - Review Number 7}
+
+Show that $u(x, y) = xy - x^2 + y^2$ is a harmonic function and find its min and max on $0 \leq x \leq 1$ and $0 \leq y \leq 1$
+
+Here, let us consider the following properties for our $u(x, y)$:
+%
+\begin{itemize}
+  \item $u_x = y - 2x$
+  \item $u_{xx} = -2x$
+  \item $u_y = x + 2y$
+  \item $u_{yy} = 2$
+\end{itemize}
+
+Here, let us find the min/max on one boundary.
+\begin{itemize}
+  \item $y = 0 : u(x, 0) = -x^2$
+
+  min: $-1$, max: $0$
+  \item $y = 1 : u(x, 1) = x - x^2 + 1$
+
+  The points are not obvious, $u^\prime(x, 1) = 1 - 2x$, we have our critical number at $x = \frac{1}{2}$.
+
+  $u(\frac{1}{2}, 1)$, $u(0, 1)$, $u(1, 1)$ are evaluated and checked for min/max. Always check the endpoints.
+\end{itemize}
+
+\subsection*{Fourier Transform - Review Number 3}
+
+Use Fourier Transform to solve $u_{xt} = 4u_x$, where $u(x, 0) = xe^{-x^2}$, with $x \in (-\infty, \infty)$ and $t \in [0, \infty)$.
+
+\begin{enumerate}
+  \item Fourier Transform on both sides.
+  %
+  \begin{align}
+    F[u_{xt}] & = i \xi \hat u_t\\
+    F[4u_x] & = 4 i \xi \hat u
+  \end{align}
+
+  With every $x$ partial, we obtain an $i \xi$. For each $t$ partial, we keep $t$.
+  %
+  \begin{align}
+    i \xi \hat u_t & = 4 i \xi \hat u\\
+    \hat u_t & = 4 \hat u
+  \end{align}
+
+  Recall our initial condition, $f(X) = u(x, 0)$,
+  %
+  \begin{align}
+    F[f(x)] & = \hat f(\xi)
+  \end{align}
+
+  \item Evaluate
+  \begin{align}
+    \hat u(\xi, t) & = A(\xi) e^{4t}
+  \end{align}
+
+  When we plug in $t = 0$ for our initial condition, we simply get:
+  %
+  \begin{align}
+    \hat u(\xi, 0) & = A(\xi) = \hat f(\xi)
+  \end{align}
+
+  Now, we can write:
+  %
+  \begin{align}
+    \hat u(\xi, t) & = \hat f(\xi) e^{4t}
+  \end{align}
+
+  \item Retransform
+  \begin{align}
+    u(x, t) & = \frac{1}{\sqrt{2 \pi}}
+    \int^\infty_{-\infty} \hat f(\xi) e^{4t} e^{i x \xi}\ \text d\xi\\
+    & = \frac{e^{4t}}{\sqrt{2 \pi}}
+    \int^\infty_{-\infty} \hat f(\xi) e^{i x \xi}\ \text d \xi\\
+    & = e^{4t} f(x)
+  \end{align}
+\end{enumerate}
