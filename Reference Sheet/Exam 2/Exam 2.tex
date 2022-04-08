@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{stocktonmacros}
+
+\begin{document}
+\begin{multicols}{2}
+  \topic{Fourier Transformation}
+
+  \import{Responses/}{Fourier Transformation}
+
+  \topic{D'Alembert's Formula}
+
+  Used in Wave Equation Solutions, $u_{tt} = c^2 u_{xx}$, $u(x, 0) = f(x)$, $u_t(x, 0) = g(x)$, $u(x, t)$:
+  %
+  \begin{align}
+    \frac{1}{2} [f(x + t) + f(x - t)] + \frac{1}{2} \int^{x + t}_{x - t} g(y)\ \text dy
+  \end{align}
+
+  \topic{Transport Equation}
+
+  \import{Responses/}{Transport Equation}
+
+  \topic{Range/Domain}
+
+  \import{Responses/}{Range-Domain}
+
+  \topic{Harmonic Functions}
+
+  $\delta u = 0$
+
+  Find $u_x, u_{xx}, u_y, u_{yy}$ and find the min/max on the boundaries
+
+  For non-obvious values, find critical number with respect to variable.
+\end{multicols}
+\end{document}

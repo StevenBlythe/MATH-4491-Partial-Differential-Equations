@@ -1,0 +1,59 @@
+Problem 1a already solved.
+
+\bigbreak
+
+Problem 1b:
+%
+\begin{align}
+  g(x) & =
+  \begin{cases}
+    \sin x & 0 \leq x \leq \pi\\
+    0 & \text{ otherwise}
+  \end{cases}
+\end{align}
+
+Here, let us consider the definition of the Fourier Transform:
+%
+\begin{align}
+  \hat f(x) & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} f(x) e^{-i \xi x} \text dx
+\end{align}
+
+From here, let us plug in our function into the Fourier Transform:
+%
+\begin{align}
+  \hat g(x) & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} g(x) e^{-i \xi x} \text dx
+\end{align}
+
+Here, our integral is split into three intervals: $(-\infty, 0) \union [0, \pi] \union (\pi, \infty)$:
+%
+\begin{align}
+  \hat g(x)
+  & = \frac{1}{\sqrt{2 \pi}} \left[
+  % Integral 1
+  \int^{0}_{-\infty}  0 e^{-i \xi x} \text dx
+  % Integral 1
+  \int^{\pi}_{0}      \sin x e^{-i \xi x} \text dx
+  % Integral 1
+  \int^{\infty}_{\pi} 0 e^{-i \xi x} \text dx
+  \right]\\
+  & = \frac{1}{\sqrt{2 \pi}} \left[
+  % Integral 1
+  \int^{0}_{-\infty}  0 \text dx
+  % Integral 1
+  \int^{\pi}_{0}      \sin x e^{-i \xi x} \text dx
+  % Integral 1
+  \int^{\infty}_{\pi} 0 \text dx
+  \right]
+\end{align}
+
+Here, two of our integrals is just $0$. Now, let us evaluate our middle integral:
+%
+\begin{align}
+  \hat g(x) & = \frac{1}{\sqrt{2 \pi}} \int^\pi_0 \sin x e^{-i \xi x} \text dx
+\end{align}
+
+Using integration by parts, we get the following integrap:
+%
+\begin{align}
+  \frac{1}{\sqrt{2 \pi}} \left[ - e^{-i x \xi} \cos x - i \xi e^{-i x \xi} \sin x \right]^\pi_0 + \frac{1}{\sqrt{2 \pi}}\int^\pi_0 \xi^2 e^{-i x \xi} \sin x \text dx
+\end{align}

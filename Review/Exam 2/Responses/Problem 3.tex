@@ -1,0 +1,55 @@
+Use Fourier Transforms to solve $u_{xt} = 4u_x$, where $u(x, 0) = xe^{-x^2}$, with $x \in (-\infty, \infty)$ and $t \in [0, \infty)$
+
+Here, let us take the fourier transform of both sides:
+%
+\begin{align}
+  F[u_{xt}] & = i \xi \hat u_t\\
+  F[4u_x] & = i \xi 4 \hat u
+\end{align}
+
+Here, both sides are equal to each other, so let us write:
+%
+\begin{align}
+  i \xi \hat u_t & = i \xi 4 \hat u\\
+  \hat u_t & = 4 \hat u
+\end{align}
+
+Here, let us find $u(x, t)$ by using our initial condition:
+%
+\begin{align}
+  f(x) & = xe^{-x^2}
+\end{align}
+
+From here, let us consider the general solution for our function:
+%
+\begin{align}
+  F[f(x)] & = \hat f(\xi)
+\end{align}
+
+Now, let us evaluate our fourier transform:
+%
+\begin{align}
+  \hat u(\xi, t) & = A(\xi) e^{4t}
+\end{align}
+
+From here, let us evaluate at $t = 0$:
+%
+\begin{align}
+  \hat u(\xi, 0) & = A(\xi) = \hat f(\xi)
+\end{align}
+
+So, let us write:
+%
+\begin{align}
+  \hat u(\xi, t) & = \hat f(\xi) e^{4t}
+\end{align}
+
+From here, now that we have $\hat u$, let us retransform back:
+%
+\begin{align}
+  u(x, t)
+  & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} \hat f(\xi) e^{i \xi x} \text d \xi\\
+  & = \frac{1}{\sqrt{2 \pi}} \int^\infty_{-\infty} \hat f(\xi)e^{4t} e^{i \xi x} \text d \xi\\
+  & = \frac{e^{4t}}{\sqrt{2 \pi}} \int^\infty_{-\infty} \hat f(\xi) e^{i \xi x} \text d \xi\\
+  & = e^{4t} f(x)
+\end{align}
