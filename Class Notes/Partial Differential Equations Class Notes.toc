@@ -4,51 +4,52 @@
 \contentsline {subsection}{\numberline {1.3}How do we solve an ODE?}{6}{subsection.1.3}%
 \contentsline {subsection}{\numberline {1.4}How do we solve PDEs?}{6}{subsection.1.4}%
 \contentsline {subsection}{\numberline {1.5}Initial Condiction}{6}{subsection.1.5}%
-\contentsline {section}{\numberline {2}Heat, Wave Equation}{7}{section.2}%
-\contentsline {subsection}{\numberline {2.1}1-D Heat Equation}{7}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Heat Equation, Conservation of Energy}{7}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}The Wave Equation}{9}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Approximating Functions with Other Functions}{11}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Advantages of Fourier Series}{11}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Orthogonality}{12}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Fourier Series}{13}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Heat Equation}{15}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Solving the Heat Equation}{15}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Laplace's Equation}{19}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Solving Laplace's Equation}{20}{subsection.4.3}%
-\contentsline {section}{\numberline {5}Wave Equation}{26}{section.5}%
-\contentsline {section}{\numberline {6}More general Boundary Conditions}{30}{section.6}%
-\contentsline {section}{\numberline {7}Laplace's Equation}{33}{section.7}%
-\contentsline {subsection}{\numberline {7.1}General Dirichlet Boundary Conditions}{33}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Wave Equation}{35}{subsection.7.2}%
-\contentsline {section}{\numberline {8}Polar Coordinates}{37}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Laplace's Equation in Polar Coordinates}{37}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Solving Laplace's Equation in Polar Coordinates}{38}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Heat and Wave Equations in Polar Coordinates}{42}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}Laplace in Spherical Coordinates}{44}{subsection.8.4}%
-\contentsline {section}{\numberline {9}Complex Analysis, Fourier Transform}{47}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Gauss' MVT in Complex Analysis}{47}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Fourier Transform}{48}{subsection.9.2}%
-\contentsline {subsubsection}{\numberline {9.2.1}Panseval's Equality}{50}{subsubsection.9.2.1}%
-\contentsline {subsection}{\numberline {9.3}Key Property of the Fourier Transform}{50}{subsection.9.3}%
-\contentsline {section}{\numberline {10}Linear Equations with Infinite Domains}{51}{section.10}%
-\contentsline {subsection}{\numberline {10.1}Transport Equation}{51}{subsection.10.1}%
-\contentsline {subsection}{\numberline {10.2}Laplace Equation}{53}{subsection.10.2}%
-\contentsline {subsection}{\numberline {10.3}Heat Equation}{53}{subsection.10.3}%
-\contentsline {subsection}{\numberline {10.4}Wave Equation}{55}{subsection.10.4}%
-\contentsline {subsection}{\numberline {10.5}Wave Equation Solutions}{58}{subsection.10.5}%
-\contentsline {subsubsection}{\numberline {10.5.1}Calculations with Delta Functions}{60}{subsubsection.10.5.1}%
-\contentsline {section}{\numberline {11}Semester Project Information}{62}{section.11}%
-\contentsline {subsection}{\numberline {11.1}Image Processing}{62}{subsection.11.1}%
-\contentsline {subsection}{\numberline {11.2}Grayson's Theorem}{65}{subsection.11.2}%
-\contentsline {subsection}{\numberline {11.3}Deblurring an Image}{65}{subsection.11.3}%
-\contentsline {subsection}{\numberline {11.4}Implementation}{67}{subsection.11.4}%
-\contentsline {subsection}{\numberline {11.5}Second Derivatives Numerically}{68}{subsection.11.5}%
-\contentsline {subsection}{\numberline {11.6}Equation Simulation}{68}{subsection.11.6}%
-\contentsline {subsection}{\numberline {11.7}Heat Equation}{69}{subsection.11.7}%
-\contentsline {subsection}{\numberline {11.8}Maple}{69}{subsection.11.8}%
-\contentsline {subsection}{\numberline {11.9}Modified Level Set}{70}{subsection.11.9}%
-\contentsline {subsection}{\numberline {11.10}Shock Filter}{70}{subsection.11.10}%
-\contentsline {section}{\numberline {12}Conservation Laws}{71}{section.12}%
-\contentsline {subsection}{\numberline {12.1}Burger's Equation}{72}{subsection.12.1}%
-\contentsline {section}{\numberline {13}Exam 2 Review}{75}{section.13}%
+\contentsline {section}{\numberline {2}Heat, Wave Equation}{8}{section.2}%
+\contentsline {subsection}{\numberline {2.1}1-D Heat Equation}{8}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Heat Equation, Conservation of Energy}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}The Wave Equation}{10}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Approximating Functions with Other Functions}{12}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Advantages of Fourier Series}{12}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Orthogonality}{14}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Fourier Series}{14}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Heat Equation}{17}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Solving the Heat Equation}{17}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Laplace's Equation}{21}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Solving Laplace's Equation}{22}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Wave Equation}{29}{section.5}%
+\contentsline {section}{\numberline {6}More general Boundary Conditions}{33}{section.6}%
+\contentsline {section}{\numberline {7}Laplace's Equation}{36}{section.7}%
+\contentsline {subsection}{\numberline {7.1}General Dirichlet Boundary Conditions}{36}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Wave Equation}{39}{subsection.7.2}%
+\contentsline {section}{\numberline {8}Polar Coordinates}{40}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Laplace's Equation in Polar Coordinates}{40}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Solving Laplace's Equation in Polar Coordinates}{41}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Heat and Wave Equations in Polar Coordinates}{46}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Laplace in Spherical Coordinates}{47}{subsection.8.4}%
+\contentsline {section}{\numberline {9}Complex Analysis, Fourier Transform}{51}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Gauss' MVT in Complex Analysis}{51}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Fourier Transform}{52}{subsection.9.2}%
+\contentsline {subsubsection}{\numberline {9.2.1}Panseval's Equality}{54}{subsubsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.3}Key Property of the Fourier Transform}{54}{subsection.9.3}%
+\contentsline {section}{\numberline {10}Linear Equations with Infinite Domains}{56}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Transport Equation}{56}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Laplace Equation}{58}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Heat Equation}{58}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Wave Equation}{60}{subsection.10.4}%
+\contentsline {subsection}{\numberline {10.5}Wave Equation Solutions}{63}{subsection.10.5}%
+\contentsline {subsubsection}{\numberline {10.5.1}Calculations with Delta Functions}{65}{subsubsection.10.5.1}%
+\contentsline {section}{\numberline {11}Semester Project Information}{68}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Image Processing}{68}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Grayson's Theorem}{71}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Deblurring an Image}{72}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Implementation}{73}{subsection.11.4}%
+\contentsline {subsection}{\numberline {11.5}Second Derivatives Numerically}{75}{subsection.11.5}%
+\contentsline {subsection}{\numberline {11.6}Equation Simulation}{75}{subsection.11.6}%
+\contentsline {subsection}{\numberline {11.7}Heat Equation}{75}{subsection.11.7}%
+\contentsline {subsection}{\numberline {11.8}Maple}{76}{subsection.11.8}%
+\contentsline {subsection}{\numberline {11.9}Modified Level Set}{77}{subsection.11.9}%
+\contentsline {subsection}{\numberline {11.10}Shock Filter}{77}{subsection.11.10}%
+\contentsline {section}{\numberline {12}Conservation Laws}{78}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Burger's Equation}{79}{subsection.12.1}%
+\contentsline {section}{\numberline {13}Exam 2 Review}{83}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Traffic Flow}{87}{subsection.13.1}%
