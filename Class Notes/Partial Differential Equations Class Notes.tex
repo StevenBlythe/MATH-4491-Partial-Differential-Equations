@@ -4,27 +4,27 @@
 
 \begin{document}
 
-\maketitle
-%
-\newpage
-%
-\tableofcontents
+%\maketitle
 %%
-\newpage
+%\newpage
 %%
-\import{Lectures/}{Partial Differential Equations - An Introduction}
-\import{Lectures/}{Heat, Wave Equation}
-\import{Lectures/}{Approximating Functions with Other Functions}
-\import{Lectures/}{Heat Equation}
-\import{Lectures/}{Wave Equation}
-\import{Lectures/}{Boundary Conditions}
-\import{Lectures/}{Laplace's Equation}
-\import{Lectures/}{Polar Coordinates}
-\import{Lectures/}{Complex Analysis, Fourier Transform}
-\import{Lectures/}{Transport Equation}
-\import{Lectures/}{Image Processing}
+%\tableofcontents
+%%%
+%\newpage
+%%%
+%\import{Lectures/}{Partial Differential Equations - An Introduction}
+%\import{Lectures/}{Heat, Wave Equation}
+%\import{Lectures/}{Approximating Functions with Other Functions}
+%\import{Lectures/}{Heat Equation}
+%\import{Lectures/}{Wave Equation}
+%\import{Lectures/}{Boundary Conditions}
+%\import{Lectures/}{Laplace's Equation}
+%\import{Lectures/}{Polar Coordinates}
+%\import{Lectures/}{Complex Analysis, Fourier Transform}
+%\import{Lectures/}{Transport Equation}
+%\import{Lectures/}{Image Processing}
+%\import{Lectures/}{Exam 2 Review}
 \import{Lectures/}{Conservation Laws}
-\import{Lectures/}{Exam 2 Review}
 %______________________________________________________________________________%
 \newpage
 % Conservation Law?
@@ -165,4 +165,128 @@ If we consider our graph, a shock will form and we will have:
   \xi^\prime(t) & = \frac{q(\rho_L) - q(\rho_R)}{\rho_L - \rho_R}\\
   & = \frac{u_{\max} \rho_0 \left( 1 - \frac{\rho_0}{\rho_{\max} - 0}\right)}{\rho_0 - \rho_{\max}} < 0
 \end{align}
+
+\topic{April 13, 2022}
+
+\ex Green light turns red, then green
+
+\begin{center}
+  \includegraphics{Traffic Light - Turning Red}
+\end{center}
+
+\subsection{Method of Characteristics}
+
+We will look at agns? of the form:
+%
+\begin{align}
+  a(x, t) u_x + b(x, t) u_t + c(x, t) u & = 0\\
+  u(x, 0) & = f(x)
+\end{align}
+
+Let:
+%
+\begin{itemize}
+  \item $x(t)$ : Moving observer <- Location of observer
+  \item $u(x, t)$ : function of $x$ and $t$
+\end{itemize}
+
+How does $u$ change from the observer's perspective?
+
+How does a point in front of one move?
+
+Find $\frac{du}{dt}$:
+%
+\begin{align}
+  \frac{du(x(t), t)}{dt} & = \frac{du}{dt} + \frac{\p u}{\p x} \frac{dx}{dt}\\
+  & = u_t + u_x \frac{dx}{dt}
+\end{align}
+
+\ex Transport Equation
+%
+\begin{align}
+  u_t + cu_x & = 0\\
+  \frac{dx}{dt} & = c\\
+  \frac{du}{dt} & = 0
+\end{align}
+
+The observer is moving at speed $c$ and $u$ is not changing.
+
+Let us consider the following:
+%
+\begin{align}
+  u(x, 0) & = f(x)\\
+  x(0) & = x_0\\
+  u(0) & = u_0
+\end{align}
+
+Now, let us consider:
+%
+\begin{align}
+  \frac{du}{dt} & = u_t + \frac{dx}{dt} u_x
+\end{align}
+\begin{align}
+  \frac{dx}{dt} & = c\\
+  x & = ct + k\\
+  x & = ct + x_0\\
+\end{align}
+\begin{align}
+  \frac{du}{dt} & = 0\\
+  u & = u_0\\ & = u(x_0, 0)\\ & = f(x_0)\\ & = f(x - ct)
+\end{align}
+
+\note
+%
+\begin{align}
+  u_t + cu_x & = 0\\
+  \left< 1, c \right> \cdot \left< u_t, u_x \right> & = 0\\
+  \left< 1, c \right> \cdot \left< \grad \right> & = 0
+\end{align}
+
+Here, we found the directional derivative.
+
+\ex $u_t + cu_x = 1$ and $u(x, 0) = \sin x$
+%
+\begin{align}
+  \frac{dx}{dt} = c & \Rightarrow x = ct + x_0\\
+  \frac{du}{dt} = 1 & \Rightarrow u = t + B\\
+  u(x_0, t) & = u_0\\
+  & = t + u_0 = t + u(x_0, 0)\\
+  & = t + \sin x_0\\
+  & = t + \sin(x - ct)
+\end{align}
+
+\ex $u_t + cu_x + au = 0$, $u(x, 0) = f(x)$
+%
+\begin{align}
+  u_t + cu_x & = -au\\
+  \left< 1, c \right> \cdot \left< u_t, u_x \right> & = -au
+\end{align}
+
+If $a > 0$, directional derivative $= -au \Rightarrow$ decay
+%
+\begin{align}
+  \frac{dx}{dt} = c & \Rightarrow x = ct + x_0
+\end{align}
+
+The following is an exponential decay (Refer to Differential Equation):
+%
+\begin{align}
+  \frac{du}{dt} & = -au\\
+  u & = De^{-at} = u_0 e^{-at}
+\end{align}
+
+When we plug in $t = 0$, we should get $f(x)$:
+%
+\begin{align}
+  u & = f(x_0) e^{-at}\\
+  & = f(x - ct) e^{-at}
+\end{align}
+
+\ex $u_t + xu_x = 0$, $u(x, 0) = f(x)$
+%
+\begin{align}
+  \frac{dx}{dt} = x & \Rightarrow x = x_0 e^t\\
+  \frac{du}{dt} = 0 & \Rightarrow u = u_0 = f(x_0) = \left(\frac{x}{e^t}\right) = f(xe^{-t})
+\end{align}
+
 \end{document}

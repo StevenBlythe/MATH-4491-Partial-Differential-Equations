@@ -49,7 +49,9 @@
 \contentsline {subsection}{\numberline {11.8}Maple}{76}{subsection.11.8}%
 \contentsline {subsection}{\numberline {11.9}Modified Level Set}{77}{subsection.11.9}%
 \contentsline {subsection}{\numberline {11.10}Shock Filter}{77}{subsection.11.10}%
-\contentsline {section}{\numberline {12}Conservation Laws}{78}{section.12}%
-\contentsline {subsection}{\numberline {12.1}Burger's Equation}{79}{subsection.12.1}%
-\contentsline {section}{\numberline {13}Exam 2 Review}{83}{section.13}%
-\contentsline {subsection}{\numberline {13.1}Traffic Flow}{87}{subsection.13.1}%
+\contentsline {section}{\numberline {12}Exam 2 Review}{78}{section.12}%
+\contentsline {section}{\numberline {13}Conservation Laws}{82}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Burger's Equation}{83}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Traffic Flow}{87}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.3}Method of Characteristics}{89}{subsection.13.3}%
+\contentsline {subsubsection}{\numberline {13.3.1}Transport Equation}{90}{subsubsection.13.3.1}%
