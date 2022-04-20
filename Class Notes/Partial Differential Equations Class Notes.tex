@@ -4,26 +4,26 @@
 
 \begin{document}
 
-\maketitle
-%
-\newpage
-%
-\tableofcontents
+%\maketitle
 %%
-\newpage
+%\newpage
 %%
-\import{Lectures/}{Partial Differential Equations - An Introduction}
-\import{Lectures/}{Heat, Wave Equation}
-\import{Lectures/}{Approximating Functions with Other Functions}
-\import{Lectures/}{Heat Equation}
-\import{Lectures/}{Wave Equation}
-\import{Lectures/}{Boundary Conditions}
-\import{Lectures/}{Laplace's Equation}
-\import{Lectures/}{Polar Coordinates}
-\import{Lectures/}{Complex Analysis, Fourier Transform}
-\import{Lectures/}{Transport Equation}
-\import{Lectures/}{Image Processing}
-\import{Lectures/}{Exam 2 Review}
+%\tableofcontents
+%%%
+%\newpage
+%%%
+%\import{Lectures/}{Partial Differential Equations - An Introduction}
+%\import{Lectures/}{Heat, Wave Equation}
+%\import{Lectures/}{Approximating Functions with Other Functions}
+%\import{Lectures/}{Heat Equation}
+%\import{Lectures/}{Wave Equation}
+%\import{Lectures/}{Boundary Conditions}
+%\import{Lectures/}{Laplace's Equation}
+%\import{Lectures/}{Polar Coordinates}
+%\import{Lectures/}{Complex Analysis, Fourier Transform}
+%\import{Lectures/}{Transport Equation}
+%\import{Lectures/}{Image Processing}
+%\import{Lectures/}{Exam 2 Review}
 \import{Lectures/}{Conservation Laws}
 %______________________________________________________________________________%
 \newpage
@@ -60,13 +60,15 @@ Now,
   \rho_t + [\rho u]_x & = 0
 \end{align}
 
-Both $\rho$ and $u$ are a function of $x$, therefore there is a product rule that comes into play.
+Both $\rho$ and $u$ are a function of $x$, therefore there is a
+product rule that comes into play.
 %
 \begin{align}
   \rho_t + [c(\rho)]\rho_x & = 0
 \end{align}
 
-We have yet to determine $c$. So far, this equation is similar to the Transport Equation, where we use $c$ to find the speed of the equation.
+We have yet to determine $c$. So far, this equation is similar to the Transport
+Equation, where we use $c$ to find the speed of the equation.
 
 $c(\rho)$ will give the speed of the characteristic.
 
@@ -98,7 +100,8 @@ Hit maximum velocity at $\frac{\rho_{text{max}}}{2}$
   & = u_{\max} \left[ 1 - \frac{2}{\rho_{\max}} \rho \right] \rho_x
 \end{align}
 
-Here, this shows our critical point is at $\frac{\rho_{\max}}{2}$. Let us redefine this equation as $c(\rho) \rho_x$.
+Here, this shows our critical point is at $\frac{\rho_{\max}}{2}$. Let us
+redefine this equation as $c(\rho) \rho_x$.
 %
 \begin{align}
   \rho_t + u_{\max} \left( 1 - \frac{2\rho}{\rho_{\max}}\right) \rho_x & = 0
@@ -163,7 +166,8 @@ If we consider our graph, a shock will form and we will have:
 %
 \begin{align}
   \xi^\prime(t) & = \frac{q(\rho_L) - q(\rho_R)}{\rho_L - \rho_R}\\
-  & = \frac{u_{\max} \rho_0 \left( 1 - \frac{\rho_0}{\rho_{\max} - 0}\right)}{\rho_0 - \rho_{\max}} < 0
+  & = \frac{u_{\max} \rho_0 \left( 1 - \frac{\rho_0}{\rho_{\max}
+  - 0}\right)}{\rho_0 - \rho_{\max}} < 0
 \end{align}
 
 \topic{April 13, 2022}
@@ -286,7 +290,151 @@ When we plug in $t = 0$, we should get $f(x)$:
 %
 \begin{align}
   \frac{dx}{dt} = x & \Rightarrow x = x_0 e^t\\
-  \frac{du}{dt} = 0 & \Rightarrow u = u_0 = f(x_0) = \left(\frac{x}{e^t}\right) = f(xe^{-t})
+  \frac{du}{dt} = 0 & \Rightarrow u = u_0 = f(x_0) = \left(\frac{x}{e^t}\right)
+  = f(xe^{-t})
 \end{align}
 
+\topic{April 18, 2022}
+%
+\begin{align}
+  \frac{du}{dt} & = \frac{dx}{dt} u_x + u_t
+\end{align}
+
+We can also introduce a new variable,
+%
+\begin{align}
+  a(x, t) u_x + b(x, t) u_t + c(x, t) u & = 0\\
+  \frac{dx}{ds} & = a(x, t)
+\end{align}
+
+\begin{multicols}{2}
+  \begin{align}
+    \frac{dx}{ds} & = a(x, t)\\
+    \frac{dt}{ds} & = b(x, t)
+  \end{align}
+
+  \begin{align}
+    \frac{dy}{ds} & = -c(x, t) u\\
+    \frac{du}{ds} & = \frac{dx}{ds} u_x + \frac{dt}{ds} u_t
+  \end{align}
+\end{multicols}
+
+\begin{center}
+  \import{Snippets/}{tree_uxts}
+\end{center}
+
+\ex $xu_x + u_t + tu = 0 \Rightarrow xu_x + u_t = -tu$
+%
+\begin{align}
+  \frac{dx}{ds} & = x \Rightarrow x = ce^s = x_0 e^s = x_0 e^t\\
+  \frac{dt}{ds} & = 1 \Rightarrow t = s + t_0 = s\\
+  \frac{du}{ds} & = -tu = -su \Rightarrow u = f\left(xe^{-t}\right)
+  e^{-\frac{1}{2}t^2}
+\end{align}
+
+To find the third differential, we did separation of variables:
+%
+\begin{align}
+  \int \frac{1}{u} du & = \int -s ds\\
+  \ln |u| & = - \frac{1}{2} s^2 + c\\
+  u & = e^{- \frac{1}{2} s^2 + c}\\
+  u & = ce^{- \frac{1}{2} s^2}\\
+  u & = u_0 e^{-\frac{1}{2} t^2}\\
+  u & = f(x_0) e^{-\frac{1}{2}t^2}\\
+  u & = f\left(xe^{-t}\right)e^{-\frac{1}{2}t^2}
+\end{align}
+
+Because $u(x 0) = f(x)$ and $x_0 = \frac{x}{e^t} = xe^{-t}$
+
+\ex $2xtu_x + u_t = u$, $u(x, 0) = x$
+
+Because $\frac{dt}{ds} = 1$, we do not consider $s$.
+%
+\begin{align}
+  \frac{dx}{dt} & = 2xt \Rightarrow x = x_0 e^{t^2}\\
+  \frac{du}{dt} & = u \Rightarrow u = u_0 e^t = f(x_0) e^t = f(xe^{-t^2})e^t
+  = xe^{-t^2} e^t
+\end{align}
+
+Recall $u_0 = f(x)$.
+
+Here, we found $\frac{dx}{dt}$ through separation of variables:
+%
+\begin{align}
+  \frac{dx}{dt} & = 2xt\\
+  \int \frac{1}{x} & = \int 2t dt\\
+  \ln |x| & = t^2 + c\\
+  x & = ce^{t^2}\\
+  x & = x_0 e^{t^2}
+\end{align}
+
+\ex $u^2 \frac{du}{dx} + \frac{du}{dt} = 0$, $u(x, 0) = \sqrt x$.
+%
+\begin{align}
+  \frac{dx}{dt} & = u^2 \Rightarrow x = u^2 t + c = u^2 t + x_0
+  \Rightarrow x_0 = x - u^2 t\\
+  \frac{du}{dt} & = 0 \Rightarrow u = u_0 = f(x_0) = f(x - u^2 t)
+  = \sqrt{x - u^2 t} = \sqrt{\frac{x}{1 + t}}
+\end{align}
+
+Here, we solve for $u$ as:
+%
+\begin{align}
+  u & = \sqrt{x - u^2 t}\\
+  u^2 & = x - u^2 t\\
+  u^2(1 + t) & = x\\
+  u^2 & = \frac{x}{1 + t}\\
+  u & = \sqrt{\frac{x}{1 + t}}
+\end{align}
+
+\ex $e^{t^2} u_t + tu_x = 0$, $u(x, 0) = f(x)$.
+
+Here, let us divide out our term in front of
+$u_t$ to get $u_t + te^{-t^2}u_x = 0$,
+%
+\begin{align}
+  \frac{dx}{dt} & = te^{-t^2} \Rightarrow x = \\
+  \frac{du}{dt} & = 0 \Rightarrow u = u_0 = f(x_0)
+  = f(x + \frac{1}{2}e^{-t^2} - \frac{1}{2})
+\end{align}
+
+To solve for $x$,
+%
+\begin{align}
+  x & = \int te^{-t^2}\\
+  & = -\frac{1}{2} \int e^w \text dw\\
+  & = -\frac{1}{2} e^w + c\\
+  & = -\frac{1}{2} e^{-t^2} + C
+\end{align}
+
+Here, we want our term to zero out:
+%
+\begin{align}
+  x_0 & = - \frac{1}{2} + c \Rightarrow c = x_0 + \frac{1}{2}\\
+  x & = -\frac{1}{2} e^{t^2} + x_0 + \frac{1}{2}\\
+  x_0 & = x + \frac{1}{2} e^{-t^2} - \frac{1}{2}
+\end{align}
+
+\ex $u_t + tu_x = u^2$, $u(x, 0) = f(x)$
+%
+\begin{align}
+  \frac{dx}{dt} & = t \Rightarrow x = \frac{1}{2} t^2 + c
+  = \frac{1}{2} t^2 + x_0 \Rightarrow x_0 = x - \frac{1}{2} t^2\\
+  \frac{du}{dt} & = u^2 \Rightarrow u =
+\end{align}
+
+Here, to solve the second term,
+%
+\begin{align}
+  \frac{du}{dt} & = u^2\\
+  \int \frac{1}{u^2} \text du & = \int \text dt\\
+  -\frac{1}{u} & = t + c\\
+  \frac{1}{u} & = -t + c\\
+  u & = \frac{1}{c - t}\\
+  & = \frac{1}{\frac{1}{u_0} - t}\\
+  & = \frac{u_0}{1 - u_0 t}\\
+  & = \frac{f(x_0)}{1 - f(x_0)t}\\
+  & = \frac{f\left(x - \frac{1}{2}t^2\right)}
+  {1 - f\left(x - \frac{1}{2}t^2\right)t}
+\end{align}
 \end{document}
