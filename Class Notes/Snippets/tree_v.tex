@@ -1,0 +1,33 @@
+\begin{forest}
+  for tree={
+  math content,
+  calign=fixed edge angles,
+  },
+  before typesetting nodes={
+  for descendants={
+  delay={content/.wrap value={\strut #1}},
+  inner sep=1.5pt,
+  where={
+  >OOw+n< {n}{!u.n children}{(#1+1)/2}
+  }{
+  edge label/.process={
+  OOw2 {content}{!u.content} {node [midway, left, anchor=base east] {$\frac{\partial #2}{\partial #1}$}}
+  }
+  }{
+  edge label/.process={
+  OOw2 {content}{!u.content} {node [midway, right, anchor=base west] {$\frac{\partial #2}{\partial #1}$}}
+  }
+  },
+  },
+  },
+  [v
+  [x
+  [y]
+  [z]
+  ]
+  [t
+  [y]
+  [z]
+  ]
+  ]
+\end{forest}

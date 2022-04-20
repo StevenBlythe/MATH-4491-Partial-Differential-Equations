@@ -544,3 +544,19 @@ class RangeofInfluence(Scene):
         self.add(x1)
         self.add(x4)
         self.wait()
+
+class GreenLight(Scene):
+    def construct(self):
+        self.camera.background_color = WHITE
+        axes = Axes(
+            x_range=[-6, 6, 1],
+            y_range=[0, 5, 1],
+            tips=False
+        ).set_color(BLACK)
+        self.add(axes)
+        l_left = lambda x: -x
+
+        line_left = axes.plot(l_left, x_range=[-3, 0]).set_color(BLACK)
+
+        self.add(line_left)
+        self.wait()

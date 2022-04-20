@@ -1,0 +1,72 @@
+\item Level Set Curve:
+%
+\begin{align}
+  u_t & = \frac
+  {u^2_x u_{yy} - 2 u_x u_y u_{xy} + u^2_y u_{xx}}
+  {u^2_x + u^2_y + \eps}\\
+  u_x & = \frac
+  {u^n_{j+1, k} - u^n_{j-1, k}}{2} = \frac{\text{Right} - \text{Left}}{2}\\
+  u_y & = \frac
+  {u^n_{j, k+1} - u^n_{j, k-1}}{2} = \frac{\text{Up} - \text{Down}}{2}\\
+  u_{xx} & = \frac
+  {u^n_{j+1, k} - 2u^n_{j, k} + u^n_{j-1, k}}{(\Delta x)^2}
+  = \text{Right} - 2 * \text{Center} + \text{Left}\\
+  u_{xy} & = \frac
+  {u^n_{j+1, k+1} - u^n_{j-1, k+1} - u^n_{j+1, k-1} + u^n_{j-1, k-1}}{4}
+  = \frac{\text{UR} - \text{UL} - \text{DR} + \text{DL}}{4}\\
+  u_{yy} & = \frac
+  {u^n_{j, k+1} - 2u^n_{j, k} + u^n_{j, k-1}}{(\Delta y)^2}
+  = \text{Up} - 2 * \text{Center} + \text{Down}
+\end{align}
+
+\hrule
+
+\begin{center}
+  \begin{tabular}{c|c|c}
+    4 & 4 & 4\\
+    \hline
+    4 & 4 & 4\\
+    \hline
+    4 & 4 & 4
+  \end{tabular}
+\end{center}
+
+\begin{align}
+  u_{x} & = \frac{4 - 4}{2} = 0\\
+  u_{y} & = \frac{4 - 4}{2} = 0\\
+  u_{xx} & = 4 - 2*4 + 4 = 0\\
+  u_{xy} & = \frac{4 - 4 - 4 + 4}{4} = 0\\
+  u_{yy} & = 4 - 2*4 + 4 = 0\\
+  u_t & = \frac{0^2 * 0 + 2*0*0*0 + 0^2 * 0}{0^2 + 0^2 + \eps} = 0
+\end{align}
+
+\hrule
+
+\begin{center}
+  \begin{tabular}{c|c|c}
+    2 & 6 & 4\\
+    \hline
+    0 & 5 & 7\\
+    \hline
+    1 & 0 & 3
+  \end{tabular}
+\end{center}
+%
+\begin{align}
+  u_{x}  & = \frac{\text{Right} - \text{Left}}{2}\\
+   & = \frac{7 - 0}{2} = 3.5 \\
+  u_{y}  & = \frac{\text{Up} - \text{Down}}{2}\\
+   & = \frac{6 - 0}{2} = 3\\
+  u_{xx} & = \text{Right} - 2 * \text{Center} + \text{Left}\\
+   & = 7 - 2*5 + 0 = -3\\
+  u_{xy} & = \frac{\text{UR} - \text{UL} - \text{DR} + \text{DL}}{4}\\
+   & = \frac{4 - 2 - 3 + 1}{4} = 0\\
+  u_{yy} & = \text{Right} - 2 * \text{Center} + \text{Left}\\
+   & = 6 - 2*5 + 0 = -4\\
+  u_t & = \frac{(3.5)^2 (-4) - 2 * (3.5)(3)(0) + (3)^2(-3)}{(3.5)^2 + (3)^2 + \eps} = \frac{-76}{21.25 + \eps} = -3.576
+\end{align}
+\begin{align}
+  \frac{u^{n+1}_{j, k} - u^n_{j, k}}{\Delta t} & = -3.576\\
+  u^{n + 1}_{j, k} & = -3.576 \cdot \Delta t + u^n_{j, k}\\
+  u^{n + 1}_{j, k} & = -3.576 \cdot 0.25 + 5 = 4.106 \Rightarrow 4
+\end{align}
