@@ -437,4 +437,144 @@ Here, to solve the second term,
   & = \frac{f\left(x - \frac{1}{2}t^2\right)}
   {1 - f\left(x - \frac{1}{2}t^2\right)t}
 \end{align}
+
+\topic{April 20, 2022}
+
+\ex $tu_x - xu_t = u$ \quad $u(x, 0) = f(x)$
+\begin{align}
+  \frac{dx}{ds} & = t\\
+  \frac{dt}{ds} & = -x\\
+  \frac{du}{ds} & = u
+\end{align}
+
+Here, the issue with this format is that the first two terms have three
+variables. We must find $x_0$ and to get $x_0$, we must get to $x$. To solve
+this, we will look at parametric equations. Let us combine the first two lines to get:
+%
+\begin{align}
+  \frac{dx}{dt} & = - \frac{t}{x}
+\end{align}
+
+From here, we can solve this via separation of variables
+%
+\begin{align}
+  \int x \text dx & = \int - t \text dt\\
+  \frac{1}{2} x^2 & = -\frac{1}{2} t^2 + C\\
+  x^2 & = - t^2 + C\\
+  x^2 + t^2 & = C\\
+  x^2 + t^2 & = x^2_0
+\end{align}
+
+Now, to solve for our third term, we would get an exponential via separation of variables:
+%
+\begin{align}
+  \frac{du}{ds} & = u \Rightarrow u = u_0 e^s
+\end{align}
+
+Here, if we want to find $t$ for $s$, we write:
+%
+\begin{align}
+  \frac{dx}{ds} & = t \Rightarrow \frac{d^2x}{ds^2} = \frac{dt}{ds} = -x
+  \Rightarrow x(s) = a \cos s + b \sin s\\
+  & \Rightarrow x(0) = x_0 \rightarrow a = x_0\\
+  \frac{dt}{ds} & = -x \Rightarrow \frac{d^2t}{ds^2} = -\frac{dx}{ds} = -t
+  \Rightarrow t(s) = b \cos s - a \sin s\\
+  & \Rightarrow t(0) = 0 \rightarrow b = 0
+\end{align}
+
+Since want to start $t$ at $0$, $\sin$ would belong to $t$.
+
+Now, we know the following:
+%
+\begin{align}
+  x & = x_0 \cos s\\
+  t & = -x_0 \sin s\\
+  \frac{t}{x} & = - \tan s
+\end{align}
+
+So, to go back to $\frac{du}{ds}$,
+%
+\begin{align}
+  \frac{du}{ds} & = u \Rightarrow u = u_0 e^s
+  = f(x_0) e^{\arctan \frac{-t}{x}}\\
+  & = f\left( \sqrt{x^2 + t^2} \right) e^{\arctan \frac{-t}{x}}
+\end{align}
+
+\ex $xu_x + tu_t = 2u$ \quad $u(x_0, 1) = f(x)$
+\begin{align}
+  \frac{dx}{ds} & = x \Rightarrow_1 x = x_0 e^s \Rightarrow_4 x_0
+  = \frac{x}{e^s} = \frac{x}{t}\\
+  \frac{dt}{ds} & = t \Rightarrow_2 t = t_0 e^s = e^s\\
+  \frac{du}{ds} & = 2u \Rightarrow_3 u = u_0 e^{2s}
+  \Rightarrow_5 u = f(x_0) e^{2s} = f\left(\frac{x}{t}\right)(e^s)^2
+  = f\left(\frac{x}{t}\right)t^2
+\end{align}
+
+\ex $u_t + tu_x = 0$, $u(x, 0) = f(x)$
+%
+\begin{align}
+  \frac{dx}{dt} & = t \Rightarrow_1 x = \frac{1}{2}t^2 + x_0\\
+  \frac{du}{dt} & = 0 \Rightarrow u = u_0 = f(x_0) = f\left(x - \frac{1}{2} t^2\right)
+\end{align}
+
+\ex $u_t + tu_x = xt$, $u(x, 0) = f(x)$
+%
+\begin{align}
+  \frac{dx}{dt} & = t \Rightarrow_1 x = \frac{1}{2} t^2 + x_0\\
+  \frac{du}{dt} & = xt = t\left(\frac{1}{2}t^2 + x_0\right)
+  = \frac{1}{2} t^3 + x_0 t\\
+  & \Rightarrow_2 u = \frac{1}{8} t^4 + \frac{1}{2} x_0 t^2 + u_0
+  = \frac{1}{8} t^4 + \frac{1}{2} \left(x - \frac{1}{2} t^2\right)t^2 +
+  f\left(x - \frac{1}{2} t^2 \right)
+\end{align}
+
+\ex $u_t + xu_x = x$, $u(x, 0) = f(x)$
+%
+\begin{align}
+  \frac{dx}{dt} & = x \Rightarrow_1 x_0 e^t\\
+  \frac{du}{dt} & = x =_2 x_0e^t \Rightarrow u = x_0e^t + C
+  = x_0 e^t + u_0 - x_0 = x + f(xe^{-t}) - xe^{-t}
+\end{align}
+
+\ex $xu_x + u_t = t$, $u(x, 0) = x^2$
+%
+\begin{align}
+  \frac{dx}{dt} & = x \Rightarrow_1 x = x_0 e^t\\
+  \frac{du}{dt} & = t \Rightarrow_2 u = \frac{1}{2} t^2 + u_0
+  = \frac{1}{2}t^2 + f\left(xe^{-t}\right)
+  = \frac{1}{2}t^2 + \left(xe^{-t}\right)^2
+\end{align}
+
+\ex $xu_t - 2xtu_x = 2tu$, $u(x, 0) = f(x)$
+
+Let us rewrite our equation as $u_t - 2tu_x = \frac{2tu}{x}$
+%
+\begin{align}
+  \frac{dx}{dt} & = -2t \Rightarrow_1 x = -t^2 + x_0\\
+  \frac{du}{dt} & = \frac{2tu}{x} =_2 \frac{2tu}{x_0 - t^2}
+\end{align}
+
+For the second term, we would have to separate:
+%
+\begin{align}
+  \int \frac{1}{u} \text du & = \int \frac{2t}{x_0 - t^2} \text dt\\
+  \ln |u| & = \int \frac{2t}{x_0 - t^2} \text dt
+\end{align}
+
+Here, our $w = x_0 t^2$ and $dw = -2t dt$
+%
+\begin{align}
+  \ln |u| & = - \ln |x_0 - t^2| + C\\
+  u & = ce^{-\ln|x_0 - t^2|}\\
+  u & = ce^{\ln|x_0 - t^2|^{-1}}\\
+  u & = \frac{c}{x_0 - t^2}
+\end{align}
+
+Here, we know $x_0$ and we can find $c$ since plugging in $0$ should give us
+$u_0$:
+%
+\begin{align}
+  & = \frac{x_0 u_0}{x_0 - t^2}\\
+  u & = \frac{(x + t^2) f(x_0 + t^2)}{x}
+\end{align}
 \end{document}
