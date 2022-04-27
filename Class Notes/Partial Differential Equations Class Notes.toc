@@ -52,5 +52,6 @@
 \contentsline {section}{\numberline {12}Exam 2 Review}{78}{section.12}%
 \contentsline {section}{\numberline {13}Conservation Laws}{82}{section.13}%
 \contentsline {subsection}{\numberline {13.1}Burger's Equation}{83}{subsection.13.1}%
-\contentsline {subsection}{\numberline {13.2}Traffic Flow}{87}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.2}Traffic Flow}{86}{subsection.13.2}%
 \contentsline {subsection}{\numberline {13.3}Method of Characteristics}{89}{subsection.13.3}%
+\contentsline {section}{\numberline {14}Wave Equation on Semi-Infinite Domain}{97}{section.14}%
