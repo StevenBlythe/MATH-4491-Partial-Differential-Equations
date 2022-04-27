@@ -7,3 +7,103 @@
 \end{enumerate}
 \bigbreak
 %____________________________________________________________________________%
+
+\begin{enumerate}
+  \item Part a
+  \item Here, let us consider rewriting our equation:
+  %
+  \begin{align}
+    u_t + xu_x & = -2u
+  \end{align}
+
+  From here, we can find:
+  %
+  \begin{align}
+    \frac{dx}{ds} & = x\\
+    \frac{dt}{ds} & = 1\\
+    \frac{du}{ds} & = -2u
+  \end{align}
+
+  Here, finding $\frac{dx}{ds}$ is a matter of solving a differential equation to get:
+  %
+  \begin{align}
+    \frac{dx}{ds} & = x\\
+    x & = ce^s
+  \end{align}
+
+  Next, we can also find our second term for $\frac{dt}{ds}$ and find:
+  %
+  \begin{align}
+    \frac{dt}{ds} & = 1\\
+    dt & = ds\\
+    t & = s + t_0 = s
+  \end{align}
+
+  Note since $s = t$, we can replace this for what we found with $x$.
+  Now, to find
+  $\frac{dt}{ds}$,
+  let us take a similar approach as with
+  $\frac{dx}{ds}$ and write:
+  %
+  \begin{align}
+    \frac{du}{ds} & = -2u\\
+    u & = de^{-2s}
+  \end{align}
+
+  Here, recall $s = t$. We also are given $u(0)$ as $x^3$:
+  %
+  \begin{align}
+    u & = de^{-2s}\\
+    u & = u_0 e^{-2t}\\
+    u & = f\left( x_0 \right) e^{-2t}
+  \end{align}
+
+  From here, let us take a look back at $x$ and find $x_0$:
+  %
+  \begin{align}
+    x & = ce^t\\
+    x & = x_0 e^t\\
+    x e^{-t} & = x_0
+  \end{align}
+
+  Now, if we plug $x_0$ into $u$, we can find:
+  %
+  \begin{align}
+    u & = f\left( x_0 \right) e^{-2t}\\
+    u & = f\left( x e^{-t} \right) e^{-2t}\\
+    u & = \left(x e^{-t}\right)^3 e^{-2t}\\
+    u & = x^3 e^{-3t} e^{-2t}\\
+    u & = x^3 e^{-5t}
+  \end{align}
+
+  \item Here, let us rewrite our equation:
+  %
+  \begin{align}
+    u_t + 2x tu_x & = u\\
+    u(x, 0) & = 1 - x
+  \end{align}
+
+  Here, note that $u_x$ has $t$ as a coefficient. Let us skip over the change of variable ($t = s$) and write:
+  %
+  \begin{align}
+    \frac{dx}{dt} & = 2xt\\
+    \frac{du}{dt} & = u
+  \end{align}
+
+  First, let us consider solving for $\frac{dx}{dt}$.
+  Here, let us solve the differential equation:
+  %
+  \begin{align}
+    \frac{dx}{dt} & = 2xt\\
+    \int \frac{1}{x}\ dx & = \int 2t\ dt\\
+    \ln |x| & = t^2 + c\\
+    x & = ce^{t^2}\\
+    x & = x_0 e^{t^2}
+  \end{align}
+
+  Now, let us solve for $\frac{du}{dt}$:
+  %
+  \begin{align}
+
+  \end{align}
+\end{enumerate}
