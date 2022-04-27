@@ -1,0 +1,114 @@
+\section{Wave Equation on Semi-Infinite Domain}
+\begin{itemize}
+  \item $x \in [0, \infty), t \in [0, \infty)$
+  \item $u_{tt} = c^2 u_{xx}$
+  \item $u(x, 0) = f(x)$
+  \item $u_t(x, 0) = g(x)$
+  \item $u(0, t) = 0$
+\end{itemize}
+
+Recall: If $x \in (-\infty, \infty)$, we use d'Alembert's Formula:
+%
+\begin{align}
+  u(x, t) & = \frac{1}{2} \left[ f(x + ct) + f(x - ct) \right] +
+  \frac{1}{2c} \int^{x + ct}_{x - ct} g(y)\ \text dy
+\end{align}
+
+We would like to use the solution to the wave equation for
+$x \in (-\infty, \infty)$
+to help solve the wave equation when
+$x \in [0, \infty)$.
+
+To do this, we use the odd extension of the initial conditions:
+%
+\begin{align}
+  \twiddle f(x) & =
+  \begin{cases}
+    f(x) & x > 0\\
+    0 & x = 0\\
+    -f(-x) & x < 0
+  \end{cases}\\
+  \twiddle g(x) & =
+  \begin{cases}
+    f(x) & x > 0\\
+    0 & x = 0\\
+    -f(-x) & x < 0
+  \end{cases}
+\end{align}
+
+This system can be solved using d'Alembert's Formula:
+%
+\begin{align}
+  u(x, t) & = \frac{1}{2} \left[ \twiddle f(x + ct) + \twiddle f(x - ct) \right]
+  + \frac{1}{2c} \int^{x + ct}_{x - ct} \twiddle g(y)\ \text dy
+\end{align}
+
+\note This solves some PDE on $[0, \infty)$, since it solves it on
+$(-\infty, \infty)$.
+
+\note
+$u(0, t) = \frac{1}{2} \left[ \twiddle f(ct) + \twiddle f(-ct)\right]
++ \frac{1}{2} \int^{ct}_{-ct} \twiddle g(y)\ \text dy$, but our integral will
+zero out since it is odd. In addition, since our functions are odd, the
+$\twiddle f$ will cancel out as well.
+%
+\topic{Case 1}: $x - ct > 0$
+%
+\begin{align}
+  u(x, t)
+  & = \frac{1}{2} \left[ \twiddle f(x + ct) + \twiddle f(x - ct) \right] +
+  \frac{1}{2c} \int^{x + ct}_{x - ct} \twiddle g(y)\ \text dy\\
+  & = \frac{1}{2} \left[ f(x + ct) + f(x - ct) \right] +
+  \frac{1}{2c} \int^{x + ct}_{x - ct} g(y)\ \text dy
+\end{align}
+
+Staying on the right, we do not hit a wall and nothing changes.
+
+\topic{Case 2}: $x - ct < 0$
+%
+\begin{align}
+  u(x, t)
+  & = \frac{1}{2} \left[ \twiddle f(x + ct) + \twiddle f(x - ct) \right] +
+  \frac{1}{2c} \int^{x + ct}_{x - ct} \twiddle g(y)\ \text dy\\
+  & = \frac{1}{2} \left[ f(x + ct) - f(ct - x) \right] +
+  \frac{1}{2c}
+  \left[
+  \int^{0}_{x - ct} \twiddle g(y)\ \text dy +
+  \int^{x + ct}_{0} \twiddle g(y)\ \text dy
+   \right]\\
+   & = \frac{1}{2} \left[ f(x + ct) - f(ct - x) \right] +
+   \frac{1}{2c}
+   \left[
+   -\int^{0}_{x - ct} g(-y)\ \text dy +
+   \int^{x + ct}_{0} g(y)\ \text dy
+    \right]
+\end{align}
+
+Here, let us perform substitution with $w = -y$,
+%
+\begin{align}
+  & = \frac{1}{2} \left[ f(x + ct) - f(ct - x) \right] +
+  \frac{1}{2c}
+  \left[
+  \int^{0}_{ct - x} g(w)\ \text dw +
+  \int^{x + ct}_{0} g(y)\ \text dy
+  \right]\\
+  & = \frac{1}{2} \left[ f(x + ct) - f(ct - x) \right] +
+  \frac{1}{2c}
+  \left[
+  \int^{x + ct}_{ct - x} g(y)\ \text dy
+  \right]
+\end{align}
+
+If we look at the domain of dependence, the left line reflect back to our domain and the line is represented as $ct - x$.
+
+\ex $u_{tt} = u_{xx}, x \in [0, \infty)$
+%
+\begin{align}
+  u(x, 0) & =
+  \begin{cases}
+    1 & 4 < x < 5\\
+    0 & \text{otherwise}
+  \end{cases}\\
+  u_t(x, 0) & = 0
+\end{align}
