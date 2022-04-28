@@ -560,3 +560,97 @@ class GreenLight(Scene):
 
         self.add(line_left)
         self.wait()
+
+
+class HeatConservationb(Scene):
+    def construct(self):
+        self.camera.background_color = WHITE
+        axes = Axes(
+            x_range=[-5, 5, 1],
+            y_range=[0, 5, 1],
+            tips=False
+        ).set_color(BLACK)
+        self.add(axes)
+
+        l11 = lambda x : -x
+        l12 = lambda x : -x - 1
+        l13 = lambda x : -x - 2
+        l14 = lambda x : -x - 3
+        l15 = lambda x : -x - 4
+
+        l21 = lambda x : 1
+        l22 = lambda x : 2
+        l23 = lambda x : 3
+        l24 = lambda x : 4
+        l25 = lambda x : 5
+
+        lines11 = axes.plot(l11, x_range=[-5, 0]).set_color(GRAY)
+        lines12 = axes.plot(l12, x_range=[-5, -1]).set_color(BLACK)
+        lines13 = axes.plot(l13, x_range=[-5, -2]).set_color(BLACK)
+        lines14 = axes.plot(l14, x_range=[-5, -3]).set_color(BLACK)
+        lines15 = axes.plot(l15, x_range=[-5, -4]).set_color(BLACK)
+        
+        lines21 = axes.plot(l21, x_range=[-5, 5]).set_color(BLACK)
+        lines22 = axes.plot(l22, x_range=[-5, 5]).set_color(BLACK)
+        lines23 = axes.plot(l23, x_range=[-5, 5]).set_color(BLACK)
+        lines24 = axes.plot(l24, x_range=[-5, 5]).set_color(BLACK)
+        lines25 = axes.plot(l25, x_range=[-5, 5]).set_color(BLACK)
+
+        self.add(
+            lines11,
+            lines12, lines13, lines14, lines15,
+            lines21, lines22, lines23, lines24, lines25
+        )
+        self.wait()
+
+class HeatConservationa(Scene):
+    def construct(self):
+        self.camera.background_color = WHITE
+        axes = Axes(
+            x_range=[-5, 5, 1],
+            y_range=[0, 5, 1],
+            tips=False
+        ).set_color(BLACK)
+        self.add(axes)
+
+
+        l11 = lambda x : -0.5 * x
+        l12 = lambda x : -0.5 * x - 1
+        l13 = lambda x : -0.5 * x - 2
+        l14 = lambda x : -0.5 * x - 3
+        l15 = lambda x : -0.5 * x - 4
+
+        l20 = lambda x : -x
+        l21 = lambda x : -x + 1
+        l22 = lambda x : -x + 2
+        l23 = lambda x : -x + 3
+        l24 = lambda x : -x + 4
+        l25 = lambda x : -x + 5
+        l26 = lambda x : -x + 6
+        l27 = lambda x : -x + 7
+        l28 = lambda x : -x + 8
+        l29 = lambda x : -x + 9
+
+        lines11 = axes.plot(l11, x_range=[-5, 0]).set_color(GRAY)
+        lines12 = axes.plot(l12, x_range=[-5, -2]).set_color(BLACK)
+        lines13 = axes.plot(l13, x_range=[-5, -4]).set_color(BLACK)
+        #lines14 = axes.plot(l14, x_range=[-5, -3]).set_color(BLACK)
+        #lines15 = axes.plot(l15, x_range=[-5, -4]).set_color(BLACK)
+        
+        lines20 = axes.plot(l20, x_range=[-5, 0]).set_color(BLACK)
+        lines21 = axes.plot(l21, x_range=[-4, 1]).set_color(BLACK)
+        lines22 = axes.plot(l22, x_range=[-3, 2]).set_color(BLACK)
+        lines23 = axes.plot(l23, x_range=[-2, 3]).set_color(BLACK)
+        lines24 = axes.plot(l24, x_range=[-1, 4]).set_color(BLACK)
+        lines25 = axes.plot(l25, x_range=[0, 5]).set_color(BLACK)
+        lines26 = axes.plot(l26, x_range=[1, 5]).set_color(BLACK)
+        lines27 = axes.plot(l27, x_range=[2, 5]).set_color(BLACK)
+        lines28 = axes.plot(l28, x_range=[3, 5]).set_color(BLACK)
+        lines29 = axes.plot(l29, x_range=[4, 5]).set_color(BLACK)
+
+        self.add(
+            lines11, lines12, lines13, #lines14, lines15,
+            lines20, lines21, lines22, lines23, lines24, lines25,
+            lines26, lines27, lines28, lines29
+        )
+        self.wait()

@@ -9,7 +9,40 @@
 %____________________________________________________________________________%
 
 \begin{enumerate}
-  \item Part a
+  \item Let us rewrite our given problem:
+  %
+  \begin{align}
+    u_t + 7u_x & = t\\
+    u(x, 0) & = \sin x
+  \end{align}
+
+  Here, let us derive information from our given statement:
+  %
+  \begin{align}
+    \frac{dx}{dt} & = 7\\
+    \frac{du}{dt} & = t
+  \end{align}
+
+  Here, let us solve for $\frac{dx}{dt}$:
+  %
+  \begin{align}
+    \frac{dx}{dt} & = 7\\
+    \int dx & = \int 7\\
+    x & = x_0 e^{7t}\\
+    x_0 & = x e^{-7t}
+  \end{align}
+
+  Now that we have solved for $x$. Now, let us consider $\frac{du}{dt}$
+  %
+  \begin{align}
+    \frac{du}{dt} &= t\\
+    \int du & = \int t dt\\
+    u & = \frac{1}{2} t^2 + u_0\\
+    u & = \frac{1}{2} t^2 + f(x_0)\\
+    u & = \frac{1}{2} t^2 + f\left(x e^{-7t}\right)\\
+    u & = \frac{1}{2} t^2 + \sin \left(x e^{-7t}\right)\\
+  \end{align}
+
   \item Here, let us consider rewriting our equation:
   %
   \begin{align}
@@ -98,12 +131,65 @@
     \int \frac{1}{x}\ dx & = \int 2t\ dt\\
     \ln |x| & = t^2 + c\\
     x & = ce^{t^2}\\
-    x & = x_0 e^{t^2}
+    x & = x_0 e^{t^2}\\
+    x_0 & = x e^{-t^2}
   \end{align}
 
   Now, let us solve for $\frac{du}{dt}$:
   %
   \begin{align}
+    \frac{du}{dt} & = u\\
+    u & = u_0 e^{t}\\
+    u & = f(x_0) e^{t}
+  \end{align}
 
+  Here, $u(x, 0)$ is defined as $1 - x$. Let us substitute this in to solve for $u$:
+  %
+  \begin{align}
+    u & = \left( 1 - x e^{-t^2} \right) e^t\\
+    u & = e^t - x e^{-t^2 + t}
+  \end{align}
+
+  \item Here, let us rewrite our given problem:
+  %
+  \begin{align}
+    tu_t + 2xu_x & = t \sin(\pi t)\\
+    u(x, 1) & = \cos x
+  \end{align}
+
+  First, let us rewrite our given equation:
+  %
+  \begin{align}
+    u_t + \frac{1}{t} 2x u_x & = \sin(\pi t)
+  \end{align}
+
+  Here, we eliminated to coefficient in front of $u_t$, so let us only consider
+  $\frac{dx}{dt}$ and $\frac{du}{dt}$:
+  %
+  \begin{align}
+    \frac{dx}{dt} & = \frac{1}{t} 2x\\
+    \frac{du}{dt} & = \sin(\pi t)
+  \end{align}
+
+  From here, let us solve for $x$:
+  %
+  \begin{align}
+    \frac{dx}{dt} & = \frac{1}{t} 2x\\
+    \int \frac{1}{x} dx & = \int \frac{2}{t} dt\\
+    \ln |x| & = 2 \ln |t| + x_0\\
+    \ln |x| & = \ln |t^2| + x_0\\
+    e^{\ln |x|} & = x_0 e^{\ln t^2}\\
+    x & = x_0 t^2\\
+    x t^{-2} & = x_0
+  \end{align}
+
+  Now, if we consider solving for $\frac{du}{dt}$, we get:
+  %
+  \begin{align}
+    \frac{du}{dt} & = \sin (\pi t)\\
+    \int du & = \int \sin (\pi t) dt\\
+    u & = - \frac{1}{\pi} \cos (\pi t) + u_0\\
+    u & = - \frac{1}{\pi} \cos (\pi t) + f(x_0)\\
+    u & = - \frac{1}{\pi} \cos (\pi t) + \cos\left(x t^{-2}\right)
   \end{align}
 \end{enumerate}
