@@ -1,0 +1,36 @@
+The Transport Equation
+%
+\begin{align}
+  u_t & = cu_x
+\end{align}
+\begin{enumerate}
+  \item First order equation
+  \item $x \in (-\infty, \infty)$
+  \item $t \in [0, \infty)$
+  \item In essence, $u(x, 0) = f(x)$
+\end{enumerate}
+
+Here, let us guess $u(x, t) = v(x + ct)$. Solutions of this form are called travelling wave equations.
+
+Here, let us establish $\eta = x + ct$
+
+\topic{Delta Functions}
+%
+\begin{align}
+  \int^\infty_{-\infty} \delta(y) g(x - y)\ \text dy & = \int^\infty_{-\infty} \delta(x - y) g(y)\ \text dy = g(x)
+\end{align}
+
+\topic{Gaussian Normal Distributions}
+%
+\begin{align}
+  u(x, t) & = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty} \delta(y) e^{- \frac{(x - y)^2}{4t}}\ \text dy\\
+  & = \frac{1}{\sqrt{4 \pi t}} e^{-\frac{x^2}{4t}}
+\end{align}
+
+For $\delta(x - 0)$.
+
+\topic{Integral}
+%
+\begin{align}
+  \int^\infty_{-\infty} e^{-x^2}\ \text dx & = \sqrt \pi
+\end{align}

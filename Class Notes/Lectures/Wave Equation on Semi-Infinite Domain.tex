@@ -112,3 +112,76 @@ If we look at the domain of dependence, the left line reflect back to our domain
   \end{cases}\\
   u_t(x, 0) & = 0
 \end{align}
+
+\section{D'Alembert's Formula on a Bounded Domain}
+\begin{center}
+  $
+  u_{tt} = c^2 u_{xx} \quad
+  u(x, 0) = f(x) \quad
+  u_t(x, 0) = g(x) \quad
+  0 \leq x \leq L, t \in [0, \infty)
+  $
+\end{center}
+
+How do we find the solution to the wave equation on
+$(-\infty, \infty)$
+to find a solution on $[0, L]$?
+
+We extend the initial conditions to be odd and periodic with period $2L$.
+%
+\begin{align}
+  \twiddle f(x) & =
+  \begin{cases}
+    f(x) & 0 < x < L\\
+    0 & x = 0\\
+    -f(-x) & -L < x < 0
+  \end{cases}
+\end{align}
+
+Recall, we considered boundary conditions. Here, let us define boundary conditions as:
+\begin{center}
+  $u(0, t) = u(L, t) = 0$
+\end{center}
+
+Here, let us enforce $\twiddle f(x + 2L) = \twiddle f(x)$ to force periodicity. For $\twiddle g(x)$, let us write:
+%
+\begin{align}
+  \twiddle g(x) & =
+  \begin{cases}
+    g(x) & 0 < x \leq L\\
+    0 & x = 0\\
+    -g(-x) & -L < x < 0
+  \end{cases}
+\end{align}
+
+The solution will be:
+%
+\begin{align}
+  u(x, t) & = \frac{1}{2}
+  \left[ \twiddle f(x + ct) + \twiddle f(x - ct) \right] +
+  \frac{1}{2} \int^{x + ct}_{x - ct} \twiddle g(y)\ \text dy\\
+  u(0, t) & = \frac{1}{2}
+  \left[ \twiddle f(ct) + \twiddle f(-ct) \right]\\
+  u(L, t) & = \frac{1}{2}
+  \left[ \twiddle f(L + ct) + \twiddle f(L - ct) \right] +
+  \frac{1}{2c} \int^{L + ct}_{L - ct} \twiddle g(y)\ \text dy\\
+  & = \frac{1}{2}
+  \left[ \twiddle f(ct - L) + \twiddle f(L - ct) \right] +
+  \frac{1}{2c} \left(
+  \int^{0}_{L - ct} \twiddle g(y)\ \text dy +
+  \int^{L + ct}_{0} \twiddle g(y)\ \text dy
+  \right)\\
+  & = \frac{1}{2}
+  \left[ \twiddle -f(L - ct) + \twiddle f(L - ct) \right] +
+  \frac{1}{2c} \left(
+  \int^{0}_{ct - L} \twiddle g(y)\ \text dy +
+  \int^{L + ct}_{0} \twiddle g(y)\ \text dy
+  \right)\\
+  & = \frac{1}{2c}
+  \left(
+  \int^0_{ct + L} \twiddle g(y)\ \text dy+
+  \int_0^{L + ct} \twiddle g(y)\ \text dy
+  \right)
+\end{align}
+
+We added an integral of length $2L$, which is $0$ since $\twiddle g$ is odd.
