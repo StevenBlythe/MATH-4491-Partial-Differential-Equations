@@ -3,13 +3,37 @@
 \usepackage{import}
 \usepackage{forest}
 \begin{document}
+\begin{enumerate}
+  \import{Responses/}{First Problem.tex}
+  \import{Responses/}{Second Problem.tex}
+  \import{Responses/}{Third Problem.tex}
+  \import{Responses/}{Fourth Problem.tex}
+  \import{Responses/}{Fifth Problem.tex}
+\end{enumerate}
 
 \begin{enumerate}
-  \import{Responses/}{Project Level Set.tex}
-  %%__________________________________________________________________________%
-  \newpage
-  \setcounter{equation}{0}
-  %%__________________________________________________________________________%
+  \item The shock filter deblurred somewhat well. The algorithm attempted to
+  establish the borders of the flower and tiles but with higher $\Delta t$
+  values, the image would become pixelated. Finding a balance between enough
+  iterations and a proper time step would require constant tweaking.
+
+  \item The level set worked as expected, although slower than expected in the Curve Boundary image.
+
+  The level set manage to flatten out the circle in the Boundaries image and eventually eliminate the shapes in all the other images. Peanut and shapes were expected to lose the shapes to the background since none of the objects were touching the borders of the image. Curve boundary took longer than expected to straighten out the line and the first image kept the left and topright boundaries as expected.
+
+  \item In some cases, modified level set is a better algorithm and vice versa.
+
+  In the light noise image, level set was able to preserve more of the main subject, the face, while eliminating the salt and pepper noises at a faster rate.
+
+  However, the medium and heavy smiles experienced blotches in the face, akin to acne, when using the modified level set algorithm whereas the level set algorithm displayed no blotches and in fact eliminated all the noise in the heavy smile image while preserving most of the face.
+
+  \item A combination of both the (modified) level set and shock filter helped discover the original image at a cost of losing some features of the osprey and adding a bit of jagged boundaries as well.
+
+  While the algorithm may not be considered as a solution for every case, the combination of both the modified level set and shock filter gave us a better understanding of how the original picture may have looked like. This may assist in text processing to define the boundaries in blurry text scans, but the combination of both methods may not be suitable for scenic photographs, portraits, or anything in between.
+
+  \item The shock filter defined the boundaries in the picture. As seen in the third image, there are pixelations near the boundaries of two objects (glasses and skin, hair and window, hair and forehead, emblem and shirt, etc.).
+
+  While some sharpness at borders were expected, it was interesting to see what would happen if the shock filter ran for longer periods, such as the image in the middle. Zooming in, the texture on the skin appears to take the form similar to an oil painting. When observing the glasses, the skin underneath the frames appear to be painted, losing a natural feel.
 \end{enumerate}
 
 \end{document}
