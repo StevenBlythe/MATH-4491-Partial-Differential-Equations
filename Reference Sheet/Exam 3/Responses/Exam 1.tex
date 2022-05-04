@@ -1,0 +1,82 @@
+\topic{Fourier Series}
+\begin{align*}
+  %______________________Fourier Series Representation_______________________%
+  f(x) & =
+  a_0 +
+  \sum^\infty_{n = 1}
+  (a_n \cos nx + b_n \sin nx)\\
+  %
+  %______________________________a0 Coefficient______________________________%
+  a_0 & =
+  \frac{1}{2 \pi}
+  \int^\pi_{-\pi}
+  f(x)
+  \text{ dx}\\
+  %
+  %______________________________a0 Coefficient______________________________%
+  a_n & =
+  \frac{1}{\pi}
+  \int^\pi_{-\pi}
+  f(x) \cos nx
+  \text{ dx}\\
+  %
+  %______________________________a0 Coefficient______________________________%
+  b_n & =
+  \frac{1}{\pi}
+  \int^\pi_{-\pi}
+  f(x) \sin nx
+  \text{ dx}\\
+  %
+  %
+  g(x) & = a_0 + \sum^\infty_{n = 1}
+  a_n \cos \left( \frac{n \pi x}{L} \right) +
+  b_n \sin \left( \frac{n \pi x}{L} \right)
+\end{align*}
+%______________________________________________________________________________%
+\topic{Laplace's Equation}
+
+Recall the Fourier Sine Series:
+\begin{align*}
+A_n & = \frac{1}{L}\int^L_{-L} f(x) \sin\left(\frac{n \pi x}{L}\right)\text{ dx}\\
+A_n & = \frac{2}{L}\int^L_0 f(x) \sin\left(\frac{n \pi x}{L}\right)\text{ dx}
+\end{align*}
+Recall general solutions: sine, exp, sinh
+
+Fill in the blanks at last step.
+
+\topic{Steady State Solution}
+
+Here, $T$ is our $u$ at the start or end, creates a line.
+\begin{align*}
+v(x) & = \frac{T_2 - T_1}{L}x + T_1\\
+u(x, t) & = w(x, t) + v(x)
+\end{align*}
+
+Continue with $w(x, t)$ using the interval.
+\begin{align*}
+w(x, t) = u(x, t) - v(x)
+\end{align*}
+
+Use the appropriate condition ($e.g. u(x, 0)$)
+
+Continue to solve as usual with $w$. Once finished,
+\begin{align*}
+u(x, t) & = w(x, t) + v(x)
+\end{align*}
+
+\topic{Trig Derivatives}
+\begin{itemize}
+\item $f(x) = \sin x \Rightarrow f^\prime(x) =   \cos x$
+\item $f(x) = \cos x \Rightarrow f^\prime(x) = - \sin x$
+\item $\int \sin x \text{ dx} = - \cos x + C$
+\item $\int \cos x \text{ dx} =   \sin x + C$
+\end{itemize}
+
+\topic{Misc}
+%
+\begin{align}
+u_t & = u_{xx}\\
+u(x, t)
+& = \frac{1}{\sqrt{4 \pi t}} \int^\infty_{-\infty}
+y^2 e^{-\frac{(x - y)^2}{4t}}\ \text dy
+\end{align}
